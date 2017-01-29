@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+
+
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="drop_db"/>
+  <table-filter match-name="t_empresa"/>
+  <table-filter match-name="t_casa"/>
+  <table-filter match-name="t_cliente"/>
+  <table-filter match-name="t_codeudor"/>
+  <table-filter match-name="t_ref_persona"/>
+  <table-filter match-name="t_referencia"/>
+  <table-filter match-name="t_cuota"/>
+  <table-filter match-name="t_prestamo"/>
+  <table-filter match-name="t_tipo_casa"/>
+</hibernate-reverse-engineering>

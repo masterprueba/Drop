@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TReferencia" table="t_referencia" catalog="drop_db" optimistic-lock="version">
+        <id name="trefId" type="java.lang.Integer">
+            <column name="tref_id" />
+            <generator class="identity" />
+        </id>
+        <property name="trefTipo" type="string">
+            <column name="tref_tipo" length="45">
+                <comment>Tipo de Referencia</comment>
+            </column>
+        </property>
+        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_referencia_tref_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCliente" />
+        </set>
+        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_referencia_tref_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCodeudor" />
+        </set>
+        <one-to-one name="TRefPersona" class="Entity.TRefPersona"></one-to-one>
+    </class>
+</hibernate-mapping>

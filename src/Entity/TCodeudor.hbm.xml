@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TCodeudor" table="t_codeudor" catalog="drop_db" optimistic-lock="version">
+        <id name="tcodId" type="java.lang.Integer">
+            <column name="tcod_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TCasa" class="Entity.TCasa" fetch="select">
+            <column name="t_casa_tcasa_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TEmpresa" class="Entity.TEmpresa" fetch="select">
+            <column name="t_empresa_temp_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TReferencia" class="Entity.TReferencia" fetch="select">
+            <column name="t_referencia_tref_id" not-null="true" />
+        </many-to-one>
+        <property name="tcodCedula" type="string">
+            <column name="tcod_cedula" length="20">
+                <comment>Cedula de Cliente</comment>
+            </column>
+        </property>
+        <property name="tcodNombre" type="string">
+            <column name="tcod_nombre" length="60">
+                <comment>Nombre de Codeudor</comment>
+            </column>
+        </property>
+        <property name="tcodApellido" type="string">
+            <column name="tcod_apellido" length="60">
+                <comment>Apellido Codeudor</comment>
+            </column>
+        </property>
+        <property name="tcodTel" type="string">
+            <column name="tcod_tel" length="60">
+                <comment>Telefono de Codeudor</comment>
+            </column>
+        </property>
+        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_codeudor_tcod_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCliente" />
+        </set>
+    </class>
+</hibernate-mapping>

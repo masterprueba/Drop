@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
+        <id name="tpreId" type="java.lang.Integer">
+            <column name="tpre_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TCliente" class="Entity.TCliente" fetch="select">
+            <column name="t_cliente_tcli_id" not-null="true" />
+        </many-to-one>
+        <property name="tpreNumCuotas" type="java.lang.Integer">
+            <column name="tpre_num_cuotas">
+                <comment>Numero de Cuotas</comment>
+            </column>
+        </property>
+        <property name="tpreFechaEntrega" type="timestamp">
+            <column name="tpre_fecha_entrega" length="19">
+                <comment>Fecha de Entrega de Prestamo</comment>
+            </column>
+        </property>
+        <property name="tpreValorTotal" type="java.lang.Long">
+            <column name="tpre_valor_total" precision="10" scale="0">
+                <comment>Valor Total Prestamo</comment>
+            </column>
+        </property>
+        <property name="tpreValorCuota" type="java.lang.Long">
+            <column name="tpre_valor_cuota" precision="10" scale="0">
+                <comment>Valor de Cuota</comment>
+            </column>
+        </property>
+        <property name="tpreFechaIni" type="timestamp">
+            <column name="tpre_fecha_ini" length="19">
+                <comment>Fecha Inicio de Prestamo</comment>
+            </column>
+        </property>
+        <property name="tpreFechaFin" type="timestamp">
+            <column name="tpre_fecha_fin" length="19">
+                <comment>Fecha Fin de Prestamo</comment>
+            </column>
+        </property>
+        <set name="TCuotas" table="t_cuota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_prestamo_tpre_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCuota" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TCliente" table="t_cliente" catalog="drop_db" optimistic-lock="version">
+        <id name="tcliId" type="java.lang.Integer">
+            <column name="tcli_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TCasa" class="Entity.TCasa" fetch="select">
+            <column name="t_casa_tcasa_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TCodeudor" class="Entity.TCodeudor" fetch="select">
+            <column name="t_codeudor_tcod_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TEmpresa" class="Entity.TEmpresa" fetch="select">
+            <column name="t_empresa_temp_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TReferencia" class="Entity.TReferencia" fetch="select">
+            <column name="t_referencia_tref_id" not-null="true" />
+        </many-to-one>
+        <property name="tcliCedula" type="string">
+            <column name="tcli_cedula" length="20">
+                <comment>Cedula de Cliente</comment>
+            </column>
+        </property>
+        <property name="tcliNombre" type="string">
+            <column name="tcli_nombre" length="60">
+                <comment>Nombre de Cliente</comment>
+            </column>
+        </property>
+        <property name="tcliApellido" type="string">
+            <column name="tcli_apellido" length="60">
+                <comment>Apellido de Cliente</comment>
+            </column>
+        </property>
+        <property name="tcliTel" type="string">
+            <column name="tcli_tel" length="15">
+                <comment>Telefono de Cliente</comment>
+            </column>
+        </property>
+        <set name="TPrestamos" table="t_prestamo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_cliente_tcli_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TPrestamo" />
+        </set>
+    </class>
+</hibernate-mapping>

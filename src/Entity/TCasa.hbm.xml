@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TCasa" table="t_casa" catalog="drop_db" optimistic-lock="version">
+        <id name="tcasaId" type="java.lang.Integer">
+            <column name="tcasa_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TTipoCasa" class="Entity.TTipoCasa" fetch="select">
+            <column name="t_tipo_casa_ttip_id" not-null="true" />
+        </many-to-one>
+        <property name="tcasaDir" type="string">
+            <column name="tcasa_dir" length="60" />
+        </property>
+        <property name="tcasaPropietarioNombre" type="string">
+            <column name="tcasa_propietario_nombre" length="60">
+                <comment>Nombre de Propietario de Casa</comment>
+            </column>
+        </property>
+        <property name="tcasaPropietarioApellido" type="string">
+            <column name="tcasa_propietario_apellido" length="60">
+                <comment>Apellido de Propietario de Casa</comment>
+            </column>
+        </property>
+        <property name="tcasaPropietarioTel" type="string">
+            <column name="tcasa_propietario_tel" length="15">
+                <comment>Telefono de Propietario de Casa</comment>
+            </column>
+        </property>
+        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_casa_tcasa_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCodeudor" />
+        </set>
+        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_casa_tcasa_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCliente" />
+        </set>
+    </class>
+</hibernate-mapping>

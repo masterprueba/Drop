@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TEmpresa" table="t_empresa" catalog="drop_db" optimistic-lock="version">
+        <id name="tempId" type="java.lang.Integer">
+            <column name="temp_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tempNombre" type="string">
+            <column name="temp_nombre" length="60">
+                <comment>Nombre de Empresa</comment>
+            </column>
+        </property>
+        <property name="tempDir" type="string">
+            <column name="temp_dir" length="60">
+                <comment>Telefono de Empresa</comment>
+            </column>
+        </property>
+        <property name="tempTel" type="string">
+            <column name="temp_tel" length="15">
+                <comment>Direccion de Empresa</comment>
+            </column>
+        </property>
+        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_empresa_temp_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCodeudor" />
+        </set>
+        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_empresa_temp_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCliente" />
+        </set>
+    </class>
+</hibernate-mapping>
