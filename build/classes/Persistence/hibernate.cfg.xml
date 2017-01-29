@@ -5,13 +5,13 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/drop_db?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">890416</property>
+    <property name="hibernate.connection.username">droti</property>
+    <property name="hibernate.connection.password">admin13082016</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.use_sql_comments">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.enable_lazy_load_no_trans">true</property> 
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TCliente.hbm.xml"/>
     <mapping resource="Entity/TReferencia.hbm.xml"/>
