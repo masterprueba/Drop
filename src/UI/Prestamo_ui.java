@@ -26,6 +26,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
     
     
     //Prueba Yoimar iniiniubuybuvbu
+    //erddaaaa
     public Prestamo_ui() {
         initComponents();
         //instacion controlador de esta vista
