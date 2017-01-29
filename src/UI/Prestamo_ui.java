@@ -22,7 +22,10 @@ public class Prestamo_ui extends javax.swing.JFrame {
     private TCliente cliente;    
     
     
-    //Prueba Yoimar
+    
+    
+    
+    //Prueba Yoimar iniiniubuybuvbu
     public Prestamo_ui() {
         initComponents();
         //instacion controlador de esta vista
