@@ -8,7 +8,7 @@ package Model;
 
 /**
  *
- * @author Usuario
+ * @author Andre
  */
 public class Prestamo_model extends General_model{
 
