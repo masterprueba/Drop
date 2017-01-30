@@ -5,10 +5,6 @@
  */
 package Model;
 
-import Entity.TCliente;
-import Entity.TPrestamo;
-import Persistence.hibernateUtil;
-import org.hibernate.Session;
 
 /**
  *
@@ -16,7 +12,7 @@ import org.hibernate.Session;
  */
 public class Prestamo_model extends General_model{
 
-    private Session s;
+    
     
     public Prestamo_model() {
     }

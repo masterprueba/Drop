@@ -6,9 +6,9 @@
 package Model;
 
 import Persistence.hibernateUtil;
-import org.hibernate.Session;
 import Entity.*;
 import java.util.List;
+import org.hibernate.Session;
 
 
 /**
@@ -25,7 +25,7 @@ public class General_model<T> {
 
     public boolean insertar(T obj){
         boolean test = false;
-        try {
+        try {            
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.save(obj);
