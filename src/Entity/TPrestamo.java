@@ -1,5 +1,5 @@
 package Entity;
-// Generated 15/01/2017 01:15:31 PM by Hibernate Tools 4.3.1
+// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,8 @@ public class TPrestamo  implements java.io.Serializable {
      private Integer tpreId;
      private TCliente TCliente;
      private Integer tpreNumCuotas;
+     private Integer tpreIntereses;
+     private String tpreMetodoPago;
      private Date tpreFechaEntrega;
      private Long tpreValorTotal;
      private Long tpreValorCuota;
@@ -29,9 +31,11 @@ public class TPrestamo  implements java.io.Serializable {
     public TPrestamo(TCliente TCliente) {
         this.TCliente = TCliente;
     }
-    public TPrestamo(TCliente TCliente, Integer tpreNumCuotas, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Date tpreFechaIni, Date tpreFechaFin, Set TCuotas) {
+    public TPrestamo(TCliente TCliente, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodoPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Date tpreFechaIni, Date tpreFechaFin, Set TCuotas) {
        this.TCliente = TCliente;
        this.tpreNumCuotas = tpreNumCuotas;
+       this.tpreIntereses = tpreIntereses;
+       this.tpreMetodoPago = tpreMetodoPago;
        this.tpreFechaEntrega = tpreFechaEntrega;
        this.tpreValorTotal = tpreValorTotal;
        this.tpreValorCuota = tpreValorCuota;
@@ -60,6 +64,20 @@ public class TPrestamo  implements java.io.Serializable {
     
     public void setTpreNumCuotas(Integer tpreNumCuotas) {
         this.tpreNumCuotas = tpreNumCuotas;
+    }
+    public Integer getTpreIntereses() {
+        return this.tpreIntereses;
+    }
+    
+    public void setTpreIntereses(Integer tpreIntereses) {
+        this.tpreIntereses = tpreIntereses;
+    }
+    public String getTpreMetodoPago() {
+        return this.tpreMetodoPago;
+    }
+    
+    public void setTpreMetodoPago(String tpreMetodoPago) {
+        this.tpreMetodoPago = tpreMetodoPago;
     }
     public Date getTpreFechaEntrega() {
         return this.tpreFechaEntrega;

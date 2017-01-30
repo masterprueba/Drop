@@ -51,7 +51,7 @@ public class Prestamo_Controller {
     //inserta prestamo en la bd
     public void create(TCliente cliente) {
         if (validar()) {
-            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate(), null);
+            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate());
             if (pmodel.insertar(prestamo)) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {

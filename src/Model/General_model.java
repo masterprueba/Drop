@@ -52,7 +52,7 @@ public class General_model<T> {
 //    public void create(T entity) {
 //        getEntityManager().persist(entity);
 //    }
-//
+// 
 //    public void edit(T entity) {
 //        getEntityManager().merge(entity);
 //    }

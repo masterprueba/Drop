@@ -1,5 +1,5 @@
 package Entity;
-// Generated 15/01/2017 01:15:31 PM by Hibernate Tools 4.3.1
+// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
 
 
 
@@ -14,6 +14,7 @@ public class TRefPersona  implements java.io.Serializable {
      private String trefpNombre;
      private String trefpApellido;
      private String trefpTel;
+     private String trefpTipo;
 
     public TRefPersona() {
     }
@@ -22,11 +23,12 @@ public class TRefPersona  implements java.io.Serializable {
     public TRefPersona(TReferencia TReferencia) {
         this.TReferencia = TReferencia;
     }
-    public TRefPersona(TReferencia TReferencia, String trefpNombre, String trefpApellido, String trefpTel) {
+    public TRefPersona(TReferencia TReferencia, String trefpNombre, String trefpApellido, String trefpTel, String trefpTipo) {
        this.TReferencia = TReferencia;
        this.trefpNombre = trefpNombre;
        this.trefpApellido = trefpApellido;
        this.trefpTel = trefpTel;
+       this.trefpTipo = trefpTipo;
     }
    
     public int getTReferenciaTrefId() {
@@ -63,6 +65,13 @@ public class TRefPersona  implements java.io.Serializable {
     
     public void setTrefpTel(String trefpTel) {
         this.trefpTel = trefpTel;
+    }
+    public String getTrefpTipo() {
+        return this.trefpTipo;
+    }
+    
+    public void setTrefpTipo(String trefpTipo) {
+        this.trefpTipo = trefpTipo;
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 29/01/2017 09:35:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
@@ -14,6 +14,16 @@
         <property name="tpreNumCuotas" type="java.lang.Integer">
             <column name="tpre_num_cuotas">
                 <comment>Numero de Cuotas</comment>
+            </column>
+        </property>
+        <property name="tpreIntereses" type="java.lang.Integer">
+            <column name="tpre_intereses">
+                <comment>Porcentaje de Interes</comment>
+            </column>
+        </property>
+        <property name="tpreMetodoPago" type="string">
+            <column name="tpre_metodo_pago" length="45">
+                <comment>Metodo de Pago</comment>
             </column>
         </property>
         <property name="tpreFechaEntrega" type="timestamp">
@@ -31,13 +41,13 @@
                 <comment>Valor de Cuota</comment>
             </column>
         </property>
-        <property name="tpreFechaIni" type="timestamp">
-            <column name="tpre_fecha_ini" length="19">
+        <property name="tpreFechaIni" type="date">
+            <column name="tpre_fecha_ini" length="10">
                 <comment>Fecha Inicio de Prestamo</comment>
             </column>
         </property>
-        <property name="tpreFechaFin" type="timestamp">
-            <column name="tpre_fecha_fin" length="19">
+        <property name="tpreFechaFin" type="date">
+            <column name="tpre_fecha_fin" length="10">
                 <comment>Fecha Fin de Prestamo</comment>
             </column>
         </property>

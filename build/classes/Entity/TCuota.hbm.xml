@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 15/01/2017 01:15:32 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 29/01/2017 09:35:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <composite-id name="id" class="Entity.TCuotaId">
@@ -15,8 +15,8 @@
         <many-to-one name="TPrestamo" class="Entity.TPrestamo" update="false" insert="false" fetch="select">
             <column name="t_prestamo_tpre_id" not-null="true" />
         </many-to-one>
-        <property name="tcuoFecha" type="timestamp">
-            <column name="tcuo_fecha" length="19">
+        <property name="tcuoFecha" type="date">
+            <column name="tcuo_fecha" length="10">
                 <comment>Fecha de Cuota</comment>
             </column>
         </property>

@@ -1,5 +1,5 @@
 package Entity;
-// Generated 15/01/2017 01:15:31 PM by Hibernate Tools 4.3.1
+// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,7 +12,6 @@ public class TReferencia  implements java.io.Serializable {
 
 
      private Integer trefId;
-     private String trefTipo;
      private Set TClientes = new HashSet(0);
      private Set TCodeudors = new HashSet(0);
      private TRefPersona TRefPersona;
@@ -20,8 +19,7 @@ public class TReferencia  implements java.io.Serializable {
     public TReferencia() {
     }
 
-    public TReferencia(String trefTipo, Set TClientes, Set TCodeudors, TRefPersona TRefPersona) {
-       this.trefTipo = trefTipo;
+    public TReferencia(Set TClientes, Set TCodeudors, TRefPersona TRefPersona) {
        this.TClientes = TClientes;
        this.TCodeudors = TCodeudors;
        this.TRefPersona = TRefPersona;
@@ -33,13 +31,6 @@ public class TReferencia  implements java.io.Serializable {
     
     public void setTrefId(Integer trefId) {
         this.trefId = trefId;
-    }
-    public String getTrefTipo() {
-        return this.trefTipo;
-    }
-    
-    public void setTrefTipo(String trefTipo) {
-        this.trefTipo = trefTipo;
     }
     public Set getTClientes() {
         return this.TClientes;
