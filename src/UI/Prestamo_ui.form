@@ -177,7 +177,7 @@
                       <Component id="P_valor_cuota" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="V_cant_cuota" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="232" max="32767" attributes="0"/>
+                  <EmptySpace pref="236" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

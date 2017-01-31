@@ -10,7 +10,9 @@ import Entity.TPrestamo;
 import Model.Prestamo_model;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JLocaleChooser;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -64,7 +66,7 @@ public class Prestamo_Controller {
     public TCliente consultarCliente(String cc) {
         TCliente c = (TCliente) pmodel.consultar(TCliente.class, Integer.parseInt(cc));
         return c;
-    }
+    }    
 
     private boolean validar() {
         String msj = "";

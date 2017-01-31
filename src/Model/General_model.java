@@ -21,18 +21,19 @@ public class General_model<T> {
     protected Session s;    
     
     public General_model() {
+        
     }
 
     public boolean insertar(T obj){
         boolean test = false;
-        try {            
+        try {                        
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.save(obj);
             s.getTransaction().commit();
             test = true;
         } catch (Exception e) {
-            System.out.println("Error mio "+e.getLocalizedMessage());
+            System.out.println("Error al insertar "+e.getLocalizedMessage());
         }
         return test;
     }
@@ -44,32 +45,43 @@ public class General_model<T> {
         s.getTransaction().commit();        
         return Objecto;
    } 
-   
-//   private Class<T> entityClass;    
+
+    public boolean editar(T entity) {
+        boolean test = false;
+        try {                        
+            s = hibernateUtil.getSessionFactory();
+            s.beginTransaction();
+            s.update(entity);
+            s.getTransaction().commit();
+            test = true;
+        } catch (Exception e) {
+            System.out.println("Error al editar "+e.getLocalizedMessage());
+        }
+        return test;
+    }
 //
+    public boolean eliminar(T entity) {
+        boolean test = false;
+        try {                        
+            s = hibernateUtil.getSessionFactory();
+            s.beginTransaction();
+            s.delete(entity);
+            s.getTransaction().commit();
+            test = true;
+        } catch (Exception e) {
+            System.out.println("Error al editar "+e.getLocalizedMessage());
+        }
+        return test;
+    }
+
 //
-//
-//    public void create(T entity) {
-//        getEntityManager().persist(entity);
-//    }
-// 
-//    public void edit(T entity) {
-//        getEntityManager().merge(entity);
-//    }
-//
-//    public void remove(T entity) {
-//        getEntityManager().remove(getEntityManager().merge(entity));
-//    }
-//
-//    public T find(Object id) {
-//        return getEntityManager().find(entityClass, id);
-//    }
-//
-//    public List<T> findAll() {
-//        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-//        cq.select(cq.from(entityClass));
-//        return getEntityManager().createQuery(cq).getResultList();
-//    }
+    public List<T> findAll(Class clase) {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        List<T> list = s.createCriteria(clase).list();       
+        s.getTransaction().commit();
+        return list;
+    }
 //
 //    public List<T> findRange(int[] range) {
 //        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
