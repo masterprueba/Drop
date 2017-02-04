@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,42 +11,37 @@ import java.util.Set;
 public class TCodeudor  implements java.io.Serializable {
 
 
-     private Integer tcodId;
+     private int tcodTperId;
      private TCasa TCasa;
      private TEmpresa TEmpresa;
+     private TPersona TPersona;
      private TReferencia TReferencia;
-     private String tcodCedula;
-     private String tcodNombre;
-     private String tcodApellido;
-     private String tcodTel;
      private Set TClientes = new HashSet(0);
 
     public TCodeudor() {
     }
 
 	
-    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TReferencia TReferencia) {
+    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia) {
         this.TCasa = TCasa;
         this.TEmpresa = TEmpresa;
+        this.TPersona = TPersona;
         this.TReferencia = TReferencia;
     }
-    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TReferencia TReferencia, String tcodCedula, String tcodNombre, String tcodApellido, String tcodTel, Set TClientes) {
+    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia, Set TClientes) {
        this.TCasa = TCasa;
        this.TEmpresa = TEmpresa;
+       this.TPersona = TPersona;
        this.TReferencia = TReferencia;
-       this.tcodCedula = tcodCedula;
-       this.tcodNombre = tcodNombre;
-       this.tcodApellido = tcodApellido;
-       this.tcodTel = tcodTel;
        this.TClientes = TClientes;
     }
    
-    public Integer getTcodId() {
-        return this.tcodId;
+    public int getTcodTperId() {
+        return this.tcodTperId;
     }
     
-    public void setTcodId(Integer tcodId) {
-        this.tcodId = tcodId;
+    public void setTcodTperId(int tcodTperId) {
+        this.tcodTperId = tcodTperId;
     }
     public TCasa getTCasa() {
         return this.TCasa;
@@ -62,40 +57,19 @@ public class TCodeudor  implements java.io.Serializable {
     public void setTEmpresa(TEmpresa TEmpresa) {
         this.TEmpresa = TEmpresa;
     }
+    public TPersona getTPersona() {
+        return this.TPersona;
+    }
+    
+    public void setTPersona(TPersona TPersona) {
+        this.TPersona = TPersona;
+    }
     public TReferencia getTReferencia() {
         return this.TReferencia;
     }
     
     public void setTReferencia(TReferencia TReferencia) {
         this.TReferencia = TReferencia;
-    }
-    public String getTcodCedula() {
-        return this.tcodCedula;
-    }
-    
-    public void setTcodCedula(String tcodCedula) {
-        this.tcodCedula = tcodCedula;
-    }
-    public String getTcodNombre() {
-        return this.tcodNombre;
-    }
-    
-    public void setTcodNombre(String tcodNombre) {
-        this.tcodNombre = tcodNombre;
-    }
-    public String getTcodApellido() {
-        return this.tcodApellido;
-    }
-    
-    public void setTcodApellido(String tcodApellido) {
-        this.tcodApellido = tcodApellido;
-    }
-    public String getTcodTel() {
-        return this.tcodTel;
-    }
-    
-    public void setTcodTel(String tcodTel) {
-        this.tcodTel = tcodTel;
     }
     public Set getTClientes() {
         return this.TClientes;

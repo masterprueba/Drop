@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/01/2017 09:35:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="TCliente" class="Entity.TCliente" fetch="select">
-            <column name="t_cliente_tcli_id" not-null="true" />
+            <column name="tpre_tcli_tusu_id" not-null="true" />
         </many-to-one>
         <property name="tpreNumCuotas" type="java.lang.Integer">
             <column name="tpre_num_cuotas">
@@ -21,8 +21,8 @@
                 <comment>Porcentaje de Interes</comment>
             </column>
         </property>
-        <property name="tpreMetodoPago" type="string">
-            <column name="tpre_metodo_pago" length="45">
+        <property name="tpreMetodPago" type="string">
+            <column name="tpre_metod_pago" length="45">
                 <comment>Metodo de Pago</comment>
             </column>
         </property>
@@ -53,7 +53,7 @@
         </property>
         <set name="TCuotas" table="t_cuota" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="t_prestamo_tpre_id" not-null="true" />
+                <column name="tcuo_tpre_id" not-null="true" />
             </key>
             <one-to-many class="Entity.TCuota" />
         </set>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TPersona" table="t_persona" catalog="drop_db" optimistic-lock="version">
+        <id name="tperId" type="java.lang.Integer">
+            <column name="tper_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tperCedula" type="string">
+            <column name="tper_cedula" length="20">
+                <comment>Persona de Usuario</comment>
+            </column>
+        </property>
+        <property name="tperNombre" type="string">
+            <column name="tper_nombre" length="60">
+                <comment>Nombre de Persona</comment>
+            </column>
+        </property>
+        <property name="tperApellido" type="string">
+            <column name="tper_apellido" length="60">
+                <comment>Apellido de Persona</comment>
+            </column>
+        </property>
+        <property name="tperTel" type="string">
+            <column name="tper_tel" length="15">
+                <comment>Telefono de Persona</comment>
+            </column>
+        </property>
+        <one-to-one name="TCodeudor" class="Entity.TCodeudor"></one-to-one>
+        <one-to-one name="TCliente" class="Entity.TCliente"></one-to-one>
+        <set name="TDetalleReferencias" table="t_detalle_referencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tdet_tper_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TDetalleReferencia" />
+        </set>
+        <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tlog_tper_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TLogin" />
+        </set>
+        <set name="TCasas" table="t_casa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tcas_propie_tper_id" not-null="true">
+                    <comment>Propietario Casa</comment>
+                </column>
+            </key>
+            <one-to-many class="Entity.TCasa" />
+        </set>
+    </class>
+</hibernate-mapping>

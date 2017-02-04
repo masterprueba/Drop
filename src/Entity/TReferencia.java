@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,17 +12,19 @@ public class TReferencia  implements java.io.Serializable {
 
 
      private Integer trefId;
+     private String trefTipo;
+     private Set TDetalleReferencias = new HashSet(0);
      private Set TClientes = new HashSet(0);
      private Set TCodeudors = new HashSet(0);
-     private TRefPersona TRefPersona;
 
     public TReferencia() {
     }
 
-    public TReferencia(Set TClientes, Set TCodeudors, TRefPersona TRefPersona) {
+    public TReferencia(String trefTipo, Set TDetalleReferencias, Set TClientes, Set TCodeudors) {
+       this.trefTipo = trefTipo;
+       this.TDetalleReferencias = TDetalleReferencias;
        this.TClientes = TClientes;
        this.TCodeudors = TCodeudors;
-       this.TRefPersona = TRefPersona;
     }
    
     public Integer getTrefId() {
@@ -31,6 +33,20 @@ public class TReferencia  implements java.io.Serializable {
     
     public void setTrefId(Integer trefId) {
         this.trefId = trefId;
+    }
+    public String getTrefTipo() {
+        return this.trefTipo;
+    }
+    
+    public void setTrefTipo(String trefTipo) {
+        this.trefTipo = trefTipo;
+    }
+    public Set getTDetalleReferencias() {
+        return this.TDetalleReferencias;
+    }
+    
+    public void setTDetalleReferencias(Set TDetalleReferencias) {
+        this.TDetalleReferencias = TDetalleReferencias;
     }
     public Set getTClientes() {
         return this.TClientes;
@@ -45,13 +61,6 @@ public class TReferencia  implements java.io.Serializable {
     
     public void setTCodeudors(Set TCodeudors) {
         this.TCodeudors = TCodeudors;
-    }
-    public TRefPersona getTRefPersona() {
-        return this.TRefPersona;
-    }
-    
-    public void setTRefPersona(TRefPersona TRefPersona) {
-        this.TRefPersona = TRefPersona;
     }
 
 

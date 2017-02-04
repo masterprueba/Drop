@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class TPrestamo  implements java.io.Serializable {
      private TCliente TCliente;
      private Integer tpreNumCuotas;
      private Integer tpreIntereses;
-     private String tpreMetodoPago;
+     private String tpreMetodPago;
      private Date tpreFechaEntrega;
      private Long tpreValorTotal;
      private Long tpreValorCuota;
@@ -31,11 +31,11 @@ public class TPrestamo  implements java.io.Serializable {
     public TPrestamo(TCliente TCliente) {
         this.TCliente = TCliente;
     }
-    public TPrestamo(TCliente TCliente, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodoPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Date tpreFechaIni, Date tpreFechaFin, Set TCuotas) {
+    public TPrestamo(TCliente TCliente, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Date tpreFechaIni, Date tpreFechaFin, Set TCuotas) {
        this.TCliente = TCliente;
        this.tpreNumCuotas = tpreNumCuotas;
        this.tpreIntereses = tpreIntereses;
-       this.tpreMetodoPago = tpreMetodoPago;
+       this.tpreMetodPago = tpreMetodPago;
        this.tpreFechaEntrega = tpreFechaEntrega;
        this.tpreValorTotal = tpreValorTotal;
        this.tpreValorCuota = tpreValorCuota;
@@ -72,12 +72,12 @@ public class TPrestamo  implements java.io.Serializable {
     public void setTpreIntereses(Integer tpreIntereses) {
         this.tpreIntereses = tpreIntereses;
     }
-    public String getTpreMetodoPago() {
-        return this.tpreMetodoPago;
+    public String getTpreMetodPago() {
+        return this.tpreMetodPago;
     }
     
-    public void setTpreMetodoPago(String tpreMetodoPago) {
-        this.tpreMetodoPago = tpreMetodoPago;
+    public void setTpreMetodPago(String tpreMetodPago) {
+        this.tpreMetodPago = tpreMetodPago;
     }
     public Date getTpreFechaEntrega() {
         return this.tpreFechaEntrega;

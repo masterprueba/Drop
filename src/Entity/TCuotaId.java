@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 
@@ -9,30 +9,30 @@ package Entity;
 public class TCuotaId  implements java.io.Serializable {
 
 
+     private int tcuoId;
      private int tcuoNum;
-     private int TPrestamoTpreId;
 
     public TCuotaId() {
     }
 
-    public TCuotaId(int tcuoNum, int TPrestamoTpreId) {
+    public TCuotaId(int tcuoId, int tcuoNum) {
+       this.tcuoId = tcuoId;
        this.tcuoNum = tcuoNum;
-       this.TPrestamoTpreId = TPrestamoTpreId;
     }
    
+    public int getTcuoId() {
+        return this.tcuoId;
+    }
+    
+    public void setTcuoId(int tcuoId) {
+        this.tcuoId = tcuoId;
+    }
     public int getTcuoNum() {
         return this.tcuoNum;
     }
     
     public void setTcuoNum(int tcuoNum) {
         this.tcuoNum = tcuoNum;
-    }
-    public int getTPrestamoTpreId() {
-        return this.TPrestamoTpreId;
-    }
-    
-    public void setTPrestamoTpreId(int TPrestamoTpreId) {
-        this.TPrestamoTpreId = TPrestamoTpreId;
     }
 
 
@@ -42,15 +42,15 @@ public class TCuotaId  implements java.io.Serializable {
 		 if ( !(other instanceof TCuotaId) ) return false;
 		 TCuotaId castOther = ( TCuotaId ) other; 
          
-		 return (this.getTcuoNum()==castOther.getTcuoNum())
- && (this.getTPrestamoTpreId()==castOther.getTPrestamoTpreId());
+		 return (this.getTcuoId()==castOther.getTcuoId())
+ && (this.getTcuoNum()==castOther.getTcuoNum());
    }
    
    public int hashCode() {
          int result = 17;
          
+         result = 37 * result + this.getTcuoId();
          result = 37 * result + this.getTcuoNum();
-         result = 37 * result + this.getTPrestamoTpreId();
          return result;
    }   
 

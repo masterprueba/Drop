@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,12 +11,10 @@ import java.util.Set;
 public class TCasa  implements java.io.Serializable {
 
 
-     private Integer tcasaId;
+     private Integer tcasId;
+     private TPersona TPersona;
      private TTipoCasa TTipoCasa;
-     private String tcasaDir;
-     private String tcasaPropietarioNombre;
-     private String tcasaPropietarioApellido;
-     private String tcasaPropietarioTel;
+     private String tcasDir;
      private Set TCodeudors = new HashSet(0);
      private Set TClientes = new HashSet(0);
 
@@ -24,25 +22,31 @@ public class TCasa  implements java.io.Serializable {
     }
 
 	
-    public TCasa(TTipoCasa TTipoCasa) {
+    public TCasa(TPersona TPersona, TTipoCasa TTipoCasa) {
+        this.TPersona = TPersona;
         this.TTipoCasa = TTipoCasa;
     }
-    public TCasa(TTipoCasa TTipoCasa, String tcasaDir, String tcasaPropietarioNombre, String tcasaPropietarioApellido, String tcasaPropietarioTel, Set TCodeudors, Set TClientes) {
+    public TCasa(TPersona TPersona, TTipoCasa TTipoCasa, String tcasDir, Set TCodeudors, Set TClientes) {
+       this.TPersona = TPersona;
        this.TTipoCasa = TTipoCasa;
-       this.tcasaDir = tcasaDir;
-       this.tcasaPropietarioNombre = tcasaPropietarioNombre;
-       this.tcasaPropietarioApellido = tcasaPropietarioApellido;
-       this.tcasaPropietarioTel = tcasaPropietarioTel;
+       this.tcasDir = tcasDir;
        this.TCodeudors = TCodeudors;
        this.TClientes = TClientes;
     }
    
-    public Integer getTcasaId() {
-        return this.tcasaId;
+    public Integer getTcasId() {
+        return this.tcasId;
     }
     
-    public void setTcasaId(Integer tcasaId) {
-        this.tcasaId = tcasaId;
+    public void setTcasId(Integer tcasId) {
+        this.tcasId = tcasId;
+    }
+    public TPersona getTPersona() {
+        return this.TPersona;
+    }
+    
+    public void setTPersona(TPersona TPersona) {
+        this.TPersona = TPersona;
     }
     public TTipoCasa getTTipoCasa() {
         return this.TTipoCasa;
@@ -51,33 +55,12 @@ public class TCasa  implements java.io.Serializable {
     public void setTTipoCasa(TTipoCasa TTipoCasa) {
         this.TTipoCasa = TTipoCasa;
     }
-    public String getTcasaDir() {
-        return this.tcasaDir;
+    public String getTcasDir() {
+        return this.tcasDir;
     }
     
-    public void setTcasaDir(String tcasaDir) {
-        this.tcasaDir = tcasaDir;
-    }
-    public String getTcasaPropietarioNombre() {
-        return this.tcasaPropietarioNombre;
-    }
-    
-    public void setTcasaPropietarioNombre(String tcasaPropietarioNombre) {
-        this.tcasaPropietarioNombre = tcasaPropietarioNombre;
-    }
-    public String getTcasaPropietarioApellido() {
-        return this.tcasaPropietarioApellido;
-    }
-    
-    public void setTcasaPropietarioApellido(String tcasaPropietarioApellido) {
-        this.tcasaPropietarioApellido = tcasaPropietarioApellido;
-    }
-    public String getTcasaPropietarioTel() {
-        return this.tcasaPropietarioTel;
-    }
-    
-    public void setTcasaPropietarioTel(String tcasaPropietarioTel) {
-        this.tcasaPropietarioTel = tcasaPropietarioTel;
+    public void setTcasDir(String tcasDir) {
+        this.tcasDir = tcasDir;
     }
     public Set getTCodeudors() {
         return this.TCodeudors;

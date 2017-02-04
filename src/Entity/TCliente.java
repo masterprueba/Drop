@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29/01/2017 09:35:03 PM by Hibernate Tools 4.3.1
+// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,45 +11,40 @@ import java.util.Set;
 public class TCliente  implements java.io.Serializable {
 
 
-     private Integer tcliId;
+     private int tcliTperId;
      private TCasa TCasa;
      private TCodeudor TCodeudor;
      private TEmpresa TEmpresa;
+     private TPersona TPersona;
      private TReferencia TReferencia;
-     private String tcliCedula;
-     private String tcliNombre;
-     private String tcliApellido;
-     private String tcliTel;
      private Set TPrestamos = new HashSet(0);
 
     public TCliente() {
     }
 
 	
-    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TReferencia TReferencia) {
+    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia) {
         this.TCasa = TCasa;
         this.TCodeudor = TCodeudor;
         this.TEmpresa = TEmpresa;
+        this.TPersona = TPersona;
         this.TReferencia = TReferencia;
     }
-    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TReferencia TReferencia, String tcliCedula, String tcliNombre, String tcliApellido, String tcliTel, Set TPrestamos) {
+    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia, Set TPrestamos) {
        this.TCasa = TCasa;
        this.TCodeudor = TCodeudor;
        this.TEmpresa = TEmpresa;
+       this.TPersona = TPersona;
        this.TReferencia = TReferencia;
-       this.tcliCedula = tcliCedula;
-       this.tcliNombre = tcliNombre;
-       this.tcliApellido = tcliApellido;
-       this.tcliTel = tcliTel;
        this.TPrestamos = TPrestamos;
     }
    
-    public Integer getTcliId() {
-        return this.tcliId;
+    public int getTcliTperId() {
+        return this.tcliTperId;
     }
     
-    public void setTcliId(Integer tcliId) {
-        this.tcliId = tcliId;
+    public void setTcliTperId(int tcliTperId) {
+        this.tcliTperId = tcliTperId;
     }
     public TCasa getTCasa() {
         return this.TCasa;
@@ -72,40 +67,19 @@ public class TCliente  implements java.io.Serializable {
     public void setTEmpresa(TEmpresa TEmpresa) {
         this.TEmpresa = TEmpresa;
     }
+    public TPersona getTPersona() {
+        return this.TPersona;
+    }
+    
+    public void setTPersona(TPersona TPersona) {
+        this.TPersona = TPersona;
+    }
     public TReferencia getTReferencia() {
         return this.TReferencia;
     }
     
     public void setTReferencia(TReferencia TReferencia) {
         this.TReferencia = TReferencia;
-    }
-    public String getTcliCedula() {
-        return this.tcliCedula;
-    }
-    
-    public void setTcliCedula(String tcliCedula) {
-        this.tcliCedula = tcliCedula;
-    }
-    public String getTcliNombre() {
-        return this.tcliNombre;
-    }
-    
-    public void setTcliNombre(String tcliNombre) {
-        this.tcliNombre = tcliNombre;
-    }
-    public String getTcliApellido() {
-        return this.tcliApellido;
-    }
-    
-    public void setTcliApellido(String tcliApellido) {
-        this.tcliApellido = tcliApellido;
-    }
-    public String getTcliTel() {
-        return this.tcliTel;
-    }
-    
-    public void setTcliTel(String tcliTel) {
-        this.tcliTel = tcliTel;
     }
     public Set getTPrestamos() {
         return this.TPrestamos;

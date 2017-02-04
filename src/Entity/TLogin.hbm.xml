@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TLogin" table="t_login" catalog="drop_db" optimistic-lock="version">
+        <id name="tlogId" type="java.lang.Integer">
+            <column name="tlog_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TPersona" class="Entity.TPersona" fetch="select">
+            <column name="tlog_tper_id" not-null="true" />
+        </many-to-one>
+        <property name="tlogUserLogin" type="string">
+            <column name="tlog_user_login" length="45" />
+        </property>
+        <property name="tlogEmail" type="string">
+            <column name="tlog_email" length="45" />
+        </property>
+        <property name="tlogPassword" type="string">
+            <column name="tlog_password" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -13,13 +13,15 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="Entity/TCliente.hbm.xml"/>
-    <mapping resource="Entity/TEmpresa.hbm.xml"/>
     <mapping resource="Entity/TReferencia.hbm.xml"/>
-    <mapping resource="Entity/TRefPersona.hbm.xml"/>
+    <mapping resource="Entity/TPrestamo.hbm.xml"/>
+    <mapping resource="Entity/TLogin.hbm.xml"/>
     <mapping resource="Entity/TCodeudor.hbm.xml"/>
     <mapping resource="Entity/TTipoCasa.hbm.xml"/>
-    <mapping resource="Entity/TPrestamo.hbm.xml"/>
+    <mapping resource="Entity/TEmpresa.hbm.xml"/>
+    <mapping resource="Entity/TDetalleReferencia.hbm.xml"/>
     <mapping resource="Entity/TCasa.hbm.xml"/>
+    <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TCuota.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

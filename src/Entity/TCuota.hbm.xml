@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/01/2017 09:35:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <composite-id name="id" class="Entity.TCuotaId">
+            <key-property name="tcuoId" type="int">
+                <column name="tcuo_id" />
+            </key-property>
             <key-property name="tcuoNum" type="int">
                 <column name="tcuo_num" />
             </key-property>
-            <key-property name="TPrestamoTpreId" type="int">
-                <column name="t_prestamo_tpre_id" />
-            </key-property>
         </composite-id>
-        <many-to-one name="TPrestamo" class="Entity.TPrestamo" update="false" insert="false" fetch="select">
-            <column name="t_prestamo_tpre_id" not-null="true" />
+        <many-to-one name="TPrestamo" class="Entity.TPrestamo" fetch="select">
+            <column name="tcuo_tpre_id" not-null="true" />
         </many-to-one>
         <property name="tcuoFecha" type="date">
             <column name="tcuo_fecha" length="10">
