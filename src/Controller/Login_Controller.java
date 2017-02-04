@@ -7,7 +7,6 @@ package Controller;
 
 import Entity.TLogin;
 import Model.Login_Model;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -34,7 +33,8 @@ public class Login_Controller {
     public int Ingresar() {
         List<TLogin> login = Lmodel.findAll(TLogin.class);
         for (int i = 0; i < login.size(); i++) {
-            if (user.getText().equals(login.get(i).getTlogUserLogin()) && Arrays.toString(pass.getPassword()).equals(login.get(i).getTlogPassword())) {
+            String password = new String(pass.getPassword());
+            if (user.getText().equals(login.get(i).getTlogUserLogin()) && password.equals(login.get(i).getTlogPassword())) {
                 return login.get(i).getTlogId();
             }
         }
