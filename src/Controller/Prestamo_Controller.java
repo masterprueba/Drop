@@ -9,10 +9,8 @@ import Entity.TCliente;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
 import com.toedter.calendar.JDateChooser;
-import com.toedter.components.JLocaleChooser;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -29,13 +27,13 @@ public class Prestamo_Controller {
     private final JTextField valor_prestamo;
     private final JTextField valor_cuota;
     private final JTextField cantidad_cuotas;
-    private final JLocaleChooser metodo;
-    private final JLocaleChooser interes;
+    private final JComboBox metodo;
+    private final JComboBox interes;
     private final JDateChooser fecha_ini;
     private final JDateChooser fecha_fin;
     private final Prestamo_model pmodel;
 
-    public Prestamo_Controller(JTextField cc, JTextField nombre, JTextField prestamo_actual, JTextField fecha_ultimo_pago, JTextField valor_prestamo, JTextField valor_cuota, JTextField cantidad_cuotas, JLocaleChooser metodo, JLocaleChooser interes, JDateChooser fecha_ini, JDateChooser fecha_fin) {
+    public Prestamo_Controller(JTextField cc, JTextField nombre, JTextField prestamo_actual, JTextField fecha_ultimo_pago, JTextField valor_prestamo, JTextField valor_cuota, JTextField cantidad_cuotas, JComboBox metodo, JComboBox interes, JDateChooser fecha_ini, JDateChooser fecha_fin) {
         this.cc = cc;
         this.nombre = nombre;
         this.prestamo_actual = prestamo_actual;
@@ -53,7 +51,7 @@ public class Prestamo_Controller {
     //inserta prestamo en la bd
     public void create(TCliente cliente) {
         if (validar()) {
-            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),15,"diario", new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate(),null);
+            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate(),null);
             if (pmodel.insertar(prestamo)) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {
