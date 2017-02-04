@@ -8,36 +8,31 @@ package Controller;
 import Entity.TLogin;
 import Model.Login_Model;
 import java.util.List;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Yoimar
  */
 public class Login_Controller {
 
-    private JTextField user;
-    private JPasswordField pass;
     private final Login_Model Lmodel = new Login_Model();
+    private static TLogin UsuarioLogueado;
+    private List<TLogin> loginresult;
 
-    public void setUser(JTextField user) {
-        this.user = user;
-    }
-
-    public void setPass(JPasswordField pass) {
-        this.pass = pass;
+    public Login_Controller() {
     }
 
     //Verifica que el usuario y contraseña esnten la DB
-    public int Ingresar() {
-        List<TLogin> login = Lmodel.findAll(TLogin.class);
-        for (int i = 0; i < login.size(); i++) {
-            String password = new String(pass.getPassword());
-            if (user.getText().equals(login.get(i).getTlogUserLogin()) && password.equals(login.get(i).getTlogPassword())) {
-                return login.get(i).getTlogId();
-            }
+    public void Ingresar(TLogin User) {
+        loginresult = Lmodel.ConsultarUsuarioContraseña(User);
+        if (!loginresult.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Inicio session");
+            UsuarioLogueado = loginresult.get(0);
+        }else{
+        JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
         }
-        return 0;
+        System.out.println(UsuarioLogueado.getTlogEmail());
+
     }
 }

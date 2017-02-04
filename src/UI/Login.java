@@ -6,7 +6,7 @@
 package UI;
 
 import Controller.Login_Controller;
-import javax.swing.JOptionPane;
+import Entity.TLogin;
 
 /**
  *
@@ -14,13 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    Login_Controller LoginController = new Login_Controller();
+    private final Login_Controller LoginController;
+    private final TLogin Login;
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        LoginController = new Login_Controller();
+        Login = new TLogin();
     }
 
     /**
@@ -76,17 +79,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LoginController.setUser(jTextField1);
-        LoginController.setPass(jPasswordField1);
-        int IdUsuario = LoginController.Ingresar();
-        if ( IdUsuario > 0) {
-            //Llamar jdestokp
-            System.out.println(IdUsuario);
-            JOptionPane.showMessageDialog(null, "Inicio session");
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-        }
-
+        //setea los valores al objeto de tipo TLogin
+        Login.setTlogUserLogin(jTextField1.getText());
+        Login.setTlogPassword(new String(jPasswordField1.getPassword()));
+        //Llama el metoro ingresar y envia el objeto 
+        LoginController.Ingresar(Login);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

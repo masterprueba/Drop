@@ -5,10 +5,25 @@
  */
 package Model;
 
+import Entity.TLogin;
+import Persistence.hibernateUtil;
+import java.util.List;
+
 /**
  *
  * @author Usuario
  */
-public class Login_Model extends General_model {
-    
+public class Login_Model<L> extends General_model {
+
+    //consulta el usuario por medio del usuario y contraseña
+    public List<L> ConsultarUsuarioContraseña(TLogin usuario) {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "from TLogin where tlogUserLogin = '" + usuario.getTlogUserLogin() + "' and tlogPassword = '" + usuario.getTlogPassword() + "'";
+        List<L> result = s.createQuery(query).list();
+        s.getTransaction().commit();
+
+        return result;
+    }
 }
