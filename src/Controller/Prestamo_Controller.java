@@ -52,7 +52,7 @@ public class Prestamo_Controller {
     public void create(TCliente cliente) {
         if (validar()) {
             TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate(),null);
-            if (pmodel.insertar(prestamo)) {
+            if (pmodel.insertar(prestamo) != null) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {
                 JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!!");

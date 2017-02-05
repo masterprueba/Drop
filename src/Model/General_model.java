@@ -7,6 +7,7 @@ package Model;
 
 import Persistence.hibernateUtil;
 import Entity.*;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -24,18 +25,19 @@ public class General_model<T> {
         
     }
 
-    public boolean insertar(T obj){
-        boolean test = false;
+    public Serializable insertar(T obj){
+        //boolean test = false;
+        Serializable id = null;
         try {                        
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
-            s.save(obj);
+            id = s.save(obj);
             s.getTransaction().commit();
-            test = true;
+            //test = true;
         } catch (Exception e) {
             System.out.println("Error al insertar "+e.getLocalizedMessage());
         }
-        return test;
+        return id;
     }
     
    public T consultar(Class clase, int id){
