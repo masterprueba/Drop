@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCodeudor" table="t_codeudor" catalog="drop_db" optimistic-lock="version">
         <id name="tcodTperId" type="int">
@@ -17,11 +17,6 @@
             <column name="tcod_temp_id" not-null="true" />
         </many-to-one>
         <one-to-one name="TPersona" class="Entity.TPersona" constrained="true"></one-to-one>
-        <many-to-one name="TReferencia" class="Entity.TReferencia" fetch="select">
-            <column name="tcod_tref_id" not-null="true">
-                <comment>Referencia de Codeudor</comment>
-            </column>
-        </many-to-one>
         <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tcli_tcod_tusu_id" not-null="true">

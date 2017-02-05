@@ -1,5 +1,5 @@
 package Entity;
-// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
+// Generated 5/02/2017 06:50:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,24 +15,21 @@ public class TCodeudor  implements java.io.Serializable {
      private TCasa TCasa;
      private TEmpresa TEmpresa;
      private TPersona TPersona;
-     private TReferencia TReferencia;
      private Set TClientes = new HashSet(0);
 
     public TCodeudor() {
     }
 
 	
-    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia) {
+    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona) {
         this.TCasa = TCasa;
         this.TEmpresa = TEmpresa;
         this.TPersona = TPersona;
-        this.TReferencia = TReferencia;
     }
-    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia, Set TClientes) {
+    public TCodeudor(TCasa TCasa, TEmpresa TEmpresa, TPersona TPersona, Set TClientes) {
        this.TCasa = TCasa;
        this.TEmpresa = TEmpresa;
        this.TPersona = TPersona;
-       this.TReferencia = TReferencia;
        this.TClientes = TClientes;
     }
    
@@ -63,13 +60,6 @@ public class TCodeudor  implements java.io.Serializable {
     
     public void setTPersona(TPersona TPersona) {
         this.TPersona = TPersona;
-    }
-    public TReferencia getTReferencia() {
-        return this.TReferencia;
-    }
-    
-    public void setTReferencia(TReferencia TReferencia) {
-        this.TReferencia = TReferencia;
     }
     public Set getTClientes() {
         return this.TClientes;

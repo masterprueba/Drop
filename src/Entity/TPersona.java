@@ -1,5 +1,5 @@
 package Entity;
-// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
+// Generated 5/02/2017 06:50:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,23 +16,23 @@ public class TPersona  implements java.io.Serializable {
      private String tperNombre;
      private String tperApellido;
      private String tperTel;
+     private Set TReferencias = new HashSet(0);
      private TCodeudor TCodeudor;
      private TCliente TCliente;
-     private Set TDetalleReferencias = new HashSet(0);
      private Set TLogins = new HashSet(0);
      private Set TCasas = new HashSet(0);
 
     public TPersona() {
     }
 
-    public TPersona(String tperCedula, String tperNombre, String tperApellido, String tperTel, TCodeudor TCodeudor, TCliente TCliente, Set TDetalleReferencias, Set TLogins, Set TCasas) {
+    public TPersona(String tperCedula, String tperNombre, String tperApellido, String tperTel, Set TReferencias, TCodeudor TCodeudor, TCliente TCliente, Set TLogins, Set TCasas) {
        this.tperCedula = tperCedula;
        this.tperNombre = tperNombre;
        this.tperApellido = tperApellido;
        this.tperTel = tperTel;
+       this.TReferencias = TReferencias;
        this.TCodeudor = TCodeudor;
        this.TCliente = TCliente;
-       this.TDetalleReferencias = TDetalleReferencias;
        this.TLogins = TLogins;
        this.TCasas = TCasas;
     }
@@ -72,6 +72,13 @@ public class TPersona  implements java.io.Serializable {
     public void setTperTel(String tperTel) {
         this.tperTel = tperTel;
     }
+    public Set getTReferencias() {
+        return this.TReferencias;
+    }
+    
+    public void setTReferencias(Set TReferencias) {
+        this.TReferencias = TReferencias;
+    }
     public TCodeudor getTCodeudor() {
         return this.TCodeudor;
     }
@@ -85,13 +92,6 @@ public class TPersona  implements java.io.Serializable {
     
     public void setTCliente(TCliente TCliente) {
         this.TCliente = TCliente;
-    }
-    public Set getTDetalleReferencias() {
-        return this.TDetalleReferencias;
-    }
-    
-    public void setTDetalleReferencias(Set TDetalleReferencias) {
-        this.TDetalleReferencias = TDetalleReferencias;
     }
     public Set getTLogins() {
         return this.TLogins;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCasa" table="t_casa" catalog="drop_db" optimistic-lock="version">
         <id name="tcasId" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="TPersona" class="Entity.TPersona" fetch="select">
-            <column name="tcas_propie_tper_id" not-null="true">
+            <column name="tcas_propietario_tper_id" not-null="true">
                 <comment>Propietario Casa</comment>
             </column>
         </many-to-one>

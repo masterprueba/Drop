@@ -1,5 +1,5 @@
 package Entity;
-// Generated 04-feb-2017 10:03:43 by Hibernate Tools 4.3.1
+// Generated 5/02/2017 06:50:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,26 +16,23 @@ public class TCliente  implements java.io.Serializable {
      private TCodeudor TCodeudor;
      private TEmpresa TEmpresa;
      private TPersona TPersona;
-     private TReferencia TReferencia;
      private Set TPrestamos = new HashSet(0);
 
     public TCliente() {
     }
 
 	
-    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia) {
+    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona) {
         this.TCasa = TCasa;
         this.TCodeudor = TCodeudor;
         this.TEmpresa = TEmpresa;
         this.TPersona = TPersona;
-        this.TReferencia = TReferencia;
     }
-    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona, TReferencia TReferencia, Set TPrestamos) {
+    public TCliente(TCasa TCasa, TCodeudor TCodeudor, TEmpresa TEmpresa, TPersona TPersona, Set TPrestamos) {
        this.TCasa = TCasa;
        this.TCodeudor = TCodeudor;
        this.TEmpresa = TEmpresa;
        this.TPersona = TPersona;
-       this.TReferencia = TReferencia;
        this.TPrestamos = TPrestamos;
     }
    
@@ -73,13 +70,6 @@ public class TCliente  implements java.io.Serializable {
     
     public void setTPersona(TPersona TPersona) {
         this.TPersona = TPersona;
-    }
-    public TReferencia getTReferencia() {
-        return this.TReferencia;
-    }
-    
-    public void setTReferencia(TReferencia TReferencia) {
-        this.TReferencia = TReferencia;
     }
     public Set getTPrestamos() {
         return this.TPrestamos;

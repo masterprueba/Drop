@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPersona" table="t_persona" catalog="drop_db" optimistic-lock="version">
         <id name="tperId" type="java.lang.Integer">
@@ -28,14 +28,14 @@
                 <comment>Telefono de Persona</comment>
             </column>
         </property>
+        <set name="TReferencias" table="t_referencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tref_tper_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TReferencia" />
+        </set>
         <one-to-one name="TCodeudor" class="Entity.TCodeudor"></one-to-one>
         <one-to-one name="TCliente" class="Entity.TCliente"></one-to-one>
-        <set name="TDetalleReferencias" table="t_detalle_referencia" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tdet_tper_id" not-null="true" />
-            </key>
-            <one-to-many class="Entity.TDetalleReferencia" />
-        </set>
         <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tlog_tper_id" not-null="true" />
@@ -44,7 +44,7 @@
         </set>
         <set name="TCasas" table="t_casa" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="tcas_propie_tper_id" not-null="true">
+                <column name="tcas_propietario_tper_id" not-null="true">
                     <comment>Propietario Casa</comment>
                 </column>
             </key>

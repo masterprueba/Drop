@@ -1,39 +1,29 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04-feb-2017 10:03:45 by Hibernate Tools 4.3.1 -->
+<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TReferencia" table="t_referencia" catalog="drop_db" optimistic-lock="version">
         <id name="trefId" type="java.lang.Integer">
             <column name="tref_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="TPersona" class="Entity.TPersona" fetch="select">
+            <column name="tref_tper_id" not-null="true" />
+        </many-to-one>
         <property name="trefTipo" type="string">
             <column name="tref_tipo" length="8">
                 <comment>Tipo de Referencia</comment>
             </column>
         </property>
-        <set name="TDetalleReferencias" table="t_detalle_referencia" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tdet_tref_id" not-null="true" />
-            </key>
-            <one-to-many class="Entity.TDetalleReferencia" />
-        </set>
-        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tcli_tref_id" not-null="true">
-                    <comment>Referencia Cliente</comment>
-                </column>
-            </key>
-            <one-to-many class="Entity.TCliente" />
-        </set>
-        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tcod_tref_id" not-null="true">
-                    <comment>Referencia de Codeudor</comment>
-                </column>
-            </key>
-            <one-to-many class="Entity.TCodeudor" />
-        </set>
+        <property name="trefNombre" type="string">
+            <column name="tref_nombre" length="60" />
+        </property>
+        <property name="trefApellido" type="string">
+            <column name="tref_apellido" length="60" />
+        </property>
+        <property name="trefTelefono" type="string">
+            <column name="tref_telefono" length="45" />
+        </property>
     </class>
 </hibernate-mapping>
