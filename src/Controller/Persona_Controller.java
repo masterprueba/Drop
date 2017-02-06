@@ -27,7 +27,6 @@ public class Persona_Controller {
     private final Persona_Model personaModel;
     private TPersona p;
     private List<TPersona> listP;
-    private int id;
     private int ObjectIdentity = 0;
     public DefaultTableModel dfm;
 
@@ -54,7 +53,7 @@ public class Persona_Controller {
             ObjectIdentity = Integer.parseInt("" + personaModel.insertar(p));
 
             if (ObjectIdentity != 0) {
-
+                p.setTperId(ObjectIdentity);
                 //Cerrar ventana
                 setData();
                 perUI.dispose();
@@ -78,7 +77,8 @@ public class Persona_Controller {
     public void setData() {
         switch (perUI.elemento) {
             case "Cliente":
-                Cliente_UI.idPer = ObjectIdentity;
+                //Cliente_UI.idPer = ObjectIdentity;
+                Cliente_UI.objPers = p;
                 Cliente_UI.jtfCedulaCliente.setText(p.getTperCedula());
                 Cliente_UI.jtfNombreCliente.setText(p.getTperNombre());
                 Cliente_UI.jtfApellidoCliente.setText(p.getTperApellido());
@@ -120,7 +120,7 @@ public class Persona_Controller {
                         lpUI.dispose();
                         break;
                     case "Cliente":
-                        Cliente_UI.idPer = listP.get(i).getTperId();
+                        Cliente_UI.objPers = listP.get(i);
                         Cliente_UI.jtfCedulaCliente.setText(listP.get(i).getTperCedula());
                         Cliente_UI.jtfNombreCliente.setText(listP.get(i).getTperNombre());
                         Cliente_UI.jtfApellidoCliente.setText(listP.get(i).getTperApellido());

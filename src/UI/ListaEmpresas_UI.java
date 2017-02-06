@@ -5,10 +5,9 @@
  */
 package UI;
 
-import Controller.Domicilio_Controller;
+import Controller.Empresa_Controller;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
@@ -16,18 +15,16 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Andres
  */
-public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
-
-    private Domicilio_Controller domicilioController;
+public class ListaEmpresas_UI extends javax.swing.JInternalFrame {
+    private Empresa_Controller empresaController;
     private TableRowSorter trs;
-
     /**
-     * Creates new form ListaDomicilios_UI
+     * Creates new form ListaEmpresas_UI
      */
-    public ListaDomicilios_UI() {
+    public ListaEmpresas_UI() {
         initComponents();
-        domicilioController = new Domicilio_Controller();
-        domicilioController.initTable(jTableSelectDom);
+        empresaController = new Empresa_Controller();
+        empresaController.initTable(jTable1);
     }
 
     /**
@@ -41,16 +38,15 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableSelectDom = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jtfBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setTitle("Seleccionar...");
         setMaximumSize(new java.awt.Dimension(300, 340));
         setMinimumSize(new java.awt.Dimension(300, 340));
         setPreferredSize(new java.awt.Dimension(300, 340));
 
-        jTableSelectDom.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,14 +54,13 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
 
             }
         ));
-        jTableSelectDom.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableSelectDomMouseClicked(evt);
+                jTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableSelectDom);
+        jScrollPane1.setViewportView(jTable1);
 
-        jtfBuscar.setMaximumSize(new java.awt.Dimension(6, 20));
         jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfBuscarKeyTyped(evt);
@@ -78,9 +73,9 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 75, Short.MAX_VALUE)
@@ -93,7 +88,7 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -121,11 +116,10 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTableSelectDomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSelectDomMouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, "Select");
-        domicilioController.mouseClickedTable(jTableSelectDom, this);
-    }//GEN-LAST:event_jTableSelectDomMouseClicked
+        empresaController.mouseClickedTable(jTable1, this);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void jtfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarKeyTyped
         // TODO add your handling code here:
@@ -137,8 +131,8 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
 
         });
 
-        trs = new TableRowSorter(domicilioController.dfm);
-        jTableSelectDom.setRowSorter(trs);
+        trs = new TableRowSorter(empresaController.dfm);
+        jTable1.setRowSorter(trs);
     }//GEN-LAST:event_jtfBuscarKeyTyped
 
 
@@ -146,7 +140,7 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableSelectDom;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jtfBuscar;
     // End of variables declaration//GEN-END:variables
 }
