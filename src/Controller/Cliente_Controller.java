@@ -6,9 +6,7 @@
 package Controller;
 
 import Entity.TCliente;
-import Entity.TPersona;
 import Model.Cliente_Model;
-import UI.Cliente_UI;
 import UI.Cliente__UI;
 import javax.swing.JOptionPane;
 

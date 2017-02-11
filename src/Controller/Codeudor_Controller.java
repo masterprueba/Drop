@@ -7,7 +7,6 @@ package Controller;
 
 import Entity.TCodeudor;
 import Model.Codeudor_Model;
-import UI.Cliente_UI;
 import UI.Cliente__UI;
 import javax.swing.JOptionPane;
 

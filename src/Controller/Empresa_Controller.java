@@ -5,15 +5,11 @@
  */
 package Controller;
 
-import Entity.TCasa;
 import Entity.TEmpresa;
 import Model.Empresa_Model;
-import UI.Cliente_UI;
 import UI.Cliente__UI;
 import UI.Empresa_UI;
-import UI.ListaDomicilios_UI;
 import UI.ListaEmpresas_UI;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;

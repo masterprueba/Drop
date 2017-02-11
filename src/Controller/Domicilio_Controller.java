@@ -6,15 +6,11 @@
 package Controller;
 
 import Entity.TCasa;
-import Entity.TPersona;
 import Entity.TTipoCasa;
 import Model.Domicilio_Model;
-import UI.Cliente_UI;
 import UI.Cliente__UI;
-import UI.Codeudor_UI;
 import UI.Domicilio_UI;
 import UI.ListaDomicilios_UI;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
