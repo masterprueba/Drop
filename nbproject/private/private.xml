@@ -10,14 +10,6 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/General_model.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Persistence/hibernate.cfg.xml</file>
         </group>
-        <group>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Persona_Controller.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Cliente_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Codeudor_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Login.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Domicilio_Controller.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/MainDesktop.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Cliente__UI.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
