@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TGasto" table="t_gasto" catalog="drop_db" optimistic-lock="version">
+        <id name="tgasId" type="java.lang.Integer">
+            <column name="tgas_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tgasDesc" type="string">
+            <column name="tgas_desc" length="100" />
+        </property>
+        <property name="tgasFecha" type="date">
+            <column name="tgas_fecha" length="10" />
+        </property>
+        <property name="tgasCosto" type="java.lang.Integer">
+            <column name="tgas_costo" />
+        </property>
+    </class>
+</hibernate-mapping>

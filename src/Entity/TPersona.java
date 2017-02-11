@@ -1,5 +1,5 @@
 package Entity;
-// Generated 5/02/2017 06:50:51 PM by Hibernate Tools 4.3.1
+// Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,22 +17,22 @@ public class TPersona  implements java.io.Serializable {
      private String tperApellido;
      private String tperTel;
      private Set TReferencias = new HashSet(0);
-     private TCodeudor TCodeudor;
-     private TCliente TCliente;
+     private Set TCodeudors = new HashSet(0);
+     private Set TClientes = new HashSet(0);
      private Set TLogins = new HashSet(0);
      private Set TCasas = new HashSet(0);
 
     public TPersona() {
     }
 
-    public TPersona(String tperCedula, String tperNombre, String tperApellido, String tperTel, Set TReferencias, TCodeudor TCodeudor, TCliente TCliente, Set TLogins, Set TCasas) {
+    public TPersona(String tperCedula, String tperNombre, String tperApellido, String tperTel, Set TReferencias, Set TCodeudors, Set TClientes, Set TLogins, Set TCasas) {
        this.tperCedula = tperCedula;
        this.tperNombre = tperNombre;
        this.tperApellido = tperApellido;
        this.tperTel = tperTel;
        this.TReferencias = TReferencias;
-       this.TCodeudor = TCodeudor;
-       this.TCliente = TCliente;
+       this.TCodeudors = TCodeudors;
+       this.TClientes = TClientes;
        this.TLogins = TLogins;
        this.TCasas = TCasas;
     }
@@ -79,19 +79,19 @@ public class TPersona  implements java.io.Serializable {
     public void setTReferencias(Set TReferencias) {
         this.TReferencias = TReferencias;
     }
-    public TCodeudor getTCodeudor() {
-        return this.TCodeudor;
+    public Set getTCodeudors() {
+        return this.TCodeudors;
     }
     
-    public void setTCodeudor(TCodeudor TCodeudor) {
-        this.TCodeudor = TCodeudor;
+    public void setTCodeudors(Set TCodeudors) {
+        this.TCodeudors = TCodeudors;
     }
-    public TCliente getTCliente() {
-        return this.TCliente;
+    public Set getTClientes() {
+        return this.TClientes;
     }
     
-    public void setTCliente(TCliente TCliente) {
-        this.TCliente = TCliente;
+    public void setTClientes(Set TClientes) {
+        this.TClientes = TClientes;
     }
     public Set getTLogins() {
         return this.TLogins;

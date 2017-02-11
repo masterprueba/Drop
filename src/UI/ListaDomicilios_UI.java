@@ -24,9 +24,9 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaDomicilios_UI
      */
-    public ListaDomicilios_UI() {
+    public ListaDomicilios_UI(String modulo) {
         initComponents();
-        domicilioController = new Domicilio_Controller();
+        domicilioController = new Domicilio_Controller(modulo);
         domicilioController.initTable(jTableSelectDom);
     }
 
@@ -45,10 +45,11 @@ public class ListaDomicilios_UI extends javax.swing.JInternalFrame {
         jtfBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("Seleccionar...");
-        setMaximumSize(new java.awt.Dimension(300, 340));
-        setMinimumSize(new java.awt.Dimension(300, 340));
-        setPreferredSize(new java.awt.Dimension(300, 340));
+        setMaximumSize(new java.awt.Dimension(400, 340));
+        setMinimumSize(new java.awt.Dimension(400, 340));
+        setPreferredSize(new java.awt.Dimension(400, 340));
 
         jTableSelectDom.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

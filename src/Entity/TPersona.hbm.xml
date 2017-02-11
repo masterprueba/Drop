@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPersona" table="t_persona" catalog="drop_db" optimistic-lock="version">
         <id name="tperId" type="java.lang.Integer">
@@ -34,8 +34,20 @@
             </key>
             <one-to-many class="Entity.TReferencia" />
         </set>
-        <one-to-one name="TCodeudor" class="Entity.TCodeudor"></one-to-one>
-        <one-to-one name="TCliente" class="Entity.TCliente"></one-to-one>
+        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tcod_tper_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TCodeudor" />
+        </set>
+        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tcli_tper_id" not-null="true">
+                    <comment>ID</comment>
+                </column>
+            </key>
+            <one-to-many class="Entity.TCliente" />
+        </set>
         <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tlog_tper_id" not-null="true" />

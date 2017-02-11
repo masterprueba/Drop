@@ -12,18 +12,12 @@
         </group>
         <group>
             <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Persona_Controller.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Model/General_model.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Entity/TCasa.java</file>
             <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Cliente_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/ListaDomicilios_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Empresa_Controller.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Prestamo_ui.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Persona_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Prestamo_Controller.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/ListaPersonas_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Domicilio_UI.java</file>
-            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Empresa_UI.java</file>
+            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Codeudor_UI.java</file>
+            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Login.java</file>
             <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/Controller/Domicilio_Controller.java</file>
+            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/MainDesktop.java</file>
+            <file>file:/D:/Proyects/JAVA%20Proyects/Two/Drop/src/UI/Cliente__UI.java</file>
         </group>
     </open-files>
 </project-private>

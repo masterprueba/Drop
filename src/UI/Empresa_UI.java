@@ -16,9 +16,9 @@ public class Empresa_UI extends javax.swing.JInternalFrame {
     /**
      * Creates new form Empresa_UI
      */
-    public Empresa_UI() {
+    public Empresa_UI(String modulo) {
         initComponents();
-        empresa_control = new Empresa_Controller(this);
+        empresa_control = new Empresa_Controller(this, modulo);
     }
 
     /**

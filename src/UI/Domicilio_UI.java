@@ -14,15 +14,17 @@ import Entity.TPersona;
  */
 public class Domicilio_UI extends javax.swing.JInternalFrame {
     private Domicilio_Controller docimilio_control;
-    public static int idProd;
-    public static TPersona persona;
+//    public static int idProd;
+    public static TPersona objectPer;
+    public String elemento;
     /**
      * Creates new form Domicilio_UI
      */
-    public Domicilio_UI() {
+    public Domicilio_UI(String elemento) {
         initComponents();
         radioGroup();
-        docimilio_control = new Domicilio_Controller(this);
+        docimilio_control = new Domicilio_Controller(this, elemento);
+        this.elemento = elemento;
     }
     
     public void radioGroup(){

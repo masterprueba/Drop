@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 5/02/2017 06:50:55 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCliente" table="t_cliente" catalog="drop_db" optimistic-lock="version">
-        <id name="tcliTperId" type="int">
-            <column name="tcli_tper_id" />
-            <generator class="foreign">
-                <param name="property">TPersona</param>
-            </generator>
+        <id name="tcliId" type="java.lang.Integer">
+            <column name="tcli_id" />
+            <generator class="identity" />
         </id>
         <many-to-one name="TCasa" class="Entity.TCasa" fetch="select">
             <column name="tcli_tcasa_id" not-null="true">
@@ -16,16 +14,18 @@
             </column>
         </many-to-one>
         <many-to-one name="TCodeudor" class="Entity.TCodeudor" fetch="select">
-            <column name="tcli_tcod_tusu_id" not-null="true">
-                <comment>ID Usuario</comment>
-            </column>
+            <column name="tcli_tcod_tper_id" not-null="true" />
         </many-to-one>
         <many-to-one name="TEmpresa" class="Entity.TEmpresa" fetch="select">
             <column name="tcli_temp_id" not-null="true">
                 <comment>ID Empresa</comment>
             </column>
         </many-to-one>
-        <one-to-one name="TPersona" class="Entity.TPersona" constrained="true"></one-to-one>
+        <many-to-one name="TPersona" class="Entity.TPersona" fetch="select">
+            <column name="tcli_tper_id" not-null="true">
+                <comment>ID</comment>
+            </column>
+        </many-to-one>
         <set name="TPrestamos" table="t_prestamo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tpre_tcli_tusu_id" not-null="true" />

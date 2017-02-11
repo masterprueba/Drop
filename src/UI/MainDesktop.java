@@ -91,7 +91,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Cliente_UI cli = new Cliente_UI();
+        Cliente__UI cli = new Cliente__UI();
         checkInstance(cli);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

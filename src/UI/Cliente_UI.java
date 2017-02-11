@@ -36,7 +36,7 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
      */
     public Cliente_UI() {
         initComponents();
-        cli_control = new Cliente_Controller(this);
+        //cli_control = new Cliente_Controller(this);
     }
     
     public static void tester(){
@@ -96,11 +96,6 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
                 jtfCedulaClienteMouseClicked(evt);
             }
         });
-        jtfCedulaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCedulaClienteActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Nombre");
@@ -138,10 +133,10 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5))
-                        .addGap(18, 35, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfCedulaCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
                             .addComponent(jtfNombreCliente)))
@@ -208,6 +203,11 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
 
         jtfCodeudorCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtfCodeudorCliente.setFocusable(false);
+        jtfCodeudorCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtfCodeudorClienteMouseClicked(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel12.setText("Referencia");
@@ -311,7 +311,7 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(130, 130, 130)
                                 .addComponent(jLabel13)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 131, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -331,10 +331,6 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfCedulaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCedulaClienteActionPerformed
-        // TODO add your handling code here: 
-    }//GEN-LAST:event_jtfCedulaClienteActionPerformed
-
     private void jtfCedulaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfCedulaClienteMouseClicked
         // TODO add your handling code here:
         Persona_UI perUI = new Persona_UI("Cliente");
@@ -343,13 +339,13 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
 
     private void jtfEmpresaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfEmpresaClienteMouseClicked
         // TODO add your handling code here:
-        Empresa_UI empUI = new Empresa_UI();
+        Empresa_UI empUI = new Empresa_UI("Cliente");
         MainDesktop.checkInstance(empUI);
     }//GEN-LAST:event_jtfEmpresaClienteMouseClicked
 
     private void jtfDomicilioClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfDomicilioClienteMouseClicked
         // TODO add your handling code here:
-        Domicilio_UI domUI = new Domicilio_UI();
+        Domicilio_UI domUI = new Domicilio_UI("Cliente");
         MainDesktop.checkInstance(domUI);
     }//GEN-LAST:event_jtfDomicilioClienteMouseClicked
 
@@ -365,15 +361,21 @@ public class Cliente_UI extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        ListaDomicilios_UI listDomUI = new ListaDomicilios_UI();
+        ListaDomicilios_UI listDomUI = new ListaDomicilios_UI("Cliente");
         MainDesktop.checkInstance(listDomUI);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ListaEmpresas_UI listEmpUI = new ListaEmpresas_UI();
+        ListaEmpresas_UI listEmpUI = new ListaEmpresas_UI("Cliente");
         MainDesktop.checkInstance(listEmpUI);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jtfCodeudorClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfCodeudorClienteMouseClicked
+        // TODO add your handling code here:
+        Codeudor_UI codUI= new Codeudor_UI();
+        MainDesktop.checkInstance(codUI);
+    }//GEN-LAST:event_jtfCodeudorClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

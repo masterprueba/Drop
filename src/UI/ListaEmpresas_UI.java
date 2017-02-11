@@ -21,9 +21,9 @@ public class ListaEmpresas_UI extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaEmpresas_UI
      */
-    public ListaEmpresas_UI() {
+    public ListaEmpresas_UI(String modulo) {
         initComponents();
-        empresaController = new Empresa_Controller();
+        empresaController = new Empresa_Controller(modulo);
         empresaController.initTable(jTable1);
     }
 
@@ -42,6 +42,7 @@ public class ListaEmpresas_UI extends javax.swing.JInternalFrame {
         jtfBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
         setMaximumSize(new java.awt.Dimension(300, 340));
         setMinimumSize(new java.awt.Dimension(300, 340));
         setPreferredSize(new java.awt.Dimension(300, 340));

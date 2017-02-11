@@ -15,11 +15,12 @@
     <mapping resource="Entity/TCliente.hbm.xml"/>
     <mapping resource="Entity/TEmpresa.hbm.xml"/>
     <mapping resource="Entity/TReferencia.hbm.xml"/>
-    <mapping resource="Entity/TTipoCasa.hbm.xml"/>
     <mapping resource="Entity/TCodeudor.hbm.xml"/>
+    <mapping resource="Entity/TTipoCasa.hbm.xml"/>
     <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TCasa.hbm.xml"/>
+    <mapping resource="Entity/TGasto.hbm.xml"/>
     <mapping resource="Entity/TCuota.hbm.xml"/>
     <mapping resource="Entity/TLogin.hbm.xml"/>
   </session-factory>

@@ -14,14 +14,14 @@ import Entity.TPersona;
  */
 public class Persona_UI extends javax.swing.JInternalFrame {
     private Persona_Controller pc;
-    public String elemento;
+    //public static String modulo;
     /**
      * Creates new form Persona_UI
      */
-    public Persona_UI(String elemento) {
+    public Persona_UI(String modulo) {
         initComponents();
-        pc = new Persona_Controller(this);
-        this.elemento = elemento;
+        pc = new Persona_Controller(this, modulo);
+        
     }
 
     /**

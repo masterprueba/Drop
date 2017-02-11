@@ -1,5 +1,5 @@
 package Entity;
-// Generated 5/02/2017 06:50:51 PM by Hibernate Tools 4.3.1
+// Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class TCodeudor  implements java.io.Serializable {
 
 
-     private int tcodTperId;
+     private Integer tcodId;
      private TCasa TCasa;
      private TEmpresa TEmpresa;
      private TPersona TPersona;
@@ -33,12 +33,12 @@ public class TCodeudor  implements java.io.Serializable {
        this.TClientes = TClientes;
     }
    
-    public int getTcodTperId() {
-        return this.tcodTperId;
+    public Integer getTcodId() {
+        return this.tcodId;
     }
     
-    public void setTcodTperId(int tcodTperId) {
-        this.tcodTperId = tcodTperId;
+    public void setTcodId(Integer tcodId) {
+        this.tcodId = tcodId;
     }
     public TCasa getTCasa() {
         return this.TCasa;

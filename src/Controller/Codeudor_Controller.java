@@ -5,9 +5,8 @@
  */
 package Controller;
 
-import Entity.TCliente;
-import Entity.TPersona;
-import Model.Cliente_Model;
+import Entity.TCodeudor;
+import Model.Codeudor_Model;
 import UI.Cliente_UI;
 import UI.Cliente__UI;
 import javax.swing.JOptionPane;
@@ -16,33 +15,32 @@ import javax.swing.JOptionPane;
  *
  * @author Andres
  */
-public class Cliente_Controller {
+public class Codeudor_Controller {
 
     private Cliente__UI cli_UI;
-    private TCliente c;
-    private Cliente_Model clienteModel;
+    private TCodeudor co;
+    private Codeudor_Model codeudorModel;
     private int ObjectIdentity = 0;
 
-    public Cliente_Controller(Cliente__UI cli_UI) {
+    public Codeudor_Controller(Cliente__UI cli_UI) {
         this.cli_UI = cli_UI;
-        clienteModel = new Cliente_Model();
+        codeudorModel = new Codeudor_Model();
     }
 
 //<editor-fold defaultstate="collapsed" desc="Method to Insert">
     public void insert() {
         if (validar()) {
-            
+
             //Objeto
-            c = new TCliente();
-            c.setTPersona(cli_UI.objectsPers.get(0));
-            c.setTCodeudor(cli_UI.objectsCode.get(0));
-            c.setTCasa(cli_UI.objectsCasa.get(0));
-            c.setTEmpresa(cli_UI.objectsEmpr.get(0));
-            
-            ObjectIdentity = Integer.parseInt("" + clienteModel.insertar(c));
+            co = new TCodeudor();
+            co.setTPersona(cli_UI.objectsPers.get(0));
+            co.setTCasa(cli_UI.objectsCasa.get(0));
+            co.setTEmpresa(cli_UI.objectsEmpr.get(0));
+
+            ObjectIdentity = Integer.parseInt("" + codeudorModel.insertar(co));
 
             if (ObjectIdentity != 0) {
-                c.setTcliId(ObjectIdentity);
+                co.setTcodId(ObjectIdentity);
                 //Cerrar ventana
                 //setData();
                 //perUI.dispose();
@@ -51,7 +49,7 @@ public class Cliente_Controller {
             }
         }
     }
-//</editor-fold>
+//</editor-fold>    
 
     public boolean validar() {
         return true;

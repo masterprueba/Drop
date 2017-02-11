@@ -7,7 +7,8 @@ package Controller;
 
 import Entity.TPersona;
 import Model.Persona_Model;
-import UI.Cliente_UI;
+import UI.Cliente__UI;
+import UI.Codeudor_UI;
 import UI.Domicilio_UI;
 import UI.ListaPersonas_UI;
 import UI.Persona_UI;
@@ -23,23 +24,31 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Persona_Controller {
 
+//<editor-fold defaultstate="collapsed" desc="Variables">
     private Persona_UI perUI;
+    private String modulo;
     private final Persona_Model personaModel;
     private TPersona p;
     private List<TPersona> listP;
     private int ObjectIdentity = 0;
     public DefaultTableModel dfm;
+//</editor-fold>
 
-    public Persona_Controller(Persona_UI perUI) {
+//<editor-fold defaultstate="collapsed" desc="Constructors">
+    public Persona_Controller(Persona_UI perUI, String modulo) {
+        this.modulo = modulo;
         this.perUI = perUI;
         personaModel = new Persona_Model();
     }
-
-    public Persona_Controller() {
+    
+    public Persona_Controller(String modulo) {
+        this.modulo = modulo;
         personaModel = new Persona_Model();
+        selectAll();
     }
+//</editor-fold>
 
-    //Medoto guardar
+//<editor-fold defaultstate="collapsed" desc="Method to Insert">
     public void insert() {
         if (validar()) {
 
@@ -62,77 +71,70 @@ public class Persona_Controller {
             }
         }
     }
+//</editor-fold>
 
-    public List<TPersona> selectAll() {
-        listP = new ArrayList<TPersona>();
+//<editor-fold defaultstate="collapsed" desc="Method Select">
+    public void selectAll() {
         listP = personaModel.findAll(TPersona.class);
-        return listP;
     }
+//</editor-fold>
 
-    public boolean validar() {
-
-        return true;
-    }
-
+//<editor-fold defaultstate="collapsed" desc="Method to SET Data in Objects and JTextFiels For The GUI">
     public void setData() {
-        switch (perUI.elemento) {
+        switch (modulo) {
             case "Cliente":
-                //Cliente_UI.idPer = ObjectIdentity;
-                Cliente_UI.objPers = p;
-                Cliente_UI.jtfCedulaCliente.setText(p.getTperCedula());
-                Cliente_UI.jtfNombreCliente.setText(p.getTperNombre());
-                Cliente_UI.jtfApellidoCliente.setText(p.getTperApellido());
-                Cliente_UI.jtfTelefonoCliente.setText(p.getTperTel());
-                //Cliente_UI.tester();
+                Cliente__UI.objectsPers.set(0, p);
+                Cliente__UI.jtfCedulaCliente.setText(p.getTperCedula());
+                Cliente__UI.jtfNombreCliente.setText(p.getTperNombre());
+                Cliente__UI.jtfApellidoCliente.setText(p.getTperApellido());
+                Cliente__UI.jtfTelefonoCliente.setText(p.getTperTel());
+                break;
+            case "Codeudor":
+                Cliente__UI.objectsPers.set(1, p);
+                Cliente__UI.jtfCedulaCodeudor.setText(p.getTperCedula());
+                Cliente__UI.jtfNombreCodeudor.setText(p.getTperNombre());
+                Cliente__UI.jtfApellidoCodeudor.setText(p.getTperApellido());
+                Cliente__UI.jtfTelefonoCodeudor.setText(p.getTperTel());
                 break;
             case "Domicilio":
-                Domicilio_UI.idProd = ObjectIdentity;
+                Domicilio_UI.objectPer = p;
                 Domicilio_UI.jtfPropietario.setText(p.getTperNombre());
                 break;
             default:
                 break;
         }
-
     }
+//</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="INIT JTable">
     public void initTable(JTable table) {
         //Llenar Tabla
         dfm = new DefaultTableModel();
         table.setModel(dfm);
 
         dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
-        selectAll();
         for (int i = 0; i < listP.size(); i++) {
             dfm.addRow(new Object[]{listP.get(i).getTperNombre() + " " + listP.get(i).getTperApellido(), listP.get(i).getTperCedula()});
 
         }
     }
+//</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="Method to Event MouseCliked in Rows of The JTable">
     public void mouseClickedTable(JTable table, ListaPersonas_UI lpUI) {
         String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1));
         for (int i = 0; i < listP.size(); i++) {
             if (listP.get(i).getTperCedula() == Select) {
-                //System.out.println("Seleccionado" + listaP.get(i).getTperCedula());
-                switch (lpUI.elemento) {
-                    case "Domicilio":
-                        Domicilio_UI.persona = listP.get(i);
-                        Domicilio_UI.jtfPropietario.setText(listP.get(i).getTperNombre() + " " + listP.get(i).getTperApellido());
-                        lpUI.dispose();
-                        break;
-                    case "Cliente":
-                        Cliente_UI.objPers = listP.get(i);
-                        Cliente_UI.jtfCedulaCliente.setText(listP.get(i).getTperCedula());
-                        Cliente_UI.jtfNombreCliente.setText(listP.get(i).getTperNombre());
-                        Cliente_UI.jtfApellidoCliente.setText(listP.get(i).getTperApellido());
-                        Cliente_UI.jtfTelefonoCliente.setText(listP.get(i).getTperTel());
-                        lpUI.dispose();
-                        break;
-                    default:
-                        break;
-                }
+                p = listP.get(i);
+
+                setData();
+                lpUI.dispose();
             }
         }
     }
-    
-    
+//</editor-fold>
+
+    public boolean validar() {
+        return true;
+    }
 }

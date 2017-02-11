@@ -9,6 +9,7 @@ import Entity.TCasa;
 import Entity.TEmpresa;
 import Model.Empresa_Model;
 import UI.Cliente_UI;
+import UI.Cliente__UI;
 import UI.Empresa_UI;
 import UI.ListaDomicilios_UI;
 import UI.ListaEmpresas_UI;
@@ -25,21 +26,24 @@ import javax.swing.table.DefaultTableModel;
 public class Empresa_Controller {
 
     private Empresa_UI empUI;
+    private String modulo;
     private final Empresa_Model empresaModel;
     private TEmpresa e;
     private List<TEmpresa> listE;
     public DefaultTableModel dfm;
 
-    public Empresa_Controller(Empresa_UI empUI) {
+    public Empresa_Controller(Empresa_UI empUI, String modulo) {
+        this.modulo = modulo;
         this.empUI = empUI;
         empresaModel = new Empresa_Model();
     }
 
-    public Empresa_Controller() {
+    public Empresa_Controller(String modulo) {
+        this.modulo = modulo;
         empresaModel = new Empresa_Model();
     }
 
-    //Medoto guardar
+//<editor-fold defaultstate="collapsed" desc="Method to Insert">
     public void insert() {
         if (validar()) {
 
@@ -62,12 +66,13 @@ public class Empresa_Controller {
             }
         }
     }
+//</editor-fold>
 
-    public List<TEmpresa> selectAll() {
-        listE = new ArrayList<TEmpresa>();
+//<editor-fold defaultstate="collapsed" desc="Method to Select All">
+    public void selectAll() {
         listE = empresaModel.findAll(TEmpresa.class);
-        return listE;
     }
+//</editor-fold>
 
     public boolean validar() {
 
@@ -75,10 +80,21 @@ public class Empresa_Controller {
     }
 
     public void setData() {
-        Cliente_UI.objEmpr = e;
-        Cliente_UI.jtfEmpresaCliente.setText(e.getTempNombre());
 
-        //Cliente_UI.jtfNombreCliente.setText(p.getTperNombre());
+        switch (modulo) {
+            case "Cliente":
+
+                Cliente__UI.objectsEmpr.set(0, e);
+                Cliente__UI.jtfEmpresaCliente.setText(e.getTempNombre());
+
+                break;
+            case "Codeudor":
+                Cliente__UI.objectsEmpr.set(1, e);
+                Cliente__UI.jtfEmpresaCodeudor.setText(e.getTempNombre());
+                break;
+            default:
+                break;
+        }
     }
 
     public void initTable(JTable table) {
@@ -93,16 +109,17 @@ public class Empresa_Controller {
 
         }
     }
-    
-        public void mouseClickedTable(JTable table, ListaEmpresas_UI leUI) {
+
+    public void mouseClickedTable(JTable table, ListaEmpresas_UI leUI) {
         String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 0));
         for (int i = 0; i < listE.size(); i++) {
             System.out.println(Select);
             if (listE.get(i).getTempNombre() == Select) {
                 //System.out.println("Seleccionado" + listC.get(i).getTcasDir());
-
-                Cliente_UI.objEmpr = listE.get(i);
-                Cliente_UI.jtfEmpresaCliente.setText(listE.get(i).getTempNombre());
+                e = listE.get(i);
+                setData();
+                //Cliente_UI.objEmpr = listE.get(i);
+                //Cliente_UI.jtfEmpresaCliente.setText(listE.get(i).getTempNombre());
                 leUI.dispose();
 
             }

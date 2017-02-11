@@ -28,10 +28,10 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaPersonas_UI
      */
-    public ListaPersonas_UI(String elemento) {
+    public ListaPersonas_UI(String modulo) {
         initComponents();
         this.elemento = elemento;
-        personaController = new Persona_Controller();
+        personaController = new Persona_Controller(modulo);
         personaController.initTable(jTable1);
 
     }
