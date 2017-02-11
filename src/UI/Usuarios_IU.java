@@ -17,6 +17,10 @@ public class Usuarios_IU extends javax.swing.JFrame {
     public Usuarios_IU() {
         initComponents();
     }
+    
+    public javax.swing.JInternalFrame cargarInternal() {
+        return jInternalFrame1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

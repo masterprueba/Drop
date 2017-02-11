@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.TLogin;
 import Model.Login_Model;
+import UI.MainDesktop;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -29,6 +30,7 @@ public class Login_Controller {
         if (!loginresult.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Inicio session");
             UsuarioLogueado = loginresult.get(0);
+            new MainDesktop().setVisible(true); 
         }else{
         JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
         }

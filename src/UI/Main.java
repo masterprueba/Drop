@@ -15,8 +15,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Prestamo_ui pu = new Prestamo_ui();
-        pu.setVisible(true);
+        Login iniciar = new Login();
+        iniciar.setVisible(true);
     }
-    
+
 }
