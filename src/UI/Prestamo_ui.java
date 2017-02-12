@@ -127,15 +127,26 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel12.setText("Nombre:");
 
+        P_nombre.setEditable(false);
+        P_nombre.setForeground(new java.awt.Color(0, 0, 153));
+
         jLabel13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel13.setText("Telefono:");
+
+        P_tel.setEditable(false);
+        P_tel.setForeground(new java.awt.Color(0, 0, 153));
 
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Direccion:");
 
+        P_dir.setEditable(false);
+        P_dir.setForeground(new java.awt.Color(0, 0, 153));
+
         jLabel14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel14.setText("Deuda actual:");
 
+        jTextField1.setEditable(false);
+        jTextField1.setForeground(new java.awt.Color(0, 0, 153));
         jTextField1.setText("En prueba");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -413,7 +424,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
                 .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

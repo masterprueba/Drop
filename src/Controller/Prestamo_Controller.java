@@ -6,15 +6,14 @@
 package Controller;
 
 import Entity.TCliente;
+import Entity.TCuota;
 import Entity.TPrestamo;
 import Model.Cliente_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
-import static UI.Prestamo_ui.P_dir;
-import static UI.Prestamo_ui.P_nombre;
-import static UI.Prestamo_ui.P_tel;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
+import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -66,11 +65,15 @@ public class Prestamo_Controller {
         Cliente_Model cmodel = new Cliente_Model();
         try{
             cliente = (TCliente) cmodel.ConsultarCliente(this.cc.getText());
-            P_nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
-            P_tel.setText(cliente.getTPersona().getTperTel());
-            P_dir.setText(cliente.getTCasa().getTcasDir());
+            nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
+            Prestamo_ui.P_tel.setText(cliente.getTPersona().getTperTel());
+            Prestamo_ui.P_dir.setText(cliente.getTCasa().getTcasDir());            
+            Set a = cliente.getTPrestamos();
+            TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
+            TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
+            prestamo_actual.setText(tc.getTcuoNuevoSaldo()+"");
         }catch(NullPointerException ex){
-            JOptionPane.showMessageDialog(P_nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);            
+            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);            
         }
         
         return cliente;
