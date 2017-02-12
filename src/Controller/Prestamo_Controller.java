@@ -8,6 +8,7 @@ package Controller;
 import Entity.TCliente;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
+import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 import javax.swing.JComboBox;
@@ -19,39 +20,34 @@ import javax.swing.JTextField;
  * @author Usuario
  */
 public class Prestamo_Controller {
-
+    private final JDateChooser fecha;
     private final JTextField cc;
     private final JTextField nombre;
-    private final JTextField prestamo_actual;
-    private final JTextField fecha_ultimo_pago;
+    private final JTextField prestamo_actual;    
     private final JTextField valor_prestamo;
     private final JTextField valor_cuota;
     private final JTextField cantidad_cuotas;
     private final JComboBox metodo;
-    private final JComboBox interes;
-    private final JDateChooser fecha_ini;
-    private final JDateChooser fecha_fin;
+    private final JComboBox interes;   
     private final Prestamo_model pmodel;
 
-    public Prestamo_Controller(JTextField cc, JTextField nombre, JTextField prestamo_actual, JTextField fecha_ultimo_pago, JTextField valor_prestamo, JTextField valor_cuota, JTextField cantidad_cuotas, JComboBox metodo, JComboBox interes, JDateChooser fecha_ini, JDateChooser fecha_fin) {
-        this.cc = cc;
-        this.nombre = nombre;
-        this.prestamo_actual = prestamo_actual;
-        this.fecha_ultimo_pago = fecha_ultimo_pago;
-        this.valor_prestamo = valor_prestamo;
-        this.valor_cuota = valor_cuota;
-        this.cantidad_cuotas = cantidad_cuotas;
-        this.metodo = metodo;
-        this.interes = interes;
-        this.fecha_ini = fecha_ini;
-        this.fecha_fin = fecha_fin;
+    public Prestamo_Controller() {
+        this.cc = Prestamo_ui.P_cedula;
+        this.nombre = Prestamo_ui.P_nombre;
+        this.prestamo_actual = Prestamo_ui.jTextField1;        
+        this.valor_prestamo = Prestamo_ui.P_valorprestamo;
+        this.valor_cuota = Prestamo_ui.P_valor_cuota;
+        this.cantidad_cuotas = Prestamo_ui.P_cantcuotas;
+        this.metodo = Prestamo_ui.P_metodo;
+        this.interes = Prestamo_ui.P_interes;                
+        this.fecha = Prestamo_ui.P_fecha;
         pmodel = new Prestamo_model();
     }
 
     //inserta prestamo en la bd
     public void create(TCliente cliente) {
         if (validar()) {
-            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), fecha_ini.getDate(), fecha_fin.getDate(),null);
+            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), new Date(), new Date(),null);
             if (pmodel.insertar(prestamo) != null) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {
@@ -69,14 +65,7 @@ public class Prestamo_Controller {
     private boolean validar() {
         String msj = "";
         int valida = 0;
-        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";        
-        try {
-            fecha_ini.getCalendar().equals("");
-            fecha_fin.getCalendar().equals("");
-            msj += fecha_ini.getDate().after(fecha_fin.getDate()) ? "Fecha inicial no puede estar despues de fecha en la que termina \n" : "";
-        } catch (NullPointerException ex) {
-            msj += "Error en la fecha(inicia-termina)\n";
-        }        
+        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";                
         try {
             Long.parseLong(valor_cuota.getText());
             valida = 1;
@@ -112,7 +101,7 @@ public class Prestamo_Controller {
         String prestamo = valor_prestamo.getText().equals("") ? "0" :  valor_prestamo.getText();
         String met = String.valueOf(metodo.getSelectedItem());
         float inter = (1+((float)Integer.parseInt(String.valueOf(interes.getSelectedItem()))/100));
-        int dias = 30;        
+        int dias = cantidad_cuotas.getText().equals("") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
         float valorcuota = (Integer.parseInt(prestamo))*inter/dias;
         valor_cuota.setText(Math.round(valorcuota)+"");
     }
