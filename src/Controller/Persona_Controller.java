@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.TPersona;
 import Model.Persona_Model;
+import UI.Abono_ui;
 import UI.Cliente__UI;
 import UI.Domicilio_UI;
 import UI.ListaPersonas_UI;
@@ -97,6 +98,10 @@ public class Persona_Controller {
             case "Domicilio":
                 Domicilio_UI.objectPer = p;
                 Domicilio_UI.jtfPropietario.setText(p.getTperNombre());
+                break;
+            case "abono":                
+                Abono_ui.a_nombre.setText(p.getTperNombre()+" "+p.getTperApellido());   
+                Abono_ui.a_cedula.setText(p.getTperCedula());
                 break;
             default:
                 break;
