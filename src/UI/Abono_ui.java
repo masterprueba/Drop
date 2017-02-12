@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Controller.Abono_Controller;
+
 /**
  *
  * @author Usuario
@@ -14,11 +16,13 @@ public class Abono_ui extends javax.swing.JInternalFrame {
     /**
      * Creates new form Abono_ui
      */
+    Abono_Controller ac;
     public Abono_ui() {
         initComponents();
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
+        ac = new Abono_Controller();
     }
     public javax.swing.JInternalFrame cargarInternal() {
         return this;
@@ -352,7 +356,8 @@ public class Abono_ui extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel1.setVisible(true);
         jPanel2.setVisible(true);
-        jPanel3.setVisible(true);
+        jPanel3.setVisible(true);  
+        ac.consultarCliente(a_cedula.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

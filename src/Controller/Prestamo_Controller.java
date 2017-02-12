@@ -64,14 +64,8 @@ public class Prestamo_Controller {
         TCliente cliente = null;
         Cliente_Model cmodel = new Cliente_Model();
         try{
-            cliente = (TCliente) cmodel.ConsultarCliente(this.cc.getText());
-            nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
-            Prestamo_ui.P_tel.setText(cliente.getTPersona().getTperTel());
-            Prestamo_ui.P_dir.setText(cliente.getTCasa().getTcasDir());            
-            Set a = cliente.getTPrestamos();
-            TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
-            TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
-            prestamo_actual.setText(tc.getTcuoNuevoSaldo()+"");
+            cliente = (TCliente) cmodel.ConsultarCliente(cc);            
+            setCliente(cliente);
         }catch(NullPointerException ex){
             JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);            
         }
@@ -121,5 +115,18 @@ public class Prestamo_Controller {
         int dias = cantidad_cuotas.getText().equals("") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
         float valorcuota = (Integer.parseInt(prestamo))*inter/dias;
         valor_cuota.setText(Math.round(valorcuota)+"");
+    }
+    
+    public void setCliente(TCliente cliente){
+        nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
+            Prestamo_ui.P_tel.setText(cliente.getTPersona().getTperTel());
+            Prestamo_ui.P_dir.setText(cliente.getTCasa().getTcasDir()); 
+            //Trae el ultimo prestamo del cliente
+            Set a = cliente.getTPrestamos();
+            TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
+            //Trae la ultima cuota del prestamo
+            TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
+            //set a prestamo actual
+            prestamo_actual.setText(tc.getTcuoNuevoSaldo()+"");
     }
 }
