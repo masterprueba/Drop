@@ -61,6 +61,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -121,6 +122,14 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem4);
+
+        jMenuItem7.setText("Abono");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
 
@@ -246,6 +255,11 @@ public class MainDesktop extends javax.swing.JFrame {
         in.moveToFront();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        JInternalFrame in = new Abono_ui().cargarInternal();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -325,5 +339,6 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

@@ -106,4 +106,14 @@ public class Prestamo_Controller {
             return false;
         }
     }
+    //calcula el valor de cuota y la cantidad de cuotas a pagar
+    public void calcularCuota(){
+        
+        String prestamo = valor_prestamo.getText().equals("") ? "0" :  valor_prestamo.getText();
+        String met = String.valueOf(metodo.getSelectedItem());
+        float inter = (1+((float)Integer.parseInt(String.valueOf(interes.getSelectedItem()))/100));
+        int dias = 30;        
+        float valorcuota = (Integer.parseInt(prestamo))*inter/dias;
+        valor_cuota.setText(Math.round(valorcuota)+"");
+    }
 }
