@@ -7,8 +7,12 @@ package Controller;
 
 import Entity.TCliente;
 import Entity.TPrestamo;
+import Model.Cliente_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
+import static UI.Prestamo_ui.P_dir;
+import static UI.Prestamo_ui.P_nombre;
+import static UI.Prestamo_ui.P_tel;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 import javax.swing.JComboBox;
@@ -58,8 +62,18 @@ public class Prestamo_Controller {
 
     //consulta y trae el objeto cliente
     public TCliente consultarCliente(String cc) {
-        TCliente c = (TCliente) pmodel.consultar(TCliente.class, Integer.parseInt(cc));
-        return c;
+        TCliente cliente = null;
+        Cliente_Model cmodel = new Cliente_Model();
+        try{
+            cliente = (TCliente) cmodel.ConsultarCliente(this.cc.getText());
+            P_nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
+            P_tel.setText(cliente.getTPersona().getTperTel());
+            P_dir.setText(cliente.getTCasa().getTcasDir());
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(P_nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);            
+        }
+        
+        return cliente;
     }    
 
     private boolean validar() {

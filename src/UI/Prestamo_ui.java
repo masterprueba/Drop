@@ -432,11 +432,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //consulto cliente por medio de la cedula
-        cliente = pc.consultarCliente(P_cedula.getText());
-        P_nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
-        P_tel.setText(cliente.getTPersona().getTperTel());
-        P_dir.setText(cliente.getTCasa().getTcasDir());
-        System.out.println(cliente.getTPrestamos().toArray().length);
+        cliente = pc.consultarCliente(P_cedula.getText());                
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
