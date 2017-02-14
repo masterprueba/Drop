@@ -7,7 +7,6 @@ package UI;
 
 import Controller.Gastos_Controller;
 import Controller.TableModel;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**

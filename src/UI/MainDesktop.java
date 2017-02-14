@@ -252,7 +252,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        JInternalFrame in = new Usuarios_IU().cargarInternal();
+        JInternalFrame in = new Usuarios_UI().cargarInternal();
         DesktopPaneMain.add(in);
         in.moveToFront();
     }//GEN-LAST:event_jMenuItem6ActionPerformed

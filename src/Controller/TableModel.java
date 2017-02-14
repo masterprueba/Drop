@@ -13,12 +13,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TableModel extends DefaultTableModel {
 
+    @Override
+    public boolean isCellEditable(int row, int column) {
+
+        return false;
+    }
+
     public DefaultTableModel VerGastos() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Fecha");
         modelo.addColumn("Detalle");
         modelo.addColumn("Costo");
+        return modelo;
+    }
+
+    public DefaultTableModel VerUsuarios() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Telefono");
         return modelo;
     }
 }

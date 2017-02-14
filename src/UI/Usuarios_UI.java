@@ -5,19 +5,42 @@
  */
 package UI;
 
+import Controller.Funciones_Vistas;
+import Controller.TableModel;
+import Controller.Usuarios_Controller;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ITERIA
  */
-public class Usuarios_IU extends javax.swing.JFrame {
+public class Usuarios_UI extends javax.swing.JFrame {
+
+    public final DefaultTableModel modelo;
+    private final Usuarios_Controller UController;
+    private final Funciones_Vistas Funciones = new Funciones_Vistas();
 
     /**
      * Creates new form Usuarios_IU
      */
-    public Usuarios_IU() {
+    public Usuarios_UI() {
+        UController = new Usuarios_Controller(this);
+        modelo = new TableModel().VerUsuarios();
         initComponents();
+        CargarComponentes();
+        UController.DeshabilitarHabilitar(1);
+        UController.VerUsuarios();
+        Funciones.NumerarTabla(modelo);
     }
-    
+
+    private void CargarComponentes() {
+        U_jtable_VerUsuario.setModel(modelo);
+        U_jtable_VerUsuario.getColumnModel().getColumn(0).setPreferredWidth(1);
+        U_jtable_VerUsuario.getColumnModel().getColumn(1).setPreferredWidth(120);
+        U_jtable_VerUsuario.getColumnModel().getColumn(2).setPreferredWidth(200);
+        U_jtable_VerUsuario.getColumnModel().getColumn(3).setPreferredWidth(80);
+    }
+
     public javax.swing.JInternalFrame cargarInternal() {
         return jInternalFrame1;
     }
@@ -51,6 +74,8 @@ public class Usuarios_IU extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         U_text_Contraseña = new javax.swing.JPasswordField();
         U_text_ReptContraseña = new javax.swing.JPasswordField();
+        U_text_NomComplet1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         U_btn_Guardar = new javax.swing.JButton();
         U_btn_Limpiar = new javax.swing.JButton();
@@ -84,7 +109,7 @@ public class Usuarios_IU extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,7 +132,7 @@ public class Usuarios_IU extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel3.setText("Nombre Completo:");
+        jLabel3.setText("Nombres:");
 
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Nombre del Usuaro:");
@@ -130,30 +155,46 @@ public class Usuarios_IU extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel8.setText("Direccion:");
 
+        jLabel9.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel9.setText("Apellidos:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(U_text_Direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(U_text_Telefono)
-                    .addComponent(U_text_NomComplet)
-                    .addComponent(U_text_Identificacion)
-                    .addComponent(U_text_NomUsuario)
-                    .addComponent(U_text_Contraseña)
-                    .addComponent(U_text_ReptContraseña))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel9)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(U_text_NomComplet, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(U_text_Identificacion)
+                            .addComponent(U_text_NomComplet1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(U_text_Direccion)
+                            .addComponent(U_text_Telefono)
+                            .addComponent(U_text_NomUsuario)
+                            .addComponent(U_text_Contraseña)
+                            .addComponent(U_text_ReptContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +208,10 @@ public class Usuarios_IU extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(U_text_NomComplet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(U_text_NomComplet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(U_text_NomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -186,7 +231,7 @@ public class Usuarios_IU extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(U_text_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -199,6 +244,11 @@ public class Usuarios_IU extends javax.swing.JFrame {
 
         U_btn_Registrar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         U_btn_Registrar.setText("REGISTRAR");
+        U_btn_Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                U_btn_RegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -242,7 +292,7 @@ public class Usuarios_IU extends javax.swing.JFrame {
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGap(259, 259, 259)
                 .addComponent(jLabel1)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,12 +300,12 @@ public class Usuarios_IU extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,71 +325,32 @@ public class Usuarios_IU extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void U_text_IdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_IdentificacionKeyTyped
-        char caracter = evt.getKeyChar();
-        if ((caracter < '0') || (caracter > '9') && (caracter != '\b')) {
-            evt.consume();
-        }
+        Funciones.SoloNumeros(evt);
     }//GEN-LAST:event_U_text_IdentificacionKeyTyped
 
     private void U_text_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_TelefonoKeyTyped
-        // que solo reciba 10 caracteres
-        if (U_text_Telefono.getText().length() == 10) {
-            evt.consume();
-        }
-
-        //que solo reciba numeros
-        char caracter = evt.getKeyChar();
-        if ((caracter < '0') || (caracter > '9') && (caracter != '\b')) {
-            evt.consume();
-        }
+        Funciones.LimitarCaracteres(evt, U_text_Telefono, 15);
+        Funciones.SoloNumeros(evt);
     }//GEN-LAST:event_U_text_TelefonoKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gastos_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gastos_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gastos_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gastos_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void U_btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_RegistrarActionPerformed
+        UController.Registrar();
+    }//GEN-LAST:event_U_btn_RegistrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UI.Usuarios_IU().setVisible(true);
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton U_btn_Guardar;
-    private javax.swing.JButton U_btn_Limpiar;
-    private javax.swing.JButton U_btn_Registrar;
-    private javax.swing.JTable U_jtable_VerUsuario;
-    private javax.swing.JPasswordField U_text_Contraseña;
-    private javax.swing.JTextField U_text_Direccion;
-    private javax.swing.JTextField U_text_Identificacion;
-    private javax.swing.JTextField U_text_NomComplet;
-    private javax.swing.JTextField U_text_NomUsuario;
-    private javax.swing.JPasswordField U_text_ReptContraseña;
-    private javax.swing.JTextField U_text_Telefono;
+    public static javax.swing.JButton U_btn_Guardar;
+    public static javax.swing.JButton U_btn_Limpiar;
+    public static javax.swing.JButton U_btn_Registrar;
+    public static javax.swing.JTable U_jtable_VerUsuario;
+    public static javax.swing.JPasswordField U_text_Contraseña;
+    public static javax.swing.JTextField U_text_Direccion;
+    public static javax.swing.JTextField U_text_Identificacion;
+    public static javax.swing.JTextField U_text_NomComplet;
+    public static javax.swing.JTextField U_text_NomComplet1;
+    public static javax.swing.JTextField U_text_NomUsuario;
+    public static javax.swing.JPasswordField U_text_ReptContraseña;
+    public static javax.swing.JTextField U_text_Telefono;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -349,6 +360,7 @@ public class Usuarios_IU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
