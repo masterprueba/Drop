@@ -101,6 +101,11 @@ public class Usuarios_UI extends javax.swing.JFrame {
 
             }
         ));
+        U_jtable_VerUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                U_jtable_VerUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(U_jtable_VerUsuario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -336,6 +341,10 @@ public class Usuarios_UI extends javax.swing.JFrame {
     private void U_btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_RegistrarActionPerformed
         UController.Registrar();
     }//GEN-LAST:event_U_btn_RegistrarActionPerformed
+
+    private void U_jtable_VerUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_U_jtable_VerUsuarioMouseClicked
+       UController.TraerUsuario(evt);
+    }//GEN-LAST:event_U_jtable_VerUsuarioMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

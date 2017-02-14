@@ -28,13 +28,11 @@ public class Login_Controller {
     public void Ingresar(TLogin User) {
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Inicio session");
             UsuarioLogueado = loginresult.get(0);
-            new MainDesktop().setVisible(true); 
-        }else{
-        JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
+            new MainDesktop().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
         }
-        System.out.println(UsuarioLogueado.getTlogEmail());
 
     }
 }

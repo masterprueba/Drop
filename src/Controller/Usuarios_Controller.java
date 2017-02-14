@@ -10,6 +10,7 @@ import Entity.TPersona;
 import Model.Login_Model;
 import Model.Persona_Model;
 import UI.Usuarios_UI;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -86,16 +87,7 @@ public class Usuarios_Controller {
 
     //Verifica que no exista la identificacion  ni el usuario en la base de datos
     private boolean VerificarDatosExist() {
-        //setear todos los datos a los objetos
-        Persona.setTperCedula(VistaUsuarios.U_text_Identificacion.getText());
-        Persona.setTperNombre(VistaUsuarios.U_text_NomComplet.getText());
-        Persona.setTperApellido(VistaUsuarios.U_text_NomComplet1.getText());
-        Persona.setTperTel(VistaUsuarios.U_text_Telefono.getText());
-
-        Login.setTlogUserLogin(VistaUsuarios.U_text_NomUsuario.getText());
-        Login.setTlogPassword(new String(VistaUsuarios.U_text_Contraseña.getPassword()));
-        Login.setTPersona(Persona);
-        //consultar si existe la cedula
+        LlenarObjetosPersonaLogin();
         personaresult = PModel.ConsultarCedula(Persona);
         if (personaresult.isEmpty()) {
             //consultar si existe el  login
@@ -136,13 +128,43 @@ public class Usuarios_Controller {
                 VistaUsuarios.U_btn_Guardar.setEnabled(false);
                 VistaUsuarios.U_btn_Limpiar.setEnabled(false);
                 VistaUsuarios.U_btn_Registrar.setEnabled(true);
+                VistaUsuarios.U_text_Identificacion.setEditable(true);
                 break;
             case 2:
                 VistaUsuarios.U_btn_Guardar.setEnabled(true);
                 VistaUsuarios.U_btn_Limpiar.setEnabled(true);
                 VistaUsuarios.U_btn_Registrar.setEnabled(false);
+                VistaUsuarios.U_text_Identificacion.setEditable(false);
                 break;
+
         }
 
+    }
+
+    public void TraerUsuario(MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+            int fila = VistaUsuarios.U_jtable_VerUsuario.rowAtPoint(evt.getPoint());
+            if (fila > -1) {
+                Persona.setTperCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
+                personaresult = PModel.ConsultarCedula(Persona);
+                DeshabilitarHabilitar(2);
+                if (!personaresult.isEmpty()) {
+
+                }
+            }
+        }
+    }
+
+    private void LlenarObjetosPersonaLogin() {
+        //setear todos los datos a los objetos
+        Persona.setTperCedula(VistaUsuarios.U_text_Identificacion.getText());
+        Persona.setTperNombre(VistaUsuarios.U_text_NomComplet.getText());
+        Persona.setTperApellido(VistaUsuarios.U_text_NomComplet1.getText());
+        Persona.setTperTel(VistaUsuarios.U_text_Telefono.getText());
+
+        Login.setTlogUserLogin(VistaUsuarios.U_text_NomUsuario.getText());
+        Login.setTlogPassword(new String(VistaUsuarios.U_text_Contraseña.getPassword()));
+        Login.setTPersona(Persona);
+        //consultar si existe la cedula
     }
 }
