@@ -72,9 +72,6 @@ public class Usuarios_Controller {
         if (VistaUsuarios.U_text_Telefono.getText().equals("")) {
             mensaje += "-No se puede dejar vacio el telefono \n";
         }
-        if (VistaUsuarios.U_text_Direccion.getText().equals("")) {
-            mensaje += "-No se puede dejar vacia la direccion \n";
-        }
         if (!new String(VistaUsuarios.U_text_Contraseña.getPassword()).equals(new String(VistaUsuarios.U_text_ReptContraseña.getPassword()))) {
             mensaje += "-Las contraseñas introducidas no coinciden \n";
         }
@@ -89,9 +86,9 @@ public class Usuarios_Controller {
     private boolean VerificarDatosExist() {
         LlenarObjetosPersonaLogin();
         personaresult = PModel.ConsultarCedula(Persona);
-        if (personaresult.isEmpty()) {
+        if (!personaresult.isEmpty()) {
             //consultar si existe el  login
-            loginresult = LModel.ConsultarUsuario(Login);
+            loginresult = LModel.ConsultarUsuario(personaresult.get(0));
             //verificar si es igual (con minusculas y mayusculas)
             boolean igual = false;
             for (int i = 0; i < loginresult.size(); i++) {
@@ -149,7 +146,14 @@ public class Usuarios_Controller {
                 personaresult = PModel.ConsultarCedula(Persona);
                 DeshabilitarHabilitar(2);
                 if (!personaresult.isEmpty()) {
-
+                    VistaUsuarios.U_text_Identificacion.setText(personaresult.get(0).getTperCedula());
+                    VistaUsuarios.U_text_NomComplet.setText(personaresult.get(0).getTperNombre());
+                    VistaUsuarios.U_text_NomComplet1.setText(personaresult.get(0).getTperApellido());
+                    VistaUsuarios.U_text_NomUsuario.setText(personaresult.get(0).getTperNombre());
+                    VistaUsuarios.U_text_Contraseña.setText(personaresult.get(0).getTperNombre());
+                    VistaUsuarios.U_text_ReptContraseña.setText(personaresult.get(0).getTperNombre());
+                    VistaUsuarios.U_text_Telefono.setText(personaresult.get(0).getTperTel());
+                    Persona.setTperId(personaresult.get(0).getTperId());
                 }
             }
         }

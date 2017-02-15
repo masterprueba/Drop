@@ -6,6 +6,7 @@
 package Model;
 
 import Entity.TLogin;
+import Entity.TPersona;
 import Persistence.hibernateUtil;
 import java.util.List;
 
@@ -27,10 +28,10 @@ public class Login_Model<L> extends General_model {
         return result;
     }
     
-    public List<L> ConsultarUsuario(TLogin usuario) {
+    public List<L> ConsultarUsuario(TPersona usuario) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TLogin where tlogUserLogin = '" + usuario.getTlogUserLogin() + "'";
+        String query = "from TLogin where  TPersona.tperId ='" + usuario.getTperId()+ "'";
         List<L> result = s.createQuery(query).list();
         s.getTransaction().commit();
 

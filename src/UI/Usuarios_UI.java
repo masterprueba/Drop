@@ -70,8 +70,6 @@ public class Usuarios_UI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         U_text_Telefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        U_text_Direccion = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         U_text_Contraseña = new javax.swing.JPasswordField();
         U_text_ReptContraseña = new javax.swing.JPasswordField();
         U_text_NomComplet1 = new javax.swing.JTextField();
@@ -157,9 +155,6 @@ public class Usuarios_UI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel7.setText("Telefono:");
 
-        jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel8.setText("Direccion:");
-
         jLabel9.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel9.setText("Apellidos:");
 
@@ -189,12 +184,10 @@ public class Usuarios_UI extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(U_text_Direccion)
                             .addComponent(U_text_Telefono)
                             .addComponent(U_text_NomUsuario)
                             .addComponent(U_text_Contraseña)
@@ -232,11 +225,7 @@ public class Usuarios_UI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(U_text_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(U_text_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(27, 27, 27))
+                .addGap(53, 53, 53))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -307,10 +296,10 @@ public class Usuarios_UI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,7 +342,6 @@ public class Usuarios_UI extends javax.swing.JFrame {
     public static javax.swing.JButton U_btn_Registrar;
     public static javax.swing.JTable U_jtable_VerUsuario;
     public static javax.swing.JPasswordField U_text_Contraseña;
-    public static javax.swing.JTextField U_text_Direccion;
     public static javax.swing.JTextField U_text_Identificacion;
     public static javax.swing.JTextField U_text_NomComplet;
     public static javax.swing.JTextField U_text_NomComplet1;
@@ -368,7 +356,6 @@ public class Usuarios_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -28,10 +28,14 @@ public class Login_Controller {
     public void Ingresar(TLogin User) {
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
-            UsuarioLogueado = loginresult.get(0);
-            new MainDesktop().setVisible(true);
+            if (loginresult.get(0).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(0).getTlogPassword().equals(User.getTlogPassword())) {
+                UsuarioLogueado = loginresult.get(0);
+                new MainDesktop().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
+            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos");
         }
 
     }
