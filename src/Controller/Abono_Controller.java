@@ -6,7 +6,10 @@
 package Controller;
 
 import Entity.TCliente;
+import Entity.TCuota;
+import Entity.TPrestamo;
 import UI.Abono_ui;
+import java.util.Set;
 
 /**
  *
@@ -20,5 +23,21 @@ public class Abono_Controller extends Prestamo_Controller{
     @Override
     public void setCliente(TCliente cliente){
         Abono_ui.a_nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
+    }
+    
+    public void setData(String cc){
+        TCliente cliente = consultarCliente(cc);
+        Set a = cliente.getTPrestamos();
+        TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
+        Abono_ui.a_valorprestamo.setText(tp.getTpreValorTotal()+"");        
+        Abono_ui.a_cantcuotas.setText(tp.getTpreNumCuotas()+"");
+        Abono_ui.a_totalcuota.setText(tp.getTpreValorCuota()+"");
+        TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
+        Abono_ui.a_saldo.setText(tc.getTcuoNuevoSaldo()+"");
+        Abono_ui.a_fechault.setText(tc.getTcuoFecha()+"");
+        Abono_ui.a_totalPrestamo.setText((int)(tp.getTpreValorTotal()*((float)((float)tp.getTpreIntereses()/100)+1))+"");
+        Abono_ui.a_abonado.setText((int)(tp.getTpreValorTotal()*((float)((float)tp.getTpreIntereses()/100)+1))-tc.getTcuoNuevoSaldo()+"");
+        //Abono_ui.a_cuotaspag.setText(tc.get);
+        //Abono_ui.a_cuotaspend.setText(tp.getTpreNumCuotas()-tc.getTcuoAbono()+"");
     }
 }
