@@ -23,10 +23,9 @@ public class Usuarios_Controller {
     private final Usuarios_UI VistaUsuarios;
     private final Login_Model LModel = new Login_Model();
     private final Persona_Model PModel = new Persona_Model();
-    private final TPersona Persona = new TPersona();
-    private final TLogin Login = new TLogin();
+    private static TPersona Persona;
+    private static TLogin Login;
     private List<TPersona> personaresult;
-    private List<TLogin> loginresult;
 
     public Usuarios_Controller(Usuarios_UI VistaUsuarios) {
         this.VistaUsuarios = VistaUsuarios;
@@ -35,9 +34,11 @@ public class Usuarios_Controller {
     public void Registrar() {
         if (Validar()) {
             if (VerificarDatosExist()) {
+                LlenarObjetosPersonaLogin();
                 if (PModel.insertar(Persona) != null) {
                     if (LModel.insertar(Login) != null) {
                         JOptionPane.showMessageDialog(null, "Se registro al nuevo usuario exitosamente!");
+                        VerUsuarios();
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error al insertar el login de la persona");
                     }
@@ -85,19 +86,14 @@ public class Usuarios_Controller {
     //Verifica que no exista la identificacion  ni el usuario en la base de datos
     private boolean VerificarDatosExist() {
         LlenarObjetosPersonaLogin();
-        personaresult = PModel.ConsultarCedula(Persona);
-        if (!personaresult.isEmpty()) {
+        System.err.println(Persona.getTperCedula());
+        Persona = PModel.ConsultarCedula(Persona);
+        System.err.println(Persona);
+        if (Persona == null) {
             //consultar si existe el  login
-            loginresult = LModel.ConsultarUsuario(personaresult.get(0));
+            Login = LModel.ConsultarUsuario(Login);
             //verificar si es igual (con minusculas y mayusculas)
-            boolean igual = false;
-            for (int i = 0; i < loginresult.size(); i++) {
-                if (loginresult.get(i).getTlogUserLogin().equals(VistaUsuarios.U_text_NomUsuario.getText())) {
-                    igual = true;
-                    break;
-                }
-            }
-            if (!igual) {
+            if (Login == null) {
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta en uso, por favor intente con otro Nombre de Usuario ");
@@ -142,24 +138,29 @@ public class Usuarios_Controller {
         if (evt.getClickCount() == 2) {
             int fila = VistaUsuarios.U_jtable_VerUsuario.rowAtPoint(evt.getPoint());
             if (fila > -1) {
+                LlenarObjetosPersonaLogin();
                 Persona.setTperCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
-                personaresult = PModel.ConsultarCedula(Persona);
+                Persona = PModel.ConsultarCedula(Persona);
                 DeshabilitarHabilitar(2);
-                if (!personaresult.isEmpty()) {
-                    VistaUsuarios.U_text_Identificacion.setText(personaresult.get(0).getTperCedula());
-                    VistaUsuarios.U_text_NomComplet.setText(personaresult.get(0).getTperNombre());
-                    VistaUsuarios.U_text_NomComplet1.setText(personaresult.get(0).getTperApellido());
-                    VistaUsuarios.U_text_NomUsuario.setText(personaresult.get(0).getTperNombre());
-                    VistaUsuarios.U_text_Contraseña.setText(personaresult.get(0).getTperNombre());
-                    VistaUsuarios.U_text_ReptContraseña.setText(personaresult.get(0).getTperNombre());
-                    VistaUsuarios.U_text_Telefono.setText(personaresult.get(0).getTperTel());
+                if (Persona != null) {
+                    VistaUsuarios.U_text_Identificacion.setText(Persona.getTperCedula());
+                    VistaUsuarios.U_text_NomComplet.setText(Persona.getTperNombre());
+                    VistaUsuarios.U_text_NomComplet1.setText(Persona.getTperApellido());
+                    VistaUsuarios.U_text_NomUsuario.setText(Persona.getTperNombre());
+                    VistaUsuarios.U_text_Contraseña.setText(Persona.getTperNombre());
+                    VistaUsuarios.U_text_ReptContraseña.setText(Persona.getTperNombre());
+                    VistaUsuarios.U_text_Telefono.setText(Persona.getTperTel());
                     Persona.setTperId(personaresult.get(0).getTperId());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error, es posible que esta persona ya no esxista en la base de datos");
                 }
             }
         }
     }
 
     private void LlenarObjetosPersonaLogin() {
+        Persona = new TPersona();
+        Login = new TLogin();
         //setear todos los datos a los objetos
         Persona.setTperCedula(VistaUsuarios.U_text_Identificacion.getText());
         Persona.setTperNombre(VistaUsuarios.U_text_NomComplet.getText());
@@ -170,5 +171,9 @@ public class Usuarios_Controller {
         Login.setTlogPassword(new String(VistaUsuarios.U_text_Contraseña.getPassword()));
         Login.setTPersona(Persona);
         //consultar si existe la cedula
+    }
+
+    public void VaciarCampos() {
+
     }
 }

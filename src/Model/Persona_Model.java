@@ -13,19 +13,19 @@ import java.util.List;
  *
  * @author Andres
  */
-public class Persona_Model<P> extends General_model{
+public class Persona_Model<P> extends General_model {
 
     public Persona_Model() {
     }
-    
-     public List<P> ConsultarCedula(TPersona persona) {
+
+    public TPersona ConsultarCedula(TPersona persona) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "from TPersona where tperCedula = '" + persona.getTperCedula() + "'";
-        List<P> result = s.createQuery(query).list();
+        TPersona result = (TPersona) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 
         return result;
     }
-    
+
 }

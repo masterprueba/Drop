@@ -18,7 +18,6 @@ public class Login_Model<L> extends General_model {
 
     //consulta el usuario por medio del usuario y contraseña
     public List<L> ConsultarUsuarioContraseña(TLogin usuario) {
-
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "from TLogin where tlogUserLogin = '" + usuario.getTlogUserLogin() + "' and tlogPassword = '" + usuario.getTlogPassword() + "'";
@@ -27,12 +26,12 @@ public class Login_Model<L> extends General_model {
 
         return result;
     }
-    
-    public List<L> ConsultarUsuario(TPersona usuario) {
+
+    public TLogin ConsultarUsuario(TLogin usuario) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TLogin where  TPersona.tperId ='" + usuario.getTperId()+ "'";
-        List<L> result = s.createQuery(query).list();
+        String query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin()+ "'";
+        TLogin result = (TLogin) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 
         return result;
