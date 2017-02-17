@@ -33,6 +33,8 @@ public class Login_Model<L> extends General_model {
         String query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "'";
         if (Via == 2) {
             query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "' and TPersona.tperCedula <> " + usuario.getTPersona().getTperCedula();
+        } else if (Via == 3) {
+            query = "from TLogin where TPersona.tperId ='" + usuario.getTPersona().getTperId()+ "'";
         }
         TLogin result = (TLogin) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
