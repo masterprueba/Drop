@@ -232,9 +232,19 @@ public class Usuarios_UI extends javax.swing.JFrame {
 
         U_btn_Guardar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         U_btn_Guardar.setText("GUARDAR");
+        U_btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                U_btn_GuardarActionPerformed(evt);
+            }
+        });
 
         U_btn_Limpiar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         U_btn_Limpiar.setText("LIMPIAR");
+        U_btn_Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                U_btn_LimpiarActionPerformed(evt);
+            }
+        });
 
         U_btn_Registrar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         U_btn_Registrar.setText("REGISTRAR");
@@ -332,10 +342,18 @@ public class Usuarios_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_U_btn_RegistrarActionPerformed
 
     private void U_jtable_VerUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_U_jtable_VerUsuarioMouseClicked
-       UController.TraerUsuario(evt);
+        UController.TraerUsuario(evt);
     }//GEN-LAST:event_U_jtable_VerUsuarioMouseClicked
 
-    
+    private void U_btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_LimpiarActionPerformed
+        UController.VaciarCampos();
+    }//GEN-LAST:event_U_btn_LimpiarActionPerformed
+
+    private void U_btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_GuardarActionPerformed
+        UController.ActualizarUsuario();
+    }//GEN-LAST:event_U_btn_GuardarActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton U_btn_Guardar;
     public static javax.swing.JButton U_btn_Limpiar;

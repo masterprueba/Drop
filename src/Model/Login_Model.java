@@ -6,13 +6,13 @@
 package Model;
 
 import Entity.TLogin;
-import Entity.TPersona;
 import Persistence.hibernateUtil;
 import java.util.List;
 
 /**
  *
  * @author Usuario
+ * @param <L>
  */
 public class Login_Model<L> extends General_model {
 
@@ -27,10 +27,13 @@ public class Login_Model<L> extends General_model {
         return result;
     }
 
-    public TLogin ConsultarUsuario(TLogin usuario) {
+    public TLogin ConsultarUsuario(TLogin usuario, int Via) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin()+ "'";
+        String query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "'";
+        if (Via == 2) {
+            query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "' and TPersona.tperCedula <> " + usuario.getTPersona().getTperCedula();
+        }
         TLogin result = (TLogin) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 
