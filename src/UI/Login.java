@@ -63,9 +63,8 @@ public class Login extends javax.swing.JFrame {
         Login.setTlogUserLogin(jTextField1.getText());
         Login.setTlogPassword(new String(jPasswordField1.getPassword()));
         //Llama el metoro ingresar y envia el objeto 
-        LoginController.Ingresar(Login);
+        LoginController.Ingresar(Login, this);
         //Cierra la ventana de login
-        this.dispose();
     }
 
     /**

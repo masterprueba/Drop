@@ -40,4 +40,12 @@ public class Funciones_Vistas {
             modelo.setValueAt(i + 1, i, 0);
         }
     }
+
+    public float TotalDeUnaTabla(DefaultTableModel modelo, int columna) {
+        float total = 0;
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            total = Integer.parseInt(modelo.getValueAt(i, columna).toString()) + total;
+        }
+        return total;
+    }
 }

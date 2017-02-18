@@ -8,6 +8,7 @@ package Controller;
 import Entity.TLogin;
 import Model.Login_Model;
 import UI.MainDesktop;
+import UI.Login;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -25,17 +26,24 @@ public class Login_Controller {
     }
 
     //Verifica que el usuario y contraseña esnten la DB
-    public void Ingresar(TLogin User) {
+    public void Ingresar(TLogin User, Login login) {
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
-            if (loginresult.get(0).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(0).getTlogPassword().equals(User.getTlogPassword())) {
-                UsuarioLogueado = loginresult.get(0);
-                new MainDesktop().setVisible(true);
-            } else {
+            boolean Continua = false;
+            for (int i = 0; i < loginresult.size(); i++) {
+                if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
+                    Continua = true;
+                    UsuarioLogueado = loginresult.get(i);
+                    new MainDesktop().setVisible(true);
+                    login.dispose();
+                    break;
+                }
+            }
+            if (!Continua) {
                 JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos");
+            JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
         }
 
     }

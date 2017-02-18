@@ -28,4 +28,14 @@ public class Persona_Model<P> extends General_model {
         return result;
     }
 
+    public List<P> ConsultarPersonasConLogin() {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "select persona from TPersona as persona  inner join persona.TLogins as login on  login.TPersona.tperId = persona";
+        List<P> result = s.createQuery(query).list();
+        s.getTransaction().commit();
+
+        return result;
+    }
+
 }

@@ -22,7 +22,6 @@ public class Gastos_Controller {
     private final Gastos_UI VistaGastos;
     private static TGasto Gasto;
     private List<TGasto> gastosresult;
-    private final Funciones_Vistas FnVistas = new Funciones_Vistas();
 
     public Gastos_Controller(Gastos_UI VistaGastos) {
         this.VistaGastos = VistaGastos;
@@ -33,30 +32,10 @@ public class Gastos_Controller {
             LlenarObjetoGastos();
             if (MGastos.insertar(Gasto) != null) {
                 VaciarCampos();
-                TraerGastos();
-                JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto para este mes");
+                TraerGastos(ObtenerRadiobuttonSeleccionado());
+                JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto");
             }
 
-        }
-    }
-
-    public void CargarGastos(int Via) {
-
-        switch (Via) {
-            case 1:
-                Calendar fecha = Calendar.getInstance();
-                int año = fecha.get(Calendar.YEAR);
-                int mes = (fecha.get(Calendar.MONTH) + 1);
-                break;
-
-            case 2:
-                JOptionPane.showMessageDialog(null, "Trae todo");
-                break;
-
-            case 3:
-                String fecha1 = VistaGastos.Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay();
-                String fecha2 = VistaGastos.Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay();
-                break;
         }
     }
 
@@ -82,7 +61,7 @@ public class Gastos_Controller {
         if (Gasto == null) {
             Gasto = new TGasto();
         }
-        Gasto.setTgasFecha(VistaGastos.Comp_Fecha_Desde1.getDate());
+        Gasto.setTgasFecha(VistaGastos.Comp_Fecha_Gasto.getDate());
         Gasto.setTgasDesc(VistaGastos.jTextArea1.getText());
         Gasto.setTgasCosto(Integer.parseInt(VistaGastos.jTextField2.getText()));
     }
@@ -90,18 +69,63 @@ public class Gastos_Controller {
     private void VaciarCampos() {
         VistaGastos.jTextArea1.setText(null);
         VistaGastos.jTextField2.setText(null);
+        VistaGastos.Comp_Fecha_Gasto.setDate(null);
     }
 
-    public void TraerGastos() {
-        gastosresult = MGastos.findAll(TGasto.class);
+    public void TraerGastos(int V) {
+        switch (V) {
+            case 1:
+                gastosresult = MGastos.ConsultarGastosMes((Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR));
+                break;
+            case 2:
+                gastosresult = MGastos.findAll(TGasto.class);
+                break;
+            case 3:
+                if (VistaGastos.Comp_Fecha_Desde1.getDate() != null && VistaGastos.Comp_Fecha_Desde2.getDate() != null) {
+                    String fecha1 = VistaGastos.Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay();
+                    String fecha2 = VistaGastos.Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay();
+                    gastosresult = MGastos.ConsultarPorFechas(fecha1, fecha2);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor seleccione la fecha de inicio y la fecha final");
+                }
+                break;
+        }
         VistaGastos.modelo.setNumRows(0);
         for (int i = 0; i < gastosresult.size(); i++) {
             String[] fila = new String[6];
-            fila[1] = gastosresult.get(i).getTgasFecha() + "";
+            fila[1] = gastosresult.get(i).getTgasFecha().toString();
             fila[2] = gastosresult.get(i).getTgasDesc();
             fila[3] = gastosresult.get(i).getTgasCosto().toString();
             VistaGastos.modelo.addRow(fila);
         }
-        FnVistas.NumerarTabla(VistaGastos.modelo);
+        VistaGastos.Funciones.NumerarTabla(VistaGastos.modelo);
+        VistaGastos.jTextField1.setText("" + VistaGastos.Funciones.TotalDeUnaTabla(VistaGastos.modelo, 3));
+
+    }
+
+    public void DesactivarFechas(int V) {
+        if (V == 1) {
+            VistaGastos.jLabel7.setEnabled(false);
+            VistaGastos.jLabel8.setEnabled(false);
+            VistaGastos.Comp_Fecha_Desde1.setEnabled(false);
+            VistaGastos.Comp_Fecha_Desde2.setEnabled(false);
+            VistaGastos.jButton2.setEnabled(false);
+        } else {
+            VistaGastos.jLabel7.setEnabled(true);
+            VistaGastos.jLabel8.setEnabled(true);
+            VistaGastos.Comp_Fecha_Desde1.setEnabled(true);
+            VistaGastos.Comp_Fecha_Desde2.setEnabled(true);
+            VistaGastos.jButton2.setEnabled(true);
+        }
+    }
+
+    public int ObtenerRadiobuttonSeleccionado() {
+
+        if (VistaGastos.jRadioButton1.isSelected() == true) {
+            return 1;
+        } else if (VistaGastos.jRadioButton2.isSelected() == true) {
+            return 2;
+        }
+        return 2;
     }
 }
