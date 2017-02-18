@@ -1,5 +1,5 @@
 package Entity;
-// Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1
+// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,14 +14,13 @@ public class TPrestamo  implements java.io.Serializable {
 
      private Integer tpreId;
      private TCliente TCliente;
+     private Integer tpreValorPrestamo;
      private Integer tpreNumCuotas;
      private Integer tpreIntereses;
      private String tpreMetodPago;
      private Date tpreFechaEntrega;
      private Long tpreValorTotal;
      private Long tpreValorCuota;
-     private Date tpreFechaIni;
-     private Date tpreFechaFin;
      private Set TCuotas = new HashSet(0);
 
     public TPrestamo() {
@@ -31,16 +30,15 @@ public class TPrestamo  implements java.io.Serializable {
     public TPrestamo(TCliente TCliente) {
         this.TCliente = TCliente;
     }
-    public TPrestamo(TCliente TCliente, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Date tpreFechaIni, Date tpreFechaFin, Set TCuotas) {
+    public TPrestamo(TCliente TCliente, Integer tpreValorPrestamo, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Set TCuotas) {
        this.TCliente = TCliente;
+       this.tpreValorPrestamo = tpreValorPrestamo;
        this.tpreNumCuotas = tpreNumCuotas;
        this.tpreIntereses = tpreIntereses;
        this.tpreMetodPago = tpreMetodPago;
        this.tpreFechaEntrega = tpreFechaEntrega;
        this.tpreValorTotal = tpreValorTotal;
        this.tpreValorCuota = tpreValorCuota;
-       this.tpreFechaIni = tpreFechaIni;
-       this.tpreFechaFin = tpreFechaFin;
        this.TCuotas = TCuotas;
     }
    
@@ -57,6 +55,13 @@ public class TPrestamo  implements java.io.Serializable {
     
     public void setTCliente(TCliente TCliente) {
         this.TCliente = TCliente;
+    }
+    public Integer getTpreValorPrestamo() {
+        return this.tpreValorPrestamo;
+    }
+    
+    public void setTpreValorPrestamo(Integer tpreValorPrestamo) {
+        this.tpreValorPrestamo = tpreValorPrestamo;
     }
     public Integer getTpreNumCuotas() {
         return this.tpreNumCuotas;
@@ -99,20 +104,6 @@ public class TPrestamo  implements java.io.Serializable {
     
     public void setTpreValorCuota(Long tpreValorCuota) {
         this.tpreValorCuota = tpreValorCuota;
-    }
-    public Date getTpreFechaIni() {
-        return this.tpreFechaIni;
-    }
-    
-    public void setTpreFechaIni(Date tpreFechaIni) {
-        this.tpreFechaIni = tpreFechaIni;
-    }
-    public Date getTpreFechaFin() {
-        return this.tpreFechaFin;
-    }
-    
-    public void setTpreFechaFin(Date tpreFechaFin) {
-        this.tpreFechaFin = tpreFechaFin;
     }
     public Set getTCuotas() {
         return this.TCuotas;

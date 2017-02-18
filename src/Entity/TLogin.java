@@ -1,5 +1,5 @@
 package Entity;
-// Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1
+// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
 
 
 
@@ -12,7 +12,6 @@ public class TLogin  implements java.io.Serializable {
      private Integer tlogId;
      private TPersona TPersona;
      private String tlogUserLogin;
-     private String tlogEmail;
      private String tlogPassword;
 
     public TLogin() {
@@ -22,10 +21,9 @@ public class TLogin  implements java.io.Serializable {
     public TLogin(TPersona TPersona) {
         this.TPersona = TPersona;
     }
-    public TLogin(TPersona TPersona, String tlogUserLogin, String tlogEmail, String tlogPassword) {
+    public TLogin(TPersona TPersona, String tlogUserLogin, String tlogPassword) {
        this.TPersona = TPersona;
        this.tlogUserLogin = tlogUserLogin;
-       this.tlogEmail = tlogEmail;
        this.tlogPassword = tlogPassword;
     }
    
@@ -49,13 +47,6 @@ public class TLogin  implements java.io.Serializable {
     
     public void setTlogUserLogin(String tlogUserLogin) {
         this.tlogUserLogin = tlogUserLogin;
-    }
-    public String getTlogEmail() {
-        return this.tlogEmail;
-    }
-    
-    public void setTlogEmail(String tlogEmail) {
-        this.tlogEmail = tlogEmail;
     }
     public String getTlogPassword() {
         return this.tlogPassword;

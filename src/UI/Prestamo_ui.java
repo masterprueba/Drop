@@ -147,7 +147,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         jTextField1.setForeground(new java.awt.Color(0, 0, 153));
-        jTextField1.setText("En prueba");
+        jTextField1.setText("0");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -424,7 +424,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
                 .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -447,7 +447,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //ejecuto el metodo del controlador que me crea el prestamo al cliente que le envie como parametro
+        //ejecuto el metodo del controlador que me crea el prestamo al cliente que le envie como parametro        
         pc.create(cliente);
     }//GEN-LAST:event_jButton2ActionPerformed
 

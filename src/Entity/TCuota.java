@@ -1,5 +1,5 @@
 package Entity;
-// Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1
+// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,7 @@ public class TCuota  implements java.io.Serializable {
      private Date tcuoFecha;
      private Long tcuoAbono;
      private Long tcuoNuevoSaldo;
+     private Integer tcuoCuotasPagadas;
 
     public TCuota() {
     }
@@ -24,12 +25,13 @@ public class TCuota  implements java.io.Serializable {
         this.id = id;
         this.TPrestamo = TPrestamo;
     }
-    public TCuota(TCuotaId id, TPrestamo TPrestamo, Date tcuoFecha, Long tcuoAbono, Long tcuoNuevoSaldo) {
+    public TCuota(TCuotaId id, TPrestamo TPrestamo, Date tcuoFecha, Long tcuoAbono, Long tcuoNuevoSaldo, Integer tcuoCuotasPagadas) {
        this.id = id;
        this.TPrestamo = TPrestamo;
        this.tcuoFecha = tcuoFecha;
        this.tcuoAbono = tcuoAbono;
        this.tcuoNuevoSaldo = tcuoNuevoSaldo;
+       this.tcuoCuotasPagadas = tcuoCuotasPagadas;
     }
    
     public TCuotaId getId() {
@@ -66,6 +68,13 @@ public class TCuota  implements java.io.Serializable {
     
     public void setTcuoNuevoSaldo(Long tcuoNuevoSaldo) {
         this.tcuoNuevoSaldo = tcuoNuevoSaldo;
+    }
+    public Integer getTcuoCuotasPagadas() {
+        return this.tcuoCuotasPagadas;
+    }
+    
+    public void setTcuoCuotasPagadas(Integer tcuoCuotasPagadas) {
+        this.tcuoCuotasPagadas = tcuoCuotasPagadas;
     }
 
 

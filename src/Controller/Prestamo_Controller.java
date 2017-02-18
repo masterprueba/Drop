@@ -50,7 +50,11 @@ public class Prestamo_Controller {
     //inserta prestamo en la bd
     public void create(TCliente cliente) {
         if (validar()) {
-            TPrestamo prestamo = new TPrestamo(cliente, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), new Date(), Long.parseLong(valor_prestamo.getText()), Long.parseLong(valor_cuota.getText()), new Date(), new Date(),null);
+            calcularCuota();
+            double inter = ((double) Integer.parseInt((String)interes.getSelectedItem())/100)+1;
+            int valorprestamo = Integer.parseInt(valor_prestamo.getText()) + Integer.parseInt(prestamo_actual.getText());
+            Long valortotal = Math.round(valorprestamo * inter);            
+            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, Long.parseLong(valor_cuota.getText()),null);
             if (pmodel.insertar(prestamo) != null) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {
@@ -76,14 +80,14 @@ public class Prestamo_Controller {
     private boolean validar() {
         String msj = "";
         int valida = 0;
-        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";                
+        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";        
         try {
             Long.parseLong(valor_cuota.getText());
             valida = 1;
             Integer.parseInt(cantidad_cuotas.getText());
             valida = 2;
             Long.parseLong(valor_prestamo.getText());
-            valida = 3;
+            valida = 3;            
         } catch (NumberFormatException ex) {
             switch (valida) {
                 case 0:
@@ -94,7 +98,7 @@ public class Prestamo_Controller {
                     break;
                 case 2:
                     msj += "El valor del prestamo debe ser numerico";
-                    break;
+                    break;                             
                 default:
                     break;
             }
@@ -108,12 +112,13 @@ public class Prestamo_Controller {
     }
     //calcula el valor de cuota y la cantidad de cuotas a pagar
     public void calcularCuota(){
-        
-        String prestamo = valor_prestamo.getText().equals("") ? "0" :  valor_prestamo.getText();
+        String presta = valor_prestamo.getText().equals("") ? "0" : valor_prestamo.getText();
+        int valorprestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());
+        int prestamo = valorprestamo;
         String met = String.valueOf(metodo.getSelectedItem());
         float inter = (1+((float)Integer.parseInt(String.valueOf(interes.getSelectedItem()))/100));
         int dias = cantidad_cuotas.getText().equals("") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
-        float valorcuota = (Integer.parseInt(prestamo))*inter/dias;
+        float valorcuota = (prestamo*inter)/dias;
         valor_cuota.setText(Math.round(valorcuota)+"");
     }
     
@@ -123,10 +128,18 @@ public class Prestamo_Controller {
             Prestamo_ui.P_dir.setText(cliente.getTCasa().getTcasDir()); 
             //Trae el ultimo prestamo del cliente
             Set a = cliente.getTPrestamos();
-            TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
-            //Trae la ultima cuota del prestamo
-            TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
-            //set a prestamo actual
-            prestamo_actual.setText(tc.getTcuoNuevoSaldo()+"");
+            if (a.size()>0) {
+                TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];                
+                if (tp.getTCuotas().size()>0) {
+                    //Trae la ultima cuota del prestamo
+                    TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
+                    //set a prestamo actual
+                    prestamo_actual.setText(tc.getTcuoNuevoSaldo()+"");
+                }else{
+                    prestamo_actual.setText(tp.getTpreValorTotal()+"");
+                }
+                
+            }
+            
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 17-feb-2017 19:05:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <composite-id name="id" class="Entity.TCuotaId">
@@ -29,6 +29,9 @@
             <column name="tcuo_nuevo_saldo" precision="10" scale="0">
                 <comment>Nuevo Saldo de Prestamo</comment>
             </column>
+        </property>
+        <property name="tcuoCuotasPagadas" type="java.lang.Integer">
+            <column name="tcuo_cuotas_pagadas" />
         </property>
     </class>
 </hibernate-mapping>

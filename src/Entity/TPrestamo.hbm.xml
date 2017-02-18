@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11/02/2017 12:56:19 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 17-feb-2017 19:05:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
@@ -11,6 +11,9 @@
         <many-to-one name="TCliente" class="Entity.TCliente" fetch="select">
             <column name="tpre_tcli_tusu_id" not-null="true" />
         </many-to-one>
+        <property name="tpreValorPrestamo" type="java.lang.Integer">
+            <column name="tpre_valor_prestamo" />
+        </property>
         <property name="tpreNumCuotas" type="java.lang.Integer">
             <column name="tpre_num_cuotas">
                 <comment>Numero de Cuotas</comment>
@@ -39,16 +42,6 @@
         <property name="tpreValorCuota" type="java.lang.Long">
             <column name="tpre_valor_cuota" precision="10" scale="0">
                 <comment>Valor de Cuota</comment>
-            </column>
-        </property>
-        <property name="tpreFechaIni" type="date">
-            <column name="tpre_fecha_ini" length="10">
-                <comment>Fecha Inicio de Prestamo</comment>
-            </column>
-        </property>
-        <property name="tpreFechaFin" type="date">
-            <column name="tpre_fecha_fin" length="10">
-                <comment>Fecha Fin de Prestamo</comment>
             </column>
         </property>
         <set name="TCuotas" table="t_cuota" inverse="true" lazy="true" fetch="select">
