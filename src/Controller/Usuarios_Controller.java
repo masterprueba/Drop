@@ -71,9 +71,6 @@ public class Usuarios_Controller {
         if (new String(VistaUsuarios.U_text_ReptContraseña.getPassword()).equals("")) {
             mensaje += "-No se puede dejar vacio el campo repetir contraseña \n";
         }
-        if (VistaUsuarios.U_text_Telefono.getText().equals("")) {
-            mensaje += "-No se puede dejar vacio el telefono \n";
-        }
         if (!new String(VistaUsuarios.U_text_Contraseña.getPassword()).equals(new String(VistaUsuarios.U_text_ReptContraseña.getPassword()))) {
             mensaje += "-Las contraseñas introducidas no coinciden \n";
         }
