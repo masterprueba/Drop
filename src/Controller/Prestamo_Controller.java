@@ -80,8 +80,9 @@ public class Prestamo_Controller {
     private boolean validar() {
         String msj = "";
         int valida = 0;
-        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";        
-        try {
+        msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";
+        msj += fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";        
+        try {            
             Long.parseLong(valor_cuota.getText());
             valida = 1;
             Integer.parseInt(cantidad_cuotas.getText());
