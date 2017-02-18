@@ -5,8 +5,10 @@
  */
 package UI;
 
+import Controller.Funciones_Vistas;
 import Controller.Gastos_Controller;
 import Controller.TableModel;
+import static UI.Usuarios_UI.U_text_Telefono;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +19,7 @@ public class Gastos_UI extends javax.swing.JFrame {
 
     private final Gastos_Controller GControl;
     public final DefaultTableModel modelo;
+    private final Funciones_Vistas Funciones = new Funciones_Vistas();
 
     /**
      * Creates new form Gastos_UI
@@ -28,8 +31,9 @@ public class Gastos_UI extends javax.swing.JFrame {
         CargarComponentes();
         DesactivarFechas(1);
         GControl.CargarGastos(1);
+        GControl.TraerGastos();
     }
-    
+
     public javax.swing.JInternalFrame cargarInternal() {
         return jInternalFrame;
     }
@@ -374,12 +378,7 @@ public class Gastos_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        char caracter = evt.getKeyChar();
-        if (caracter != '.') {
-            if ((caracter < '0') || (caracter > '9') && (caracter != '\b')) {
-                evt.consume();
-            }
-        }
+        Funciones.SoloNumeros(evt);
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -387,9 +386,7 @@ public class Gastos_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
-        if (jTextArea1.getText().length() == 100) {
-            evt.consume();
-        }
+        Funciones.LimitarCaracteresJTxArea(evt, jTextArea1, 100);
     }//GEN-LAST:event_jTextArea1KeyTyped
 
     /**

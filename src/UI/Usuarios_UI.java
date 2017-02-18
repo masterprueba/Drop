@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ITERIA
  */
 public class Usuarios_UI extends javax.swing.JFrame {
-
+    
     public final DefaultTableModel modelo;
     private final Usuarios_Controller UController;
     private final Funciones_Vistas Funciones = new Funciones_Vistas();
@@ -32,7 +32,7 @@ public class Usuarios_UI extends javax.swing.JFrame {
         UController.VerUsuarios();
         Funciones.NumerarTabla(modelo);
     }
-
+    
     private void CargarComponentes() {
         U_jtable_VerUsuario.setModel(modelo);
         U_jtable_VerUsuario.getColumnModel().getColumn(0).setPreferredWidth(1);
@@ -40,7 +40,7 @@ public class Usuarios_UI extends javax.swing.JFrame {
         U_jtable_VerUsuario.getColumnModel().getColumn(2).setPreferredWidth(200);
         U_jtable_VerUsuario.getColumnModel().getColumn(3).setPreferredWidth(80);
     }
-
+    
     public javax.swing.JInternalFrame cargarInternal() {
         return jInternalFrame1;
     }
@@ -347,6 +347,7 @@ public class Usuarios_UI extends javax.swing.JFrame {
 
     private void U_btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_LimpiarActionPerformed
         UController.VaciarCampos();
+        UController.DeshabilitarHabilitar(1);
     }//GEN-LAST:event_U_btn_LimpiarActionPerformed
 
     private void U_btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_GuardarActionPerformed
