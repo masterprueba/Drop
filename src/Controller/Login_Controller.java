@@ -7,8 +7,9 @@ package Controller;
 
 import Entity.TLogin;
 import Model.Login_Model;
-import UI.MainDesktop;
+
 import UI.Login;
+import UI.MainDesktop;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -38,7 +39,7 @@ public class Login_Controller {
                     login.dispose();
                     break;
                 }
-            }
+            }           
             if (!Continua) {
                 JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
             }

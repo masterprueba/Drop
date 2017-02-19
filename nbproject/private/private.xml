@@ -7,16 +7,7 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Usuarios_Controller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TLogin.hbm.xml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.hbm.xml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Login_Model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Persona_Model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TLogin.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/Drop/src/UI/Login.java</file>
         </group>
     </open-files>
 </project-private>
