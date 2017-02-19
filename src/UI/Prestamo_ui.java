@@ -7,7 +7,7 @@ package UI;
 
 
 import Controller.Prestamo_Controller;
-import Entity.TCliente;
+import Entity.TPersona;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +20,7 @@ public class Prestamo_ui extends Views {
      * Creates new form Prestamo_ui
      */
     private Prestamo_Controller pc;
-    private TCliente cliente;    
+    private TPersona cliente;    
     
     
     

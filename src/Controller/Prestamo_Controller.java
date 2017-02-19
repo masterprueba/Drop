@@ -5,10 +5,10 @@
  */
 package Controller;
 
-import Entity.TCliente;
+import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TPrestamo;
-import Model.Cliente_Model;
+import Model.Persona_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
@@ -53,7 +53,7 @@ public class Prestamo_Controller {
     }
 
     //inserta prestamo en la bd
-    public void create(TCliente cliente) {
+    public void create(TPersona cliente) {
         if (validar()) {
             calcularCuota();
             double inter = ((double) Integer.parseInt((String)interes.getSelectedItem())/100)+1;            
@@ -62,7 +62,7 @@ public class Prestamo_Controller {
                 Long valorprestamo = ((Long)formateador.parse(valor_prestamo.getText())) + Integer.parseInt(prestamo_actual.getText());
                 Long valortotal = Math.round(valorprestamo * inter); 
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
-                System.out.println(cliente.getTPersona().getTperNombre());
+                System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
                 TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, vcuota,null);
                 if (pmodel.insertar(prestamo) != null) {
                     JOptionPane.showMessageDialog(null, "Prestamo total: $"+valortotal+" Realizado  correctamente!!");
@@ -75,7 +75,7 @@ public class Prestamo_Controller {
                     cantidad_cuotas.setText("0");
                     valor_cuota.setText("");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! "+cliente.getTPersona().getTperNombre());
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! ");
                     
                 }
             } catch (ParseException ex) {
@@ -85,11 +85,11 @@ public class Prestamo_Controller {
     }
 
     //consulta y trae el objeto cliente
-    public TCliente consultarCliente(String cc) {
-        TCliente cliente = null;
-        Cliente_Model cmodel = new Cliente_Model();
+    public TPersona consultarCliente(String cc) {
+        TPersona cliente = null;
+        Persona_Model cmodel = new Persona_Model();
         try{
-            cliente = (TCliente) cmodel.ConsultarCliente(cc);            
+            cliente = (TPersona) cmodel.consultarCliente(cc);
             setCliente(cliente);
             Prestamo_ui.jPanel2.setVisible(true);
         }catch(NullPointerException ex){
@@ -155,10 +155,10 @@ public class Prestamo_Controller {
         }                
     }
     
-    public void setCliente(TCliente cliente){
-        nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
-            Prestamo_ui.P_tel.setText(cliente.getTPersona().getTperTel());
-            Prestamo_ui.P_dir.setText(cliente.getTCasa().getTcasDir()); 
+    public void setCliente(TPersona cliente){
+        nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre()+" "+cliente.getTDatosBasicosPersona().getTdbpApellido());
+            Prestamo_ui.P_tel.setText(cliente.getTDatosBasicosPersona().getTdbpTel());
+            Prestamo_ui.P_dir.setText(cliente.getTperCasDir()); 
             //Trae el ultimo prestamo del cliente
             Set a = cliente.getTPrestamos();
             if (a.size()>0) {

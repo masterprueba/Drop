@@ -5,10 +5,20 @@
  */
 package Model;
 
+import Entity.TPersona;
+
 /**
  *
  * @author Andres
  */
 public class Persona_Model extends General_model{
+
+    public Persona_Model() {
+    }
     
+    
+    
+    public TPersona consultarCliente(String cc){
+        return null;
+    }
 }

@@ -457,8 +457,8 @@ public class Abono_ui extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ListaPersonas_UI listPerUI = new ListaPersonas_UI("abono");
-        MainDesktop.checkInstance(listPerUI);
+        //ListaPersonas_UI listPerUI = new ListaPersonas_UI("abono");
+        //sMainDesktop.checkInstance(listPerUI);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void a_totalcuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a_totalcuotaActionPerformed

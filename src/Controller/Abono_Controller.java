@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Entity.TCliente;
+import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TPrestamo;
 import UI.Abono_ui;
@@ -21,12 +21,12 @@ public class Abono_Controller extends Prestamo_Controller{
         
     }    
     @Override
-    public void setCliente(TCliente cliente){
-        Abono_ui.a_nombre.setText(cliente.getTPersona().getTperNombre()+" "+cliente.getTPersona().getTperApellido());
+    public void setCliente(TPersona cliente){
+        Abono_ui.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre()+" "+cliente.getTDatosBasicosPersona().getTdbpApellido());
     }
     
     public void setData(String cc){
-        TCliente cliente = consultarCliente(cc);
+        TPersona cliente = consultarCliente(cc);
         Set a = cliente.getTPrestamos();
         TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
         Abono_ui.a_valorprestamo.setText(tp.getTpreValorTotal()+"");        
