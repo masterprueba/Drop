@@ -1,5 +1,5 @@
 package Entity;
-// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
+// Generated 19/02/2017 12:37:46 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,7 +10,7 @@ public class TReferencia  implements java.io.Serializable {
 
 
      private Integer trefId;
-     private TPersona TPersona;
+     private TDatosBasicosPersona TDatosBasicosPersona;
      private String trefTipo;
      private String trefNombre;
      private String trefApellido;
@@ -20,11 +20,11 @@ public class TReferencia  implements java.io.Serializable {
     }
 
 	
-    public TReferencia(TPersona TPersona) {
-        this.TPersona = TPersona;
+    public TReferencia(TDatosBasicosPersona TDatosBasicosPersona) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
     }
-    public TReferencia(TPersona TPersona, String trefTipo, String trefNombre, String trefApellido, String trefTelefono) {
-       this.TPersona = TPersona;
+    public TReferencia(TDatosBasicosPersona TDatosBasicosPersona, String trefTipo, String trefNombre, String trefApellido, String trefTelefono) {
+       this.TDatosBasicosPersona = TDatosBasicosPersona;
        this.trefTipo = trefTipo;
        this.trefNombre = trefNombre;
        this.trefApellido = trefApellido;
@@ -38,12 +38,12 @@ public class TReferencia  implements java.io.Serializable {
     public void setTrefId(Integer trefId) {
         this.trefId = trefId;
     }
-    public TPersona getTPersona() {
-        return this.TPersona;
+    public TDatosBasicosPersona getTDatosBasicosPersona() {
+        return this.TDatosBasicosPersona;
     }
     
-    public void setTPersona(TPersona TPersona) {
-        this.TPersona = TPersona;
+    public void setTDatosBasicosPersona(TDatosBasicosPersona TDatosBasicosPersona) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
     }
     public String getTrefTipo() {
         return this.trefTipo;

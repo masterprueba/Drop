@@ -1,66 +1,47 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 17-feb-2017 19:05:01 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/02/2017 12:37:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPersona" table="t_persona" catalog="drop_db" optimistic-lock="version">
         <id name="tperId" type="java.lang.Integer">
             <column name="tper_id" />
             <generator class="identity" />
         </id>
-        <property name="tperCedula" type="string">
-            <column name="tper_cedula" length="20">
-                <comment>Persona de Usuario</comment>
+        <many-to-one name="TDatosBasicosPersona" class="Entity.TDatosBasicosPersona" fetch="select">
+            <column name="tper_tdbp_id" not-null="true">
+                <comment>ID</comment>
             </column>
+        </many-to-one>
+        <property name="tperCasDir" type="string">
+            <column name="tper_cas_dir" length="45" not-null="true" />
         </property>
-        <property name="tperNombre" type="string">
-            <column name="tper_nombre" length="60">
-                <comment>Nombre de Persona</comment>
-            </column>
+        <property name="tperCasPro" type="string">
+            <column name="tper_cas_pro" length="45" />
         </property>
-        <property name="tperApellido" type="string">
-            <column name="tper_apellido" length="60">
-                <comment>Apellido de Persona</comment>
-            </column>
+        <property name="tperCasTipo" type="string">
+            <column name="tper_cas_tipo" length="45" />
         </property>
-        <property name="tperTel" type="string">
-            <column name="tper_tel" length="15">
-                <comment>Telefono de Persona</comment>
-            </column>
+        <property name="tperEmpNom" type="string">
+            <column name="tper_emp_nom" length="45" />
         </property>
-        <set name="TReferencias" table="t_referencia" inverse="true" lazy="true" fetch="select">
+        <property name="tperEmpDir" type="string">
+            <column name="tper_emp_dir" length="45" />
+        </property>
+        <property name="tperEmpTel" type="string">
+            <column name="tper_emp_tel" length="45" />
+        </property>
+        <property name="tperTipo" type="string">
+            <column name="tper_tipo" length="45" not-null="true" />
+        </property>
+        <property name="tperIdenty" type="int">
+            <column name="tper_identy" not-null="true" />
+        </property>
+        <set name="TPrestamos" table="t_prestamo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="tref_tper_id" not-null="true" />
+                <column name="tpre_tcli_tusu_id" not-null="true" />
             </key>
-            <one-to-many class="Entity.TReferencia" />
-        </set>
-        <set name="TCodeudors" table="t_codeudor" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tcod_tper_id" not-null="true" />
-            </key>
-            <one-to-many class="Entity.TCodeudor" />
-        </set>
-        <set name="TClientes" table="t_cliente" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tcli_tper_id" not-null="true">
-                    <comment>ID</comment>
-                </column>
-            </key>
-            <one-to-many class="Entity.TCliente" />
-        </set>
-        <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tlog_tper_id" not-null="true" />
-            </key>
-            <one-to-many class="Entity.TLogin" />
-        </set>
-        <set name="TCasas" table="t_casa" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tcas_propietario_tper_id" not-null="true">
-                    <comment>Propietario Casa</comment>
-                </column>
-            </key>
-            <one-to-many class="Entity.TCasa" />
+            <one-to-many class="Entity.TPrestamo" />
         </set>
     </class>
 </hibernate-mapping>

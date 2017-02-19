@@ -1,5 +1,5 @@
 package Entity;
-// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
+// Generated 19/02/2017 12:37:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,25 +13,32 @@ public class TPrestamo  implements java.io.Serializable {
 
 
      private Integer tpreId;
-     private TCliente TCliente;
-     private Integer tpreValorPrestamo;
-     private Integer tpreNumCuotas;
-     private Integer tpreIntereses;
+     private TPersona TPersona;
+     private int tpreValorPrestamo;
+     private int tpreNumCuotas;
+     private int tpreIntereses;
      private String tpreMetodPago;
      private Date tpreFechaEntrega;
-     private Long tpreValorTotal;
-     private Long tpreValorCuota;
+     private long tpreValorTotal;
+     private long tpreValorCuota;
      private Set TCuotas = new HashSet(0);
 
     public TPrestamo() {
     }
 
 	
-    public TPrestamo(TCliente TCliente) {
-        this.TCliente = TCliente;
+    public TPrestamo(TPersona TPersona, int tpreValorPrestamo, int tpreNumCuotas, int tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, long tpreValorTotal, long tpreValorCuota) {
+        this.TPersona = TPersona;
+        this.tpreValorPrestamo = tpreValorPrestamo;
+        this.tpreNumCuotas = tpreNumCuotas;
+        this.tpreIntereses = tpreIntereses;
+        this.tpreMetodPago = tpreMetodPago;
+        this.tpreFechaEntrega = tpreFechaEntrega;
+        this.tpreValorTotal = tpreValorTotal;
+        this.tpreValorCuota = tpreValorCuota;
     }
-    public TPrestamo(TCliente TCliente, Integer tpreValorPrestamo, Integer tpreNumCuotas, Integer tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, Long tpreValorTotal, Long tpreValorCuota, Set TCuotas) {
-       this.TCliente = TCliente;
+    public TPrestamo(TPersona TPersona, int tpreValorPrestamo, int tpreNumCuotas, int tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, long tpreValorTotal, long tpreValorCuota, Set TCuotas) {
+       this.TPersona = TPersona;
        this.tpreValorPrestamo = tpreValorPrestamo;
        this.tpreNumCuotas = tpreNumCuotas;
        this.tpreIntereses = tpreIntereses;
@@ -49,32 +56,32 @@ public class TPrestamo  implements java.io.Serializable {
     public void setTpreId(Integer tpreId) {
         this.tpreId = tpreId;
     }
-    public TCliente getTCliente() {
-        return this.TCliente;
+    public TPersona getTPersona() {
+        return this.TPersona;
     }
     
-    public void setTCliente(TCliente TCliente) {
-        this.TCliente = TCliente;
+    public void setTPersona(TPersona TPersona) {
+        this.TPersona = TPersona;
     }
-    public Integer getTpreValorPrestamo() {
+    public int getTpreValorPrestamo() {
         return this.tpreValorPrestamo;
     }
     
-    public void setTpreValorPrestamo(Integer tpreValorPrestamo) {
+    public void setTpreValorPrestamo(int tpreValorPrestamo) {
         this.tpreValorPrestamo = tpreValorPrestamo;
     }
-    public Integer getTpreNumCuotas() {
+    public int getTpreNumCuotas() {
         return this.tpreNumCuotas;
     }
     
-    public void setTpreNumCuotas(Integer tpreNumCuotas) {
+    public void setTpreNumCuotas(int tpreNumCuotas) {
         this.tpreNumCuotas = tpreNumCuotas;
     }
-    public Integer getTpreIntereses() {
+    public int getTpreIntereses() {
         return this.tpreIntereses;
     }
     
-    public void setTpreIntereses(Integer tpreIntereses) {
+    public void setTpreIntereses(int tpreIntereses) {
         this.tpreIntereses = tpreIntereses;
     }
     public String getTpreMetodPago() {
@@ -91,18 +98,18 @@ public class TPrestamo  implements java.io.Serializable {
     public void setTpreFechaEntrega(Date tpreFechaEntrega) {
         this.tpreFechaEntrega = tpreFechaEntrega;
     }
-    public Long getTpreValorTotal() {
+    public long getTpreValorTotal() {
         return this.tpreValorTotal;
     }
     
-    public void setTpreValorTotal(Long tpreValorTotal) {
+    public void setTpreValorTotal(long tpreValorTotal) {
         this.tpreValorTotal = tpreValorTotal;
     }
-    public Long getTpreValorCuota() {
+    public long getTpreValorCuota() {
         return this.tpreValorCuota;
     }
     
-    public void setTpreValorCuota(Long tpreValorCuota) {
+    public void setTpreValorCuota(long tpreValorCuota) {
         this.tpreValorCuota = tpreValorCuota;
     }
     public Set getTCuotas() {

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/02/2017 12:37:49 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TDatosBasicosPersona" table="t_datos_basicos_persona" catalog="drop_db" optimistic-lock="version">
+        <id name="tdbpId" type="java.lang.Integer">
+            <column name="tdbp_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tdbpCedula" type="string">
+            <column name="tdbp_cedula" length="20" not-null="true" unique="true">
+                <comment>Persona de Usuario</comment>
+            </column>
+        </property>
+        <property name="tdbpNombre" type="string">
+            <column name="tdbp_nombre" length="60" not-null="true">
+                <comment>Nombre de Persona</comment>
+            </column>
+        </property>
+        <property name="tdbpApellido" type="string">
+            <column name="tdbp_apellido" length="60">
+                <comment>Apellido de Persona</comment>
+            </column>
+        </property>
+        <property name="tdbpTel" type="string">
+            <column name="tdbp_tel" length="15" not-null="true">
+                <comment>Telefono de Persona</comment>
+            </column>
+        </property>
+        <set name="TReferencias" table="t_referencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tref_tdbp_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TReferencia" />
+        </set>
+        <set name="TLogins" table="t_login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tlog_tdbp_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TLogin" />
+        </set>
+        <set name="TPersonas" table="t_persona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tper_tdbp_id" not-null="true">
+                    <comment>ID</comment>
+                </column>
+            </key>
+            <one-to-many class="Entity.TPersona" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,5 @@
 package Entity;
-// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
+// Generated 19/02/2017 12:37:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,29 +12,38 @@ public class TPersona  implements java.io.Serializable {
 
 
      private Integer tperId;
-     private String tperCedula;
-     private String tperNombre;
-     private String tperApellido;
-     private String tperTel;
-     private Set TReferencias = new HashSet(0);
-     private Set TCodeudors = new HashSet(0);
-     private Set TClientes = new HashSet(0);
-     private Set TLogins = new HashSet(0);
-     private Set TCasas = new HashSet(0);
+     private TDatosBasicosPersona TDatosBasicosPersona;
+     private String tperCasDir;
+     private String tperCasPro;
+     private String tperCasTipo;
+     private String tperEmpNom;
+     private String tperEmpDir;
+     private String tperEmpTel;
+     private String tperTipo;
+     private int tperIdenty;
+     private Set TPrestamos = new HashSet(0);
 
     public TPersona() {
     }
 
-    public TPersona(String tperCedula, String tperNombre, String tperApellido, String tperTel, Set TReferencias, Set TCodeudors, Set TClientes, Set TLogins, Set TCasas) {
-       this.tperCedula = tperCedula;
-       this.tperNombre = tperNombre;
-       this.tperApellido = tperApellido;
-       this.tperTel = tperTel;
-       this.TReferencias = TReferencias;
-       this.TCodeudors = TCodeudors;
-       this.TClientes = TClientes;
-       this.TLogins = TLogins;
-       this.TCasas = TCasas;
+	
+    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperTipo, int tperIdenty) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
+        this.tperCasDir = tperCasDir;
+        this.tperTipo = tperTipo;
+        this.tperIdenty = tperIdenty;
+    }
+    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperCasPro, String tperCasTipo, String tperEmpNom, String tperEmpDir, String tperEmpTel, String tperTipo, int tperIdenty, Set TPrestamos) {
+       this.TDatosBasicosPersona = TDatosBasicosPersona;
+       this.tperCasDir = tperCasDir;
+       this.tperCasPro = tperCasPro;
+       this.tperCasTipo = tperCasTipo;
+       this.tperEmpNom = tperEmpNom;
+       this.tperEmpDir = tperEmpDir;
+       this.tperEmpTel = tperEmpTel;
+       this.tperTipo = tperTipo;
+       this.tperIdenty = tperIdenty;
+       this.TPrestamos = TPrestamos;
     }
    
     public Integer getTperId() {
@@ -44,68 +53,75 @@ public class TPersona  implements java.io.Serializable {
     public void setTperId(Integer tperId) {
         this.tperId = tperId;
     }
-    public String getTperCedula() {
-        return this.tperCedula;
+    public TDatosBasicosPersona getTDatosBasicosPersona() {
+        return this.TDatosBasicosPersona;
     }
     
-    public void setTperCedula(String tperCedula) {
-        this.tperCedula = tperCedula;
+    public void setTDatosBasicosPersona(TDatosBasicosPersona TDatosBasicosPersona) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
     }
-    public String getTperNombre() {
-        return this.tperNombre;
-    }
-    
-    public void setTperNombre(String tperNombre) {
-        this.tperNombre = tperNombre;
-    }
-    public String getTperApellido() {
-        return this.tperApellido;
+    public String getTperCasDir() {
+        return this.tperCasDir;
     }
     
-    public void setTperApellido(String tperApellido) {
-        this.tperApellido = tperApellido;
+    public void setTperCasDir(String tperCasDir) {
+        this.tperCasDir = tperCasDir;
     }
-    public String getTperTel() {
-        return this.tperTel;
-    }
-    
-    public void setTperTel(String tperTel) {
-        this.tperTel = tperTel;
-    }
-    public Set getTReferencias() {
-        return this.TReferencias;
+    public String getTperCasPro() {
+        return this.tperCasPro;
     }
     
-    public void setTReferencias(Set TReferencias) {
-        this.TReferencias = TReferencias;
+    public void setTperCasPro(String tperCasPro) {
+        this.tperCasPro = tperCasPro;
     }
-    public Set getTCodeudors() {
-        return this.TCodeudors;
-    }
-    
-    public void setTCodeudors(Set TCodeudors) {
-        this.TCodeudors = TCodeudors;
-    }
-    public Set getTClientes() {
-        return this.TClientes;
+    public String getTperCasTipo() {
+        return this.tperCasTipo;
     }
     
-    public void setTClientes(Set TClientes) {
-        this.TClientes = TClientes;
+    public void setTperCasTipo(String tperCasTipo) {
+        this.tperCasTipo = tperCasTipo;
     }
-    public Set getTLogins() {
-        return this.TLogins;
-    }
-    
-    public void setTLogins(Set TLogins) {
-        this.TLogins = TLogins;
-    }
-    public Set getTCasas() {
-        return this.TCasas;
+    public String getTperEmpNom() {
+        return this.tperEmpNom;
     }
     
-    public void setTCasas(Set TCasas) {
-        this.TCasas = TCasas;
+    public void setTperEmpNom(String tperEmpNom) {
+        this.tperEmpNom = tperEmpNom;
+    }
+    public String getTperEmpDir() {
+        return this.tperEmpDir;
+    }
+    
+    public void setTperEmpDir(String tperEmpDir) {
+        this.tperEmpDir = tperEmpDir;
+    }
+    public String getTperEmpTel() {
+        return this.tperEmpTel;
+    }
+    
+    public void setTperEmpTel(String tperEmpTel) {
+        this.tperEmpTel = tperEmpTel;
+    }
+    public String getTperTipo() {
+        return this.tperTipo;
+    }
+    
+    public void setTperTipo(String tperTipo) {
+        this.tperTipo = tperTipo;
+    }
+    public int getTperIdenty() {
+        return this.tperIdenty;
+    }
+    
+    public void setTperIdenty(int tperIdenty) {
+        this.tperIdenty = tperIdenty;
+    }
+    public Set getTPrestamos() {
+        return this.TPrestamos;
+    }
+    
+    public void setTPrestamos(Set TPrestamos) {
+        this.TPrestamos = TPrestamos;
     }
 
 

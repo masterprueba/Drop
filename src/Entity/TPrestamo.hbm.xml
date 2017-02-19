@@ -1,46 +1,46 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 17-feb-2017 19:05:01 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/02/2017 12:37:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
             <column name="tpre_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="TCliente" class="Entity.TCliente" fetch="select">
+        <many-to-one name="TPersona" class="Entity.TPersona" fetch="select">
             <column name="tpre_tcli_tusu_id" not-null="true" />
         </many-to-one>
-        <property name="tpreValorPrestamo" type="java.lang.Integer">
-            <column name="tpre_valor_prestamo" />
+        <property name="tpreValorPrestamo" type="int">
+            <column name="tpre_valor_prestamo" not-null="true" />
         </property>
-        <property name="tpreNumCuotas" type="java.lang.Integer">
-            <column name="tpre_num_cuotas">
+        <property name="tpreNumCuotas" type="int">
+            <column name="tpre_num_cuotas" not-null="true">
                 <comment>Numero de Cuotas</comment>
             </column>
         </property>
-        <property name="tpreIntereses" type="java.lang.Integer">
-            <column name="tpre_intereses">
+        <property name="tpreIntereses" type="int">
+            <column name="tpre_intereses" not-null="true">
                 <comment>Porcentaje de Interes</comment>
             </column>
         </property>
         <property name="tpreMetodPago" type="string">
-            <column name="tpre_metod_pago" length="45">
+            <column name="tpre_metod_pago" length="45" not-null="true">
                 <comment>Metodo de Pago</comment>
             </column>
         </property>
         <property name="tpreFechaEntrega" type="timestamp">
-            <column name="tpre_fecha_entrega" length="19">
+            <column name="tpre_fecha_entrega" length="19" not-null="true">
                 <comment>Fecha de Entrega de Prestamo</comment>
             </column>
         </property>
-        <property name="tpreValorTotal" type="java.lang.Long">
-            <column name="tpre_valor_total" precision="10" scale="0">
+        <property name="tpreValorTotal" type="long">
+            <column name="tpre_valor_total" precision="10" scale="0" not-null="true">
                 <comment>Valor Total Prestamo</comment>
             </column>
         </property>
-        <property name="tpreValorCuota" type="java.lang.Long">
-            <column name="tpre_valor_cuota" precision="10" scale="0">
+        <property name="tpreValorCuota" type="long">
+            <column name="tpre_valor_cuota" precision="10" scale="0" not-null="true">
                 <comment>Valor de Cuota</comment>
             </column>
         </property>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 17-feb-2017 19:05:01 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/02/2017 12:37:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <composite-id name="id" class="Entity.TCuotaId">
@@ -16,22 +16,28 @@
             <column name="tcuo_tpre_id" not-null="true" />
         </many-to-one>
         <property name="tcuoFecha" type="date">
-            <column name="tcuo_fecha" length="10">
+            <column name="tcuo_fecha" length="10" not-null="true">
                 <comment>Fecha de Cuota</comment>
             </column>
         </property>
-        <property name="tcuoAbono" type="java.lang.Long">
-            <column name="tcuo_abono" precision="10" scale="0">
+        <property name="tcuoAbono" type="long">
+            <column name="tcuo_abono" precision="10" scale="0" not-null="true">
                 <comment>Abono de Cuota</comment>
             </column>
         </property>
-        <property name="tcuoNuevoSaldo" type="java.lang.Long">
-            <column name="tcuo_nuevo_saldo" precision="10" scale="0">
+        <property name="tcuoNuevoSaldo" type="long">
+            <column name="tcuo_nuevo_saldo" precision="10" scale="0" not-null="true">
                 <comment>Nuevo Saldo de Prestamo</comment>
             </column>
         </property>
-        <property name="tcuoCuotasPagadas" type="java.lang.Integer">
-            <column name="tcuo_cuotas_pagadas" />
+        <property name="tcuoCuotasPagadas" type="int">
+            <column name="tcuo_cuotas_pagadas" not-null="true" />
+        </property>
+        <property name="tcuoMetodoPago" type="string">
+            <column name="tcuo_metodo_pago" length="45" not-null="true" />
+        </property>
+        <property name="tcuoCobrador" type="string">
+            <column name="tcuo_cobrador" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

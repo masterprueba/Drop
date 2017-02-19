@@ -1,5 +1,5 @@
 package Entity;
-// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
+// Generated 19/02/2017 12:37:46 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,7 +10,7 @@ public class TLogin  implements java.io.Serializable {
 
 
      private Integer tlogId;
-     private TPersona TPersona;
+     private TDatosBasicosPersona TDatosBasicosPersona;
      private String tlogUserLogin;
      private String tlogPassword;
 
@@ -18,11 +18,11 @@ public class TLogin  implements java.io.Serializable {
     }
 
 	
-    public TLogin(TPersona TPersona) {
-        this.TPersona = TPersona;
+    public TLogin(TDatosBasicosPersona TDatosBasicosPersona) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
     }
-    public TLogin(TPersona TPersona, String tlogUserLogin, String tlogPassword) {
-       this.TPersona = TPersona;
+    public TLogin(TDatosBasicosPersona TDatosBasicosPersona, String tlogUserLogin, String tlogPassword) {
+       this.TDatosBasicosPersona = TDatosBasicosPersona;
        this.tlogUserLogin = tlogUserLogin;
        this.tlogPassword = tlogPassword;
     }
@@ -34,12 +34,12 @@ public class TLogin  implements java.io.Serializable {
     public void setTlogId(Integer tlogId) {
         this.tlogId = tlogId;
     }
-    public TPersona getTPersona() {
-        return this.TPersona;
+    public TDatosBasicosPersona getTDatosBasicosPersona() {
+        return this.TDatosBasicosPersona;
     }
     
-    public void setTPersona(TPersona TPersona) {
-        this.TPersona = TPersona;
+    public void setTDatosBasicosPersona(TDatosBasicosPersona TDatosBasicosPersona) {
+        this.TDatosBasicosPersona = TDatosBasicosPersona;
     }
     public String getTlogUserLogin() {
         return this.tlogUserLogin;

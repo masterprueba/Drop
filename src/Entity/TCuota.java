@@ -1,5 +1,5 @@
 package Entity;
-// Generated 17-feb-2017 19:05:00 by Hibernate Tools 4.3.1
+// Generated 19/02/2017 12:37:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,25 +13,24 @@ public class TCuota  implements java.io.Serializable {
      private TCuotaId id;
      private TPrestamo TPrestamo;
      private Date tcuoFecha;
-     private Long tcuoAbono;
-     private Long tcuoNuevoSaldo;
-     private Integer tcuoCuotasPagadas;
+     private long tcuoAbono;
+     private long tcuoNuevoSaldo;
+     private int tcuoCuotasPagadas;
+     private String tcuoMetodoPago;
+     private String tcuoCobrador;
 
     public TCuota() {
     }
 
-	
-    public TCuota(TCuotaId id, TPrestamo TPrestamo) {
-        this.id = id;
-        this.TPrestamo = TPrestamo;
-    }
-    public TCuota(TCuotaId id, TPrestamo TPrestamo, Date tcuoFecha, Long tcuoAbono, Long tcuoNuevoSaldo, Integer tcuoCuotasPagadas) {
+    public TCuota(TCuotaId id, TPrestamo TPrestamo, Date tcuoFecha, long tcuoAbono, long tcuoNuevoSaldo, int tcuoCuotasPagadas, String tcuoMetodoPago, String tcuoCobrador) {
        this.id = id;
        this.TPrestamo = TPrestamo;
        this.tcuoFecha = tcuoFecha;
        this.tcuoAbono = tcuoAbono;
        this.tcuoNuevoSaldo = tcuoNuevoSaldo;
        this.tcuoCuotasPagadas = tcuoCuotasPagadas;
+       this.tcuoMetodoPago = tcuoMetodoPago;
+       this.tcuoCobrador = tcuoCobrador;
     }
    
     public TCuotaId getId() {
@@ -55,26 +54,40 @@ public class TCuota  implements java.io.Serializable {
     public void setTcuoFecha(Date tcuoFecha) {
         this.tcuoFecha = tcuoFecha;
     }
-    public Long getTcuoAbono() {
+    public long getTcuoAbono() {
         return this.tcuoAbono;
     }
     
-    public void setTcuoAbono(Long tcuoAbono) {
+    public void setTcuoAbono(long tcuoAbono) {
         this.tcuoAbono = tcuoAbono;
     }
-    public Long getTcuoNuevoSaldo() {
+    public long getTcuoNuevoSaldo() {
         return this.tcuoNuevoSaldo;
     }
     
-    public void setTcuoNuevoSaldo(Long tcuoNuevoSaldo) {
+    public void setTcuoNuevoSaldo(long tcuoNuevoSaldo) {
         this.tcuoNuevoSaldo = tcuoNuevoSaldo;
     }
-    public Integer getTcuoCuotasPagadas() {
+    public int getTcuoCuotasPagadas() {
         return this.tcuoCuotasPagadas;
     }
     
-    public void setTcuoCuotasPagadas(Integer tcuoCuotasPagadas) {
+    public void setTcuoCuotasPagadas(int tcuoCuotasPagadas) {
         this.tcuoCuotasPagadas = tcuoCuotasPagadas;
+    }
+    public String getTcuoMetodoPago() {
+        return this.tcuoMetodoPago;
+    }
+    
+    public void setTcuoMetodoPago(String tcuoMetodoPago) {
+        this.tcuoMetodoPago = tcuoMetodoPago;
+    }
+    public String getTcuoCobrador() {
+        return this.tcuoCobrador;
+    }
+    
+    public void setTcuoCobrador(String tcuoCobrador) {
+        this.tcuoCobrador = tcuoCobrador;
     }
 
 
