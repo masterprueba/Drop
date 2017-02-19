@@ -8,11 +8,15 @@
         </group>
         <group>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Usuarios_Controller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Usuarios_UI.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Views.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/TableModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Login.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Controllers.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TLogin.hbm.xml</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.hbm.xml</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Login_Model.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Persona_Model.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TLogin.java</file>
         </group>
     </open-files>
 </project-private>

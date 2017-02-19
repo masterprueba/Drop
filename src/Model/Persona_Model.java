@@ -21,7 +21,7 @@ public class Persona_Model<P> extends General_model {
     public TDatosBasicosPersona ConsultarCedula(TDatosBasicosPersona persona) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TPersona where tperCedula = '" + persona.getTdbpCedula() + "'";
+        String query = "from TDatosBasicosPersona where tdbpCedula = '" + persona.getTdbpCedula() + "'";
         TDatosBasicosPersona result = (TDatosBasicosPersona) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 
@@ -31,7 +31,7 @@ public class Persona_Model<P> extends General_model {
     public List<P> ConsultarPersonasConLogin() {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "select persona from TPersona as persona  inner join persona.TLogins as login on  login.TPersona.tperId = persona";
+        String query = "select persona from TDatosBasicosPersona as persona  inner join persona.TLogins as login on  login.TDatosBasicosPersona.tdbpId = persona";
         List<P> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
