@@ -10,6 +10,7 @@ import Entity.TPersona;
 import Model.Login_Model;
 import Model.Persona_Model;
 import UI.Usuarios_UI;
+import UI.Vistas;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Usuarios_Controller {
 
     private final Usuarios_UI VistaUsuarios;
-    private final Funciones_Vistas FnVistas = new Funciones_Vistas();
+    private final Vistas FnVistas = new Vistas();
     private final Login_Model LModel = new Login_Model();
     private final Persona_Model PModel = new Persona_Model();
     private static TPersona Persona;
@@ -110,7 +111,7 @@ public class Usuarios_Controller {
             fila[3] = personaresult.get(i).getTperTel();
             VistaUsuarios.modelo.addRow(fila);
         }
-        FnVistas.NumerarTabla(VistaUsuarios.modelo);
+        FnVistas.numerarTabla(VistaUsuarios.modelo);
     }
 
     public void ActualizarUsuario() {

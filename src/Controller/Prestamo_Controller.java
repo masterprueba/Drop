@@ -56,15 +56,31 @@ public class Prestamo_Controller {
     public void create(TCliente cliente) {
         if (validar()) {
             calcularCuota();
-            double inter = ((double) Integer.parseInt((String)interes.getSelectedItem())/100)+1;
-            int valorprestamo = Integer.parseInt(parsearFormato(valor_prestamo.getText())) + Integer.parseInt(prestamo_actual.getText());
-            Long valortotal = Math.round(valorprestamo * inter);            
-            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, Long.parseLong(parsearFormato(valor_cuota.getText())),null);
-            if (pmodel.insertar(prestamo) != null) {
-                JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!!");
-            }
+            double inter = ((double) Integer.parseInt((String)interes.getSelectedItem())/100)+1;            
+            Long vcuota = null;
+            try {
+                Long valorprestamo = ((Long)formateador.parse(valor_prestamo.getText())) + Integer.parseInt(prestamo_actual.getText());
+                Long valortotal = Math.round(valorprestamo * inter); 
+                vcuota = (Long) formateador.parse(valor_cuota.getText());
+                System.out.println(cliente.getTPersona().getTperNombre());
+                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, vcuota,null);
+                if (pmodel.insertar(prestamo) != null) {
+                    JOptionPane.showMessageDialog(null, "Prestamo total: $"+valortotal+" Realizado  correctamente!!");
+                    Prestamo_ui.jPanel2.setVisible(false);
+                    nombre.setText("");
+                    Prestamo_ui.P_tel.setText("");
+                    Prestamo_ui.P_dir.setText("");
+                    prestamo_actual.setText("");
+                    valor_prestamo.setText("0");
+                    cantidad_cuotas.setText("0");
+                    valor_cuota.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! "+cliente.getTPersona().getTperNombre());
+                    
+                }
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "ERROR EN parseo!!");
+            }            
         }
     }
 
@@ -75,8 +91,14 @@ public class Prestamo_Controller {
         try{
             cliente = (TCliente) cmodel.ConsultarCliente(cc);            
             setCliente(cliente);
+            Prestamo_ui.jPanel2.setVisible(true);
         }catch(NullPointerException ex){
-            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);            
+            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);
+            cliente = null;
+            nombre.setText("");
+            Prestamo_ui.P_tel.setText("");
+            Prestamo_ui.P_dir.setText("");
+            prestamo_actual.setText("");
         }
         
         return cliente;
@@ -86,6 +108,9 @@ public class Prestamo_Controller {
         String msj = "";
         int valida = 0;
         msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";
+        msj += valor_cuota.getText().equals("0") ? "El valor de la cuota debe ser numerico \n" : "";
+        msj += cantidad_cuotas.getText().equals("0") ? "La cantidad de cuotas debe ser numerico \n" : "";
+        msj += valor_prestamo.getText().equals("0") ? "El valor del prestamo debe ser numerico \n" : "";
         msj += fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";        
         try {            
             Long.parseLong(parsearFormato(valor_cuota.getText()));
@@ -97,13 +122,13 @@ public class Prestamo_Controller {
         } catch (NumberFormatException ex) {
             switch (valida) {
                 case 0:
-                    msj += "El valor de la cuota debe ser numerico";
+                    msj += "El valor de la cuota debe ser numerico \n";
                     break;
                 case 1:
-                    msj += "La cantidad de cuotas debe ser numerico";
+                    msj += "La cantidad de cuotas debe ser numerico \n";
                     break;
                 case 2:
-                    msj += "El valor del prestamo debe ser numerico";
+                    msj += "El valor del prestamo debe ser numerico \n";
                     break;                             
                 default:
                     break;
@@ -112,30 +137,22 @@ public class Prestamo_Controller {
         if (msj.equals("")) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }
-    //calcula el valor de cuota y la cantidad de cuotas a pagar
-    int i = 1;
-    public void calcularCuota(){
-        System.out.println(i+"");
-        String presta = valor_prestamo.getText().equals("") ? "0" : parsearFormato(valor_prestamo.getText());
-        System.out.println("presta "+i+" "+presta);
-        int prestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());    
-        System.out.println("prestamo "+i+" "+prestamo);                
+    //calcula el valor de cuota y la cantidad de cuotas a pagar    
+    public void calcularCuota(){        
+        String presta = valor_prestamo.getText().equals("") ? "0" : parsearFormato(valor_prestamo.getText());        
+        int prestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());            
         float inter = (1+((float)Integer.parseInt(String.valueOf(interes.getSelectedItem()))/100));
-        int dias = cantidad_cuotas.getText().equals("")||cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
-        System.out.println("inter "+i+" "+inter+" dias"+dias);
-        float valorcuota = (prestamo*inter)/dias;
-        String ult = String.valueOf(Math.round(valorcuota));
-        if (Math.round(valorcuota)>0) {
-            System.err.println(i+" "+ult);
+        int dias = cantidad_cuotas.getText().equals("")||cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());                
+        float valorcuota = (prestamo*inter)/dias;        
+        if (Math.round(valorcuota)>0) {            
             valor_cuota.setText(formateador.format(Math.round(valorcuota)));
         }else{
             valor_cuota.setText("0");
-        }        
-        i++;
+        }                
     }
     
     public void setCliente(TCliente cliente){
@@ -173,17 +190,5 @@ public class Prestamo_Controller {
         }
         
         return resp;
-    }
-    public void prueba(){
-        try {
-            System.out.println("ok "+valor_cuota.getText());
-            Long dato = (Long) formateador.parse(valor_cuota.getText());
-            System.out.println(dato+"");
-            if (dato > 999){
-                valor_cuota.setText(formateador.format(dato));
-            }
-        } catch (ParseException ex) {
-            System.out.println("error "+valor_cuota.getText());
-        }
-    }
+    }    
 }

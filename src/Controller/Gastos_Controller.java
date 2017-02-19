@@ -8,6 +8,7 @@ package Controller;
 import Entity.TGasto;
 import Model.Gastos_Model;
 import UI.Gastos_UI;
+import UI.Vistas;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,9 +23,11 @@ public class Gastos_Controller {
     private final Gastos_UI VistaGastos;
     private static TGasto Gasto;
     private List<TGasto> gastosresult;
+    private Vistas Funciones;
 
     public Gastos_Controller(Gastos_UI VistaGastos) {
         this.VistaGastos = VistaGastos;
+        Funciones = new Vistas();
     }
 
     public void RegistrarGasto() {
@@ -98,8 +101,8 @@ public class Gastos_Controller {
             fila[3] = gastosresult.get(i).getTgasCosto().toString();
             VistaGastos.modelo.addRow(fila);
         }
-        VistaGastos.Funciones.NumerarTabla(VistaGastos.modelo);
-        VistaGastos.jTextField1.setText("" + VistaGastos.Funciones.TotalDeUnaTabla(VistaGastos.modelo, 3));
+        Funciones.numerarTabla(VistaGastos.modelo);
+        VistaGastos.jTextField1.setText("" + Funciones.totalDeUnaTabla(VistaGastos.modelo, 3));
 
     }
 

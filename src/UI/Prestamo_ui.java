@@ -5,7 +5,7 @@
  */
 package UI;
 
-import Controller.Funciones_Vistas;
+
 import Controller.Prestamo_Controller;
 import Entity.TCliente;
 import javax.swing.JOptionPane;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class Prestamo_ui extends javax.swing.JFrame {
+public class Prestamo_ui extends Vistas {
 
     /**
      * Creates new form Prestamo_ui
@@ -33,6 +33,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
         initComponents();
         //instacion controlador de esta vista
         pc = new Prestamo_Controller();
+        jPanel2.setVisible(false);
     }
     
     public javax.swing.JInternalFrame cargarInternal() {
@@ -54,8 +55,6 @@ public class Prestamo_ui extends javax.swing.JFrame {
         P_consulCliente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         P_cedula = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -68,6 +67,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         P_valorprestamo = new javax.swing.JTextField();
@@ -103,15 +103,9 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel2.setText("C.C Cliente:");
 
-        jLabel3.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
-        jLabel3.setText("Si no sabes el No de cc dale click en \"Buscar\"");
-
-        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        P_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                P_cedulaKeyPressed(evt);
             }
         });
 
@@ -154,30 +148,30 @@ public class Prestamo_ui extends javax.swing.JFrame {
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout P_consulClienteLayout = new javax.swing.GroupLayout(P_consulCliente);
         P_consulCliente.setLayout(P_consulClienteLayout);
         P_consulClienteLayout.setHorizontalGroup(
             P_consulClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_consulClienteLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(P_consulClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(P_consulClienteLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(P_consulClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2)
-                            .addGroup(P_consulClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(P_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)))
-                        .addGap(24, 24, 24))
-                    .addGroup(P_consulClienteLayout.createSequentialGroup()
-                        .addGap(131, 131, 131)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(P_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addGroup(P_consulClienteLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2))
+                .addGap(44, 44, 44)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(P_consulClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +212,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(P_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1))
                         .addGap(3, 3, 3)
                         .addGroup(P_consulClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(P_consulClienteLayout.createSequentialGroup()
@@ -237,10 +231,8 @@ public class Prestamo_ui extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))
-                        .addGap(0, 19, Short.MAX_VALUE)))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 40, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -268,9 +260,6 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel9.setText("Intereses:");
 
         P_valor_cuota.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                P_valor_cuotaKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 P_valor_cuotaKeyTyped(evt);
             }
@@ -297,6 +286,11 @@ public class Prestamo_ui extends javax.swing.JFrame {
         P_cantcuotas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 P_cantcuotasFocusLost(evt);
+            }
+        });
+        P_cantcuotas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                P_cantcuotasKeyTyped(evt);
             }
         });
 
@@ -427,18 +421,28 @@ public class Prestamo_ui extends javax.swing.JFrame {
                 .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame)
+            .addGap(0, 844, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jInternalFrame)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 620, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -446,12 +450,14 @@ public class Prestamo_ui extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //consulto cliente por medio de la cedula
-        cliente = pc.consultarCliente(P_cedula.getText());                
+        cliente = pc.consultarCliente(P_cedula.getText());          
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //ejecuto el metodo del controlador que me crea el prestamo al cliente que le envie como parametro        
+        //ejecuto el metodo del controlador que me crea el prestamo al cliente que le envie como parametro   
+        
         pc.create(cliente);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -472,55 +478,28 @@ public class Prestamo_ui extends javax.swing.JFrame {
 
     private void P_valorprestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_P_valorprestamoMouseClicked
         P_valorprestamo.setText("0");
-        new Dinero("prestamo").setVisible(true);
+        jInternalFrame.setVisible(false);
+        new Dinero("prestamo",jInternalFrame).setVisible(true);        
     }//GEN-LAST:event_P_valorprestamoMouseClicked
 
+    private void P_cantcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_cantcuotasKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_P_cantcuotasKeyTyped
+
     private void P_valor_cuotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_valor_cuotaKeyTyped
-        Funciones_Vistas fv = new Funciones_Vistas();
-//        pc.prueba();
-        fv.SoloNumeros(evt);
-        
+        soloNumeros(evt);
     }//GEN-LAST:event_P_valor_cuotaKeyTyped
 
-    private void P_valor_cuotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_valor_cuotaKeyPressed
-         pc.prueba();
-         evt.setKeyChar('a');         
-    }//GEN-LAST:event_P_valor_cuotaKeyPressed
+    private void P_cedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_cedulaKeyPressed
+        if (evt.getKeyCode()==10) {
+            cliente = pc.consultarCliente(P_cedula.getText());            
+        }
+    }//GEN-LAST:event_P_cedulaKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prestamo_ui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prestamo_ui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prestamo_ui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Prestamo_ui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Prestamo_ui().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField P_cantcuotas;
@@ -547,13 +526,12 @@ public class Prestamo_ui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

@@ -5,7 +5,7 @@
  */
 package UI;
 
-import Controller.Funciones_Vistas;
+
 import Controller.Gastos_Controller;
 import Controller.TableModel;
 import javax.swing.table.DefaultTableModel;
@@ -14,11 +14,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Gastos_UI extends javax.swing.JFrame {
+public class Gastos_UI extends Vistas {
 
     private final Gastos_Controller GControl;
-    public final DefaultTableModel modelo;
-    public final Funciones_Vistas Funciones = new Funciones_Vistas();
+    public final DefaultTableModel modelo;    
 
     /**
      * Creates new form Gastos_UI
@@ -359,7 +358,7 @@ public class Gastos_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        Funciones.SoloNumeros(evt);
+        soloNumeros(evt);
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -367,7 +366,7 @@ public class Gastos_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
-        Funciones.LimitarCaracteresJTxArea(evt, jTextArea1, 100);
+        limitarCaracteresJTxArea(evt, jTextArea1, 100);
     }//GEN-LAST:event_jTextArea1KeyTyped
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;

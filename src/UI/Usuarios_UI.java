@@ -5,7 +5,6 @@
  */
 package UI;
 
-import Controller.Funciones_Vistas;
 import Controller.TableModel;
 import Controller.Usuarios_Controller;
 import javax.swing.table.DefaultTableModel;
@@ -14,11 +13,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Usuarios_UI extends javax.swing.JFrame {
+public class Usuarios_UI extends Vistas {
     
     public final DefaultTableModel modelo;
-    private final Usuarios_Controller UController;
-    private final Funciones_Vistas Funciones = new Funciones_Vistas();
+    private final Usuarios_Controller UController;    
 
     /**
      * Creates new form Usuarios_IU
@@ -30,7 +28,7 @@ public class Usuarios_UI extends javax.swing.JFrame {
         CargarComponentes();
         UController.DeshabilitarHabilitar(1);
         UController.VerUsuarios();
-        Funciones.NumerarTabla(modelo);
+        numerarTabla(modelo);
     }
     
     private void CargarComponentes() {
@@ -329,12 +327,12 @@ public class Usuarios_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void U_text_IdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_IdentificacionKeyTyped
-        Funciones.SoloNumeros(evt);
+        soloNumeros(evt);
     }//GEN-LAST:event_U_text_IdentificacionKeyTyped
 
     private void U_text_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_TelefonoKeyTyped
-        Funciones.LimitarCaracteres(evt, U_text_Telefono, 15);
-        Funciones.SoloNumeros(evt);
+        limitarCaracteres(evt, U_text_Telefono, 15);
+        soloNumeros(evt);
     }//GEN-LAST:event_U_text_TelefonoKeyTyped
 
     private void U_btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_RegistrarActionPerformed
