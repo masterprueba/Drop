@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Controller.Funciones_Vistas;
 import Controller.Prestamo_Controller;
 import Entity.TCliente;
 import javax.swing.JOptionPane;
@@ -248,9 +249,15 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Valor prestamo:");
 
+        P_valorprestamo.setText("0");
         P_valorprestamo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 P_valorprestamoFocusLost(evt);
+            }
+        });
+        P_valorprestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                P_valorprestamoMouseClicked(evt);
             }
         });
 
@@ -260,9 +267,12 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel9.setText("Intereses:");
 
-        P_valor_cuota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P_valor_cuotaActionPerformed(evt);
+        P_valor_cuota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                P_valor_cuotaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                P_valor_cuotaKeyTyped(evt);
             }
         });
 
@@ -283,6 +293,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel17.setText("Cantidad de Cuotas:");
 
+        P_cantcuotas.setText("0");
         P_cantcuotas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 P_cantcuotasFocusLost(evt);
@@ -335,7 +346,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(P_valorprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(256, 256, 256))
+                        .addGap(153, 153, 153))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -416,7 +427,7 @@ public class Prestamo_ui extends javax.swing.JFrame {
                 .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -459,9 +470,22 @@ public class Prestamo_ui extends javax.swing.JFrame {
         pc.calcularCuota();
     }//GEN-LAST:event_P_cantcuotasFocusLost
 
-    private void P_valor_cuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P_valor_cuotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_P_valor_cuotaActionPerformed
+    private void P_valorprestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_P_valorprestamoMouseClicked
+        P_valorprestamo.setText("0");
+        new Dinero("prestamo").setVisible(true);
+    }//GEN-LAST:event_P_valorprestamoMouseClicked
+
+    private void P_valor_cuotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_valor_cuotaKeyTyped
+        Funciones_Vistas fv = new Funciones_Vistas();
+//        pc.prueba();
+        fv.SoloNumeros(evt);
+        
+    }//GEN-LAST:event_P_valor_cuotaKeyTyped
+
+    private void P_valor_cuotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_valor_cuotaKeyPressed
+         pc.prueba();
+         evt.setKeyChar('a');         
+    }//GEN-LAST:event_P_valor_cuotaKeyPressed
 
     /**
      * @param args the command line arguments

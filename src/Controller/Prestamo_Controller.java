@@ -12,8 +12,11 @@ import Model.Cliente_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -33,6 +36,7 @@ public class Prestamo_Controller {
     private final JComboBox metodo;
     private final JComboBox interes;   
     private final Prestamo_model pmodel;
+    DecimalFormat formateador;
 
     public Prestamo_Controller() {
         this.cc = Prestamo_ui.P_cedula;
@@ -45,6 +49,7 @@ public class Prestamo_Controller {
         this.interes = Prestamo_ui.P_interes;                
         this.fecha = Prestamo_ui.P_fecha;
         pmodel = new Prestamo_model();
+        formateador = new DecimalFormat("###,###.##");
     }
 
     //inserta prestamo en la bd
@@ -52,9 +57,9 @@ public class Prestamo_Controller {
         if (validar()) {
             calcularCuota();
             double inter = ((double) Integer.parseInt((String)interes.getSelectedItem())/100)+1;
-            int valorprestamo = Integer.parseInt(valor_prestamo.getText()) + Integer.parseInt(prestamo_actual.getText());
+            int valorprestamo = Integer.parseInt(parsearFormato(valor_prestamo.getText())) + Integer.parseInt(prestamo_actual.getText());
             Long valortotal = Math.round(valorprestamo * inter);            
-            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, Long.parseLong(valor_cuota.getText()),null);
+            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo, Integer.parseInt(cantidad_cuotas.getText()),Integer.parseInt((String)interes.getSelectedItem()),(String) metodo.getSelectedItem(), fecha.getDate(),valortotal, Long.parseLong(parsearFormato(valor_cuota.getText())),null);
             if (pmodel.insertar(prestamo) != null) {
                 JOptionPane.showMessageDialog(null, "Prestamo Realizado correctamente!!");
             } else {
@@ -83,11 +88,11 @@ public class Prestamo_Controller {
         msj += nombre.getText().equals("") ? "Debe ingresar el cliente \n" : "";
         msj += fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";        
         try {            
-            Long.parseLong(valor_cuota.getText());
+            Long.parseLong(parsearFormato(valor_cuota.getText()));
             valida = 1;
             Integer.parseInt(cantidad_cuotas.getText());
             valida = 2;
-            Long.parseLong(valor_prestamo.getText());
+            Long.parseLong(parsearFormato(valor_prestamo.getText()));
             valida = 3;            
         } catch (NumberFormatException ex) {
             switch (valida) {
@@ -112,15 +117,25 @@ public class Prestamo_Controller {
         }
     }
     //calcula el valor de cuota y la cantidad de cuotas a pagar
+    int i = 1;
     public void calcularCuota(){
-        String presta = valor_prestamo.getText().equals("") ? "0" : valor_prestamo.getText();
-        int valorprestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());
-        int prestamo = valorprestamo;
-        String met = String.valueOf(metodo.getSelectedItem());
+        System.out.println(i+"");
+        String presta = valor_prestamo.getText().equals("") ? "0" : parsearFormato(valor_prestamo.getText());
+        System.out.println("presta "+i+" "+presta);
+        int prestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());    
+        System.out.println("prestamo "+i+" "+prestamo);                
         float inter = (1+((float)Integer.parseInt(String.valueOf(interes.getSelectedItem()))/100));
-        int dias = cantidad_cuotas.getText().equals("") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
+        int dias = cantidad_cuotas.getText().equals("")||cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());        
+        System.out.println("inter "+i+" "+inter+" dias"+dias);
         float valorcuota = (prestamo*inter)/dias;
-        valor_cuota.setText(Math.round(valorcuota)+"");
+        String ult = String.valueOf(Math.round(valorcuota));
+        if (Math.round(valorcuota)>0) {
+            System.err.println(i+" "+ult);
+            valor_cuota.setText(formateador.format(Math.round(valorcuota)));
+        }else{
+            valor_cuota.setText("0");
+        }        
+        i++;
     }
     
     public void setCliente(TCliente cliente){
@@ -142,5 +157,33 @@ public class Prestamo_Controller {
                 
             }
             
+    }
+    protected String parsearFormato(String cadena) {
+        String resp = "";           
+            for (int i = 0; i < cadena.length(); i++) {
+                if (cadena.charAt(i) == '.') {
+                } else {
+                    resp += cadena.charAt(i);
+                }
+            }
+        try{
+            int i = Integer.parseInt(resp);
+        }catch(NumberFormatException ex){
+            resp="0";
+        }
+        
+        return resp;
+    }
+    public void prueba(){
+        try {
+            System.out.println("ok "+valor_cuota.getText());
+            Long dato = (Long) formateador.parse(valor_cuota.getText());
+            System.out.println(dato+"");
+            if (dato > 999){
+                valor_cuota.setText(formateador.format(dato));
+            }
+        } catch (ParseException ex) {
+            System.out.println("error "+valor_cuota.getText());
+        }
     }
 }

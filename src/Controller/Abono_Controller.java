@@ -30,7 +30,7 @@ public class Abono_Controller extends Prestamo_Controller{
         Set a = cliente.getTPrestamos();
         TPrestamo tp = (TPrestamo)a.toArray()[a.size()-1];
         Abono_ui.a_valorprestamo.setText(tp.getTpreValorTotal()+"");        
-        Abono_ui.a_cantcuotas.setText(tp.getTpreNumCuotas()+"");
+        //Abono_ui.a_cantcuotas.setText(tp.getTpreNumCuotas()+"");
         Abono_ui.a_totalcuota.setText(tp.getTpreValorCuota()+"");
         TCuota tc = (TCuota)tp.getTCuotas().toArray()[tp.getTCuotas().size()-1];
         Abono_ui.a_saldo.setText(tc.getTcuoNuevoSaldo()+"");
