@@ -8,6 +8,7 @@ package Controller;
 import Entity.TDatosBasicosPersona;
 import Entity.TLogin;
 import Entity.TPersona;
+import Model.DatosBasicosPersona_Model;
 import Model.Login_Model;
 import Model.Persona_Model;
 import UI.Usuarios_UI;
@@ -24,7 +25,7 @@ public class Usuarios_Controller extends Controllers{
 
     private final Usuarios_UI VistaUsuarios;
     private final Login_Model LModel = new Login_Model();
-    private final Persona_Model PModel = new Persona_Model();
+    private final DatosBasicosPersona_Model PModel = new DatosBasicosPersona_Model();
     private static TDatosBasicosPersona Persona;
     private static TLogin Login;
     private List<TDatosBasicosPersona> personaresult;
