@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Entity.TDatosBasicosPersona;
 import Entity.TLogin;
 import Entity.TPersona;
 import Model.Login_Model;
@@ -22,12 +23,11 @@ import javax.swing.JOptionPane;
 public class Usuarios_Controller extends Controllers{
 
     private final Usuarios_UI VistaUsuarios;
-    private final Views FnVistas = new Views();
     private final Login_Model LModel = new Login_Model();
     private final Persona_Model PModel = new Persona_Model();
-    private static TPersona Persona;
+    private static TDatosBasicosPersona Persona;
     private static TLogin Login;
-    private List<TPersona> personaresult;
+    private List<TDatosBasicosPersona> personaresult;
 
     public Usuarios_Controller(Usuarios_UI VistaUsuarios) {
         this.VistaUsuarios = VistaUsuarios;
@@ -36,7 +36,7 @@ public class Usuarios_Controller extends Controllers{
     public void Registrar() {
         if (Validar()) {
             if (VerificarDatosExist()) {
-                Persona = new TPersona();
+                Persona = new TDatosBasicosPersona();
                 Login = new TLogin();
                 LlenarObjetosPersonaLogin();
                 if (PModel.insertar(Persona) != null) {
@@ -106,9 +106,9 @@ public class Usuarios_Controller extends Controllers{
         VistaUsuarios.modelo.setNumRows(0);
         for (int i = 0; i < personaresult.size(); i++) {
             String[] fila = new String[6];
-            fila[1] = personaresult.get(i).getTperCedula();
-            fila[2] = personaresult.get(i).getTperNombre();
-            fila[3] = personaresult.get(i).getTperTel();
+            fila[1] = personaresult.get(i).getTdbpCedula();
+            fila[2] = personaresult.get(i).getTdbpNombre();
+            fila[3] = personaresult.get(i).getTdbpTel();
             VistaUsuarios.modelo.addRow(fila);
         }
         numerarTabla(VistaUsuarios.modelo);
@@ -160,19 +160,19 @@ public class Usuarios_Controller extends Controllers{
             int fila = VistaUsuarios.U_jtable_VerUsuario.rowAtPoint(evt.getPoint());
             if (fila > -1) {
                 LlenarObjetosPersonaLogin();
-                Persona.setTperCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
+                Persona.setTdbpCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
                 Persona = PModel.ConsultarCedula(Persona);
-                Login.setTPersona(Persona);
+                Login.setTDatosBasicosPersona(Persona);
                 Login = LModel.ConsultarUsuario(Login, 3);
                 DeshabilitarHabilitar(2);
                 if (Persona != null) {
-                    VistaUsuarios.U_text_Identificacion.setText(Persona.getTperCedula());
-                    VistaUsuarios.U_text_NomComplet.setText(Persona.getTperNombre());
-                    VistaUsuarios.U_text_NomComplet1.setText(Persona.getTperApellido());
+                    VistaUsuarios.U_text_Identificacion.setText(Persona.getTdbpCedula());
+                    VistaUsuarios.U_text_NomComplet.setText(Persona.getTdbpNombre());
+                    VistaUsuarios.U_text_NomComplet1.setText(Persona.getTdbpApellido());
                     VistaUsuarios.U_text_NomUsuario.setText(Login.getTlogUserLogin());
                     VistaUsuarios.U_text_Contraseña.setText(new String(Login.getTlogPassword()));
                     VistaUsuarios.U_text_ReptContraseña.setText(new String(Login.getTlogPassword()));
-                    VistaUsuarios.U_text_Telefono.setText(Persona.getTperTel());
+                    VistaUsuarios.U_text_Telefono.setText(Persona.getTdbpTel());
                 } else {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error, es posible que esta persona ya no exista en la base de datos o que no haya conexion a la base de datos");
                 }
@@ -182,20 +182,20 @@ public class Usuarios_Controller extends Controllers{
 
     private void LlenarObjetosPersonaLogin() {
         if (Persona == null) {
-            Persona = new TPersona();
+            Persona = new TDatosBasicosPersona();
         }
         if (Login == null) {
             Login = new TLogin();
         }
         //setear todos los datos a los objetos
-        Persona.setTperCedula(VistaUsuarios.U_text_Identificacion.getText());
-        Persona.setTperNombre(VistaUsuarios.U_text_NomComplet.getText());
-        Persona.setTperApellido(VistaUsuarios.U_text_NomComplet1.getText());
-        Persona.setTperTel(VistaUsuarios.U_text_Telefono.getText());
+        Persona.setTdbpCedula(VistaUsuarios.U_text_Identificacion.getText());
+        Persona.setTdbpNombre(VistaUsuarios.U_text_NomComplet.getText());
+        Persona.setTdbpApellido(VistaUsuarios.U_text_NomComplet1.getText());
+        Persona.setTdbpTel(VistaUsuarios.U_text_Telefono.getText());
 
         Login.setTlogUserLogin(VistaUsuarios.U_text_NomUsuario.getText());
         Login.setTlogPassword(new String(VistaUsuarios.U_text_Contraseña.getPassword()));
-        Login.setTPersona(Persona);
+        Login.setTDatosBasicosPersona(Persona);
     }
 
     public void VaciarCampos() {
