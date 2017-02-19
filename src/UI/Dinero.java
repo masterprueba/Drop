@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
  *
  * @author Admin
  */
-public class Dinero extends javax.swing.JFrame {
+public class Dinero extends Views {
 
     /**
      * Creates new form NewPanel
@@ -108,6 +108,9 @@ public class Dinero extends javax.swing.JFrame {
         jvalor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jvalorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jvalorKeyTyped(evt);
             }
         });
 
@@ -371,6 +374,10 @@ public class Dinero extends javax.swing.JFrame {
         }    
         }
     }//GEN-LAST:event_jvalorKeyPressed
+
+    private void jvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jvalorKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_jvalorKeyTyped
 
     /**
      * @param args the command line arguments

@@ -10,7 +10,7 @@ import Entity.TPersona;
 import Model.Login_Model;
 import Model.Persona_Model;
 import UI.Usuarios_UI;
-import UI.Vistas;
+import UI.Views;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
  *
  * @author Yoimar
  */
-public class Usuarios_Controller {
+public class Usuarios_Controller extends Controllers{
 
     private final Usuarios_UI VistaUsuarios;
-    private final Vistas FnVistas = new Vistas();
+    private final Views FnVistas = new Views();
     private final Login_Model LModel = new Login_Model();
     private final Persona_Model PModel = new Persona_Model();
     private static TPersona Persona;
@@ -111,7 +111,7 @@ public class Usuarios_Controller {
             fila[3] = personaresult.get(i).getTperTel();
             VistaUsuarios.modelo.addRow(fila);
         }
-        FnVistas.numerarTabla(VistaUsuarios.modelo);
+        numerarTabla(VistaUsuarios.modelo);
     }
 
     public void ActualizarUsuario() {

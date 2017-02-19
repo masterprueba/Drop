@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Usuarios_UI extends Vistas {
+public class Usuarios_UI extends Views {
     
     public final DefaultTableModel modelo;
     private final Usuarios_Controller UController;    
@@ -27,8 +27,7 @@ public class Usuarios_UI extends Vistas {
         initComponents();
         CargarComponentes();
         UController.DeshabilitarHabilitar(1);
-        UController.VerUsuarios();
-        numerarTabla(modelo);
+        UController.VerUsuarios();        
     }
     
     private void CargarComponentes() {

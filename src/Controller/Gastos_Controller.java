@@ -8,7 +8,7 @@ package Controller;
 import Entity.TGasto;
 import Model.Gastos_Model;
 import UI.Gastos_UI;
-import UI.Vistas;
+import UI.Views;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -17,17 +17,15 @@ import javax.swing.JOptionPane;
  *
  * @author ITERIA
  */
-public class Gastos_Controller {
+public class Gastos_Controller extends Controllers{
 
     private final Gastos_Model MGastos = new Gastos_Model();
     private final Gastos_UI VistaGastos;
     private static TGasto Gasto;
-    private List<TGasto> gastosresult;
-    private Vistas Funciones;
+    private List<TGasto> gastosresult;    
 
     public Gastos_Controller(Gastos_UI VistaGastos) {
-        this.VistaGastos = VistaGastos;
-        Funciones = new Vistas();
+        this.VistaGastos = VistaGastos;        
     }
 
     public void RegistrarGasto() {
@@ -101,8 +99,8 @@ public class Gastos_Controller {
             fila[3] = gastosresult.get(i).getTgasCosto().toString();
             VistaGastos.modelo.addRow(fila);
         }
-        Funciones.numerarTabla(VistaGastos.modelo);
-        VistaGastos.jTextField1.setText("" + Funciones.totalDeUnaTabla(VistaGastos.modelo, 3));
+        numerarTabla(VistaGastos.modelo);
+        VistaGastos.jTextField1.setText("" + totalDeUnaTabla(VistaGastos.modelo, 3));
 
     }
 

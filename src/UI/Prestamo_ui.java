@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class Prestamo_ui extends Vistas {
+public class Prestamo_ui extends Views {
 
     /**
      * Creates new form Prestamo_ui

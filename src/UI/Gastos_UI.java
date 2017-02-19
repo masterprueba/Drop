@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Gastos_UI extends Vistas {
+public class Gastos_UI extends Views {
 
     private final Gastos_Controller GControl;
     public final DefaultTableModel modelo;    

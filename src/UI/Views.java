@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Vistas extends javax.swing.JFrame{
+public class Views extends javax.swing.JFrame{
 
     public void soloNumeros(KeyEvent evt) {
         char caracter = evt.getKeyChar();
@@ -33,19 +33,5 @@ public class Vistas extends javax.swing.JFrame{
         if (JT.getText().length() == cant) {
             evt.consume();
         }
-    }
-
-    public void numerarTabla(DefaultTableModel modelo) {
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            modelo.setValueAt(i + 1, i, 0);
-        }
-    }
-
-    public float totalDeUnaTabla(DefaultTableModel modelo, int columna) {
-        float total = 0;
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            total = Integer.parseInt(modelo.getValueAt(i, columna).toString()) + total;
-        }
-        return total;
-    }
+    }   
 }
