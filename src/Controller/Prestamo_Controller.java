@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.TPersona;
 import Entity.TCuota;
+import Entity.TDatosBasicosPersona;
 import Entity.TPrestamo;
 import Model.Persona_Model;
 import Model.Prestamo_model;
@@ -84,12 +85,18 @@ public class Prestamo_Controller {
         }
     }
 
-    //consulta y trae el objeto cliente
+    //consulta y trae el objeto cliente 
     public TPersona consultarCliente(String cc) {
+        System.out.println("Controller.Prestamo_Controller.consultarCliente()");
+        TPersona temp = new TPersona();
+        TDatosBasicosPersona datos = new TDatosBasicosPersona();
+        datos.setTdbpCedula(cc);
+        temp.setTDatosBasicosPersona(datos);
+        temp.setTperTipo("cliente");
         TPersona cliente = null;
         Persona_Model cmodel = new Persona_Model();
         try{
-            cliente = (TPersona) cmodel.consultarCliente(cc);
+            cliente = (TPersona) cmodel.consultarCliente(temp);
             setCliente(cliente);
             Prestamo_ui.jPanel2.setVisible(true);
         }catch(NullPointerException ex){
