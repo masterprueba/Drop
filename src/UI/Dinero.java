@@ -288,10 +288,12 @@ public class Dinero extends Views {
                 Integer.parseInt(jvalor.getText());
                 Prestamo_ui.P_valorprestamo.setText(formateador.format(Long.parseLong(jvalor.getText())));
                 inst.setVisible(true);
-            this.dispose();
-            }catch(NumberFormatException ex){
-                Prestamo_ui.P_valorprestamo.setText(jvalor.getText());
+                Prestamo_ui.P_cantcuotas.requestFocus();                
+                this.dispose();
+            }catch(NumberFormatException ex){                
                 inst.setVisible(true);
+                Prestamo_ui.P_valorprestamo.setText(jvalor.getText());
+                Prestamo_ui.P_cantcuotas.requestFocus();
                 this.dispose();
             }            
         } else if(this.ubicacion.equals("cuota")){
@@ -362,14 +364,17 @@ public class Dinero extends Views {
                 Integer.parseInt(jvalor.getText());
                 Prestamo_ui.P_valorprestamo.setText(formateador.format(Long.parseLong(jvalor.getText())));
                 inst.setVisible(true);
+                Prestamo_ui.P_cantcuotas.requestFocus();
             this.dispose();
             }catch(NumberFormatException ex){
                 Prestamo_ui.P_valorprestamo.setText(jvalor.getText());
                 inst.setVisible(true);
+                Prestamo_ui.P_cantcuotas.requestFocus();
                 this.dispose();
             }            
         } else if(this.ubicacion.equals("cuota")){
             Prestamo_ui.P_valor_cuota.setText(jvalor.getText());
+            
             this.dispose();
         }    
         }

@@ -480,7 +480,7 @@ public class Prestamo_ui extends Views {
     private void P_valorprestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_P_valorprestamoMouseClicked
         P_valorprestamo.setText("0");
         jInternalFrame.setVisible(false);
-        new Dinero("prestamo",jInternalFrame).setVisible(true);        
+        new Dinero("prestamo",jInternalFrame).setVisible(true);          
     }//GEN-LAST:event_P_valorprestamoMouseClicked
 
     private void P_cantcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_cantcuotasKeyTyped
