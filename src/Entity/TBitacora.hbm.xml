@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-feb-2017 18:30:36 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TBitacora" table="t_bitacora" catalog="drop_db" optimistic-lock="version">
+        <id name="tbitId" type="java.lang.Integer">
+            <column name="tbit_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TLogin" class="Entity.TLogin" fetch="select">
+            <column name="tbit_tlog_id" not-null="true" />
+        </many-to-one>
+        <property name="tbitFecha" type="timestamp">
+            <column name="tbit_fecha" length="19" not-null="true" />
+        </property>
+        <property name="tbitRegistro" type="string">
+            <column name="tbit_registro" length="65535" not-null="true" />
+        </property>
+        <property name="tbitIdentificador" type="string">
+            <column name="tbit_identificador" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

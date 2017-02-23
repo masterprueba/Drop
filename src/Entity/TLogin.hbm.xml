@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/02/2017 12:37:49 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 23-feb-2017 18:30:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TLogin" table="t_login" catalog="drop_db" optimistic-lock="version">
         <id name="tlogId" type="java.lang.Integer">
@@ -17,5 +17,11 @@
         <property name="tlogPassword" type="string">
             <column name="tlog_password" length="200" />
         </property>
+        <set name="TBitacoras" table="t_bitacora" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tbit_tlog_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TBitacora" />
+        </set>
     </class>
 </hibernate-mapping>
