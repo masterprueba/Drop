@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -30,7 +32,6 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         LoginController = new Login_Controller();
         Login = new TLogin();
-        jLabel4.setVisible(false);
         //Cerrar login
         CerraAplicacion();
         //Configurar JPanel para darle el toque de transparencia 65 o 125
@@ -60,13 +61,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     public void iniciarEnter() {
-        jLabel4.setVisible(true);
         //setea los valores al objeto de tipo TLogin
         Login.setTlogUserLogin(jTextField1.getText());
         Login.setTlogPassword(new String(jPasswordField1.getPassword()));
         //Llama el metoro ingresar y envia el objeto 
         LoginController.Ingresar(Login, this);
-        //Cierra la ventana de login        
+    }
+
+    public void cargar() {
+        Icon i = new ImageIcon(getClass().getResource("/Icons/reloj-de-arena.png/"));
+        JOptionPane.showMessageDialog(null, "Por favor espere unos segundos...", "CARGANDO", JOptionPane.INFORMATION_MESSAGE,i);
     }
 
     /**
@@ -87,7 +91,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -181,12 +184,6 @@ public class Login extends javax.swing.JFrame {
         });
         jInternalFrame1.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/reloj-de-arena.png"))); // NOI18N
-        jLabel4.setText("Cargando...");
-        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Login.jpg"))); // NOI18N
         jInternalFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
@@ -205,12 +202,13 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargar();
         iniciarEnter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            cargar();
             iniciarEnter();
         }
     }//GEN-LAST:event_jPasswordField1KeyPressed
@@ -265,7 +263,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;

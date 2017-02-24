@@ -27,7 +27,7 @@ public class Login_Controller {
     }
 
     //Verifica que el usuario y contraseña esnten la DB
-    public void Ingresar(TLogin User, Login login) {
+    public void Ingresar(TLogin User, Login login) {        
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
