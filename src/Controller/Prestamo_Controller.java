@@ -85,8 +85,7 @@ public class Prestamo_Controller {
     }
 
     //consulta y trae el objeto cliente 
-    public TPersona consultarCliente(String cc) {
-        System.out.println("Controller.Prestamo_Controller.consultarCliente()");
+    public TPersona consultarCliente(String cc) {        
         TPersona temp = new TPersona();
         TDatosBasicosPersona datos = new TDatosBasicosPersona();
         datos.setTdbpCedula(cc);
@@ -183,6 +182,8 @@ public class Prestamo_Controller {
                 prestamo_actual.setText(tp.getTpreValorTotal() + "");
             }
 
+        }else{
+            prestamo_actual.setText("0");
         }
 
     }

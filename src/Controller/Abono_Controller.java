@@ -8,7 +8,7 @@ package Controller;
 import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TPrestamo;
-import UI.Abono_ui;
+import UI.Abono_UI;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
@@ -24,7 +24,7 @@ public class Abono_Controller extends Prestamo_Controller {
 
     @Override
     public void setCliente(TPersona cliente) {
-        Abono_ui.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
+        Abono_UI.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
     }
 
     @Override
@@ -39,9 +39,9 @@ public class Abono_Controller extends Prestamo_Controller {
             if (a.size() > 0) {
                 TPrestamo tp = (TPrestamo) a.toArray()[a.size() - 1];                
                 Long valorc= tp.getTpreValorCuota();
-                Abono_ui.a_totalcuota.setText(valorc + "");
-                Abono_ui.a_cuotaneto.setText(valorc - (valorc*((float)tp.getTpreIntereses()/100))+"");
-                Abono_ui.a_interes.setText(valorc*((float)tp.getTpreIntereses()/100)+"");
+                Abono_UI.a_totalcuota.setText(valorc + "");
+                Abono_UI.a_cuotaneto.setText(valorc - (valorc*((float)tp.getTpreIntereses()/100))+"");
+                Abono_UI.a_interes.setText(valorc*((float)tp.getTpreIntereses()/100)+"");
                 Set cuotas = tp.getTCuotas();
                 if (cuotas.size() > 0) {
                     TCuota tc = (TCuota) tp.getTCuotas().toArray()[cuotas.size() - 1];

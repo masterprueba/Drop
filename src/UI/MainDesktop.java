@@ -258,7 +258,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JInternalFrame in = new Abono_ui().cargarInternal();
+        JInternalFrame in = new Abono_UI().cargarInternal();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
