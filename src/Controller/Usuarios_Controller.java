@@ -7,12 +7,9 @@ package Controller;
 
 import Entity.TDatosBasicosPersona;
 import Entity.TLogin;
-import Entity.TPersona;
 import Model.DatosBasicosPersona_Model;
 import Model.Login_Model;
-import Model.Persona_Model;
 import UI.Usuarios_UI;
-import UI.Views;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -40,8 +37,8 @@ public class Usuarios_Controller extends Controllers{
                 Persona = new TDatosBasicosPersona();
                 Login = new TLogin();
                 LlenarObjetosPersonaLogin();
-                if (PModel.insertar(Persona) != null) {
-                    if (LModel.insertar(Login) != null) {
+                if (PModel.insertar(Persona,true) != null) {
+                    if (LModel.insertar(Login,true) != null) {
                         JOptionPane.showMessageDialog(null, "Se registro al nuevo usuario exitosamente!");
                         VerUsuarios();
                         VaciarCampos();

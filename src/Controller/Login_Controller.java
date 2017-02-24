@@ -23,6 +23,10 @@ public class Login_Controller {
     private static TLogin UsuarioLogueado;
     private List<TLogin> loginresult;
 
+    public static TLogin getUsuarioLogueado() {
+        return UsuarioLogueado;
+    }
+
     public Login_Controller() {
     }
 
@@ -46,6 +50,5 @@ public class Login_Controller {
         } else {
             JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
         }
-
     }
 }

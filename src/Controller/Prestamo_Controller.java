@@ -64,7 +64,7 @@ public class Prestamo_Controller {
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
                 System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
                 TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getSelectedItem()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
-                if (pmodel.insertar(prestamo) != null) {
+                if (pmodel.insertar(prestamo,true) != null) {
                     JOptionPane.showMessageDialog(null, "Prestamo total: $" + valortotal + " Realizado  correctamente!!");
                     Prestamo_ui.jPanel2.setVisible(false);
                     nombre.setText("");

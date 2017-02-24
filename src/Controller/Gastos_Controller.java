@@ -31,7 +31,7 @@ public class Gastos_Controller extends Controllers{
     public void RegistrarGasto() {
         if (Validar()) {
             LlenarObjetoGastos();
-            if (MGastos.insertar(Gasto) != null) {
+            if (MGastos.insertar(Gasto,true) != null) {
                 VaciarCampos();
                 TraerGastos(ObtenerRadiobuttonSeleccionado());
                 JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto");
