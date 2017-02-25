@@ -1,5 +1,5 @@
 package Entity;
-// Generated 23-feb-2017 18:30:32 by Hibernate Tools 4.3.1
+// Generated 25/02/2017 05:26:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,20 +20,19 @@ public class TPersona  implements java.io.Serializable {
      private String tperEmpDir;
      private String tperEmpTel;
      private String tperTipo;
-     private int tperIdenty;
+     private String tperCodeudor;
      private Set TPrestamos = new HashSet(0);
 
     public TPersona() {
     }
 
 	
-    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperTipo, int tperIdenty) {
+    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperTipo) {
         this.TDatosBasicosPersona = TDatosBasicosPersona;
         this.tperCasDir = tperCasDir;
         this.tperTipo = tperTipo;
-        this.tperIdenty = tperIdenty;
     }
-    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperCasPro, String tperCasTipo, String tperEmpNom, String tperEmpDir, String tperEmpTel, String tperTipo, int tperIdenty, Set TPrestamos) {
+    public TPersona(TDatosBasicosPersona TDatosBasicosPersona, String tperCasDir, String tperCasPro, String tperCasTipo, String tperEmpNom, String tperEmpDir, String tperEmpTel, String tperTipo, String tperCodeudor, Set TPrestamos) {
        this.TDatosBasicosPersona = TDatosBasicosPersona;
        this.tperCasDir = tperCasDir;
        this.tperCasPro = tperCasPro;
@@ -42,7 +41,7 @@ public class TPersona  implements java.io.Serializable {
        this.tperEmpDir = tperEmpDir;
        this.tperEmpTel = tperEmpTel;
        this.tperTipo = tperTipo;
-       this.tperIdenty = tperIdenty;
+       this.tperCodeudor = tperCodeudor;
        this.TPrestamos = TPrestamos;
     }
    
@@ -109,12 +108,12 @@ public class TPersona  implements java.io.Serializable {
     public void setTperTipo(String tperTipo) {
         this.tperTipo = tperTipo;
     }
-    public int getTperIdenty() {
-        return this.tperIdenty;
+    public String getTperCodeudor() {
+        return this.tperCodeudor;
     }
     
-    public void setTperIdenty(int tperIdenty) {
-        this.tperIdenty = tperIdenty;
+    public void setTperCodeudor(String tperCodeudor) {
+        this.tperCodeudor = tperCodeudor;
     }
     public Set getTPrestamos() {
         return this.TPrestamos;

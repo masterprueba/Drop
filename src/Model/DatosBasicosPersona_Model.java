@@ -13,7 +13,8 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class DatosBasicosPersona_Model<P> extends General_model {
+public class DatosBasicosPersona_Model extends General_model {
+    
     public TDatosBasicosPersona ConsultarCedula(TDatosBasicosPersona persona) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
@@ -24,11 +25,11 @@ public class DatosBasicosPersona_Model<P> extends General_model {
         return result;
     }
 
-    public List<P> ConsultarPersonasConLogin() {
+    public List<TDatosBasicosPersona> ConsultarPersonasConLogin() {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "select persona from TDatosBasicosPersona as persona  inner join persona.TLogins as login on  login.TDatosBasicosPersona.tdbpId = persona";
-        List<P> result = s.createQuery(query).list();
+        List<TDatosBasicosPersona> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
         return result;

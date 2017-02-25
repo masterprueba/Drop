@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23-feb-2017 18:30:36 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/02/2017 05:26:03 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
-        <composite-id name="id" class="Entity.TCuotaId">
-            <key-property name="tcuoId" type="int">
-                <column name="tcuo_id" />
-            </key-property>
-            <key-property name="tcuoNum" type="int">
-                <column name="tcuo_num" />
-            </key-property>
-        </composite-id>
+        <id name="tcuoId" type="java.lang.Integer">
+            <column name="tcuo_id" />
+            <generator class="identity" />
+        </id>
         <many-to-one name="TPrestamo" class="Entity.TPrestamo" fetch="select">
             <column name="tcuo_tpre_id" not-null="true" />
         </many-to-one>

@@ -12,14 +12,13 @@
     <property name="hibernate.use_sql_comments">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping resource="Entity/TReferencia.hbm.xml"/>
-    <mapping resource="Entity/TPrestamo.hbm.xml"/>
-    <mapping resource="Entity/TLogin.hbm.xml"/>
-    <mapping resource="Entity/TCodeudor.hbm.xml"/>
-    <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TBitacora.hbm.xml"/>
-    <mapping resource="Entity/TCuota.hbm.xml"/>
-    <mapping resource="Entity/TDatosBasicosPersona.hbm.xml"/>
+    <mapping resource="Entity/TReferencia.hbm.xml"/>
+    <mapping resource="Entity/TPersona.hbm.xml"/>
+    <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TGasto.hbm.xml"/>
+    <mapping resource="Entity/TCuota.hbm.xml"/>
+    <mapping resource="Entity/TLogin.hbm.xml"/>
+    <mapping resource="Entity/TDatosBasicosPersona.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
