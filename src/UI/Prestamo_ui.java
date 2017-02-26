@@ -451,7 +451,8 @@ public class Prestamo_ui extends Views {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //consulto cliente por medio de la cedula        
-        cliente = pc.consultarCliente(P_cedula.getText());          
+        cliente = pc.consultarCliente(P_cedula.getText());
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

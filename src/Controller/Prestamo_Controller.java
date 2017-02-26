@@ -97,7 +97,7 @@ public class Prestamo_Controller {
         TPersona cliente = null;
         Persona_Model cmodel = new Persona_Model();
         try {
-            cliente = (TPersona) cmodel.consultarCliente(temp);
+            cliente = (TPersona) cmodel.SelectOne(temp);
             setCliente(cliente);
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);
@@ -113,6 +113,7 @@ public class Prestamo_Controller {
         Prestamo_ui.P_tel.setText("");
         Prestamo_ui.P_dir.setText("");
         prestamo_actual.setText("");
+        Prestamo_ui.jPanel2.setVisible(false);
     }
 
     private boolean validar() {
@@ -172,41 +173,8 @@ public class Prestamo_Controller {
         nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
         Prestamo_ui.P_tel.setText(cliente.getTDatosBasicosPersona().getTdbpTel());
         Prestamo_ui.P_dir.setText(cliente.getTperCasDir());
-        //Trae el ultimo prestamo del cliente
-        Set a = cliente.getTPrestamos();
-        if (a.size() > 0) {
-            Date mayor = new Date(2000, 1, 1);
-            int obj = 0;
-            for (int i = 0; i < a.size(); i++) {
-                TPrestamo tp = (TPrestamo) a.toArray()[i];
-                if (tp.getTpreFechaEntrega().after(mayor)) {
-                    obj = i;
-                    mayor = tp.getTpreFechaEntrega();
-                }
-            }            
-            TPrestamo tp = (TPrestamo) a.toArray()[obj];
-            if (tp.getTCuotas().size() > 0) {
-                //Trae la ultima cuota del prestamo                
-                int mayor2=0;
-                int obj2=0;                
-                for (int i = 0; i < tp.getTCuotas().size(); i++) {
-                    TCuota tcuota =(TCuota) tp.getTCuotas().toArray()[i];                    
-                    if(tcuota.getTcuoNuevoSaldo()>mayor2){
-                        obj2 = i;
-                        mayor2 = (int) tcuota.getTcuoNuevoSaldo();
-                    }
-                }       
-                TCuota tc = (TCuota) tp.getTCuotas().toArray()[obj2];
-                //set a prestamo actual
-                prestamo_actual.setText(tp.getTpreValorTotal()-tc.getTcuoNuevoSaldo() + "");
-            } else {
-                prestamo_actual.setText(tp.getTpreValorTotal() + "");
-            }
-
-        }else{
-            prestamo_actual.setText("0");
-        }
-
+        //Trae el ultimo prestamo del cliente                
+        ultimaCuota(cliente, 'p');
     }
 
     protected String parsearFormato(String cadena) {
@@ -224,5 +192,51 @@ public class Prestamo_Controller {
         }
 
         return resp;
+    }
+    protected TCuota ultimaCuota(TPersona cliente, char controller){
+        Set a = cliente.getTPrestamos();
+        TCuota cuota = new TCuota();
+        if (a.size() > 0) {
+            Date mayor = new Date(2000);
+            int obj = 0;
+            for (int i = 0; i < a.size(); i++) {
+                TPrestamo tp = (TPrestamo) a.toArray()[i];
+                System.out.println("fecha prestamo "+tp.getTpreFechaEntrega()+" fecha mayor "+mayor);
+                if (tp.getTpreFechaEntrega().after(mayor)) {
+                    obj = i;
+                    mayor = tp.getTpreFechaEntrega();
+                }
+            }            
+            TPrestamo tp = (TPrestamo) a.toArray()[obj];
+            cuota.setTPrestamo(tp);
+            if (tp.getTCuotas().size() > 0) {
+                //Trae la ultima cuota del prestamo                
+                int mayor2=0;
+                int obj2=0;                
+                for (int i = 0; i < tp.getTCuotas().size(); i++) {
+                    TCuota tcuota =(TCuota) tp.getTCuotas().toArray()[i];                    
+                    if(tcuota.getTcuoNuevoSaldo()>mayor2){
+                        obj2 = i;
+                        mayor2 = (int) tcuota.getTcuoNuevoSaldo();
+                    }
+                }       
+                cuota = (TCuota) tp.getTCuotas().toArray()[obj2];                
+                //set a prestamo actual
+                if (controller == 'p') {
+                    prestamo_actual.setText(tp.getTpreValorTotal()-cuota.getTcuoNuevoSaldo() + "");
+                }                
+            } else {
+                if (controller == 'p') {
+                    prestamo_actual.setText(tp.getTpreValorTotal() + "");
+                }
+            }
+
+        }else{
+            if (controller == 'p') {
+                prestamo_actual.setText("0");
+            }
+            cuota = null;
+        }
+        return cuota;
     }
 }
