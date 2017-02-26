@@ -15,6 +15,9 @@ import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -172,12 +175,30 @@ public class Prestamo_Controller {
         //Trae el ultimo prestamo del cliente
         Set a = cliente.getTPrestamos();
         if (a.size() > 0) {
-            TPrestamo tp = (TPrestamo) a.toArray()[a.size() - 1];
+            Date mayor = new Date(2000, 1, 1);
+            int obj = 0;
+            for (int i = 0; i < a.size(); i++) {
+                TPrestamo tp = (TPrestamo) a.toArray()[i];
+                if (tp.getTpreFechaEntrega().after(mayor)) {
+                    obj = i;
+                    mayor = tp.getTpreFechaEntrega();
+                }
+            }            
+            TPrestamo tp = (TPrestamo) a.toArray()[obj];
             if (tp.getTCuotas().size() > 0) {
-                //Trae la ultima cuota del prestamo
-                TCuota tc = (TCuota) tp.getTCuotas().toArray()[tp.getTCuotas().size() - 1];
+                //Trae la ultima cuota del prestamo                
+                int mayor2=0;
+                int obj2=0;                
+                for (int i = 0; i < tp.getTCuotas().size(); i++) {
+                    TCuota tcuota =(TCuota) tp.getTCuotas().toArray()[i];                    
+                    if(tcuota.getTcuoNuevoSaldo()>mayor2){
+                        obj2 = i;
+                        mayor2 = (int) tcuota.getTcuoNuevoSaldo();
+                    }
+                }       
+                TCuota tc = (TCuota) tp.getTCuotas().toArray()[obj2];
                 //set a prestamo actual
-                prestamo_actual.setText(tc.getTcuoNuevoSaldo() + "");
+                prestamo_actual.setText(tp.getTpreValorTotal()-tc.getTcuoNuevoSaldo() + "");
             } else {
                 prestamo_actual.setText(tp.getTpreValorTotal() + "");
             }

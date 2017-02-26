@@ -101,49 +101,47 @@ public class General_model<T> {
 
     private boolean Bitacora(Object obj, String indicador) {
         TBitacora bitacora = new TBitacora();
-        String clase = obj.getClass().getName();
-        String cadena = "";
-
-        switch (clase) {
-            case "Entity.TCodeudor":
-                TCodeudor codeudor = (TCodeudor) obj;
-                cadena = codeudor.getTcodId().toString() + ";" + codeudor.getTcodClienteCedula() + ";" + codeudor.getTcodCodeudorCedula();
-                break;
-            case "Entity.TCuota":
-                TCuota cuota = (TCuota) obj;
-                cadena = cuota.getId() + ";" + cuota.getTPrestamo().getTpreId() + ";" + cuota.getTcuoFecha() + ";" + cuota.getTcuoAbono() + ";" + cuota.getTcuoNuevoSaldo() + ";" + cuota.getTcuoCuotasPagadas() + ";" + cuota.getTcuoMetodoPago() + ";" + cuota.getTcuoCobrador();
-                break;
-            case "Entity.TDatosBasicosPersona":
-                TDatosBasicosPersona datosper = (TDatosBasicosPersona) obj;
-                cadena = datosper.getTdbpId() + ";" + datosper.getTdbpCedula() + ";" + datosper.getTdbpNombre() + ";" + datosper.getTdbpApellido() + ";" + datosper.getTdbpTel();
-                break;
-            case "Entity.TGasto":
-                TGasto gasto = (TGasto) obj;
-                cadena = gasto.getTgasId() + ";" + gasto.getTgasDesc() + ";" + gasto.getTgasFecha() + ";" + gasto.getTgasCosto();
-                break;
-            case "Entity.TLogin":
-                TLogin login = (TLogin) obj;
-                cadena = login.getTlogId() + ";" + login.getTDatosBasicosPersona().getTdbpId() + ";" + login.getTlogUserLogin() + ";" + login.getTlogPassword();
-                break;
-            case "Entity.TPersona":
-                TPersona persona = (TPersona) obj;
-                cadena = persona.getTperId() + ";" + persona.getTDatosBasicosPersona().getTdbpId() + ";" + persona.getTperCasDir() + ";" + persona.getTperCasPro() + ";" + persona.getTperEmpNom() + ";" + persona.getTperEmpDir() + ";" + persona.getTperEmpTel() + ";" + persona.getTperCasTipo() + ";" + persona.getTperTipo() + ";" + persona.getTperIdenty();
-                break;
-            case "Entity.TPrestamo":
-                TPrestamo prestamo = (TPrestamo) obj;
-                cadena = prestamo.getTpreId() + ";" + prestamo.getTPersona().getTperId() + ";" + prestamo.getTpreValorPrestamo() + ";" + prestamo.getTpreNumCuotas() + ";" + prestamo.getTpreIntereses() + ";" + prestamo.getTpreMetodPago() + ";" + prestamo.getTpreFechaEntrega() + ";" + prestamo.getTpreValorTotal() + ";" + prestamo.getTpreValorCuota();
-                break;
-            case "Entity.TReferencia":
-                TReferencia referencia = (TReferencia) obj;
-                cadena = referencia.getTrefId() + ";" + referencia.getTDatosBasicosPersona().getTdbpId() + ";" + referencia.getTrefTipo() + ";" + referencia.getTrefNombre() + ";" + referencia.getTrefApellido() + ";" + referencia.getTrefTelefono();
-                break;
-        }
-        System.err.println(cadena);
+        String clase = obj.getClass().getName();                
+//        switch (clase) {
+//            case "Entity.TCodeudor":
+//                TCodeudor codeudor = (TCodeudor) obj;
+//                cadena = codeudor.getTcodId().toString() + ";" + codeudor.getTcodClienteCedula() + ";" + codeudor.getTcodCodeudorCedula();
+//                break;
+//            case "Entity.TCuota":
+//                TCuota cuota = (TCuota) obj;
+//                cadena = cuota.getTPrestamo().getTpreId() + ";" + cuota.getTcuoFecha() + ";" + cuota.getTcuoAbono() + ";" + cuota.getTcuoNuevoSaldo() + ";" + cuota.getTcuoCuotasPagadas() + ";" + cuota.getTcuoMetodoPago() + ";" + cuota.getTcuoCobrador();
+//                break;
+//            case "Entity.TDatosBasicosPersona":
+//                TDatosBasicosPersona datosper = (TDatosBasicosPersona) obj;
+//                cadena = datosper.getTdbpId() + ";" + datosper.getTdbpCedula() + ";" + datosper.getTdbpNombre() + ";" + datosper.getTdbpApellido() + ";" + datosper.getTdbpTel();
+//                break;
+//            case "Entity.TGasto":
+//                TGasto gasto = (TGasto) obj;
+//                cadena = gasto.getTgasId() + ";" + gasto.getTgasDesc() + ";" + gasto.getTgasFecha() + ";" + gasto.getTgasCosto();
+//                break;
+//            case "Entity.TLogin":
+//                TLogin login = (TLogin) obj;
+//                cadena = login.getTlogId() + ";" + login.getTDatosBasicosPersona().getTdbpId() + ";" + login.getTlogUserLogin() + ";" + login.getTlogPassword();
+//                break;
+//            case "Entity.TPersona":
+//                TPersona persona = (TPersona) obj;
+//                cadena = persona.getTperId() + ";" + persona.getTDatosBasicosPersona().getTdbpId() + ";" + persona.getTperCasDir() + ";" + persona.getTperCasPro() + ";" + persona.getTperEmpNom() + ";" + persona.getTperEmpDir() + ";" + persona.getTperEmpTel() + ";" + persona.getTperCasTipo() + ";" + persona.getTperTipo() + ";" + persona.getTperIdenty();
+//                break;
+//            case "Entity.TPrestamo":
+//                TPrestamo prestamo = (TPrestamo) obj;
+//                cadena = prestamo.getTpreId() + ";" + prestamo.getTPersona().getTperId() + ";" + prestamo.getTpreValorPrestamo() + ";" + prestamo.getTpreNumCuotas() + ";" + prestamo.getTpreIntereses() + ";" + prestamo.getTpreMetodPago() + ";" + prestamo.getTpreFechaEntrega() + ";" + prestamo.getTpreValorTotal() + ";" + prestamo.getTpreValorCuota();
+//                break;
+//            case "Entity.TReferencia":
+//                TReferencia referencia = (TReferencia) obj;
+//                cadena = referencia.getTrefId() + ";" + referencia.getTDatosBasicosPersona().getTdbpId() + ";" + referencia.getTrefTipo() + ";" + referencia.getTrefNombre() + ";" + referencia.getTrefApellido() + ";" + referencia.getTrefTelefono();
+//                break;
+//        }
+        System.err.println(obj.toString());
         try {
             bitacora.setTbitFecha(new Date());
             bitacora.setTLogin(Login_Controller.getUsuarioLogueado());
             bitacora.setTbitIdentificador(indicador);
-            bitacora.setTbitRegistro(cadena);
+            bitacora.setTbitRegistro(obj.toString());
             s.save((T) bitacora);
             return true;
         } catch (Exception e) {
