@@ -11,7 +11,7 @@ import Entity.TPrestamo;
 import Model.Prestamo_model;
 import UI.Abono_ui;
 import java.text.SimpleDateFormat;
-import java.util.Set;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +25,8 @@ public class Abono_Controller extends Prestamo_Controller {
     private TCuota abono;
 
     public Abono_Controller() {
-        pmodel = new Prestamo_model();
+        pmodel = new Prestamo_model();        
+        Abono_ui.a_fecha.setDate(new Date());
     }
 
     @Override
@@ -41,17 +42,16 @@ public class Abono_Controller extends Prestamo_Controller {
     public boolean setData(String cc) {
         TPersona cliente = consultarCliente(cc);
 
-        if (cliente != null) {
-            System.out.println("Controller.Abono_Controller.setData()" + cliente.getTPrestamos().size());
+        if (cliente != null) {            
             abono = ultimaCuota(cliente, 'c');
-
-            if (abono != null) {
-                System.out.println("id abono " + abono.getTcuoId());
+            if (abono != null) {                
                 prestamo = abono.getTPrestamo();
                 Long valorc = prestamo.getTpreValorCuota();
                 Abono_ui.a_totalcuota.setText(valorc + "");
                 Abono_ui.a_cuotaneto.setText(valorc - (valorc * ((float) prestamo.getTpreIntereses() / 100)) + "");
                 Abono_ui.a_interes.setText(valorc * ((float) prestamo.getTpreIntereses() / 100) + "");
+                Abono_ui.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
+                Abono_ui.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas()-abono.getTcuoCuotasPagadas()));
                 if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
                     cliente = null;
                     JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
@@ -73,34 +73,36 @@ public class Abono_Controller extends Prestamo_Controller {
 
     public void insertar() {
         if (validar()) {
-            Abono_ui.jPanel1.setVisible(true);
-            Abono_ui.jPanel2.setVisible(false);
-            Abono_ui.jPanel3.setVisible(false);
             calcularCantidad();
-            Long saldo;
-            int cpagadas;
-            if (abono != null) {
-                saldo = abono.getTcuoNuevoSaldo() + Long.parseLong(Abono_ui.a_abono.getText());
-                cpagadas = (int) ((float) saldo / prestamo.getTpreValorCuota());
-            } else {
-                saldo = Long.parseLong(Abono_ui.a_abono.getText());
-                cpagadas = Integer.parseInt(Abono_ui.a_cantcuotas.getText());
-            }
-            if (prestamo != null) {
-                TCuota cuota = new TCuota(prestamo, Abono_ui.a_fecha.getDate(), Long.parseLong(Abono_ui.a_abono.getText()), saldo, cpagadas, String.valueOf(Abono_ui.a_metodo.getSelectedItem()), Abono_ui.a_cobrador.getText());
-                if (pmodel.insertar(cuota, true) != null) {
-                    Abono_ui.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
-                    SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
-                    Abono_ui.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));
-                    Abono_ui.a_totalPrestamo.setText(prestamo.getTpreValorTotal() + "");
-                    Abono_ui.a_abonado.setText(cuota.getTcuoNuevoSaldo() + "");
-                    Abono_ui.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
-                    Abono_ui.a_cuotaspend.setText(prestamo.getTpreNumCuotas() - cuota.getTcuoCuotasPagadas() + "");
-                    Abono_ui.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
+            int r = JOptionPane.showConfirmDialog(null, "Esta seguro de abonar \n" + Abono_ui.a_cantcuotas.getText() + " cuotas Abono= " + Abono_ui.a_abono.getText(), "Agregar abono", JOptionPane.YES_NO_OPTION);
+            if (r == JOptionPane.YES_OPTION) {
+                Abono_ui.jPanel1.setVisible(true);
+                Abono_ui.jPanel2.setVisible(false);
+                Abono_ui.jPanel3.setVisible(false);
+                Long saldo;
+                int cpagadas;
+                if (abono != null) {
+                    saldo = abono.getTcuoNuevoSaldo() + Long.parseLong(Abono_ui.a_abono.getText());
+                    cpagadas = (int) ((float) saldo / prestamo.getTpreValorCuota());
+                } else {
+                    saldo = Long.parseLong(Abono_ui.a_abono.getText());
+                    cpagadas = Integer.parseInt(Abono_ui.a_cantcuotas.getText());
+                }
+                if (prestamo != null) {
+                    TCuota cuota = new TCuota(prestamo, Abono_ui.a_fecha.getDate(), Long.parseLong(Abono_ui.a_abono.getText()), saldo, cpagadas, String.valueOf(Abono_ui.a_metodo.getSelectedItem()), Abono_ui.a_cobrador.getText());
+                    if (pmodel.insertar(cuota, true) != null) {
+                        Abono_ui.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
+                        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
+                        Abono_ui.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));
+                        Abono_ui.a_totalPrestamo.setText(prestamo.getTpreValorTotal() + "");
+                        Abono_ui.a_abonado.setText(cuota.getTcuoNuevoSaldo() + "");
+                        Abono_ui.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
+                        Abono_ui.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
+                        Abono_ui.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
+                    }
                 }
             }
         }
-
     }
 
     public void calcularCantidad() {
@@ -113,7 +115,7 @@ public class Abono_Controller extends Prestamo_Controller {
     private boolean validar() {
         String msj = "";
         msj += Abono_ui.a_cobrador.getText().equals("") ? "Debe ingresar el cobrador \n" : "";
-        msj += Abono_ui.a_fecha == null ? "Debes seleccionar la fecha de inicio \n" : "";
+        msj += Abono_ui.a_fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";
         msj += Abono_ui.a_abono == null ? "Debes ingresar el abono \n" : "";
         try {
             Integer.parseInt(Abono_ui.a_abono.getText());
