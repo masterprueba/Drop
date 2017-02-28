@@ -5,25 +5,26 @@
  */
 package UI;
 
-import Controller.Abono_Controller;
+import Controller.Cuota_Controller;
 
 /**
  *
  * @author Usuario
  */
-public class Cuota_UI extends javax.swing.JFrame {
+public class Cuota_UI extends Views {
 
     /**
      * Creates new form Cuota_UI
      */
-    Abono_Controller ac;
+    Cuota_Controller ac;
 
     public Cuota_UI() {
         initComponents();
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
-        ac = new Abono_Controller();
+        a_cedula.requestFocus();
+        ac = new Cuota_Controller();
     }
 
     public javax.swing.JInternalFrame cargarInternal() {
@@ -91,6 +92,9 @@ public class Cuota_UI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setClosable(true);
+        jInternalFrame1.setIconifiable(true);
+        jInternalFrame1.setMaximizable(true);
         jInternalFrame1.setVisible(true);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de Abono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
@@ -288,6 +292,12 @@ public class Cuota_UI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel1.setText("No. De cedula:");
 
+        a_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                a_cedulaKeyPressed(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
         jButton1.setText("Buscar");
@@ -479,7 +489,7 @@ public class Cuota_UI extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -505,7 +515,7 @@ public class Cuota_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_a_abonoFocusLost
 
     private void a_abonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a_abonoKeyTyped
-        // TODO add your handling code here:
+        soloNumeros(evt);
     }//GEN-LAST:event_a_abonoKeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -518,7 +528,11 @@ public class Cuota_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (ac.setData(a_cedula.getText())) {
+        aceptar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void aceptar(){
+       if (ac.setData(a_cedula.getText())) {
             jPanel1.setVisible(false);
             jPanel2.setVisible(true);
             jPanel3.setVisible(true);
@@ -526,43 +540,18 @@ public class Cuota_UI extends javax.swing.JFrame {
             jPanel1.setVisible(false);
             jPanel2.setVisible(false);
             jPanel3.setVisible(false);
+        } 
+    }
+    private void a_cedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a_cedulaKeyPressed
+        if (evt.getKeyCode()==10) {
+            aceptar();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_a_cedulaKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cuota_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cuota_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cuota_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cuota_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cuota_UI().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField a_abonado;

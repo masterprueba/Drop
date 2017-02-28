@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author ITERIA
  */
-public class Gastos_Model<G> extends General_model {
+public class Gastos_Model<G> extends Models {
 
     public List<G> ConsultarGastosMes(int Mes, int Año) {
         s = hibernateUtil.getSessionFactory();

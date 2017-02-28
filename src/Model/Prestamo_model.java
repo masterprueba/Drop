@@ -10,7 +10,7 @@ package Model;
  *
  * @author Andre
  */
-public class Prestamo_model extends General_model{
+public class Prestamo_model extends Models{
 
     //otra prueba andres
     

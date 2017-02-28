@@ -17,12 +17,12 @@ import org.hibernate.Session;
  *
  * @author Usuario
  */
-public class General_model<T> {
+public class Models<T> {
 
     private T Objecto;
     protected Session s;
 
-    public General_model() {
+    public Models() {
 
     }
 

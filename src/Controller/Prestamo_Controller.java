@@ -15,9 +15,7 @@ import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -27,7 +25,7 @@ import javax.swing.JTextField;
  *
  * @author Usuario
  */
-public class Prestamo_Controller {
+public class Prestamo_Controller extends Controllers{
 
     private final JDateChooser fecha;
     private final JTextField cc;
@@ -39,7 +37,7 @@ public class Prestamo_Controller {
     private final JComboBox metodo;
     private final JComboBox interes;
     private final Prestamo_model pmodel;
-    DecimalFormat formateador;
+    
 
     public Prestamo_Controller() {
         this.cc = Prestamo_ui.P_cedula;

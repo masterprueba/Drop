@@ -7,7 +7,6 @@ package Controller;
 
 import Entity.TLogin;
 import Model.Login_Model;
-
 import UI.Login;
 import UI.MainDesktop;
 import java.util.List;
@@ -28,10 +27,12 @@ public class Login_Controller {
     }
 
     public Login_Controller() {
+        
     }
 
     //Verifica que el usuario y contraseña esnten la DB
-    public void Ingresar(TLogin User, Login login) {        
+    public void Ingresar(TLogin User, Login login) {    
+        
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
@@ -39,7 +40,7 @@ public class Login_Controller {
                 if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
                     UsuarioLogueado = loginresult.get(i);
-                    new MainDesktop().setVisible(true);
+                    new MainDesktop().setVisible(true);                    
                     login.dispose();
                     break;
                 }

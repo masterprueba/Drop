@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Andres from TPersona as persona where persona.TDatosBasicosPersona.tdbpCedula = 1
  */
-public class Persona_Model extends General_model {
+public class Persona_Model extends Models {
 
     public Persona_Model() {
     }    

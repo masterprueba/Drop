@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login() {                       
         initComponents();
         LoginController = new Login_Controller();
         Login = new TLogin();
@@ -66,12 +66,7 @@ public class Login extends javax.swing.JFrame {
         Login.setTlogPassword(new String(jPasswordField1.getPassword()));
         //Llama el metoro ingresar y envia el objeto 
         LoginController.Ingresar(Login, this);
-    }
-
-    public void cargar() {
-        Icon i = new ImageIcon(getClass().getResource("/Icons/reloj-de-arena.png/"));
-        JOptionPane.showMessageDialog(null, "Por favor espere unos segundos...", "CARGANDO", JOptionPane.INFORMATION_MESSAGE,i);
-    }
+    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +100,9 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
+        jTextField1.setNextFocusableComponent(jPasswordField1);
+
+        jPasswordField1.setNextFocusableComponent(jButton1);
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPasswordField1KeyPressed(evt);
@@ -116,6 +114,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/login.png"))); // NOI18N
         jButton1.setText("Iniciar");
+        jButton1.setNextFocusableComponent(jButton2);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -177,6 +176,7 @@ public class Login extends javax.swing.JFrame {
 
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/salida.png"))); // NOI18N
+        jButton2.setNextFocusableComponent(jTextField1);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -202,13 +202,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cargar();
         iniciarEnter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            cargar();
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {        
             iniciarEnter();
         }
     }//GEN-LAST:event_jPasswordField1KeyPressed
@@ -219,6 +217,7 @@ public class Login extends javax.swing.JFrame {
         if (Respuesta == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

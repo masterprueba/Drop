@@ -15,7 +15,7 @@ import org.hibernate.Query;
  *
  * @author Andres
  */
-public class Referencia_Model extends General_model {
+public class Referencia_Model extends Models {
 
     public List<TReferencia> SelectAllWhere(TReferencia r) {
 

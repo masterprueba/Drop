@@ -14,7 +14,7 @@ import java.util.List;
  * @author Usuario
  * @param <L>
  */
-public class Login_Model<L> extends General_model {
+public class Login_Model<L> extends Models {
 
     //consulta el usuario por medio del usuario y contraseña
     public List<L> ConsultarUsuarioContraseña(TLogin usuario) {

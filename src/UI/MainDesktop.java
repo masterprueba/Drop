@@ -5,8 +5,10 @@
  */
 package UI;
 
+import Controller.Login_Controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -20,9 +22,12 @@ public class MainDesktop extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public MainDesktop() {
+    public MainDesktop() {        
         initComponents();
-        CerraAplicacion();
+        CerraAplicacion();        
+        jMenuBar1.add(Box.createHorizontalGlue());        
+        jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre()+" "+Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
+        jMenuBar1.add(jMenu2);
         //Maximizar la ventana en inicio
         this.setExtendedState(MAXIMIZED_BOTH);
     }
@@ -115,7 +120,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
-        jMenuItem4.setText("Nuevo Prestamo");
+        jMenuItem4.setText("Prestar");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -125,7 +130,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
-        jMenuItem7.setText("Nuevo Abono");
+        jMenuItem7.setText("Abonar");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -158,7 +163,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
-        jMenuItem6.setText("Nuevo usuario");
+        jMenuItem6.setText("Usuarios");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);

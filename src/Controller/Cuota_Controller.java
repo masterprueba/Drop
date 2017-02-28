@@ -18,13 +18,13 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class Abono_Controller extends Prestamo_Controller {
+public class Cuota_Controller extends Prestamo_Controller {
 
     private final Prestamo_model pmodel;
     private TPrestamo prestamo;
     private TCuota abono;
 
-    public Abono_Controller() {
+    public Cuota_Controller() {
         pmodel = new Prestamo_model();        
         Cuota_UI.a_fecha.setDate(new Date());
     }
@@ -74,7 +74,7 @@ public class Abono_Controller extends Prestamo_Controller {
     public void insertar() {
         if (validar()) {
             calcularCantidad();
-            int r = JOptionPane.showConfirmDialog(null, "Esta seguro de abonar \n" + Cuota_UI.a_cantcuotas.getText() + " cuotas Abono= " + Cuota_UI.a_abono.getText(), "Agregar abono", JOptionPane.YES_NO_OPTION);
+            int r = JOptionPane.showConfirmDialog(null, "Esta seguro de abonar \n $" + formateador.format(Integer.parseInt(Cuota_UI.a_abono.getText())), "Agregar abono", JOptionPane.YES_NO_OPTION);
             if (r == JOptionPane.YES_OPTION) {
                 Cuota_UI.jPanel1.setVisible(true);
                 Cuota_UI.jPanel2.setVisible(false);
@@ -92,13 +92,16 @@ public class Abono_Controller extends Prestamo_Controller {
                     TCuota cuota = new TCuota(prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas, String.valueOf(Cuota_UI.a_metodo.getSelectedItem()), Cuota_UI.a_cobrador.getText());
                     if (pmodel.insertar(cuota, true) != null) {
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
-                        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-mm-dd");
+                        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
                         Cuota_UI.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));
                         Cuota_UI.a_totalPrestamo.setText(prestamo.getTpreValorTotal() + "");
                         Cuota_UI.a_abonado.setText(cuota.getTcuoNuevoSaldo() + "");
                         Cuota_UI.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                         Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
+                        clearPanel(Cuota_UI.jPanel2);
+                        clearPanel(Cuota_UI.jPanel3);
+                        Cuota_UI.a_cobrador.setText("Cobrador");
                     }
                 }
             }

@@ -62,7 +62,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nuevo Prestamo"/>
+                <Property name="text" type="java.lang.String" value="Prestar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -76,7 +76,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nuevo Abono"/>
+                <Property name="text" type="java.lang.String" value="Abonar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
@@ -131,7 +131,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nuevo usuario"/>
+                <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
