@@ -8,9 +8,13 @@ package Model;
 import Controller.Login_Controller;
 import Persistence.hibernateUtil;
 import Entity.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
 
 /**
@@ -26,7 +30,7 @@ public class Models<T> {
 
     }
 
-    public Serializable insertar(T obj, boolean bitacora) {
+    public Serializable insertar(T obj) {
         //boolean test = false;
         String indicador = "INSERT";
         Serializable id = null;
@@ -34,14 +38,10 @@ public class Models<T> {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             id = s.save(obj);
-            if (bitacora) {
-                if (Bitacora(obj, indicador)) {
-                    s.getTransaction().commit();
-                } else {
-                    s.getTransaction().rollback();
-                }
-            } else {
+            if (Bitacora(obj, indicador)) {
                 s.getTransaction().commit();
+            } else {
+                s.getTransaction().rollback();
             }
             //test = true;
         } catch (Exception e) {
@@ -100,51 +100,18 @@ public class Models<T> {
     }
 
     private boolean Bitacora(Object obj, String indicador) {
-        TBitacora bitacora = new TBitacora();
-        String clase = obj.getClass().getName();                
-//        switch (clase) {
-//            case "Entity.TCodeudor":
-//                TCodeudor codeudor = (TCodeudor) obj;
-//                cadena = codeudor.getTcodId().toString() + ";" + codeudor.getTcodClienteCedula() + ";" + codeudor.getTcodCodeudorCedula();
-//                break;
-//            case "Entity.TCuota":
-//                TCuota cuota = (TCuota) obj;
-//                cadena = cuota.getTPrestamo().getTpreId() + ";" + cuota.getTcuoFecha() + ";" + cuota.getTcuoAbono() + ";" + cuota.getTcuoNuevoSaldo() + ";" + cuota.getTcuoCuotasPagadas() + ";" + cuota.getTcuoMetodoPago() + ";" + cuota.getTcuoCobrador();
-//                break;
-//            case "Entity.TDatosBasicosPersona":
-//                TDatosBasicosPersona datosper = (TDatosBasicosPersona) obj;
-//                cadena = datosper.getTdbpId() + ";" + datosper.getTdbpCedula() + ";" + datosper.getTdbpNombre() + ";" + datosper.getTdbpApellido() + ";" + datosper.getTdbpTel();
-//                break;
-//            case "Entity.TGasto":
-//                TGasto gasto = (TGasto) obj;
-//                cadena = gasto.getTgasId() + ";" + gasto.getTgasDesc() + ";" + gasto.getTgasFecha() + ";" + gasto.getTgasCosto();
-//                break;
-//            case "Entity.TLogin":
-//                TLogin login = (TLogin) obj;
-//                cadena = login.getTlogId() + ";" + login.getTDatosBasicosPersona().getTdbpId() + ";" + login.getTlogUserLogin() + ";" + login.getTlogPassword();
-//                break;
-//            case "Entity.TPersona":
-//                TPersona persona = (TPersona) obj;
-//                cadena = persona.getTperId() + ";" + persona.getTDatosBasicosPersona().getTdbpId() + ";" + persona.getTperCasDir() + ";" + persona.getTperCasPro() + ";" + persona.getTperEmpNom() + ";" + persona.getTperEmpDir() + ";" + persona.getTperEmpTel() + ";" + persona.getTperCasTipo() + ";" + persona.getTperTipo() + ";" + persona.getTperIdenty();
-//                break;
-//            case "Entity.TPrestamo":
-//                TPrestamo prestamo = (TPrestamo) obj;
-//                cadena = prestamo.getTpreId() + ";" + prestamo.getTPersona().getTperId() + ";" + prestamo.getTpreValorPrestamo() + ";" + prestamo.getTpreNumCuotas() + ";" + prestamo.getTpreIntereses() + ";" + prestamo.getTpreMetodPago() + ";" + prestamo.getTpreFechaEntrega() + ";" + prestamo.getTpreValorTotal() + ";" + prestamo.getTpreValorCuota();
-//                break;
-//            case "Entity.TReferencia":
-//                TReferencia referencia = (TReferencia) obj;
-//                cadena = referencia.getTrefId() + ";" + referencia.getTDatosBasicosPersona().getTdbpId() + ";" + referencia.getTrefTipo() + ";" + referencia.getTrefNombre() + ";" + referencia.getTrefApellido() + ";" + referencia.getTrefTelefono();
-//                break;
-//        }
-        System.err.println(obj.toString());
+
         try {
+            TBitacora bitacora = new TBitacora();
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonInString = mapper.writeValueAsString(obj);
             bitacora.setTbitFecha(new Date());
             bitacora.setTLogin(Login_Controller.getUsuarioLogueado());
             bitacora.setTbitIdentificador(indicador);
-            bitacora.setTbitRegistro(obj.toString());
+            bitacora.setTbitRegistro(jsonInString);
             s.save((T) bitacora);
             return true;
-        } catch (Exception e) {
+        } catch (IOException e) {
             return false;
         }
     }

@@ -34,7 +34,7 @@ public class DatosBasicosPersona_Controller {
     
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT">
     public TDatosBasicosPersona insert(TDatosBasicosPersona objDbp) {
-        ObjectIdAfterInserting = Integer.parseInt("" + dbp_Model.insertar(objDbp, true));
+        ObjectIdAfterInserting = Integer.parseInt("" + dbp_Model.insertar(objDbp));
 
         if (ObjectIdAfterInserting != 0) {
             dbp = objDbp;

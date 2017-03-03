@@ -41,7 +41,7 @@ public class Referencia_Controller {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TReferencia objRef) {
         boolean boo = false;
-        ObjectIdAfterInserting = Integer.parseInt("" + refModel.insertar(objRef, true));
+        ObjectIdAfterInserting = Integer.parseInt("" + refModel.insertar(objRef));
 
         if (ObjectIdAfterInserting != 0) {
             ref = objRef;

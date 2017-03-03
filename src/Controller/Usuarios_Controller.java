@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Yoimar
  */
-public class Usuarios_Controller extends Controllers{
+public class Usuarios_Controller extends Controllers {
 
     private final Usuarios_UI VistaUsuarios;
     private final Login_Model LModel = new Login_Model();
@@ -37,8 +37,8 @@ public class Usuarios_Controller extends Controllers{
                 Persona = new TDatosBasicosPersona();
                 Login = new TLogin();
                 LlenarObjetosPersonaLogin();
-                if (PModel.insertar(Persona,true) != null) {
-                    if (LModel.insertar(Login,true) != null) {
+                if (PModel.insertar(Persona) != null) {
+                    if (LModel.insertar(Login) != null) {
                         JOptionPane.showMessageDialog(null, "Se registro al nuevo usuario exitosamente!");
                         VerUsuarios();
                         VaciarCampos();
@@ -204,6 +204,5 @@ public class Usuarios_Controller extends Controllers{
         VistaUsuarios.U_text_Contraseña.setText(null);
         VistaUsuarios.U_text_ReptContraseña.setText(null);
         VistaUsuarios.U_text_Telefono.setText(null);
-        DeshabilitarHabilitar(2);
     }
 }

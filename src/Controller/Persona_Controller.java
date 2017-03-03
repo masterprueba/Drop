@@ -130,7 +130,7 @@ public class Persona_Controller {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TPersona objPer) {
         boolean boo = false;
-        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer, true));
+        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer));
 
         if (ObjectIdAfterInserting != 0) {
             p = objPer;

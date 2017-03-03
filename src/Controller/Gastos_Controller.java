@@ -8,7 +8,6 @@ package Controller;
 import Entity.TGasto;
 import Model.Gastos_Model;
 import UI.Gastos_UI;
-import UI.Views;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -17,21 +16,21 @@ import javax.swing.JOptionPane;
  *
  * @author ITERIA
  */
-public class Gastos_Controller extends Controllers{
+public class Gastos_Controller extends Controllers {
 
     private final Gastos_Model MGastos = new Gastos_Model();
     private final Gastos_UI VistaGastos;
     private static TGasto Gasto;
-    private List<TGasto> gastosresult;    
+    private List<TGasto> gastosresult;
 
     public Gastos_Controller(Gastos_UI VistaGastos) {
-        this.VistaGastos = VistaGastos;        
+        this.VistaGastos = VistaGastos;
     }
 
     public void RegistrarGasto() {
         if (Validar()) {
             LlenarObjetoGastos();
-            if (MGastos.insertar(Gasto,true) != null) {
+            if (MGastos.insertar(Gasto) != null) {
                 VaciarCampos();
                 TraerGastos(ObtenerRadiobuttonSeleccionado());
                 JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto");
@@ -126,6 +125,8 @@ public class Gastos_Controller extends Controllers{
             return 1;
         } else if (VistaGastos.jRadioButton2.isSelected() == true) {
             return 2;
+        } else if (VistaGastos.jRadioButton3.isSelected() == true) {
+            return 3;
         }
         return 2;
     }

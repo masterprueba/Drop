@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class DatosBasicosPersona_Model extends General_model {
+public class DatosBasicosPersona_Model extends Models {
     
     public TDatosBasicosPersona ConsultarCedula(TDatosBasicosPersona persona) {
         s = hibernateUtil.getSessionFactory();
