@@ -88,11 +88,18 @@ public class Codeudor_Controller extends Persona_Controller {
                 if (update(getpCodeudor())) {
 
                     if (getCli_UI().objectRefeCod.size() > 0) {
-                        List<TReferencia> temp = getRef__Controller().prepareSelect(getpCodeudor().getTDatosBasicosPersona().getTdbpCedula(), "");
-                        for (int j = 0; j < temp.size(); j++) {
-                            getRef__Controller().prepareDelete(temp.get(j));
 
-                            //System.out.println(temp.get(j).getTrefNombre());
+                        if (getRef__Controller().prepareSelect(getpCodeudor().getTDatosBasicosPersona().getTdbpCedula(), "")) {
+                            List<TReferencia> temp = new ArrayList<>();
+                            temp = getRef__Controller().getListRef();
+
+                            if (temp.size() > 0) {
+                                for (int j = 0; j < temp.size(); j++) {
+                                    getRef__Controller().prepareDelete(temp.get(j));
+
+                                    //System.out.println(temp.get(j).getTrefNombre());
+                                }
+                            }
                         }
 
                         for (int i = 0; i < getCli_UI().objectRefeCod.size(); i++) {

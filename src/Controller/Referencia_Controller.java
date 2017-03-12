@@ -38,6 +38,10 @@ public class Referencia_Controller {
         refModel = new Referencia_Model();
     }
 
+    public List<TReferencia> getListRef() {
+        return listRef;
+    }
+    
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TReferencia objRef) {
         boolean boo = false;
@@ -83,7 +87,7 @@ public class Referencia_Controller {
 //</editor-fold>  
     
 //<editor-fold defaultstate="collapsed" desc="prepare SELECT">
-    public List<TReferencia> prepareSelect(String cc, String by) {
+    public boolean prepareSelect(String cc, String by) {
         TDatosBasicosPersona temp = new TDatosBasicosPersona();
         temp.setTdbpCedula(cc);
 
@@ -100,9 +104,9 @@ public class Referencia_Controller {
                 //setDataRefCodeudor();
                 cli_UI.objectRefeCod = listRef;
             }
+            return true;
         }
-        
-        return listRef;
+        return false;
     }
 //</editor-fold>
 
