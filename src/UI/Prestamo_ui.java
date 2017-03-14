@@ -463,7 +463,8 @@ public class Prestamo_ui extends Views {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Buscando....");        
+        ListaPersonas_UI l = new ListaPersonas_UI("prestamo");
+        MainDesktop.checkInstance(l);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void P_valorprestamoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_valorprestamoFocusLost

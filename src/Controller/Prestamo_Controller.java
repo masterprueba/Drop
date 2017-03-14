@@ -9,17 +9,23 @@ import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
 import Entity.TPrestamo;
+import Model.DatosBasicosPersona_Model;
 import Model.Persona_Model;
 import Model.Prestamo_model;
+import UI.ListaPersonas_UI;
 import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +43,9 @@ public class Prestamo_Controller extends Controllers{
     private final JComboBox metodo;
     private final JComboBox interes;
     private final Prestamo_model pmodel;
+    public DefaultTableModel dfm;
+     private List<TPersona> listp;
+     private String indicador;
     
 
     public Prestamo_Controller() {
@@ -52,6 +61,7 @@ public class Prestamo_Controller extends Controllers{
         pmodel = new Prestamo_model();
         formateador = new DecimalFormat("###,###.##");
     }
+    
 
     //inserta prestamo en la bd
     public void create(TPersona cliente) {
@@ -236,5 +246,50 @@ public class Prestamo_Controller extends Controllers{
             cuota = null;
         }
         return cuota;
+    }
+     public List<TPersona> selectAll() {
+        listp = new ArrayList<TPersona>();
+        TPersona temp = new TPersona();
+        temp.setTperTipo("CLIENTE");
+        listp = new Persona_Model().SelectAllWhere(temp);
+        return listp;
+    }
+    public void initTable(JTable table) {
+        //Llenar Tabla
+        dfm = new DefaultTableModel();
+        table.setModel(dfm);
+
+        dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
+        selectAll();
+        for (int i = 0; i < listp.size(); i++) {
+            dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
+
+        }
+    }
+
+    public void mouseClickedTable(JTable table, ListaPersonas_UI lpUI) {
+        String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1));
+        for (int i = 0; i < listp.size(); i++) {
+            if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula() == Select) {
+                //System.out.println("Seleccionado" + listaP.get(i).getTperCedula());
+                switch (lpUI.elemento) {
+                    case "prestamo":
+//                        Domicilio_UI.persona = listP.get(i);
+//                        Domicilio_UI.jtfPropietario.setText(listP.get(i).getTperNombre() + " " + listP.get(i).getTperApellido());
+//                        lpUI.dispose();
+                        break;
+                    case "abono":
+//                        Cliente_UI.idPer = listP.get(i).getTperId();
+//                        Cliente_UI.jtfCedulaCliente.setText(listP.get(i).getTperCedula());
+//                        Cliente_UI.jtfNombreCliente.setText(listP.get(i).getTperNombre());
+//                        Cliente_UI.jtfApellidoCliente.setText(listP.get(i).getTperApellido());
+//                        Cliente_UI.jtfTelefonoCliente.setText(listP.get(i).getTperTel());
+//                        lpUI.dispose();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
