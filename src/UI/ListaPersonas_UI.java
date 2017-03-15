@@ -22,16 +22,14 @@ import javax.swing.table.TableRowSorter;
 public class ListaPersonas_UI extends javax.swing.JInternalFrame {
 
     private Prestamo_Controller pc;
-    private List<TPersona> listaP;
-    public static String elemento;
+    private List<TPersona> listaP;    
     private TableRowSorter trs;
 
     /**
      * Creates new form ListaPersonas_UI
      */
-    public ListaPersonas_UI(String elemento) {
-        initComponents();
-        this.elemento = elemento;
+    public ListaPersonas_UI() {
+        initComponents();        
         pc = new Prestamo_Controller();
         pc.initTable(jTable1);
 
@@ -130,6 +128,7 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         pc.mouseClickedTable(jTable1, this);
+        dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jtfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarKeyTyped

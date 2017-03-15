@@ -272,23 +272,7 @@ public class Prestamo_Controller extends Controllers{
         for (int i = 0; i < listp.size(); i++) {
             if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula() == Select) {
                 //System.out.println("Seleccionado" + listaP.get(i).getTperCedula());
-                switch (lpUI.elemento) {
-                    case "prestamo":
-//                        Domicilio_UI.persona = listP.get(i);
-//                        Domicilio_UI.jtfPropietario.setText(listP.get(i).getTperNombre() + " " + listP.get(i).getTperApellido());
-//                        lpUI.dispose();
-                        break;
-                    case "abono":
-//                        Cliente_UI.idPer = listP.get(i).getTperId();
-//                        Cliente_UI.jtfCedulaCliente.setText(listP.get(i).getTperCedula());
-//                        Cliente_UI.jtfNombreCliente.setText(listP.get(i).getTperNombre());
-//                        Cliente_UI.jtfApellidoCliente.setText(listP.get(i).getTperApellido());
-//                        Cliente_UI.jtfTelefonoCliente.setText(listP.get(i).getTperTel());
-//                        lpUI.dispose();
-                        break;
-                    default:
-                        break;
-                }
+                consultarCliente(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());
             }
         }
     }
