@@ -18,6 +18,12 @@
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TPrestamo.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/DatosBasicosPersona_Model.java</file>
         </group>
-        <group name="Coleccion2"/>
+        <group name="Coleccion2">
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Prestamo_ui.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cuota_UI.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cuota_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/ListaPersonas_UI.java</file>
+        </group>
     </open-files>
 </project-private>

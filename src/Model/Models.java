@@ -37,11 +37,14 @@ public class Models<T> {
         try {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
-            id = s.save(obj);
+            id = s.save(obj);            
             if (Bitacora(obj, indicador)) {
                 s.getTransaction().commit();
+                System.err.println("comit");
             } else {
+                System.out.println("roolback");
                 s.getTransaction().rollback();
+                
             }
             //test = true;
         } catch (Exception e) {
@@ -112,6 +115,7 @@ public class Models<T> {
             s.save((T) bitacora);
             return true;
         } catch (IOException e) {
+            System.out.println("catch "+e.getLocalizedMessage());
             return false;
         }
     }

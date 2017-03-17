@@ -5,14 +5,12 @@
  */
 package UI;
 
-import Controller.Persona_Controller;
-import Controller.Prestamo_Controller;
+import Controller.Cuota_Controller;
 import Entity.TPersona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -21,20 +19,20 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListaPersonas_UI extends javax.swing.JInternalFrame {
 
-    private Prestamo_Controller pc;
+    private Cuota_Controller pc;
     private List<TPersona> listaP;    
     private TableRowSorter trs;
-
+    private final String indicador;
     /**
      * Creates new form ListaPersonas_UI
+     * @param indicador
      */
-    public ListaPersonas_UI() {
+    public ListaPersonas_UI(String indicador) {
         initComponents();        
-        pc = new Prestamo_Controller();
+        pc = new Cuota_Controller();
         pc.initTable(jTable1);
-
-    }
-
+        this.indicador = indicador;
+    }   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,7 +125,7 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        pc.mouseClickedTable(jTable1, this);
+        pc.mouseClickedTable(jTable1, this, indicador);
         dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 

@@ -8,11 +8,19 @@ package Controller;
 import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TPrestamo;
+import Model.Persona_Model;
 import Model.Prestamo_model;
 import UI.Cuota_UI;
+import UI.ListaPersonas_UI;
+import UI.Prestamo_ui;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -23,10 +31,15 @@ public class Cuota_Controller extends Prestamo_Controller {
     private final Prestamo_model pmodel;
     private TPrestamo prestamo;
     private TCuota abono;
-
+    public DefaultTableModel dfm;
+     private List<TPersona> listp;     ;
+     
     public Cuota_Controller() {
-        pmodel = new Prestamo_model();        
-        Cuota_UI.a_fecha.setDate(new Date());
+        pmodel = new Prestamo_model();
+        if (Cuota_UI.a_fecha != null) {
+            Cuota_UI.a_fecha.setDate(new Date());
+        }
+        
     }
 
     @Override
@@ -35,11 +48,10 @@ public class Cuota_Controller extends Prestamo_Controller {
     }
 
     @Override
-    public void setClienteError(TPersona Cliente) {
-
+    public void setClienteError(TPersona Cliente) {        
     }
 
-    public boolean setData(String cc) {
+    public boolean setData(String cc) {        
         TPersona cliente = consultarCliente(cc);
 
         if (cliente != null) {            
@@ -131,5 +143,37 @@ public class Cuota_Controller extends Prestamo_Controller {
             JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
             return false;
         }
+    }
+    public List<TPersona> selectAll() {
+        listp = new ArrayList<TPersona>();
+        TPersona temp = new TPersona();
+        temp.setTperTipo("CLIENTE");
+        listp = new Persona_Model().SelectAllWhere(temp);
+        return listp;
+    }
+    public void initTable(JTable table) {
+        //Llenar Tabla
+        dfm = new DefaultTableModel();
+        table.setModel(dfm);
+
+        dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
+        selectAll();
+        for (int i = 0; i < listp.size(); i++) {
+            dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
+
+        }
+    }
+
+    public void mouseClickedTable(JTable table, ListaPersonas_UI lpUI, String ind) {
+        String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1));                        
+        for (int i = 0; i < listp.size(); i++) {
+            if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula().equals(Select)) {                
+                if (ind.equals("prestamo")) {
+                    Prestamo_ui.P_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());                    
+                }else if(ind.equals("cuota")){
+                    Cuota_UI.a_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());
+                }                    
+            }
+        }        
     }
 }
