@@ -1,5 +1,5 @@
 package Entity;
-// Generated 25/02/2017 05:26:01 PM by Hibernate Tools 4.3.1
+// Generated 16/03/2017 08:00:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,12 +13,12 @@ public class TGasto  implements java.io.Serializable {
      private Integer tgasId;
      private String tgasDesc;
      private Date tgasFecha;
-     private Integer tgasCosto;
+     private Long tgasCosto;
 
     public TGasto() {
     }
 
-    public TGasto(String tgasDesc, Date tgasFecha, Integer tgasCosto) {
+    public TGasto(String tgasDesc, Date tgasFecha, Long tgasCosto) {
        this.tgasDesc = tgasDesc;
        this.tgasFecha = tgasFecha;
        this.tgasCosto = tgasCosto;
@@ -45,11 +45,11 @@ public class TGasto  implements java.io.Serializable {
     public void setTgasFecha(Date tgasFecha) {
         this.tgasFecha = tgasFecha;
     }
-    public Integer getTgasCosto() {
+    public Long getTgasCosto() {
         return this.tgasCosto;
     }
     
-    public void setTgasCosto(Integer tgasCosto) {
+    public void setTgasCosto(Long tgasCosto) {
         this.tgasCosto = tgasCosto;
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/02/2017 05:26:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/03/2017 08:00:03 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TGasto" table="t_gasto" catalog="drop_db" optimistic-lock="version">
         <id name="tgasId" type="java.lang.Integer">
@@ -14,8 +14,8 @@
         <property name="tgasFecha" type="date">
             <column name="tgas_fecha" length="10" />
         </property>
-        <property name="tgasCosto" type="java.lang.Integer">
-            <column name="tgas_costo" />
+        <property name="tgasCosto" type="java.lang.Long">
+            <column name="tgas_costo" precision="10" scale="0" />
         </property>
     </class>
 </hibernate-mapping>
