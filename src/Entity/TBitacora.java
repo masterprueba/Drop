@@ -1,5 +1,5 @@
 package Entity;
-// Generated 16/03/2017 08:00:02 PM by Hibernate Tools 4.3.1
+// Generated 18/03/2017 01:20:58 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,15 +15,24 @@ public class TBitacora  implements java.io.Serializable {
      private Date tbitFecha;
      private String tbitRegistro;
      private String tbitIdentificador;
+     private String tbitClassname;
 
     public TBitacora() {
     }
 
+	
     public TBitacora(TLogin TLogin, Date tbitFecha, String tbitRegistro, String tbitIdentificador) {
+        this.TLogin = TLogin;
+        this.tbitFecha = tbitFecha;
+        this.tbitRegistro = tbitRegistro;
+        this.tbitIdentificador = tbitIdentificador;
+    }
+    public TBitacora(TLogin TLogin, Date tbitFecha, String tbitRegistro, String tbitIdentificador, String tbitClassname) {
        this.TLogin = TLogin;
        this.tbitFecha = tbitFecha;
        this.tbitRegistro = tbitRegistro;
        this.tbitIdentificador = tbitIdentificador;
+       this.tbitClassname = tbitClassname;
     }
    
     public Integer getTbitId() {
@@ -60,6 +69,13 @@ public class TBitacora  implements java.io.Serializable {
     
     public void setTbitIdentificador(String tbitIdentificador) {
         this.tbitIdentificador = tbitIdentificador;
+    }
+    public String getTbitClassname() {
+        return this.tbitClassname;
+    }
+    
+    public void setTbitClassname(String tbitClassname) {
+        this.tbitClassname = tbitClassname;
     }
 
 
