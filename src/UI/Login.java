@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
 
     private final Login_Controller LoginController;
     private final TLogin Login;
-
+    Cargando c;
     /**
      * Creates new form Login
      */
@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new Color(0, 0, 0, 65));
         jButton2.setBackground(new Color(0, 0, 0, 65));
         //Configurar JFrame, Centrar
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);       
     }
 
     private void CerraAplicacion() {
