@@ -102,7 +102,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                 }
                 if (prestamo != null) {
                     TCuota cuota = new TCuota(prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas, String.valueOf(Cuota_UI.a_metodo.getSelectedItem()), Cuota_UI.a_cobrador.getText());
-                    if (pmodel.insertar(cuota) != null) {
+                    if (pmodel.insertar(cuota) != null) {                       
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
                         Cuota_UI.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));

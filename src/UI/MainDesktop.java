@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Controller.Backup;
 import Controller.Login_Controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -73,6 +74,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -189,6 +191,14 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem8.setText("Backup");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
+
         jMenuItem3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/salida.png"))); // NOI18N
         jMenuItem3.setText("Salir");
@@ -266,6 +276,10 @@ public class MainDesktop extends javax.swing.JFrame {
         JInternalFrame in = new Cuota_UI().cargarInternal();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        Backup.execute();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -347,5 +361,6 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

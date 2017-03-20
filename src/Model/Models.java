@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Set;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
+import org.hibernate.metadata.ClassMetadata;
 
 /**
  *
@@ -136,5 +136,5 @@ public class Models<T> {
 //        javax.persistence.Query q = getEntityManager().createQuery(cq);
 //        return ((Long) q.getSingleResult()).intValue();
 //    }
-
+    
 }
