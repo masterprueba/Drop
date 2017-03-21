@@ -63,7 +63,7 @@ public class Gastos_Controller extends Controllers {
         }
         Gasto.setTgasFecha(VistaGastos.Comp_Fecha_Gasto.getDate());
         Gasto.setTgasDesc(VistaGastos.jTextArea1.getText());
-        Gasto.setTgasCosto(Integer.parseInt(VistaGastos.jTextField2.getText()));
+        Gasto.setTgasCosto(Long.parseLong(VistaGastos.jTextField2.getText()));
     }
 
     private void VaciarCampos() {
