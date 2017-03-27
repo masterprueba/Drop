@@ -38,6 +38,7 @@ public class Models<T> {
                 s.getTransaction().commit();
                 System.err.println("comit");
             } else {
+                id = null;
                 System.out.println("roolback");
                 s.getTransaction().rollback();
             }
@@ -45,6 +46,7 @@ public class Models<T> {
         } catch (Exception e) {
             System.out.println("Error al insertar " + e.getLocalizedMessage());
             s.getTransaction().rollback();
+            id = null;
         }
         return id;
     }
@@ -74,7 +76,6 @@ public class Models<T> {
             }
         } catch (Exception e) {
             s.getTransaction().rollback();
-            test = false;
             System.out.println("Error al editar " + e.getLocalizedMessage());
         }
         return test;
@@ -90,12 +91,12 @@ public class Models<T> {
             s.delete(entity);
             if (bitacora(entity, indicador)) {
                 s.getTransaction().commit();
+                test = true;
                 System.err.println("comit");
             } else {
                 System.out.println("roolback");
                 s.getTransaction().rollback();
             }
-            test = true;
         } catch (Exception e) {
             s.getTransaction().rollback();
             System.out.println("Error al eliminar " + e.getLocalizedMessage());
