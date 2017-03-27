@@ -8,14 +8,10 @@ package Model;
 import Controller.Login_Controller;
 import Persistence.hibernateUtil;
 import Entity.*;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.Session;
-import org.hibernate.metadata.ClassMetadata;
 
 /**
  *
@@ -37,14 +33,13 @@ public class Models<T> {
         try {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
-            id = s.save(obj);            
-            if (Bitacora(obj, indicador)) {
+            id = s.save(obj);
+            if (bitacora(obj, indicador)) {
                 s.getTransaction().commit();
                 System.err.println("comit");
             } else {
                 System.out.println("roolback");
                 s.getTransaction().rollback();
-                
             }
             //test = true;
         } catch (Exception e) {
@@ -69,9 +64,17 @@ public class Models<T> {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.update(entity);
-            s.getTransaction().commit();
-            test = true;
+            if (bitacora(entity, indicador)) {
+                s.getTransaction().commit();
+                test = true;
+                System.err.println("comit");
+            } else {
+                System.out.println("roolback");
+                s.getTransaction().rollback();
+            }
         } catch (Exception e) {
+            s.getTransaction().rollback();
+            test = false;
             System.out.println("Error al editar " + e.getLocalizedMessage());
         }
         return test;
@@ -85,9 +88,16 @@ public class Models<T> {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.delete(entity);
-            s.getTransaction().commit();
+            if (bitacora(entity, indicador)) {
+                s.getTransaction().commit();
+                System.err.println("comit");
+            } else {
+                System.out.println("roolback");
+                s.getTransaction().rollback();
+            }
             test = true;
         } catch (Exception e) {
+            s.getTransaction().rollback();
             System.out.println("Error al eliminar " + e.getLocalizedMessage());
         }
         return test;
@@ -102,20 +112,30 @@ public class Models<T> {
         return list;
     }
 
-    private boolean Bitacora(Object obj, String indicador) {
-
+    public boolean bitacora(Object obj, String indicador) {
+        boolean commit = false;
         try {
-            TBitacora bitacora = new TBitacora();
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonInString = mapper.writeValueAsString(obj);
+            final TBitacora bitacora = new TBitacora();
             bitacora.setTbitFecha(new Date());
             bitacora.setTLogin(Login_Controller.getUsuarioLogueado());
             bitacora.setTbitIdentificador(indicador);
-            bitacora.setTbitRegistro(jsonInString);
-            s.save((T) bitacora);
+            bitacora.setTbitRegistro(obj.toString());
+            bitacora.setTbitClassname(obj.getClass().getName());
+            if (!s.isConnected()) { // verifica que  haya una sesion abierta
+                s = hibernateUtil.getSessionFactory();
+                s.beginTransaction();
+                commit = true;
+            }
+            s.save(bitacora);  //GUARDA BITACORA
+            if (commit) { // si se creo una sesion ejecuta un commit
+                s.getTransaction().commit();
+            }
             return true;
-        } catch (IOException e) {
-            System.out.println("catch "+e.getLocalizedMessage());
+        } catch (Exception e) {
+            if (commit) {
+                s.getTransaction().rollback();
+            }
+            System.err.println("CATCH " + e.getLocalizedMessage());
             return false;
         }
     }
@@ -136,5 +156,5 @@ public class Models<T> {
 //        javax.persistence.Query q = getEntityManager().createQuery(cq);
 //        return ((Long) q.getSingleResult()).intValue();
 //    }
-    
+
 }

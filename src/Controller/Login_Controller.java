@@ -40,6 +40,7 @@ public class Login_Controller {
                 if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
                     UsuarioLogueado = loginresult.get(i);
+                    Lmodel.bitacora(UsuarioLogueado, "INICIO");
                     new MainDesktop().setVisible(true);                    
                     login.dispose();
                     break;

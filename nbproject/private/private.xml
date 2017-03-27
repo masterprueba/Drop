@@ -2,10 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
         <group name="Coleccion2">
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Backup_Model.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/Gastos_Controller.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Usuarios_UI.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Login_Model.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Models.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Cargando.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Persona_Model.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TBitacora.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/DatosBasicosPersona_Model.java</file>
         </group>
     </open-files>
 </project-private>
