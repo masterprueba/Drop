@@ -36,4 +36,14 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Telefono");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraGeneral() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Hora");
+        return modelo;
+    }
 }
