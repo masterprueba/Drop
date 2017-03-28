@@ -18,7 +18,7 @@ public class Bitacora_Model<B> extends Models {
         List<B> result = null;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TBitacora where tbitFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59'  and  tbitIdentificador = 'INICIO'";
+        String query = "from TBitacora where tbitFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59'  and  tbitIdentificador = 'INICIO' ORDER BY  tbitFecha DESC";
         result = s.createQuery(query).list();
         s.getTransaction().commit();
         return result;
