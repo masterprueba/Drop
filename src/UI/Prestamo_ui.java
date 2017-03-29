@@ -259,7 +259,13 @@ public class Prestamo_ui extends Views {
         jLabel9.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel9.setText("Intereses:");
 
+        P_valor_cuota.setEditable(false);
         P_valor_cuota.setText("0");
+        P_valor_cuota.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                P_valor_cuotaFocusLost(evt);
+            }
+        });
         P_valor_cuota.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 P_valor_cuotaKeyTyped(evt);
@@ -283,7 +289,7 @@ public class Prestamo_ui extends Views {
         jLabel17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel17.setText("Cantidad de Cuotas:");
 
-        P_cantcuotas.setText("0");
+        P_cantcuotas.setText("1");
         P_cantcuotas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 P_cantcuotasFocusLost(evt);
@@ -297,6 +303,8 @@ public class Prestamo_ui extends Views {
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de inicio:");
+
+        P_fecha.setDate(new java.util.Date());
 
         jButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
@@ -422,7 +430,7 @@ public class Prestamo_ui extends Views {
                 .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -438,7 +446,7 @@ public class Prestamo_ui extends Views {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -498,6 +506,10 @@ public class Prestamo_ui extends Views {
             cliente = pc.consultarCliente(P_cedula.getText());            
         }
     }//GEN-LAST:event_P_cedulaKeyPressed
+
+    private void P_valor_cuotaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_valor_cuotaFocusLost
+        pc.calcularCuota();
+    }//GEN-LAST:event_P_valor_cuotaFocusLost
 
     /**
      * @param args the command line arguments
