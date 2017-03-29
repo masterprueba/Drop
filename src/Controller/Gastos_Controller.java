@@ -8,6 +8,7 @@ package Controller;
 import Entity.TGasto;
 import Model.Gastos_Model;
 import UI.Gastos_UI;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -57,6 +58,20 @@ public class Gastos_Controller extends Controllers {
         return true;
     }
 
+    public void actualizarGasto() {
+        if (Validar()) {
+            LlenarObjetoGastos();
+            if (MGastos.editar(Gasto)) {
+                JOptionPane.showMessageDialog(null, "El gasto fue editado correctamente!");
+                VaciarCampos();
+                TraerGastos(ObtenerRadiobuttonSeleccionado());
+                desactivarBotones(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el gasto, intente nuevamente");
+            }
+        }
+    }
+
     private void LlenarObjetoGastos() {
         if (Gasto == null) {
             Gasto = new TGasto();
@@ -66,25 +81,39 @@ public class Gastos_Controller extends Controllers {
         Gasto.setTgasCosto(Long.parseLong(VistaGastos.jTextField2.getText()));
     }
 
-    private void VaciarCampos() {
+    public void VaciarCampos() {
         VistaGastos.jTextArea1.setText(null);
         VistaGastos.jTextField2.setText(null);
         VistaGastos.Comp_Fecha_Gasto.setDate(null);
+        Gasto = null;
+    }
+
+    public void traerUnGasto(MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+            int fila = VistaGastos.jTable1.rowAtPoint(evt.getPoint());
+            if (fila > -1) {
+                Gasto = (TGasto) MGastos.consultar(TGasto.class, gastosresult.get(Integer.parseInt(VistaGastos.modelo.getValueAt(fila, 0).toString()) - 1).getTgasId());
+                VistaGastos.jTextField2.setText(Gasto.getTgasCosto().toString());
+                VistaGastos.jTextArea1.setText(Gasto.getTgasDesc());
+                VistaGastos.Comp_Fecha_Gasto.setDate(Gasto.getTgasFecha());
+                desactivarBotones(1);
+            }
+        }
     }
 
     public void TraerGastos(int V) {
         switch (V) {
             case 1:
-                gastosresult = MGastos.ConsultarGastosMes((Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR));
+                gastosresult = MGastos.ConsultarGastosMes((Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR), "and tgasDesc like '" + VistaGastos.jTextField3.getText() + "%' and tgasCosto like '" + VistaGastos.jTextField4.getText() + "%'");
                 break;
             case 2:
-                gastosresult = MGastos.findAll(TGasto.class);
+                gastosresult = MGastos.findAll(TGasto.class, "tgasDesc like '" + VistaGastos.jTextField3.getText() + "%' and tgasCosto like '" + VistaGastos.jTextField4.getText() + "%'");
                 break;
             case 3:
                 if (VistaGastos.Comp_Fecha_Desde1.getDate() != null && VistaGastos.Comp_Fecha_Desde2.getDate() != null) {
                     String fecha1 = VistaGastos.Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay();
                     String fecha2 = VistaGastos.Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + "/" + (VistaGastos.Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaGastos.Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay();
-                    gastosresult = MGastos.ConsultarPorFechas(fecha1, fecha2);
+                    gastosresult = MGastos.ConsultarPorFechas(fecha1, fecha2, "and tgasDesc like '" + VistaGastos.jTextField3.getText() + "%' and tgasCosto like '" + VistaGastos.jTextField4.getText() + "%'");
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor seleccione la fecha de inicio y la fecha final");
                 }
@@ -129,5 +158,17 @@ public class Gastos_Controller extends Controllers {
             return 3;
         }
         return 2;
+    }
+
+    public void desactivarBotones(int v) {
+        if (v == 0) {
+            VistaGastos.jButton3.setEnabled(false);
+            VistaGastos.jButton4.setEnabled(false);
+            VistaGastos.jButton1.setEnabled(true);
+        } else {
+            VistaGastos.jButton3.setEnabled(true);
+            VistaGastos.jButton4.setEnabled(true);
+            VistaGastos.jButton1.setEnabled(false);
+        }
     }
 }

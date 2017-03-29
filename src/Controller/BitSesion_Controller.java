@@ -36,8 +36,8 @@ public class BitSesion_Controller extends Controllers {
             final Gson gson = new Gson();
             String fechaInicio = "";
             String fechaFin = "";
-            int comboSelect = vistaBitacora.jComboBox1.getSelectedIndex();
-            switch (comboSelect) {
+            
+            switch (vistaBitacora.jComboBox1.getSelectedIndex()) {
 
                 case 0:
                     fechaInicio = Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);

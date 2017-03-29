@@ -14,24 +14,32 @@ import java.util.List;
  */
 public class Gastos_Model<G> extends Models {
 
-    public List<G> ConsultarGastosMes(int Mes, int Año) {
+    public List<G> ConsultarGastosMes(int Mes, int Año, String sql) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TGasto where MONTH(tgasFecha) = " + Mes + " and YEAR(tgasFecha)= " + Año;
+        String query = "from TGasto where MONTH(tgasFecha) = " + Mes + " and YEAR(tgasFecha)= " + Año + " " + sql;
         List<G> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
         return result;
     }
 
-    public List<G> ConsultarPorFechas(String inicio, String fin) {
+    public List<G> ConsultarPorFechas(String inicio, String fin, String sql) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        System.err.println(inicio);
-        String query = "from TGasto where tgasFecha  BETWEEN '" + inicio + "' AND '" + fin + "'";
+        String query = "from TGasto where tgasFecha  BETWEEN '" + inicio + "' AND '" + fin + "' " + sql;
         List<G> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
         return result;
+    }
+
+    public List<G> findAll(Class clase, String sql) {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "from TGasto where " + sql;
+        List<G> list = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return list;
     }
 }

@@ -7,25 +7,17 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
         </group>
         <group>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Gastos_Model.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/BitacoraSesion_UI.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/Gastos_Controller.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/Usuarios_Controller.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TPersona.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/Login_Controller.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Login_Model.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Models.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TReferencia.hbm.xml</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TReferencia.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Referencia_Model.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Usuarios_UI.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Cargando.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/Login_Controller.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Models.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TGasto.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TLogin.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Persona_Model.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TBitacora.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TCuota.java</file>
-            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Entity/TPrestamo.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Gastos_UI.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/BitSesion_Controller.java</file>
+            <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Bitacora_Model.java</file>
         </group>
     </open-files>
 </project-private>

@@ -116,17 +116,17 @@ public class Models<T> {
     public boolean bitacora(Object obj, String indicador) {
         boolean commit = false;
         try {
+            if (!s.isConnected()) { // verifica que  haya una sesion abierta si no hay crea una
+                s = hibernateUtil.getSessionFactory();
+                s.beginTransaction();
+                commit = true;
+            }
             final TBitacora bitacora = new TBitacora();
             bitacora.setTbitFecha(new Date());
             bitacora.setTLogin(Login_Controller.getUsuarioLogueado());
             bitacora.setTbitIdentificador(indicador);
             bitacora.setTbitRegistro(obj.toString());
             bitacora.setTbitClassname(obj.getClass().getName());
-            if (!s.isConnected()) { // verifica que  haya una sesion abierta
-                s = hibernateUtil.getSessionFactory();
-                s.beginTransaction();
-                commit = true;
-            }
             s.save(bitacora);  //GUARDA BITACORA
             if (commit) { // si se creo una sesion ejecuta un commit
                 s.getTransaction().commit();
