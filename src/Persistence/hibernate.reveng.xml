@@ -41,12 +41,12 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="drop_db"/>
-  <table-filter match-name="t_cuota"/>
-  <table-filter match-name="t_persona"/>
-  <table-filter match-name="t_bitacora"/>
   <table-filter match-name="t_datos_basicos_persona"/>
-  <table-filter match-name="t_referencia"/>
+  <table-filter match-name="t_bitacora"/>
+  <table-filter match-name="t_login"/>
+  <table-filter match-name="t_cuota"/>
   <table-filter match-name="t_prestamo"/>
   <table-filter match-name="t_gasto"/>
-  <table-filter match-name="t_login"/>
+  <table-filter match-name="t_persona"/>
+  <table-filter match-name="t_referencia"/>
 </hibernate-reverse-engineering>
