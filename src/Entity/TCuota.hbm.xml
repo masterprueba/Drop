@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 30/03/2017 11:24:06 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 1/04/2017 07:05:10 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <id name="tcuoId" type="java.lang.Integer">
             <column name="tcuo_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="TCobrador" class="Entity.TCobrador" fetch="select">
+            <column name="tcuo_tcob_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TPago" class="Entity.TPago" fetch="select">
+            <column name="tcuo_tpag_id" not-null="true" />
+        </many-to-one>
         <many-to-one name="TPrestamo" class="Entity.TPrestamo" fetch="select">
             <column name="tcuo_tpre_id" not-null="true" />
         </many-to-one>
@@ -28,12 +34,6 @@
         </property>
         <property name="tcuoCuotasPagadas" type="int">
             <column name="tcuo_cuotas_pagadas" not-null="true" />
-        </property>
-        <property name="tcuoMetodoPago" type="string">
-            <column name="tcuo_metodo_pago" length="45" not-null="true" />
-        </property>
-        <property name="tcuoCobrador" type="string">
-            <column name="tcuo_cobrador" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

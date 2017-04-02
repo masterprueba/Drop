@@ -1,5 +1,5 @@
 package Entity;
-// Generated 30/03/2017 11:24:05 PM by Hibernate Tools 4.3.1
+// Generated 1/04/2017 07:05:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,25 +11,25 @@ public class TCuota  implements java.io.Serializable {
 
 
      private Integer tcuoId;
+     private TCobrador TCobrador;
+     private TPago TPago;
      private TPrestamo TPrestamo;
      private Date tcuoFecha;
      private long tcuoAbono;
      private long tcuoNuevoSaldo;
      private int tcuoCuotasPagadas;
-     private String tcuoMetodoPago;
-     private String tcuoCobrador;
 
     public TCuota() {
     }
 
-    public TCuota(TPrestamo TPrestamo, Date tcuoFecha, long tcuoAbono, long tcuoNuevoSaldo, int tcuoCuotasPagadas, String tcuoMetodoPago, String tcuoCobrador) {
+    public TCuota(TCobrador TCobrador, TPago TPago, TPrestamo TPrestamo, Date tcuoFecha, long tcuoAbono, long tcuoNuevoSaldo, int tcuoCuotasPagadas) {
+       this.TCobrador = TCobrador;
+       this.TPago = TPago;
        this.TPrestamo = TPrestamo;
        this.tcuoFecha = tcuoFecha;
        this.tcuoAbono = tcuoAbono;
        this.tcuoNuevoSaldo = tcuoNuevoSaldo;
        this.tcuoCuotasPagadas = tcuoCuotasPagadas;
-       this.tcuoMetodoPago = tcuoMetodoPago;
-       this.tcuoCobrador = tcuoCobrador;
     }
    
     public Integer getTcuoId() {
@@ -38,6 +38,20 @@ public class TCuota  implements java.io.Serializable {
     
     public void setTcuoId(Integer tcuoId) {
         this.tcuoId = tcuoId;
+    }
+    public TCobrador getTCobrador() {
+        return this.TCobrador;
+    }
+    
+    public void setTCobrador(TCobrador TCobrador) {
+        this.TCobrador = TCobrador;
+    }
+    public TPago getTPago() {
+        return this.TPago;
+    }
+    
+    public void setTPago(TPago TPago) {
+        this.TPago = TPago;
     }
     public TPrestamo getTPrestamo() {
         return this.TPrestamo;
@@ -73,20 +87,6 @@ public class TCuota  implements java.io.Serializable {
     
     public void setTcuoCuotasPagadas(int tcuoCuotasPagadas) {
         this.tcuoCuotasPagadas = tcuoCuotasPagadas;
-    }
-    public String getTcuoMetodoPago() {
-        return this.tcuoMetodoPago;
-    }
-    
-    public void setTcuoMetodoPago(String tcuoMetodoPago) {
-        this.tcuoMetodoPago = tcuoMetodoPago;
-    }
-    public String getTcuoCobrador() {
-        return this.tcuoCobrador;
-    }
-    
-    public void setTcuoCobrador(String tcuoCobrador) {
-        this.tcuoCobrador = tcuoCobrador;
     }
 
 

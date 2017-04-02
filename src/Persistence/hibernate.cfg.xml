@@ -14,6 +14,8 @@
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="Entity/TBitacora.hbm.xml"/>
     <mapping resource="Entity/TReferencia.hbm.xml"/>
+    <mapping resource="Entity/TCobrador.hbm.xml"/>
+    <mapping resource="Entity/TPago.hbm.xml"/>
     <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TGasto.hbm.xml"/>
