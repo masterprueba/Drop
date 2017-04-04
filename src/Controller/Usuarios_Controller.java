@@ -37,8 +37,8 @@ public class Usuarios_Controller extends Controllers {
                 Persona = new TDatosBasicosPersona();
                 Login = new TLogin();
                 LlenarObjetosPersonaLogin();
-                if (PModel.insertar(Persona) != null) {
-                    if (LModel.insertar(Login) != null) {
+                if (PModel.insertar(Persona, "USUARIOS") != null) {
+                    if (LModel.insertar(Login, "USUARIOS") != null) {
                         JOptionPane.showMessageDialog(null, "Se registro al nuevo usuario exitosamente!");
                         VerUsuarios();
                         VaciarCampos();
@@ -116,8 +116,8 @@ public class Usuarios_Controller extends Controllers {
         if (Validar()) {
             LlenarObjetosPersonaLogin();
             if (LModel.ConsultarUsuario(Login, 2) == null) {
-                if (PModel.editar(Persona)) {
-                    if (LModel.editar(Login)) {
+                if (PModel.editar(Persona, "USUARIOS")) {
+                    if (LModel.editar(Login, "USUARIOS")) {
                         VaciarCampos();
                         VerUsuarios();
                         DeshabilitarHabilitar(1);

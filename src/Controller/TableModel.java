@@ -52,6 +52,17 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Cedula");
         modelo.addColumn("Nombre");
+        modelo.addColumn("id");
+        return modelo;
+    }
+
+    public DefaultTableModel historialInicio() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Año");
+        modelo.addColumn("Mes");
+        modelo.addColumn("Dia");
+        modelo.addColumn("Hora");
         return modelo;
     }
 }

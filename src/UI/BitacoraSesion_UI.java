@@ -24,18 +24,25 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
     public BitacoraSesion_UI() {
         bitController = new BitSesion_Controller(this);
         modelo = new TableModel().bitacoraGeneral();
-        modelo2 = new TableModel().bitacoraGeneral();
+        modelo2 = new TableModel().bitacoraIndividual();
         initComponents();
         cargarComponentes();
         bitController.desactivarFechas(1);
         bitController.verBitacoraGeneral();
+        bitController.verIndependiente();
     }
 
     private void cargarComponentes() {
         jTable1.setModel(modelo);
-        jTable2.setModel(modelo2);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+
+        jTable2.setModel(modelo2);
+        jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
+//        jTable2.getColumnModel().getColumn(3).setPreferredWidth(0);
+//        jTable2.getColumnModel().getColumn(3).setMaxWidth(0);
+//        jTable2.getColumnModel().getColumn(3).setMinWidth(0);
+
     }
 
     public javax.swing.JInternalFrame cargarInternal() {
@@ -70,6 +77,8 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setClosable(true);
+        jInternalFrame1.setIconifiable(true);
         jInternalFrame1.setVisible(true);
 
         jLabel1.setText("HISTORIAL DE INICIO DE SESION");
@@ -203,7 +212,7 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,7 +247,7 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        
+        bitController.bitacoraUsuario(evt);
     }//GEN-LAST:event_jTable2MouseClicked
 
     /**

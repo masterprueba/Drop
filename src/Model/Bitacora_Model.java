@@ -23,4 +23,14 @@ public class Bitacora_Model<B> extends Models {
         s.getTransaction().commit();
         return result;
     }
+
+    public List<B> consultarInicioUsuario(String id) {
+        List<B> result = null;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "select bitacora from TBitacora as bitacora  inner join bitacora.TLogin as login on  login.TDatosBasicosPersona.tdbpId = " + id + "  where  bitacora.tbitIdentificador = 'INICIO' ORDER BY  bitacora.tbitFecha DESC";
+        result = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return result;
+    }
 }

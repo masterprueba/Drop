@@ -5,17 +5,28 @@
  */
 package UI;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ITERIA
  */
-public class Bitacora_Usario extends javax.swing.JInternalFrame {
+public class Bitacora_Usuario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Bitacora_Usario
+     *
+     * @param modelo
+     * @param nombre
      */
-    public Bitacora_Usario() {
+    public Bitacora_Usuario(DefaultTableModel modelo, String nombre) {
         initComponents();
+        jTable1.setModel(modelo);
+        jLabel2.setText(nombre);
+    }
+    
+    public javax.swing.JInternalFrame cargarInternal() {
+        return this;
     }
 
     /**
@@ -45,9 +56,7 @@ public class Bitacora_Usario extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
+        jLabel1.setText("HISTORIAL INICIO DE SESION");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,13 +65,13 @@ public class Bitacora_Usario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel1)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,7 +79,7 @@ public class Bitacora_Usario extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)

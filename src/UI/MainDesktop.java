@@ -74,6 +74,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -188,6 +189,9 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6.add(jMenuItem9);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Informes");
+        jMenuBar1.add(jMenu7);
 
         jMenu2.setForeground(new java.awt.Color(255, 102, 0));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
@@ -374,6 +378,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

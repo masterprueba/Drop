@@ -11,6 +11,8 @@ import Entity.TLogin;
 import Model.Bitacora_Model;
 import Model.DatosBasicosPersona_Model;
 import UI.BitacoraSesion_UI;
+import UI.Bitacora_Usuario;
+import UI.MainDesktop;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.awt.event.MouseEvent;
@@ -18,7 +20,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,7 +34,6 @@ public class BitSesion_Controller extends Controllers {
     private final BitacoraSesion_UI vistaBitacora;
     private List<TBitacora> lBitacora;
     private final DatosBasicosPersona_Model mLogin = new DatosBasicosPersona_Model();
-    private List<TDatosBasicosPersona> listLogin;
 
     public BitSesion_Controller(BitacoraSesion_UI vistaBitacora) {
         this.vistaBitacora = vistaBitacora;
@@ -100,13 +103,14 @@ public class BitSesion_Controller extends Controllers {
     }
 
     public void verIndependiente() {
-        listLogin = mLogin.ConsultarPersonasConLogin();
+        List<TDatosBasicosPersona> listLogin = mLogin.ConsultarPersonasConLogin();
         vistaBitacora.modelo2.setNumRows(0);
         if (!listLogin.isEmpty()) {
             for (int i = 0; i < listLogin.size(); i++) {
                 String[] fila = new String[6];
                 fila[1] = listLogin.get(i).getTdbpCedula();
                 fila[2] = listLogin.get(i).getTdbpNombre() + " " + listLogin.get(i).getTdbpApellido();
+                fila[3] = listLogin.get(i).getTdbpId().toString();
                 vistaBitacora.modelo2.addRow(fila);
             }
             numerarTabla(vistaBitacora.modelo2);
@@ -117,7 +121,25 @@ public class BitSesion_Controller extends Controllers {
         if (evt.getClickCount() == 2) {
             int fila = vistaBitacora.jTable2.rowAtPoint(evt.getPoint());
             if (fila > -1) {
-                
+                DefaultTableModel model = new TableModel().historialInicio();
+                lBitacora = mBitacora.consultarInicioUsuario(vistaBitacora.modelo2.getValueAt(fila, 3).toString());
+                if (!lBitacora.isEmpty()) {
+                    for (int i = 0; i < lBitacora.size(); i++) {
+                        String[] filas = new String[6];
+//                        filas[1] = new SimpleDateFormat("yyyy").format(lBitacora.get(i).getTbitFecha());
+//                        filas[2] = new SimpleDateFormat("MM").format(lBitacora.get(i).getTbitFecha());
+//                        filas[3] = new SimpleDateFormat("dd").format(lBitacora.get(i).getTbitFecha());
+//                        filas[3] = new SimpleDateFormat("HH").format(lBitacora.get(i).getTbitFecha());
+                        filas[1] = "gggggggggggggggggg";
+                        filas[2] = "gggggggggggggggggg";
+                        filas[3] = "gggggggggggggggggg";
+                        filas[3] = "gggggggggggggggggg";
+                        model.addRow(filas);
+                    }
+                }
+                Bitacora_Usuario run = new Bitacora_Usuario(model, vistaBitacora.modelo2.getValueAt(fila, 2).toString());
+                JInternalFrame in = run.cargarInternal();
+                MainDesktop.DesktopPaneMain.add(in);
             }
         }
     }
