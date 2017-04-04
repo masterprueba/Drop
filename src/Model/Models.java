@@ -26,7 +26,7 @@ public class Models<T> {
 
     }
 
-    public Serializable insertar(T obj) {
+    public Serializable insertar(T obj, String modulo) {
         //boolean test = false;
         String indicador = "INSERT";
         Serializable id = null;
@@ -34,7 +34,7 @@ public class Models<T> {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             id = s.save(obj);
-            if (bitacora(obj, indicador)) {
+            if (bitacora(obj, indicador, modulo)) {
                 s.getTransaction().commit();
                 System.err.println("comit");
             } else {
@@ -59,14 +59,14 @@ public class Models<T> {
         return Objecto;
     }
 
-    public boolean editar(T entity) {
+    public boolean editar(T entity, String modulo) {
         String indicador = "UPDATE";
         boolean test = false;
         try {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.update(entity);
-            if (bitacora(entity, indicador)) {
+            if (bitacora(entity, indicador, modulo)) {
                 s.getTransaction().commit();
                 test = true;
                 System.err.println("comit");
@@ -82,14 +82,14 @@ public class Models<T> {
     }
 //
 
-    public boolean eliminar(T entity) {
+    public boolean eliminar(T entity, String modulo) {
         String indicador = "DELETE";
         boolean test = false;
         try {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
             s.delete(entity);
-            if (bitacora(entity, indicador)) {
+            if (bitacora(entity, indicador, modulo)) {
                 s.getTransaction().commit();
                 test = true;
                 System.err.println("comit");
@@ -113,7 +113,7 @@ public class Models<T> {
         return list;
     }
 
-    public boolean bitacora(Object obj, String indicador) {
+    public boolean bitacora(Object obj, String indicador, String modulo) {
         boolean commit = false;
         try {
             if (!s.isConnected()) { // verifica que  haya una sesion abierta si no hay crea una
@@ -127,6 +127,7 @@ public class Models<T> {
             bitacora.setTbitIdentificador(indicador);
             bitacora.setTbitRegistro(obj.toString());
             bitacora.setTbitClassname(obj.getClass().getName());
+            bitacora.setTbitModulo(modulo);
             s.save(bitacora);  //GUARDA BITACORA
             if (commit) { // si se creo una sesion ejecuta un commit
                 s.getTransaction().commit();

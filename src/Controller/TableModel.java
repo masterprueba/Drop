@@ -46,4 +46,12 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Hora");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraIndividual() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
+        return modelo;
+    }
 }

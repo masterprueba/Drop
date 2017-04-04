@@ -6,11 +6,14 @@
 package Controller;
 
 import Entity.TBitacora;
+import Entity.TDatosBasicosPersona;
 import Entity.TLogin;
 import Model.Bitacora_Model;
+import Model.DatosBasicosPersona_Model;
 import UI.BitacoraSesion_UI;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -26,6 +29,8 @@ public class BitSesion_Controller extends Controllers {
     private final Bitacora_Model mBitacora = new Bitacora_Model();
     private final BitacoraSesion_UI vistaBitacora;
     private List<TBitacora> lBitacora;
+    private final DatosBasicosPersona_Model mLogin = new DatosBasicosPersona_Model();
+    private List<TDatosBasicosPersona> listLogin;
 
     public BitSesion_Controller(BitacoraSesion_UI vistaBitacora) {
         this.vistaBitacora = vistaBitacora;
@@ -36,7 +41,7 @@ public class BitSesion_Controller extends Controllers {
             final Gson gson = new Gson();
             String fechaInicio = "";
             String fechaFin = "";
-            
+
             switch (vistaBitacora.jComboBox1.getSelectedIndex()) {
 
                 case 0:
@@ -58,7 +63,6 @@ public class BitSesion_Controller extends Controllers {
                         JOptionPane.showMessageDialog(null, "Por favor seleccione la fecha de inicio y la fecha final");
                     }
                     break;
-
             }
             lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin);
             vistaBitacora.modelo.setNumRows(0);
@@ -92,6 +96,29 @@ public class BitSesion_Controller extends Controllers {
             vistaBitacora.Comp_Fecha_Desde1.setEnabled(true);
             vistaBitacora.Comp_Fecha_Desde2.setEnabled(true);
             vistaBitacora.jButton3.setEnabled(true);
+        }
+    }
+
+    public void verIndependiente() {
+        listLogin = mLogin.ConsultarPersonasConLogin();
+        vistaBitacora.modelo2.setNumRows(0);
+        if (!listLogin.isEmpty()) {
+            for (int i = 0; i < listLogin.size(); i++) {
+                String[] fila = new String[6];
+                fila[1] = listLogin.get(i).getTdbpCedula();
+                fila[2] = listLogin.get(i).getTdbpNombre() + " " + listLogin.get(i).getTdbpApellido();
+                vistaBitacora.modelo2.addRow(fila);
+            }
+            numerarTabla(vistaBitacora.modelo2);
+        }
+    }
+
+    public void bitacoraUsuario(MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+            int fila = vistaBitacora.jTable2.rowAtPoint(evt.getPoint());
+            if (fila > -1) {
+                
+            }
         }
     }
 }
