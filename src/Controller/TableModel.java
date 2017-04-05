@@ -37,7 +37,7 @@ public class TableModel extends DefaultTableModel {
         return modelo;
     }
 
-    public DefaultTableModel bitacoraGeneral() {
+    public DefaultTableModel bitacoraGeneralInicioSession() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Cedula");
@@ -47,7 +47,7 @@ public class TableModel extends DefaultTableModel {
         return modelo;
     }
 
-    public DefaultTableModel bitacoraIndividual() {
+    public DefaultTableModel bitacoraIndividualInicioSession() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Cedula");
@@ -56,7 +56,7 @@ public class TableModel extends DefaultTableModel {
         return modelo;
     }
 
-    public DefaultTableModel historialInicio() {
+    public DefaultTableModel historialUsuarioInicioSession() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Año");

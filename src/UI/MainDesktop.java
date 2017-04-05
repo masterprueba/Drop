@@ -74,6 +74,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -188,6 +189,14 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem9);
 
+        jMenuItem10.setText("Historial de prestamos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Informes");
@@ -300,10 +309,14 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       JInternalFrame in = new BitacoraSesion_UI().cargarInternal();
+       JInternalFrame in = new Bitacora_UI("INICIO").cargarInternal();
         DesktopPaneMain.add(in);
         in.moveToFront();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+       
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -381,6 +394,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

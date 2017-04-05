@@ -5,7 +5,7 @@
  */
 package UI;
 
-import Controller.BitSesion_Controller;
+import Controller.Bitacora_Controller;
 import Controller.TableModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,36 +13,46 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class BitacoraSesion_UI extends javax.swing.JFrame {
+public class Bitacora_UI extends javax.swing.JFrame {
 
     /**
-     * Creates new form BitacoraSesion_UI
+     * Creates new form Bitacora_UI
      */
-    public final DefaultTableModel modelo, modelo2;
-    private final BitSesion_Controller bitController;
+    public DefaultTableModel modeloTabla1, modeloTabla2;
+    private final Bitacora_Controller bitController;
+    public final String bitacora;
 
-    public BitacoraSesion_UI() {
-        bitController = new BitSesion_Controller(this);
-        modelo = new TableModel().bitacoraGeneral();
-        modelo2 = new TableModel().bitacoraIndividual();
+    public Bitacora_UI(String bit) {
+        bitacora = bit;
+        bitController = new Bitacora_Controller(this);
         initComponents();
-        cargarComponentes();
+        switch (bitacora) {
+            case "INICIO":
+                loadModel();
+                cargarComponentes();
+        }
         bitController.desactivarFechas(1);
         bitController.verBitacoraGeneral();
         bitController.verIndependiente();
     }
 
     private void cargarComponentes() {
-        jTable1.setModel(modelo);
+        jTable1.setModel(modeloTabla1);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
 
-        jTable2.setModel(modelo2);
+        jTable2.setModel(modeloTabla2);
         jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
-//        jTable2.getColumnModel().getColumn(3).setPreferredWidth(0);
-//        jTable2.getColumnModel().getColumn(3).setMaxWidth(0);
-//        jTable2.getColumnModel().getColumn(3).setMinWidth(0);
 
+    }
+
+    private void loadModel() {
+        switch (bitacora) {
+            case "INICIO":
+                modeloTabla1 = new TableModel().bitacoraGeneralInicioSession();
+                modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
+                break;
+        }
     }
 
     public javax.swing.JInternalFrame cargarInternal() {
@@ -212,7 +222,7 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -253,38 +263,6 @@ public class BitacoraSesion_UI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BitacoraSesion_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BitacoraSesion_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BitacoraSesion_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BitacoraSesion_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BitacoraSesion_UI().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;

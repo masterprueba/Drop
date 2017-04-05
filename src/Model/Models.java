@@ -28,7 +28,7 @@ public class Models<T> {
 
     public Serializable insertar(T obj, String modulo) {
         //boolean test = false;
-        String indicador = "INSERT";
+        String indicador = "AGREGO";
         Serializable id = null;
         try {
             s = hibernateUtil.getSessionFactory();
@@ -60,7 +60,7 @@ public class Models<T> {
     }
 
     public boolean editar(T entity, String modulo) {
-        String indicador = "UPDATE";
+        String indicador = "EDITO";
         boolean test = false;
         try {
             s = hibernateUtil.getSessionFactory();
@@ -83,7 +83,7 @@ public class Models<T> {
 //
 
     public boolean eliminar(T entity, String modulo) {
-        String indicador = "DELETE";
+        String indicador = "ELIMINO";
         boolean test = false;
         try {
             s = hibernateUtil.getSessionFactory();
