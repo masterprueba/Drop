@@ -81,5 +81,4 @@ public class TLogin implements java.io.Serializable {
 
         return json;
     }
-
 }

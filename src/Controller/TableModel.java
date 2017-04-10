@@ -65,4 +65,16 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Hora");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraGeneralPrestamo() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Tipo de accion");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Valor del prestamo");
+        return modelo;
+    }
 }

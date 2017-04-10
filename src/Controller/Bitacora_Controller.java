@@ -7,7 +7,7 @@ package Controller;
 
 import Entity.TBitacora;
 import Entity.TDatosBasicosPersona;
-import Entity.TLogin;
+import Entity.*;
 import Model.Bitacora_Model;
 import Model.DatosBasicosPersona_Model;
 import UI.Bitacora_UI;
@@ -46,11 +46,11 @@ public class Bitacora_Controller extends Controllers {
         try {
             final Gson gson = new Gson();
             obtenerFechas();
-
+            //CASOS PARA LOS MODULOS
             switch (vistaBitacora.bitacora) {
                 //PARA INICIO DE SESION
                 case "INICIO":
-                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin);
+                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, 1);
                     if (!lBitacora.isEmpty()) {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TLogin login = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TLogin.class);
@@ -60,6 +60,17 @@ public class Bitacora_Controller extends Controllers {
                             fila[3] = new SimpleDateFormat("dd/MM/yyyy").format(lBitacora.get(i).getTbitFecha());
                             fila[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                             fila[5] = lBitacora.get(i).getTbitIdentificador();
+                            vistaBitacora.modeloTabla1.addRow(fila);
+                        }
+                    }
+                    break;
+                case "PRESTAMO":
+                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, 2);
+                    if (!lBitacora.isEmpty()) {
+                        for (int i = 0; i < lBitacora.size(); i++) {
+                            TPrestamo prestamo = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class);
+                            String[] fila = new String[6];
+                            //DATOS
                             vistaBitacora.modeloTabla1.addRow(fila);
                         }
                     }

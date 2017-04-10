@@ -108,5 +108,4 @@ public class TDatosBasicosPersona implements java.io.Serializable {
                 + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]}";
         return json;
     }
-
 }
