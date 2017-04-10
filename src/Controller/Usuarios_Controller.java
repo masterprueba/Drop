@@ -31,17 +31,17 @@ public class Usuarios_Controller extends Controllers {
         this.VistaUsuarios = VistaUsuarios;
     }
 
-    public void Registrar() {
-        if (Validar()) {
-            if (VerificarDatosExist()) {
+    public void registrar() {
+        if (validar()) {
+            if (verificarDatosExist()) {
                 Persona = new TDatosBasicosPersona();
                 Login = new TLogin();
-                LlenarObjetosPersonaLogin();
+                llenarObjetosPersonaLogin();
                 if (PModel.insertar(Persona, "USUARIOS") != null) {
                     if (LModel.insertar(Login, "USUARIOS") != null) {
                         JOptionPane.showMessageDialog(null, "Se registro al nuevo usuario exitosamente!");
-                        VerUsuarios();
-                        VaciarCampos();
+                        verUsuarios();
+                        vaciarCampos();
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error al insertar el login de la persona");
                     }
@@ -52,7 +52,7 @@ public class Usuarios_Controller extends Controllers {
         }
     }
 
-    private boolean Validar() {
+    private boolean validar() {
         String mensaje = "";
 
         if (VistaUsuarios.U_text_Identificacion.getText().equals("")) {
@@ -82,8 +82,8 @@ public class Usuarios_Controller extends Controllers {
     }
 
     //Verifica que no exista la identificacion  ni el usuario en la base de datos
-    private boolean VerificarDatosExist() {
-        LlenarObjetosPersonaLogin();
+    private boolean verificarDatosExist() {
+        llenarObjetosPersonaLogin();
         Persona = PModel.ConsultarCedula(Persona);
         if (Persona == null) {
             //consultar si existe el  login
@@ -99,7 +99,7 @@ public class Usuarios_Controller extends Controllers {
         return false;
     }
 
-    public void VerUsuarios() {
+    public void verUsuarios() {
         personaresult = PModel.ConsultarPersonasConLogin();
         VistaUsuarios.modelo.setNumRows(0);
         for (int i = 0; i < personaresult.size(); i++) {
@@ -112,15 +112,15 @@ public class Usuarios_Controller extends Controllers {
         numerarTabla(VistaUsuarios.modelo);
     }
 
-    public void ActualizarUsuario() {
-        if (Validar()) {
-            LlenarObjetosPersonaLogin();
+    public void actualizarUsuario() {
+        if (validar()) {
+            llenarObjetosPersonaLogin();
             if (LModel.ConsultarUsuario(Login, 2) == null) {
                 if (PModel.editar(Persona, "USUARIOS")) {
                     if (LModel.editar(Login, "USUARIOS")) {
-                        VaciarCampos();
-                        VerUsuarios();
-                        DeshabilitarHabilitar(1);
+                        vaciarCampos();
+                        verUsuarios();
+                        deshabilitarHabilitar(1);
                         JOptionPane.showMessageDialog(null, "Los datos del usuario han sido actualizados exitosamente!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error al actualizar los datos del login");
@@ -134,7 +134,7 @@ public class Usuarios_Controller extends Controllers {
         }
     }
 
-    public void DeshabilitarHabilitar(int V) {
+    public void deshabilitarHabilitar(int V) {
         switch (V) {
             case 1:
                 VistaUsuarios.U_btn_Guardar.setEnabled(false);
@@ -153,16 +153,16 @@ public class Usuarios_Controller extends Controllers {
 
     }
 
-    public void TraerUsuario(MouseEvent evt) {
+    public void traerUsuario(MouseEvent evt) {
         if (evt.getClickCount() == 2) {
             int fila = VistaUsuarios.U_jtable_VerUsuario.rowAtPoint(evt.getPoint());
             if (fila > -1) {
-                LlenarObjetosPersonaLogin();
+                llenarObjetosPersonaLogin();
                 Persona.setTdbpCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
                 Persona = PModel.ConsultarCedula(Persona);
                 Login.setTDatosBasicosPersona(Persona);
                 Login = LModel.ConsultarUsuario(Login, 3);
-                DeshabilitarHabilitar(2);
+                deshabilitarHabilitar(2);
                 if (Persona != null) {
                     VistaUsuarios.U_text_Identificacion.setText(Persona.getTdbpCedula());
                     VistaUsuarios.U_text_NomComplet.setText(Persona.getTdbpNombre());
@@ -178,7 +178,7 @@ public class Usuarios_Controller extends Controllers {
         }
     }
 
-    private void LlenarObjetosPersonaLogin() {
+    private void llenarObjetosPersonaLogin() {
         if (Persona == null) {
             Persona = new TDatosBasicosPersona();
         }
@@ -196,7 +196,7 @@ public class Usuarios_Controller extends Controllers {
         Login.setTDatosBasicosPersona(Persona);
     }
 
-    public void VaciarCampos() {
+    public void vaciarCampos() {
         VistaUsuarios.U_text_Identificacion.setText(null);
         VistaUsuarios.U_text_NomComplet.setText(null);
         VistaUsuarios.U_text_NomComplet1.setText(null);

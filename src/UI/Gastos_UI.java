@@ -5,7 +5,7 @@
  */
 package UI;
 
-import Controller.Gastos_Controller;
+import Controller.gastos_Controller;
 import Controller.TableModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,19 +15,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Gastos_UI extends Views {
 
-    private final Gastos_Controller GControl;
+    private final gastos_Controller GControl;
     public final DefaultTableModel modelo;
 
     /**
      * Creates new form Gastos_UI
      */
     public Gastos_UI() {
-        GControl = new Gastos_Controller(this);
+        GControl = new gastos_Controller(this);
         modelo = new TableModel().VerGastos();
         initComponents();
         CargarComponentes();
-        GControl.DesactivarFechas(1);
-        GControl.TraerGastos(1);
+        GControl.desactivarFechas(1);
+        GControl.traerGastos(1);
     }
 
     public javax.swing.JInternalFrame cargarInternal() {
@@ -397,21 +397,21 @@ public class Gastos_UI extends Views {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        GControl.DesactivarFechas(1);
-        GControl.TraerGastos(1);
+        GControl.desactivarFechas(1);
+        GControl.traerGastos(1);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        GControl.DesactivarFechas(1);
-        GControl.TraerGastos(2);
+        GControl.desactivarFechas(1);
+        GControl.traerGastos(2);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        GControl.DesactivarFechas(0);
+        GControl.desactivarFechas(0);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GControl.RegistrarGasto();
+        GControl.registrarGasto();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
@@ -419,7 +419,7 @@ public class Gastos_UI extends Views {
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        GControl.TraerGastos(3);
+        GControl.traerGastos(3);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
@@ -427,7 +427,7 @@ public class Gastos_UI extends Views {
     }//GEN-LAST:event_jTextArea1KeyTyped
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        GControl.TraerGastos(GControl.ObtenerRadiobuttonSeleccionado());
+        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
     }//GEN-LAST:event_jTextField3KeyReleased
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
@@ -435,7 +435,7 @@ public class Gastos_UI extends Views {
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-        GControl.TraerGastos(GControl.ObtenerRadiobuttonSeleccionado());
+        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
     }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -443,7 +443,7 @@ public class Gastos_UI extends Views {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        GControl.VaciarCampos();
+        GControl.vaciarCampos();
         GControl.desactivarBotones(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 

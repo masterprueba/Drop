@@ -46,21 +46,26 @@ public class Bitacora_Controller extends Controllers {
         try {
             final Gson gson = new Gson();
             obtenerFechas();
-            lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin);
-            vistaBitacora.modeloTabla1.setNumRows(0);
-            if (!lBitacora.isEmpty()) {
-                for (int i = 0; i < lBitacora.size(); i++) {
-                    TLogin login = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TLogin.class);
-                    String[] fila = new String[6];
-                    fila[1] = login.getTDatosBasicosPersona().getTdbpCedula();
-                    fila[2] = login.getTDatosBasicosPersona().getTdbpNombre() + " " + login.getTDatosBasicosPersona().getTdbpApellido();
-                    fila[3] = new SimpleDateFormat("dd/MM/yyyy").format(lBitacora.get(i).getTbitFecha());
-                    fila[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
-                    fila[5] = lBitacora.get(i).getTbitIdentificador();
-                    vistaBitacora.modeloTabla1.addRow(fila);
-                }
-                numerarTabla(vistaBitacora.modeloTabla1);
+
+            switch (vistaBitacora.bitacora) {
+                //PARA INICIO DE SESION
+                case "INICIO":
+                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin);
+                    if (!lBitacora.isEmpty()) {
+                        for (int i = 0; i < lBitacora.size(); i++) {
+                            TLogin login = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TLogin.class);
+                            String[] fila = new String[6];
+                            fila[1] = login.getTDatosBasicosPersona().getTdbpCedula();
+                            fila[2] = login.getTDatosBasicosPersona().getTdbpNombre() + " " + login.getTDatosBasicosPersona().getTdbpApellido();
+                            fila[3] = new SimpleDateFormat("dd/MM/yyyy").format(lBitacora.get(i).getTbitFecha());
+                            fila[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                            fila[5] = lBitacora.get(i).getTbitIdentificador();
+                            vistaBitacora.modeloTabla1.addRow(fila);
+                        }
+                    }
+                    break;
             }
+            numerarTabla(vistaBitacora.modeloTabla1);
         } catch (JsonSyntaxException ex) {
             JOptionPane.showMessageDialog(vistaBitacora, "Error parseando a Json" + ex);
         }
@@ -68,7 +73,6 @@ public class Bitacora_Controller extends Controllers {
 
     private void obtenerFechas() {
         switch (vistaBitacora.jComboBox1.getSelectedIndex()) {
-
             case 0:
                 fechaInicio = Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
                 fechaFin = fechaInicio;
@@ -126,19 +130,23 @@ public class Bitacora_Controller extends Controllers {
         if (evt.getClickCount() == 2) {
             int fila = vistaBitacora.jTable2.rowAtPoint(evt.getPoint());
             if (fila > -1) {
-                DefaultTableModel model = new TableModel().historialUsuarioInicioSession();
-                lBitacora = mBitacora.consultarInicioUsuario(vistaBitacora.modeloTabla2.getValueAt(fila, 3).toString());
-                if (!lBitacora.isEmpty()) {
-                    for (int i = 0; i < lBitacora.size(); i++) {
-                        String[] filas = new String[6];
-                        filas[1] = new SimpleDateFormat("yyyy").format(lBitacora.get(i).getTbitFecha());
-                        filas[2] = new SimpleDateFormat("MM").format(lBitacora.get(i).getTbitFecha());
-                        filas[3] = new SimpleDateFormat("dd").format(lBitacora.get(i).getTbitFecha());
-                        filas[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
-                        model.addRow(filas);
-                    }
-                    numerarTabla(model);
+                DefaultTableModel model = null;
+                switch (vistaBitacora.bitacora) {
+                    case "INICIO":
+                        new TableModel().historialUsuarioInicioSession();
+                        lBitacora = mBitacora.consultarInicioUsuario(vistaBitacora.modeloTabla2.getValueAt(fila, 3).toString());
+                        if (!lBitacora.isEmpty()) {
+                            for (int i = 0; i < lBitacora.size(); i++) {
+                                String[] filas = new String[6];
+                                filas[1] = new SimpleDateFormat("yyyy").format(lBitacora.get(i).getTbitFecha());
+                                filas[2] = new SimpleDateFormat("MM").format(lBitacora.get(i).getTbitFecha());
+                                filas[3] = new SimpleDateFormat("dd").format(lBitacora.get(i).getTbitFecha());
+                                filas[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                model.addRow(filas);
+                            }
+                        }
                 }
+                numerarTabla(model);
                 Bitacora_Usuario run = new Bitacora_Usuario(model, vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString());
                 JInternalFrame in = run.cargarInternal();
                 MainDesktop.DesktopPaneMain.add(in);

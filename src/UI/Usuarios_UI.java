@@ -26,8 +26,8 @@ public class Usuarios_UI extends Views {
         modelo = new TableModel().VerUsuarios();
         initComponents();
         CargarComponentes();
-        UController.DeshabilitarHabilitar(1);
-        UController.VerUsuarios();        
+        UController.deshabilitarHabilitar(1);
+        UController.verUsuarios();        
     }
     
     private void CargarComponentes() {
@@ -333,20 +333,20 @@ public class Usuarios_UI extends Views {
     }//GEN-LAST:event_U_text_TelefonoKeyTyped
 
     private void U_btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_RegistrarActionPerformed
-        UController.Registrar();
+        UController.registrar();
     }//GEN-LAST:event_U_btn_RegistrarActionPerformed
 
     private void U_jtable_VerUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_U_jtable_VerUsuarioMouseClicked
-        UController.TraerUsuario(evt);
+        UController.traerUsuario(evt);
     }//GEN-LAST:event_U_jtable_VerUsuarioMouseClicked
 
     private void U_btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_LimpiarActionPerformed
-        UController.VaciarCampos();
-        UController.DeshabilitarHabilitar(1);
+        UController.vaciarCampos();
+        UController.deshabilitarHabilitar(1);
     }//GEN-LAST:event_U_btn_LimpiarActionPerformed
 
     private void U_btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_btn_GuardarActionPerformed
-        UController.ActualizarUsuario();
+        UController.actualizarUsuario();
     }//GEN-LAST:event_U_btn_GuardarActionPerformed
 
 
