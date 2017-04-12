@@ -45,7 +45,7 @@ public class Referencia_Controller {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TReferencia objRef) {
         boolean boo = false;
-        ObjectIdAfterInserting = Integer.parseInt("" + refModel.insertar(objRef));
+        ObjectIdAfterInserting = Integer.parseInt("" + refModel.insertar(objRef,"cliente"));
 
         if (ObjectIdAfterInserting != 0) {
             ref = objRef;
@@ -76,7 +76,7 @@ public class Referencia_Controller {
 
 //<editor-fold defaultstate="collapsed" desc="Method to DELETE ALL WHERE">
     public boolean delete(TReferencia objRef) {
-        return refModel.eliminar(objRef);
+        return refModel.eliminar(objRef, "cliente");
     }
 //</editor-fold>     
 

@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import Entity.TCobrador;
 import Entity.TPersona;
 import Entity.TCuota;
+import Entity.TPago;
 import Entity.TPrestamo;
 import Model.Persona_Model;
 import Model.Prestamo_model;
@@ -101,8 +103,9 @@ public class Cuota_Controller extends Prestamo_Controller {
                     cpagadas = Integer.parseInt(Cuota_UI.a_cantcuotas.getText());
                 }
                 if (prestamo != null) {
-                    TCuota cuota = new TCuota(prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas, String.valueOf(Cuota_UI.a_metodo.getSelectedItem()), Cuota_UI.a_cobrador.getText());
-                    if (pmodel.insertar(cuota) != null) {                       
+                    //error
+                    TCuota cuota = new TCuota(new TCobrador(),new TPago(),prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
+                    if (pmodel.insertar(cuota,"TCuota") != null) {                       
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
                         Cuota_UI.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));

@@ -2,10 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Coleccion2">
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Backup_Model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
-        </group>
         <group>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Gastos_Model.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/BitacoraSesion_UI.java</file>
@@ -18,6 +14,11 @@
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/UI/Gastos_UI.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Controller/BitSesion_Controller.java</file>
             <file>file:/C:/Users/ITERIA/Documents/NetBeansProjects/Drop/src/Model/Bitacora_Model.java</file>
+        </group>
+        <group name="Coleccion2">
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/DatosBasicosPersona_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cuota_Controller.java</file>
         </group>
     </open-files>
 </project-private>
