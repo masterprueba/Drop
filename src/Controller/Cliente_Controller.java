@@ -5,13 +5,18 @@
  */
 package Controller;
 
+import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
 import Entity.TPersona;
+import Entity.TPrestamo;
 import Entity.TReferencia;
 import UI.Cliente_UI;
+import UI.InformeCliente;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +30,10 @@ public class Cliente_Controller extends Persona_Controller {
     public Cliente_Controller(Cliente_UI cli_UI) {
         super(cli_UI);
     }
+    
+    public Cliente_Controller(InformeCliente infCli) {
+        super(infCli);
+    }    
 
 //<editor-fold defaultstate="collapsed" desc="prepare INSERT">
     public void prepareInsert(TPersona codeudor) {
@@ -37,15 +46,18 @@ public class Cliente_Controller extends Persona_Controller {
                 getpCliente().setTperCodeudor(codeudor.getTDatosBasicosPersona().getTdbpCedula());
 
                 if (insert(getpCliente())) {
+
                     if (getCli_UI().objectRefeCod.size() > 0) {
                         for (int i = 0; i < getCli_UI().objectRefeCli.size(); i++) {
                             getCli_UI().objectRefeCli.get(i).setTDatosBasicosPersona(getDbpCliente());
+
                             getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
+
                         }
                     }
                 }
                 JOptionPane.showMessageDialog(getCli_UI(), "Cliente registrado con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
-                initTable();
+                initTable(getCli_UI().jtClientes);
             }
         }
     }
@@ -92,23 +104,27 @@ public class Cliente_Controller extends Persona_Controller {
                 if (update(getpCliente())) {
 
                     if (getCli_UI().objectRefeCli.size() > 0) {
+
                         if (getRef__Controller().prepareSelect(getpCliente().getTDatosBasicosPersona().getTdbpCedula(), "")) {
                             List<TReferencia> temp = new ArrayList<>();
-                        temp = getRef__Controller().getListRef();
+                            temp = getRef__Controller().getListRef();
                             for (int j = 0; j < temp.size(); j++) {
                                 getRef__Controller().prepareDelete(temp.get(j));
+
                                 //System.out.println(temp.get(j).getTrefNombre());
                             }
                         }
 
                         for (int i = 0; i < getCli_UI().objectRefeCli.size(); i++) {
                             getCli_UI().objectRefeCli.get(i).setTDatosBasicosPersona(getDbpCliente());
+
                             getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
+
                         }
                     }
 
                     JOptionPane.showMessageDialog(getCli_UI(), "Datos Actualizados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
-                    initTable();
+                    initTable(getCli_UI().jtClientes);
                 }
             }
         }
@@ -142,25 +158,95 @@ public class Cliente_Controller extends Persona_Controller {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="init TABLE">
-    public void initTable() {
+    public void initTable(JTable jt) {
         TPersona temp = new TPersona();
         temp.setTperTipo("CLIENTE");
 
         SelectAll(temp);
 
-        DefaultTableModel dtm = new TableModel().VerUsuarios();
-        getCli_UI().jtClientes.setModel(dtm);
+        DefaultTableModel dtm = new DefaultTableModel();
+        jt.setModel(dtm);
+
+        dtm.setColumnIdentifiers(new Object[]{"Cédula", "Nombre"});
 
         for (int i = 0; i < getListPer().size(); i++) {
-            Object[] f = new Object[4];
-            f[1] = getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula();
-            f[2] = getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido();
-            f[3] = getListPer().get(i).getTDatosBasicosPersona().getTdbpTel();
-            dtm.addRow(f);
+            dtm.addRow(new Object[]{
+                getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula(),
+                getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " "
+                + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido()
+            });
+
         }
-        numerarTabla(dtm);
     }
-//</editor-fold>    
+//</editor-fold>  
+    
+public void initTablePrestamo(JTable jt) {
+
+        setDbpCliente(new TDatosBasicosPersona());
+        getDbpCliente().setTdbpCedula(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 0)));
+
+        //System.out.println(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 0)));
+
+        setpCliente(new TPersona());
+        getpCliente().setTDatosBasicosPersona(getDbpCliente());
+        getpCliente().setTperTipo("CLIENTE");
+
+        selectOne(getpCliente());
+
+        Set temp = getP().getTPrestamos();
+        List<TPrestamo> tp = new ArrayList<>();
+        tp.addAll(temp);
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        jt.setModel(dtm);
+
+        dtm.setColumnIdentifiers(new Object[]{"#", "Valor", "N° Cuotas", "Intereses", "Metodo Pago", "Fecha Entrega", "Valor Total", "Valor Cuota", "Object"});
+
+        for (int i = 0; i < tp.size(); i++) {
+            dtm.addRow(new Object[]{
+                tp.get(i).getTpreId(),
+                tp.get(i).getTpreValorPrestamo(),
+                tp.get(i).getTpreNumCuotas(),
+                tp.get(i).getTpreIntereses(),
+                tp.get(i).getTpreMetodPago(),
+                tp.get(i).getTpreFechaEntrega(),
+                tp.get(i).getTpreValorTotal(),
+                tp.get(i).getTpreValorCuota(),
+                tp.get(i)
+            });
+
+        }
+
+        int[] position = {0, 8};
+
+        setVisibleColumnTable(jt, position);
+    }
+
+    public void initTableCuotas(JTable jtbCuota, JTable jtbPrestamo) {
+        Set temp = ((TPrestamo) jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)).getTCuotas();
+        List<TCuota> tc = new ArrayList<>();
+
+        tc.addAll(temp);
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        jtbCuota.setModel(dtm);
+
+        dtm.setColumnIdentifiers(new Object[]{"#", "Fecha", "Abono", "Nuevo Saldo", "Cuotas Pagadas", "Metodo Pago", "Cobrador", "Object"});
+
+        for (int i = 0; i < tc.size(); i++) {
+            dtm.addRow(new Object[]{
+                tc.get(i).getTcuoId(),
+                tc.get(i).getTcuoFecha(),
+                tc.get(i).getTcuoAbono(),
+                tc.get(i).getTcuoNuevoSaldo(),
+                tc.get(i).getTcuoCuotasPagadas(),
+                tc.get(i).getTcuoMetodoPago(),
+                tc.get(i).getTcuoCobrador(),
+                tc.get(i)
+            });
+
+        }
+    }    
 
 //<editor-fold defaultstate="collapsed" desc="Clean">
     public void clean() {

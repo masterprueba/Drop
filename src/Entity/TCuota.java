@@ -132,4 +132,12 @@ public class TCuota implements java.io.Serializable {
 
         return json;
     }
+
+    public Object getTcuoMetodoPago() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getTcuoCobrador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

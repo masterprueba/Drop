@@ -42,7 +42,7 @@ public class Cliente_UI extends Views {
         objectCodeudor = new TPersona();
         per_Controller = new Persona_Controller(this);
         cli_Controller = new Cliente_Controller(this);
-        cli_Controller.initTable();
+        cli_Controller.initTable(jtClientes);
         objectRefeCli = new ArrayList<>();
         objectRefeCod = new ArrayList<>();
 

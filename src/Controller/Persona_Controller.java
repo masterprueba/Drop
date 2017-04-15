@@ -9,6 +9,7 @@ import Entity.TDatosBasicosPersona;
 import Entity.TPersona;
 import Model.Persona_Model;
 import UI.Cliente_UI;
+import UI.InformeCliente;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
@@ -21,7 +22,8 @@ public class Persona_Controller extends Controllers {
 
     private TPersona p;
     private final Persona_Model perModel;
-    private final Cliente_UI cli_UI;
+    private Cliente_UI cli_UI;
+    private InformeCliente infCli;
     private int ObjectIdAfterInserting;
 
     private TPersona pCliente;
@@ -44,6 +46,12 @@ public class Persona_Controller extends Controllers {
         ref__Controller = new Referencia_Controller(cli_UI, null);
     }
 
+    public Persona_Controller(InformeCliente infCli) {
+        this.infCli = infCli;
+        perModel = new Persona_Model();
+        dbp_Controller = new DatosBasicosPersona_Controller();
+    }
+    
 //<editor-fold defaultstate="collapsed" desc="Method SET and GET">
     public TPersona getP() {
         return p;
@@ -125,7 +133,17 @@ public class Persona_Controller extends Controllers {
         this.listPer = listPer;
     }
 
+    public InformeCliente getInfCli() {
+        return infCli;
+    }
+
+    public void setInfCli(InformeCliente infCli) {
+        this.infCli = infCli;
+    }
+    
+
 //</editor-fold>
+    
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TPersona objPer) {
         boolean boo = false;

@@ -65,4 +65,13 @@ protected DecimalFormat formateador;
             clearScrollPane((javax.swing.JScrollPane) comp);
         }
     }
+        protected void setVisibleColumnTable(javax.swing.JTable jt, int[] position) {
+
+        for (int i = 0; i < position.length; i++) {
+            jt.getColumnModel().getColumn(position[i]).setMaxWidth(0);
+            jt.getColumnModel().getColumn(position[i]).setMinWidth(0);
+            jt.getColumnModel().getColumn(position[i]).setPreferredWidth(0);
+        }
+
+    }
 }
