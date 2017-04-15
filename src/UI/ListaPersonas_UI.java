@@ -32,7 +32,8 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
         pc = new Cuota_Controller();
         pc.initTable(jTable1);
         this.indicador = indicador;
-    }   
+    } 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +50,6 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Seleccionar...");
 
         jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -99,7 +99,7 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
                     .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -123,12 +123,6 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        pc.mouseClickedTable(jTable1, this, indicador);
-        dispose();
-    }//GEN-LAST:event_jTable1MouseClicked
-
     private void jtfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarKeyTyped
         // TODO add your handling code here:
 
@@ -143,6 +137,12 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
         trs = new TableRowSorter(pc.dfm);
         jTable1.setRowSorter(trs);
     }//GEN-LAST:event_jtfBuscarKeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        pc.mouseClickedTable(jTable1, this, indicador);
+        dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

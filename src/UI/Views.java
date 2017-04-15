@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  *
  * @author ITERIA
  */
-public class Views extends javax.swing.JFrame{
+public class Views extends javax.swing.JInternalFrame{
 
     public void soloNumeros(KeyEvent evt) {
         char caracter = evt.getKeyChar();

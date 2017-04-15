@@ -256,7 +256,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       JInternalFrame cli = new Cliente_UI().cargarInternal();
+       JInternalFrame cli = new Cliente_UI();
         checkInstance(cli);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -280,27 +280,27 @@ public class MainDesktop extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        JInternalFrame in = new Prestamo_ui().cargarInternal();
-        DesktopPaneMain.add(in);
-        in.moveToFront();        
+        JInternalFrame in = new Prestamo_ui();
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        JInternalFrame in = new Gastos_UI().cargarInternal();
-        DesktopPaneMain.add(in);
-        in.moveToFront();
+        JInternalFrame in = new Gastos_UI();
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        JInternalFrame in = new Usuarios_UI().cargarInternal();
-        DesktopPaneMain.add(in);
-        in.moveToFront();
+        JInternalFrame in = new Usuarios_UI();
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JInternalFrame in = new Cuota_UI().cargarInternal();
+        JInternalFrame in = new Cuota_UI();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -309,9 +309,9 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       JInternalFrame in = new Bitacora_UI("INICIO").cargarInternal();
-        DesktopPaneMain.add(in);
-        in.moveToFront();
+       JInternalFrame in = new Bitacora_UI("INICIO");
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed

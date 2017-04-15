@@ -37,13 +37,10 @@ public class Cliente_Controller extends Persona_Controller {
                 getpCliente().setTperCodeudor(codeudor.getTDatosBasicosPersona().getTdbpCedula());
 
                 if (insert(getpCliente())) {
-
                     if (getCli_UI().objectRefeCod.size() > 0) {
                         for (int i = 0; i < getCli_UI().objectRefeCli.size(); i++) {
                             getCli_UI().objectRefeCli.get(i).setTDatosBasicosPersona(getDbpCliente());
-
                             getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
-
                         }
                     }
                 }
@@ -68,11 +65,9 @@ public class Cliente_Controller extends Persona_Controller {
             getCli_UI().btnEditar.setEnabled(true);
             setDataJTextCliente();
             cod_Controller = new Codeudor_Controller(getCli_UI());
-
             cod_Controller.prepareSelect(getCli_UI().objectCliente.getTperCodeudor());
             getRef__Controller().prepareSelect(getpCliente().getTDatosBasicosPersona().getTdbpCedula(), "CLIENTE");
             //getRef__Controller().prepareSelect(getpCliente().getTDatosBasicosPersona().getTdbpCedula(), "CLIENTE");
-
         } else {
             int r = JOptionPane.showConfirmDialog(null, "Cliente no Registrado... ¿Desea registrar?", "Cliente NO registrado", JOptionPane.YES_NO_OPTION);
 
@@ -97,24 +92,18 @@ public class Cliente_Controller extends Persona_Controller {
                 if (update(getpCliente())) {
 
                     if (getCli_UI().objectRefeCli.size() > 0) {
-
-                        
-
                         if (getRef__Controller().prepareSelect(getpCliente().getTDatosBasicosPersona().getTdbpCedula(), "")) {
                             List<TReferencia> temp = new ArrayList<>();
                         temp = getRef__Controller().getListRef();
                             for (int j = 0; j < temp.size(); j++) {
                                 getRef__Controller().prepareDelete(temp.get(j));
-
                                 //System.out.println(temp.get(j).getTrefNombre());
                             }
                         }
 
                         for (int i = 0; i < getCli_UI().objectRefeCli.size(); i++) {
                             getCli_UI().objectRefeCli.get(i).setTDatosBasicosPersona(getDbpCliente());
-
                             getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
-
                         }
                     }
 
@@ -128,10 +117,9 @@ public class Cliente_Controller extends Persona_Controller {
 
 //<editor-fold defaultstate="collapsed" desc="enabledForEdit">
     public void enabledForEdit(boolean b) {
-
-        getCli_UI().jtfNombreCliente.setFocusable(b);
-        getCli_UI().jtfApellidoCliente.setFocusable(b);
-        getCli_UI().jtfTelefonoCliente.setFocusable(b);
+        getCli_UI().jtfNombreCliente1.setFocusable(b);
+        getCli_UI().jtfApellidoCliente1.setFocusable(b);
+        getCli_UI().jtfTelefonoCliente1.setFocusable(b);
         getCli_UI().jtfCasaDirCliente.setFocusable(b);
         getCli_UI().jtfCasaPropieCliente.setFocusable(b);
         getCli_UI().jcbTipoCasaCliente.setEnabled(b);
@@ -160,19 +148,17 @@ public class Cliente_Controller extends Persona_Controller {
 
         SelectAll(temp);
 
-        DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel dtm = new TableModel().VerUsuarios();
         getCli_UI().jtClientes.setModel(dtm);
 
-        dtm.setColumnIdentifiers(new Object[]{"Cédula", "Nombre"});
-
         for (int i = 0; i < getListPer().size(); i++) {
-            dtm.addRow(new Object[]{
-                getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula(),
-                getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " "
-                + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido()
-            });
-
+            Object[] f = new Object[4];
+            f[1] = getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula();
+            f[2] = getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido();
+            f[3] = getListPer().get(i).getTDatosBasicosPersona().getTdbpTel();
+            dtm.addRow(f);
         }
+        numerarTabla(dtm);
     }
 //</editor-fold>    
 
@@ -180,9 +166,9 @@ public class Cliente_Controller extends Persona_Controller {
     public void clean() {
         getCli_UI().objectCliente = new TPersona();
         getCli_UI().jtfCedulaCliente.setText("");
-        getCli_UI().jtfNombreCliente.setText("");
-        getCli_UI().jtfApellidoCliente.setText("");
-        getCli_UI().jtfTelefonoCliente.setText("");
+        getCli_UI().jtfNombreCliente1.setText("");
+        getCli_UI().jtfApellidoCliente1.setText("");
+        getCli_UI().jtfTelefonoCliente1.setText("");
         getCli_UI().jtfCasaDirCliente.setText("");
         getCli_UI().jtfCasaPropieCliente.setText("");
         getCli_UI().jcbTipoCasaCliente.setSelectedIndex(0);
@@ -206,16 +192,17 @@ public class Cliente_Controller extends Persona_Controller {
     }
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="colorJText">
     public void colorJText(java.awt.Color c) {
-        getCli_UI().jtfNombreCliente.setBackground(c);
-        getCli_UI().jtfApellidoCliente.setBackground(c);
-        getCli_UI().jtfTelefonoCliente.setBackground(c);
+        getCli_UI().jtfNombreCliente1.setBackground(c);
+        getCli_UI().jtfApellidoCliente1.setBackground(c);
+        getCli_UI().jtfTelefonoCliente1.setBackground(c);
         getCli_UI().jtfCasaDirCliente.setBackground(c);
         getCli_UI().jtfCasaPropieCliente.setBackground(c);
         getCli_UI().jtfRazonSocialEmpresaCliente.setBackground(c);
         getCli_UI().jtfDireccionEmpresaCliente.setBackground(c);
         getCli_UI().jtfTelefonoEmpresaCliente.setBackground(c);
-
+        
         getCli_UI().jtfCedulaCodeudor.setBackground(c);
         getCli_UI().jtfNombreCodeudor.setBackground(c);
         getCli_UI().jtfApellidoCodeudor.setBackground(c);
@@ -226,24 +213,26 @@ public class Cliente_Controller extends Persona_Controller {
         getCli_UI().jtfDireccionEmpresaCodeudor.setBackground(c);
         getCli_UI().jtfTelefonolEmpresaCodeudor.setBackground(c);
     }
+//</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="validar">
     public boolean validar() {
         String mensaje = "";
-
+        
         if (getCli_UI().jtfCedulaCliente.getText().trim().equals("")) {
             mensaje += "-Identificación de Cliente esta vacío \n";
         }
-
-        if (getCli_UI().jtfNombreCliente.getText().trim().equals("")) {
+        
+        if (getCli_UI().jtfNombreCliente1.getText().trim().equals("")) {
             mensaje += "-Nombre de Cliente esta vacío \n";
         }
-        if (getCli_UI().jtfApellidoCliente.getText().trim().equals("")) {
+        if (getCli_UI().jtfApellidoCliente1.getText().trim().equals("")) {
             mensaje += "-Apellido de Cliente esta vacío \n";
         }
         if (getCli_UI().jtfCasaDirCliente.getText().trim().equals("")) {
             mensaje += "-Direccion de Cliente esta vacío \n";
         }
-
+        
         if (!mensaje.equals("")) {
             JOptionPane.showMessageDialog(null, "Se Presentaron los siguientes inconvenientes: \n \n" + mensaje, "Error!!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -251,5 +240,6 @@ public class Cliente_Controller extends Persona_Controller {
             return true;
         }
     }
+//</editor-fold>
 
 }

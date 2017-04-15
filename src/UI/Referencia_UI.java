@@ -6,15 +6,14 @@
 package UI;
 
 import Controller.Referencia_Controller;
-import Entity.TDatosBasicosPersona;
 
 /**
  *
  * @author Andres
  */
-public class Referencia_UI extends javax.swing.JInternalFrame {
+public class Referencia_UI extends Views {
 
-    private final Cliente_UI cli_UI;
+     private final Cliente_UI cli_UI;
     public String by;
     private final Referencia_Controller ref_Controller;
 
@@ -56,11 +55,11 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jcbTipoReferencia = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnEditarReferencia = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -78,13 +77,14 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
             }
         });
 
-        jtfTelefonoReferencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfTelefonoReferenciaActionPerformed(evt);
+        jtfTelefonoReferencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfTelefonoReferenciaKeyTyped(evt);
             }
         });
 
         jButton1.setText("Agregar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +95,7 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
         jLabel4.setText("Tipo Refe.");
 
         jcbTipoReferencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Personal", "Familiar" }));
+        jcbTipoReferencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbTipoReferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbTipoReferenciaActionPerformed(evt);
@@ -149,19 +150,44 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnEditarReferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
+        btnEditarReferencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarReferencia.setEnabled(false);
+        btnEditarReferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarReferenciaActionPerformed(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Teléfono", "Tipo Referencia"
+                "", "Nombre", "Apellido", "Teléfono", "Tipo Referencia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -172,34 +198,23 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        btnEditarReferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
-        btnEditarReferencia.setEnabled(false);
-        btnEditarReferencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarReferenciaActionPerformed(evt);
-            }
-        });
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(20);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(20);
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Nombre");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Apellido");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Teléfono");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Tipo Referencia");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,10 +262,6 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfApellidoReferenciaActionPerformed
 
-    private void jtfTelefonoReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTelefonoReferenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTelefonoReferenciaActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ref_Controller.agregarReferencia();
@@ -265,10 +276,10 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jcbTipoReferenciaActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        btnEditarReferencia.setEnabled(true);
-    }//GEN-LAST:event_jTable1MouseClicked
+        ref_Controller.setData();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -280,10 +291,15 @@ public class Referencia_UI extends javax.swing.JInternalFrame {
         ref_Controller.editReferencia();
     }//GEN-LAST:event_btnEditarReferenciaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        ref_Controller.setData();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        btnEditarReferencia.setEnabled(true);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jtfTelefonoReferenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoReferenciaKeyTyped
+        // TODO add your handling code here:
+        soloNumeros(evt);
+    }//GEN-LAST:event_jtfTelefonoReferenciaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

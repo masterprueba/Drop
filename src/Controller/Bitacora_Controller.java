@@ -158,8 +158,7 @@ public class Bitacora_Controller extends Controllers {
                         }
                 }
                 numerarTabla(model);
-                Bitacora_Usuario run = new Bitacora_Usuario(model, vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString());
-                JInternalFrame in = run.cargarInternal();
+                JInternalFrame in = new Bitacora_Usuario(model, vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString());
                 MainDesktop.DesktopPaneMain.add(in);
                 in.moveToFront();
                 checkInstance(in);

@@ -20,7 +20,7 @@ import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
  *
  * @author Andres
  */
-public class Referencia_Controller {
+public class Referencia_Controller extends Controllers{
 
     private TReferencia ref;
     private Referencia_Model refModel;
@@ -123,12 +123,14 @@ public class Referencia_Controller {
             
             for (int i = 0; i < cli_UI.objectRefeCli.size(); i++) {
                 dfm.addRow(new Object[]{
+                    "",
                     cli_UI.objectRefeCli.get(i).getTrefNombre(),
                     cli_UI.objectRefeCli.get(i).getTrefApellido(),
                     cli_UI.objectRefeCli.get(i).getTrefTelefono(),
                     cli_UI.objectRefeCli.get(i).getTrefTipo()
                 });
             }
+            numerarTabla(dfm);
         }
         
         //dfm = (DefaultTableModel) ref_UI.jTable1.getModel();
@@ -139,12 +141,14 @@ public class Referencia_Controller {
         if (cli_UI.objectRefeCod.size() > 0) {
             for (int i = 0; i < cli_UI.objectRefeCod.size(); i++) {
                 dfm.addRow(new Object[]{
+                    "",
                     cli_UI.objectRefeCod.get(i).getTrefNombre(),
                     cli_UI.objectRefeCod.get(i).getTrefApellido(),
                     cli_UI.objectRefeCod.get(i).getTrefTelefono(),
                     cli_UI.objectRefeCod.get(i).getTrefTipo()
                 });
             }
+            numerarTabla(dfm);
         }
         //dfm = (DefaultTableModel) ref_UI.jTable1.getModel();
     }
@@ -156,6 +160,7 @@ public class Referencia_Controller {
 
         if (globalSelected != -1) {
             Object[] ob = new Object[]{
+                "",
                 ref_UI.jtfNombreReferencia.getText(),
                 ref_UI.jtfApellidoReferencia.getText(),
                 ref_UI.jtfTelefonoReferencia.getText(),
@@ -172,6 +177,7 @@ public class Referencia_Controller {
 
             if (dfm.getRowCount() < 4) {
                 dfm.addRow(new Object[]{
+                    "",
                     ref_UI.jtfNombreReferencia.getText(),
                     ref_UI.jtfApellidoReferencia.getText(),
                     ref_UI.jtfTelefonoReferencia.getText(),
@@ -186,6 +192,7 @@ public class Referencia_Controller {
             ref_UI.jTable1.setModel(dfm);
             clean();
         }
+        numerarTabla(dfm);
     }
 //</editor-fold>    
 
@@ -223,10 +230,10 @@ public class Referencia_Controller {
             if (cantSelect == -1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar 1(una) referencia", "Advertencia", JOptionPane.WARNING_MESSAGE);
             } else {
-                ref_UI.jtfNombreReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 0)));
-                ref_UI.jtfApellidoReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 1)));
-                ref_UI.jtfTelefonoReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 2)));
-                ref_UI.jcbTipoReferencia.setSelectedItem(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 3)));
+                ref_UI.jtfNombreReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 1)));
+                ref_UI.jtfApellidoReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 2)));
+                ref_UI.jtfTelefonoReferencia.setText(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 3)));
+                ref_UI.jcbTipoReferencia.setSelectedItem(String.valueOf(ref_UI.jTable1.getValueAt(ref_UI.jTable1.getSelectedRow(), 4)));
             }
         } catch (Exception e) {
         }
@@ -239,14 +246,14 @@ public class Referencia_Controller {
             case "CLIENTE":
                 cli_UI.objectRefeCli = new ArrayList<>();
                 cli_UI.objectRefeCli = dataReferencia();
-                cli_UI.jtfReferenciaCliente.setText(cli_UI.objectRefeCli.size() + " Referencias");
+                //cli_UI.jtfReferenciaCliente.setText(cli_UI.objectRefeCli.size() + " Referencias");
                 System.out.println(cli_UI.objectRefeCli.size());
                 ref_UI.dispose();
                 break;
             case "CODEUDOR":
                 cli_UI.objectRefeCod = new ArrayList<>();
                 cli_UI.objectRefeCod = dataReferencia();
-                cli_UI.jtfReferenciaCodeudor.setText(cli_UI.objectRefeCod.size() + " Referencias");
+                //cli_UI.jtfReferenciaCodeudor.setText(cli_UI.objectRefeCod.size() + " Referencias");
                 ref_UI.dispose();
                 break;
             default:
@@ -262,10 +269,10 @@ public class Referencia_Controller {
         ArrayList<TReferencia> tr = new ArrayList<>();
         for (int i = 0; i < dfm.getRowCount(); i++) {
             ref = new TReferencia();
-            ref.setTrefNombre("" + dfm.getValueAt(i, 0));
-            ref.setTrefApellido("" + dfm.getValueAt(i, 1));
-            ref.setTrefTelefono("" + dfm.getValueAt(i, 2));
-            ref.setTrefTipo("" + dfm.getValueAt(i, 3));
+            ref.setTrefNombre("" + dfm.getValueAt(i, 1));
+            ref.setTrefApellido("" + dfm.getValueAt(i, 2));
+            ref.setTrefTelefono("" + dfm.getValueAt(i, 3));
+            ref.setTrefTipo("" + dfm.getValueAt(i, 4));
 
             tr.add(ref);
         }

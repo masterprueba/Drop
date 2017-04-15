@@ -38,5 +38,16 @@ public class Persona_Model extends Models {
         s.getTransaction().commit();
 
         return result;
+    }
+
+    public List<TPersona> SelectCodeudor(TPersona p) {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TPersona p WHERE p.tperCodeudor = '" + p.getTDatosBasicosPersona().getTdbpCedula()+ "'";
+        List<TPersona> result = s.createQuery(query).list();
+        s.getTransaction().commit();
+
+        return result;
     }    
 }

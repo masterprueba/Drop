@@ -17,7 +17,7 @@ import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
  *
  * @author Andres
  */
-public class Persona_Controller {
+public class Persona_Controller extends Controllers {
 
     private TPersona p;
     private final Persona_Model perModel;
@@ -126,11 +126,10 @@ public class Persona_Controller {
     }
 
 //</editor-fold>
-    
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TPersona objPer) {
         boolean boo = false;
-        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer,"TPersona"));
+        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer, "TPersona"));
 
         if (ObjectIdAfterInserting != 0) {
             p = objPer;
@@ -166,9 +165,13 @@ public class Persona_Controller {
     }
 //</editor-fold>
 
+    public List<TPersona> SelectCodeudor(TPersona obPer) {
+        return perModel.SelectCodeudor(obPer);
+    }
+
 //<editor-fold defaultstate="collapsed" desc="Method to UPDATE">
     public boolean update(TPersona objPer) {
-        return perModel.editar(objPer,"TPersona");
+        return perModel.editar(objPer, "TPersona");
     }
 //</editor-fold>     
 
@@ -177,9 +180,9 @@ public class Persona_Controller {
         dbpCliente = new TDatosBasicosPersona();
         //dbpCliente.setTdbpId(cli_UI.objectCliente.getTDatosBasicosPersona().getTdbpId());
         dbpCliente.setTdbpCedula(cli_UI.jtfCedulaCliente.getText());
-        dbpCliente.setTdbpNombre(cli_UI.jtfNombreCliente.getText());
-        dbpCliente.setTdbpApellido(cli_UI.jtfApellidoCliente.getText());
-        dbpCliente.setTdbpTel(cli_UI.jtfTelefonoCliente.getText());
+        dbpCliente.setTdbpNombre(cli_UI.jtfNombreCliente1.getText());
+        dbpCliente.setTdbpApellido(cli_UI.jtfApellidoCliente1.getText());
+        dbpCliente.setTdbpTel(cli_UI.jtfTelefonoCliente1.getText());
 
         pCliente = new TPersona();
         pCliente.setTDatosBasicosPersona(dbpCliente);
@@ -216,9 +219,9 @@ public class Persona_Controller {
     public void setDataJTextCliente() {
         cli_UI.objectCliente = getP();
         cli_UI.jtfCedulaCliente.setText(getP().getTDatosBasicosPersona().getTdbpCedula());
-        cli_UI.jtfNombreCliente.setText(getP().getTDatosBasicosPersona().getTdbpNombre());
-        cli_UI.jtfApellidoCliente.setText(getP().getTDatosBasicosPersona().getTdbpApellido());
-        cli_UI.jtfTelefonoCliente.setText(getP().getTDatosBasicosPersona().getTdbpTel());
+        cli_UI.jtfNombreCliente1.setText(getP().getTDatosBasicosPersona().getTdbpNombre());
+        cli_UI.jtfApellidoCliente1.setText(getP().getTDatosBasicosPersona().getTdbpApellido());
+        cli_UI.jtfTelefonoCliente1.setText(getP().getTDatosBasicosPersona().getTdbpTel());
         cli_UI.jtfCasaDirCliente.setText(getP().getTperCasDir());
         cli_UI.jtfCasaPropieCliente.setText(getP().getTperCasPro());
         cli_UI.jcbTipoCasaCliente.setSelectedItem(getP().getTperCasTipo());
@@ -264,6 +267,4 @@ public class Persona_Controller {
     }
     }
     //</editor-fold>*/
-
-
 }

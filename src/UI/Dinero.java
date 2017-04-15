@@ -15,8 +15,8 @@ public class Dinero extends Views {
     private int valor = 0;    
     private String ubicacion;
     DecimalFormat formateador;
-    javax.swing.JInternalFrame inst;
-    public Dinero(String u,javax.swing.JInternalFrame instancia) {        
+    Prestamo_ui inst;
+    public Dinero(String u, Prestamo_ui instancia) {        
         this.ubicacion = u;
         inst = instancia;
         initComponents();

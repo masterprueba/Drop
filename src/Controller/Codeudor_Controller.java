@@ -76,6 +76,20 @@ public class Codeudor_Controller extends Persona_Controller {
 
     }
 //</editor-fold>
+    
+//<editor-fold defaultstate="collapsed" desc="prepare SELECT Codeudor">
+    public List<TPersona>  prepareSelectCodeudor(String cCodeudor) {
+        setDbpCodeudor(new TDatosBasicosPersona());
+        getDbpCodeudor().setTdbpCedula(cCodeudor);
+
+        setpCodeudor(new TPersona());
+        getpCodeudor().setTDatosBasicosPersona(getDbpCodeudor());
+        getpCodeudor().setTperTipo("CODEUDOR");
+
+        return SelectCodeudor(getpCodeudor());
+
+    }
+//</editor-fold>    
 
 //<editor-fold defaultstate="collapsed" desc="prepare UPDATE">
     public void prepareUpdate() {
@@ -127,10 +141,10 @@ public class Codeudor_Controller extends Persona_Controller {
             mensaje += "-Identificación de Codeudor esta vacío \n";
         }
 
-        if (getCli_UI().jtfNombreCliente.getText().trim().equals("")) {
+        if (getCli_UI().jtfNombreCliente1.getText().trim().equals("")) {
             mensaje += "-Nombre de Codeudor esta vacío \n";
         }
-        if (getCli_UI().jtfApellidoCliente.getText().trim().equals("")) {
+        if (getCli_UI().jtfApellidoCliente1.getText().trim().equals("")) {
             mensaje += "-Apellido de Codeudor esta vacío \n";
         }
         if (getCli_UI().jtfCasaDirCliente.getText().trim().equals("")) {

@@ -5,13 +5,13 @@
  */
 package UI;
 
-import Controller.gastos_Controller;
 import Controller.TableModel;
+import Controller.gastos_Controller;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ITERIA
+ * @author Andres
  */
 public class Gastos_UI extends Views {
 
@@ -29,12 +29,8 @@ public class Gastos_UI extends Views {
         GControl.desactivarFechas(1);
         GControl.traerGastos(1);
     }
-
-    public javax.swing.JInternalFrame cargarInternal() {
-        return jInternalFrame;
-    }
-
-    private void CargarComponentes() {
+    
+        private void CargarComponentes() {
         //para dar automaticamente un salto de linea en el jtextarea 
         jTextArea1.setLineWrap(true);
         jRadioButton1.setSelected(true);
@@ -53,8 +49,6 @@ public class Gastos_UI extends Views {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jInternalFrame = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,12 +79,7 @@ public class Gastos_UI extends Views {
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jInternalFrame.setClosable(true);
-        jInternalFrame.setIconifiable(true);
-        jInternalFrame.setTitle("Gastos");
-        jInternalFrame.setVisible(true);
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setText("AGREGAR GASTOS");
@@ -163,7 +152,7 @@ public class Gastos_UI extends Views {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,7 +185,6 @@ public class Gastos_UI extends Views {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Gastos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 
-        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton1.setText("Mostrar gastos de este mes.");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +193,6 @@ public class Gastos_UI extends Views {
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton2.setText("Mostrar todos los gastos.");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +201,6 @@ public class Gastos_UI extends Views {
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton3.setText("Filtrar gastos por fechas.");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -355,46 +341,56 @@ public class Gastos_UI extends Views {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jInternalFrameLayout = new javax.swing.GroupLayout(jInternalFrame.getContentPane());
-        jInternalFrame.getContentPane().setLayout(jInternalFrameLayout);
-        jInternalFrameLayout.setHorizontalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrameLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jInternalFrameLayout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(336, 336, 336)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jInternalFrameLayout.setVerticalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrameLayout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
+        limitarCaracteresJTxArea(evt, jTextArea1, 100);
+    }//GEN-LAST:event_jTextArea1KeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GControl.registrarGasto();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        GControl.actualizarGasto();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        GControl.vaciarCampos();
+        GControl.desactivarBotones(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         GControl.desactivarFechas(1);
@@ -410,57 +406,35 @@ public class Gastos_UI extends Views {
         GControl.desactivarFechas(0);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GControl.registrarGasto();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        soloNumeros(evt);
-    }//GEN-LAST:event_jTextField2KeyTyped
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         GControl.traerGastos(3);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
-        limitarCaracteresJTxArea(evt, jTextArea1, 100);
-    }//GEN-LAST:event_jTextArea1KeyTyped
-
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
-    }//GEN-LAST:event_jTextField3KeyReleased
-
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
-        soloNumeros(evt);
-    }//GEN-LAST:event_jTextField4KeyTyped
-
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
-    }//GEN-LAST:event_jTextField4KeyReleased
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        GControl.actualizarGasto();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        GControl.vaciarCampos();
-        GControl.desactivarBotones(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         GControl.traerUnGasto(evt);
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        GControl.traerGastos(GControl.obtenerRadiobuttonSeleccionado());
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Gasto;
-    public static javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JButton jButton4;
-    private javax.swing.JInternalFrame jInternalFrame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
