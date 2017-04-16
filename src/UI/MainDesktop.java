@@ -65,7 +65,6 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -77,6 +76,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -93,7 +93,7 @@ public class MainDesktop extends javax.swing.JFrame {
         DesktopPaneMain.setLayout(DesktopPaneMainLayout);
         DesktopPaneMainLayout.setHorizontalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 706, Short.MAX_VALUE)
         );
         DesktopPaneMainLayout.setVerticalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,17 +117,6 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem1);
-
-        jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
-        jMenuItem11.setText("Informe Cliente");
-        jMenuItem11.setPreferredSize(new java.awt.Dimension(141, 30));
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem11);
 
         jMenuBar1.add(jMenu4);
 
@@ -191,7 +180,9 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenu6.setText("Historial");
+        jMenu6.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem9.setText("Historial inicio de sesion");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +202,21 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         jMenu7.setText("Informes");
+        jMenu7.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+
+        jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem11.setText("Prestamos");
+        jMenuItem11.setPreferredSize(new java.awt.Dimension(141, 30));
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem11);
+
         jMenuBar1.add(jMenu7);
 
         jMenu2.setForeground(new java.awt.Color(255, 102, 0));
