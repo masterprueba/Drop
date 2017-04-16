@@ -12,12 +12,17 @@ import Entity.TPrestamo;
 import Entity.TReferencia;
 import UI.Cliente_UI;
 import UI.InformeCliente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -26,14 +31,15 @@ import javax.swing.table.DefaultTableModel;
 public class Cliente_Controller extends Persona_Controller {
 
     private Codeudor_Controller cod_Controller;
+    TableRowSorter trs = null;
 
     public Cliente_Controller(Cliente_UI cli_UI) {
         super(cli_UI);
     }
-    
+
     public Cliente_Controller(InformeCliente infCli) {
         super(infCli);
-    }    
+    }
 
 //<editor-fold defaultstate="collapsed" desc="prepare INSERT">
     public void prepareInsert(TPersona codeudor) {
@@ -57,7 +63,7 @@ public class Cliente_Controller extends Persona_Controller {
                     }
                 }
                 JOptionPane.showMessageDialog(getCli_UI(), "Cliente registrado con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
-                initTable(getCli_UI().jtClientes);
+                initTable(getCli_UI().jtbClientes);
             }
         }
     }
@@ -124,7 +130,7 @@ public class Cliente_Controller extends Persona_Controller {
                     }
 
                     JOptionPane.showMessageDialog(getCli_UI(), "Datos Actualizados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
-                    initTable(getCli_UI().jtClientes);
+                    initTable(getCli_UI().jtbClientes);
                 }
             }
         }
@@ -164,28 +170,24 @@ public class Cliente_Controller extends Persona_Controller {
 
         SelectAll(temp);
 
-        DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel dtm = new TableModel().VerUsuarios();
         jt.setModel(dtm);
 
-        dtm.setColumnIdentifiers(new Object[]{"Cédula", "Nombre"});
-
+        Object[] f = new Object[4];
         for (int i = 0; i < getListPer().size(); i++) {
-            dtm.addRow(new Object[]{
-                getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula(),
-                getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " "
-                + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido()
-            });
-
+            f[1] = getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula();
+            f[2] = getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido();
+            f[3] = getListPer().get(i).getTDatosBasicosPersona().getTdbpTel();
+            dtm.addRow(f);
         }
+        numerarTabla(dtm);
     }
 //</editor-fold>  
-    
-public void initTablePrestamo(JTable jt) {
+
+    public void initTablePrestamo(JTable jt) {
 
         setDbpCliente(new TDatosBasicosPersona());
-        getDbpCliente().setTdbpCedula(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 0)));
-
-        //System.out.println(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 0)));
+        getDbpCliente().setTdbpCedula(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 1)));
 
         setpCliente(new TPersona());
         getpCliente().setTDatosBasicosPersona(getDbpCliente());
@@ -197,56 +199,55 @@ public void initTablePrestamo(JTable jt) {
         List<TPrestamo> tp = new ArrayList<>();
         tp.addAll(temp);
 
-        DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
 
-        dtm.setColumnIdentifiers(new Object[]{"#", "Valor", "N° Cuotas", "Intereses", "Metodo Pago", "Fecha Entrega", "Valor Total", "Valor Cuota", "Object"});
-
+        Object[] f = new Object[10];
         for (int i = 0; i < tp.size(); i++) {
-            dtm.addRow(new Object[]{
-                tp.get(i).getTpreId(),
-                tp.get(i).getTpreValorPrestamo(),
-                tp.get(i).getTpreNumCuotas(),
-                tp.get(i).getTpreIntereses(),
-                tp.get(i).getTpreMetodPago(),
-                tp.get(i).getTpreFechaEntrega(),
-                tp.get(i).getTpreValorTotal(),
-                tp.get(i).getTpreValorCuota(),
-                tp.get(i)
-            });
+            f[1] = tp.get(i).getTpreId();
+            f[2] = tp.get(i).getTpreValorPrestamo();
+            f[3] = tp.get(i).getTpreNumCuotas();
+            f[4] = tp.get(i).getTpreIntereses();
+            f[5] = tp.get(i).getTpreMetodPago();
+            f[6] = tp.get(i).getTpreFechaEntrega();
+            f[7] = tp.get(i).getTpreValorTotal();
+            f[8] = tp.get(i).getTpreValorCuota();
+            f[9] = tp.get(i);
+            dtm.addRow(f);
 
         }
+        numerarTabla(dtm);
 
-        int[] position = {0, 8};
-
+        int[] position = {1, 9};
         setVisibleColumnTable(jt, position);
     }
 
     public void initTableCuotas(JTable jtbCuota, JTable jtbPrestamo) {
-        Set temp = ((TPrestamo) jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)).getTCuotas();
+        Set temp = ((TPrestamo) jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 9)).getTCuotas();
         List<TCuota> tc = new ArrayList<>();
 
         tc.addAll(temp);
 
-        DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel dtm = new TableModel().historialCuota();
         jtbCuota.setModel(dtm);
 
-        dtm.setColumnIdentifiers(new Object[]{"#", "Fecha", "Abono", "Nuevo Saldo", "Cuotas Pagadas", "Metodo Pago", "Cobrador", "Object"});
-
+        Object[] f = new Object[9];
         for (int i = 0; i < tc.size(); i++) {
-            dtm.addRow(new Object[]{
-                tc.get(i).getTcuoId(),
-                tc.get(i).getTcuoFecha(),
-                tc.get(i).getTcuoAbono(),
-                tc.get(i).getTcuoNuevoSaldo(),
-                tc.get(i).getTcuoCuotasPagadas(),
-                tc.get(i).getTcuoMetodoPago(),
-                tc.get(i).getTcuoCobrador(),
-                tc.get(i)
-            });
+            f[1] = tc.get(i).getTcuoId();
+            f[2] = tc.get(i).getTcuoFecha();
+            f[3] = tc.get(i).getTcuoAbono();
+            f[4] = tc.get(i).getTcuoNuevoSaldo();
+            f[5] = tc.get(i).getTcuoCuotasPagadas();
+            f[6] = tc.get(i).getTcuoMetodoPago();
+            f[7] = tc.get(i).getTcuoCobrador();
+            f[8] = tc.get(i);
+            dtm.addRow(f);
 
         }
-    }    
+        numerarTabla(dtm);
+        int[] position = {1, 8};
+        setVisibleColumnTable(jtbCuota, position);
+    }
 
 //<editor-fold defaultstate="collapsed" desc="Clean">
     public void clean() {
@@ -288,7 +289,7 @@ public void initTablePrestamo(JTable jt) {
         getCli_UI().jtfRazonSocialEmpresaCliente.setBackground(c);
         getCli_UI().jtfDireccionEmpresaCliente.setBackground(c);
         getCli_UI().jtfTelefonoEmpresaCliente.setBackground(c);
-        
+
         getCli_UI().jtfCedulaCodeudor.setBackground(c);
         getCli_UI().jtfNombreCodeudor.setBackground(c);
         getCli_UI().jtfApellidoCodeudor.setBackground(c);
@@ -304,11 +305,11 @@ public void initTablePrestamo(JTable jt) {
 //<editor-fold defaultstate="collapsed" desc="validar">
     public boolean validar() {
         String mensaje = "";
-        
+
         if (getCli_UI().jtfCedulaCliente.getText().trim().equals("")) {
             mensaje += "-Identificación de Cliente esta vacío \n";
         }
-        
+
         if (getCli_UI().jtfNombreCliente1.getText().trim().equals("")) {
             mensaje += "-Nombre de Cliente esta vacío \n";
         }
@@ -318,7 +319,7 @@ public void initTablePrestamo(JTable jt) {
         if (getCli_UI().jtfCasaDirCliente.getText().trim().equals("")) {
             mensaje += "-Direccion de Cliente esta vacío \n";
         }
-        
+
         if (!mensaje.equals("")) {
             JOptionPane.showMessageDialog(null, "Se Presentaron los siguientes inconvenientes: \n \n" + mensaje, "Error!!", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -327,5 +328,19 @@ public void initTablePrestamo(JTable jt) {
         }
     }
 //</editor-fold>
+    
+    public void filter(JTextField jtf, JTable jtb){
+        
+        
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ke){
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+jtf.getText(), 1));
+            }
+        });
+        
+        trs = new TableRowSorter(jtb.getModel());
+        jtb.setRowSorter(trs);
+    }
 
 }

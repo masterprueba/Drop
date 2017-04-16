@@ -42,7 +42,7 @@ public class Cliente_UI extends Views {
         objectCodeudor = new TPersona();
         per_Controller = new Persona_Controller(this);
         cli_Controller = new Cliente_Controller(this);
-        cli_Controller.initTable(jtClientes);
+        cli_Controller.initTable(jtbClientes);
         objectRefeCli = new ArrayList<>();
         objectRefeCod = new ArrayList<>();
 
@@ -89,7 +89,9 @@ public class Cliente_UI extends Views {
         btnEditar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtClientes = new javax.swing.JTable();
+        jtbClientes = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
@@ -415,7 +417,7 @@ public class Cliente_UI extends Views {
             }
         });
 
-        jtClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jtbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -423,29 +425,47 @@ public class Cliente_UI extends Views {
 
             }
         ));
-        jtClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jtClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtbClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtClientesMouseClicked(evt);
+                jtbClientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtClientes);
+        jScrollPane1.setViewportView(jtbClientes);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
+        jLabel1.setText("Buscar");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         jButton1.setText("Limpiar");
@@ -720,11 +740,9 @@ public class Cliente_UI extends Views {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -828,14 +846,14 @@ public class Cliente_UI extends Views {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
+    private void jtbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbClientesMouseClicked
         // TODO add your handling code here:
         cli_Controller.clean();
         cli_Controller.enabledForEdit(false);
         cli_Controller.colorJText(new java.awt.Color(205, 205, 255));
         cli_Controller = new Cliente_Controller(this);
-        cli_Controller.prepareSelect(String.valueOf(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1)));
-    }//GEN-LAST:event_jtClientesMouseClicked
+        cli_Controller.prepareSelect(String.valueOf(jtbClientes.getValueAt(jtbClientes.getSelectedRow(), 1)));
+    }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -855,10 +873,10 @@ public class Cliente_UI extends Views {
             cod_Controller.prepareUpdate();
         } else {
             
-            for (int i = 0; i < jtClientes.getRowCount(); i++) { 
+            for (int i = 0; i < jtbClientes.getRowCount(); i++) { 
                 //System.out.println("" + String.valueOf(jtClientes.getValueAt(i, 1)));
                  cod_Controller.prepareSelectCodeudor(jtfCedulaCodeudor.getText());
-                if (jtfCedulaCliente.getText().equals(String.valueOf(jtClientes.getValueAt(i, 1))) || jtfCedulaCodeudor.getText().equals(String.valueOf(jtClientes.getValueAt(i, 1)))) {
+                if (jtfCedulaCliente.getText().equals(String.valueOf(jtbClientes.getValueAt(i, 1))) || jtfCedulaCodeudor.getText().equals(String.valueOf(jtbClientes.getValueAt(i, 1)))) {
                     
                     //cod_Controller.prepareInsert();
                     //System.out.println("" + String.valueOf(jtClientes.getValueAt(i, 1)));   
@@ -930,6 +948,13 @@ public class Cliente_UI extends Views {
         soloNumeros(evt);
     }//GEN-LAST:event_jtfTelefonolEmpresaCodeudorKeyTyped
 
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        cli_Controller = new Cliente_Controller(this);
+        cli_Controller.filter(jTextField1, jtbClientes);
+
+    }//GEN-LAST:event_jTextField1KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClienteCedula;
@@ -939,6 +964,7 @@ public class Cliente_UI extends Views {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -976,9 +1002,10 @@ public class Cliente_UI extends Views {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTextField jTextField1;
     public javax.swing.JComboBox<String> jcbTipoCasaCliente;
     public javax.swing.JComboBox<String> jcbTipoCasaCodeudor;
-    public javax.swing.JTable jtClientes;
+    public javax.swing.JTable jtbClientes;
     public javax.swing.JTextField jtfApellidoCliente1;
     public javax.swing.JTextField jtfApellidoCodeudor;
     public javax.swing.JTextField jtfCasaDirCliente;

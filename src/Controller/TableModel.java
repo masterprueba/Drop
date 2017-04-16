@@ -77,4 +77,33 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Valor del prestamo");
         return modelo;
     }
+    
+    public DefaultTableModel historialPrestamo(){
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("#");
+        modelo.addColumn("Valor");
+        modelo.addColumn("N° Cuotas");
+        modelo.addColumn("Intereses");
+        modelo.addColumn("Metodo Pago");
+        modelo.addColumn("Fecha Entrega");
+        modelo.addColumn("Valor Total");
+        modelo.addColumn("Valor Cuota");
+        modelo.addColumn("Object");
+        return modelo;
+    }
+
+    public DefaultTableModel historialCuota() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("#");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Abono");
+        modelo.addColumn("Nuevo Saldo");
+        modelo.addColumn("Cuotas Pagadas");
+        modelo.addColumn("Metodo Pago");
+        modelo.addColumn("Cobrador");
+        modelo.addColumn("Object");
+        return modelo;
+    }
 }
