@@ -10,6 +10,7 @@ import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TPago;
 import Entity.TPrestamo;
+import Model.Cobrador_Model;
 import Model.Persona_Model;
 import Model.Prestamo_model;
 import UI.Cuota_UI;
@@ -34,7 +35,8 @@ public class Cuota_Controller extends Prestamo_Controller {
     private TPrestamo prestamo;
     private TCuota abono;
     public DefaultTableModel dfm;
-     private List<TPersona> listp;     ;
+    private List<TPersona> listp;
+    private List<TCobrador> listc;
      
     public Cuota_Controller() {
         pmodel = new Prestamo_model();
@@ -147,27 +149,43 @@ public class Cuota_Controller extends Prestamo_Controller {
             return false;
         }
     }
-    public List<TPersona> selectAll() {
+    
+    public List<TPersona> selectPersona() {        
         listp = new ArrayList<TPersona>();
         TPersona temp = new TPersona();
         temp.setTperTipo("CLIENTE");
         listp = new Persona_Model().SelectAllWhere(temp);
-        return listp;
+        return listp;                                      
     }
-    public void initTable(JTable table) {
+    
+    public List<TCobrador> selectCobrador(){
+        listc = new ArrayList<TCobrador>();        
+        listc = new Cobrador_Model().findAll(TCobrador.class);
+        return listc;
+    }
+    
+    public void initTable(JTable table, String indicador) {
         //Llenar Tabla
         dfm = new DefaultTableModel();
         table.setModel(dfm);
+        if(indicador.equals("pyc")){
+            dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
+            selectPersona();
+            for (int i = 0; i < listp.size(); i++) {
+                dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
+            }
+        }else if(indicador.equals("cobrador")){
+            dfm.setColumnIdentifiers(new Object[]{"Nombre"});
+            selectCobrador();
+            for (int i = 0; i < listc.size(); i++) {
+                dfm.addRow(new Object[]{listc.get(i).getTcobNombre()});
 
-        dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
-        selectAll();
-        for (int i = 0; i < listp.size(); i++) {
-            dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
-
+            }
         }
+        
     }
 
-    public void mouseClickedTable(JTable table, ListaPersonas_UI lpUI, String ind) {
+    public void mouseClickedTable(JTable table, String ind) {
         String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1));                        
         for (int i = 0; i < listp.size(); i++) {
             if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula().equals(Select)) {                
