@@ -16,6 +16,7 @@ import Model.Prestamo_model;
 import UI.Cuota_UI;
 import UI.ListaPersonas_UI;
 import UI.Prestamo_ui;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -175,10 +176,10 @@ public class Cuota_Controller extends Prestamo_Controller {
                 dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
             }
         }else if(indicador.equals("cobrador")){
-            dfm.setColumnIdentifiers(new Object[]{"Nombre"});
+            dfm.setColumnIdentifiers(new Object[]{"#","Nombre"});
             selectCobrador();
             for (int i = 0; i < listc.size(); i++) {
-                dfm.addRow(new Object[]{listc.get(i).getTcobNombre()});
+                dfm.addRow(new Object[]{(i+1),listc.get(i).getTcobNombre()});
 
             }
         }
@@ -186,15 +187,39 @@ public class Cuota_Controller extends Prestamo_Controller {
     }
 
     public void mouseClickedTable(JTable table, String ind) {
-        String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1));                        
-        for (int i = 0; i < listp.size(); i++) {
-            if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula().equals(Select)) {                
-                if (ind.equals("prestamo")) {
-                    Prestamo_ui.P_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());                    
-                }else if(ind.equals("cuota")){
-                    Cuota_UI.a_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());
-                }                    
+        String Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 1)); 
+        if(ind.equals("prestamo")||ind.equals("cuota")){
+            for (int i = 0; i < listp.size(); i++) {
+                if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula().equals(Select)) {                
+                    if (ind.equals("prestamo")) {
+                        Prestamo_ui.P_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());                    
+                    }else if(ind.equals("cuota")){
+                        Cuota_UI.a_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());
+                    }                   
+                }
+            }   
+        }else if(ind.equals("cobrador")){
+            for (int i = 0; i < listc.size(); i++) {
+                if (listc.get(i).getTcobNombre().equals(Select)) {
+                    Cuota_UI.a_cobrador.setText(listc.get(i).getTcobNombre());
+                }                
+            }            
+        }                 
+    }
+    public boolean insertCobrador(String nombre){
+        TCobrador cobrador = new TCobrador();
+        cobrador.setTcobNombre(nombre);         
+        boolean r = false; 
+        try{
+            if(!pmodel.insertar(cobrador, "prestamo").equals(0)){
+                Cuota_UI.a_cobrador.setText(nombre);
+                cobrador = null;
+                r = true;
             }
-        }        
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
+        }                            
+        cobrador = null;
+        return r;
     }
 }
