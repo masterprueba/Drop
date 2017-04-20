@@ -13,6 +13,7 @@ import Entity.TPrestamo;
 import Model.Cobrador_Model;
 import Model.Persona_Model;
 import Model.Prestamo_model;
+import Model.TPagos_Model;
 import UI.Cuota_UI;
 import UI.ListaPersonas_UI;
 import UI.Prestamo_ui;
@@ -38,6 +39,7 @@ public class Cuota_Controller extends Prestamo_Controller {
     public DefaultTableModel dfm;
     private List<TPersona> listp;
     private List<TCobrador> listc;
+    private List<TPago> listpa;
      
     public Cuota_Controller() {
         pmodel = new Prestamo_model();
@@ -159,6 +161,12 @@ public class Cuota_Controller extends Prestamo_Controller {
         return listp;                                      
     }
     
+    public List<TPago> selectPago() {        
+        listpa = new ArrayList<TPago>();        
+        listpa = new TPagos_Model().findAll(TPago.class);
+        return listpa;                                    
+    }
+    
     public List<TCobrador> selectCobrador(){
         listc = new ArrayList<TCobrador>();        
         listc = new Cobrador_Model().findAll(TCobrador.class);
@@ -180,6 +188,16 @@ public class Cuota_Controller extends Prestamo_Controller {
             selectCobrador();
             for (int i = 0; i < listc.size(); i++) {
                 dfm.addRow(new Object[]{(i+1),listc.get(i).getTcobNombre()});
+
+            }
+        }else if(indicador.equals("pago")){
+            dfm.setColumnIdentifiers(new Object[]{"Banco","# Cuenta"});
+            selectPago();
+            for (int i = 0; i < listpa.size(); i++) {
+                String dato = listpa.get(i).getTipo();
+                String[] tipo =  dato.split("-"); 
+                System.out.println(tipo[0]+"-"+tipo[1]);
+                dfm.addRow(new Object[]{tipo[0],tipo[1]});
 
             }
         }
@@ -211,15 +229,39 @@ public class Cuota_Controller extends Prestamo_Controller {
         cobrador.setTcobNombre(nombre);         
         boolean r = false; 
         try{
-            if(!pmodel.insertar(cobrador, "prestamo").equals(0)){
+            if(Integer.parseInt(String.valueOf(pmodel.insertar(cobrador, "prestamo")))<=0){
                 Cuota_UI.a_cobrador.setText(nombre);
                 cobrador = null;
                 r = true;
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Error: Cobrador ya existe");
+        }                            
+        cobrador = null;
+        return r;
+    }
+    public boolean insertPago(String nombre){
+        TPago pago = new TPago();
+        pago.setTipo(nombre);         
+        boolean r = false; 
+        try{
+            if(Integer.parseInt(String.valueOf(pmodel.insertar(pago, "prestamo")))<=0){
+                Cuota_UI.a_metodo.setText(nombre);
+                pago = null;
+                r = true;
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
+            }
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
         }                            
-        cobrador = null;
+        pago = null;
         return r;
     }
 }

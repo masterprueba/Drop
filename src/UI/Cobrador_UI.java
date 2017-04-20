@@ -177,6 +177,9 @@ public class Cobrador_UI extends javax.swing.JInternalFrame {
         if (evt.getKeyCode() == 10) {            
             if(pc.insertCobrador(C_otro.getText())){                
                 dispose();
+                System.out.println("ok");
+            }else{
+                System.out.println("er00r");
             }
         }        
     }//GEN-LAST:event_C_otroKeyPressed
