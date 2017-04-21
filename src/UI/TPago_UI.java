@@ -233,12 +233,16 @@ public class TPago_UI extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String cuenta = tp_cuenta.getText().equals("") ? "." : tp_cuenta.getText();
-        if(pc.insertPago(tp_banco.getText()+"-"+cuenta)){                
+        if (!tp_banco.getText().equals("")) {
+            if(pc.insertPago(tp_banco.getText()+"-"+cuenta)){                
                 dispose();
                 System.out.println("ok");
             }else{
                 System.out.println("er00r");
             }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Campo banco no puede ser vacio");
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

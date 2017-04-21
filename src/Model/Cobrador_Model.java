@@ -5,11 +5,23 @@
  */
 package Model;
 
+import Entity.TCobrador;
+import Persistence.hibernateUtil;
+
 /**
  *
  * @author Usuario
  */
 public class Cobrador_Model extends Models {
     
-    
+    public TCobrador SelectOne(TCobrador p) {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TCobrador p WHERE p.tcobNombre = '" + p.getTcobNombre()+"'";
+        TCobrador result = (TCobrador) s.createQuery(query).uniqueResult();
+        s.getTransaction().commit();
+
+        return result;
+    }
 }

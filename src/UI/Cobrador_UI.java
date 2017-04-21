@@ -174,13 +174,13 @@ public class Cobrador_UI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void C_otroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_C_otroKeyPressed
-        if (evt.getKeyCode() == 10) {            
-            if(pc.insertCobrador(C_otro.getText())){                
-                dispose();
-                System.out.println("ok");
-            }else{
-                System.out.println("er00r");
-            }
+        if (!C_otro.getText().equals("")) {
+            if (evt.getKeyCode() == 10) {            
+                if(pc.insertCobrador(C_otro.getText())){                
+                    dispose();
+                    System.out.println("ok");
+                }
+            }        
         }        
     }//GEN-LAST:event_C_otroKeyPressed
 

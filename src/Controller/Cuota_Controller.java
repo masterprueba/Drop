@@ -36,6 +36,8 @@ public class Cuota_Controller extends Prestamo_Controller {
     private final Prestamo_model pmodel;
     private TPrestamo prestamo;
     private TCuota abono;
+    private Cobrador_Model cmodel;
+    private TPagos_Model pamodel;
     public DefaultTableModel dfm;
     private List<TPersona> listp;
     private List<TCobrador> listc;
@@ -46,7 +48,8 @@ public class Cuota_Controller extends Prestamo_Controller {
         if (Cuota_UI.a_fecha != null) {
             Cuota_UI.a_fecha.setDate(new Date());
         }
-        
+        cmodel = new Cobrador_Model();
+        pamodel = new TPagos_Model();
     }
 
     @Override
@@ -109,7 +112,11 @@ public class Cuota_Controller extends Prestamo_Controller {
                 }
                 if (prestamo != null) {
                     //error
-                    TCuota cuota = new TCuota(new TCobrador(),new TPago(),prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
+                    TCobrador cobrador = new TCobrador();
+                    cobrador.setTcobNombre(Cuota_UI.a_cobrador.getText());
+                    TPago pagos = new TPago();
+                    pagos.setTipo(Cuota_UI.a_metodo.getText());
+                    TCuota cuota = new TCuota(cmodel.SelectOne(cobrador),pamodel.SelectOne(pagos),prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
                     if (pmodel.insertar(cuota,"TCuota") != null) {                       
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
@@ -163,13 +170,13 @@ public class Cuota_Controller extends Prestamo_Controller {
     
     public List<TPago> selectPago() {        
         listpa = new ArrayList<TPago>();        
-        listpa = new TPagos_Model().findAll(TPago.class);
+        listpa = pamodel.findAll(TPago.class);
         return listpa;                                    
     }
     
     public List<TCobrador> selectCobrador(){
         listc = new ArrayList<TCobrador>();        
-        listc = new Cobrador_Model().findAll(TCobrador.class);
+        listc = cmodel.findAll(TCobrador.class);
         return listc;
     }
     
@@ -195,8 +202,7 @@ public class Cuota_Controller extends Prestamo_Controller {
             selectPago();
             for (int i = 0; i < listpa.size(); i++) {
                 String dato = listpa.get(i).getTipo();
-                String[] tipo =  dato.split("-"); 
-                System.out.println(tipo[0]+"-"+tipo[1]);
+                String[] tipo =  dato.split("-");                 
                 dfm.addRow(new Object[]{tipo[0],tipo[1]});
 
             }
@@ -222,7 +228,16 @@ public class Cuota_Controller extends Prestamo_Controller {
                     Cuota_UI.a_cobrador.setText(listc.get(i).getTcobNombre());
                 }                
             }            
-        }                 
+        }else if(ind.equals("pago")){
+            Select = String.valueOf(table.getValueAt(table.getSelectedRow(), 0));
+            for (int i = 0; i < listpa.size(); i++) {
+                String dato = listpa.get(i).getTipo();
+                String[] tipo =  dato.split("-"); 
+                if (tipo[0].equals(Select)) {
+                    Cuota_UI.a_metodo.setText(listpa.get(i).getTipo());
+                }                
+            }            
+        }                      
     }
     public boolean insertCobrador(String nombre){
         TCobrador cobrador = new TCobrador();
