@@ -14,22 +14,22 @@ import java.util.List;
  */
 public class Bitacora_Model<B> extends Models {
 
-    public List<B> consultarFechaBitsesion(String inicio, String fin, int v) {
+    public List<B> consultarFechaBitsesion(String inicio, String fin, String modulo) {
         List<B> result = null;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String sql = "";
-        switch (v) {
+        switch (modulo) {
             //PARA INICIO DE ESION
-            case 1:
-                sql = "and  tbitIdentificador = 'INICIO' ORDER BY ";
+            case "INICIO":
+                sql = "and  tbitIdentificador = 'INICIO' ";
                 break;
             //PARA MODULO PRESTAMO
-            case 2:
-                sql="and tbitModulo = 'PRESTAMO' and tbitClassname = 'Entity.TPrestamo' ";
+            case "PRESTAMO":
+                sql = "and tbitModulo = 'PRESTAMO' and tbitClassname = 'Entity.TPrestamo' ";
                 break;
         }
-        String query = "from TBitacora where tbitFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + "tbitFecha DESC";
+        String query = "from TBitacora where tbitFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + " ORDER BY tbitFecha DESC";
         result = s.createQuery(query).list();
         s.getTransaction().commit();
         return result;

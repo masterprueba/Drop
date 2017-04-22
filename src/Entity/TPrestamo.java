@@ -1,8 +1,10 @@
 package Entity;
 // Generated 1/04/2017 07:05:07 PM by Hibernate Tools 4.3.1
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -131,7 +133,7 @@ public class TPrestamo implements java.io.Serializable {
     public String toString() {
         String json = "{\"tpreId\":" + tpreId + ",";
         if (TPersona != null) {
-            json += "{\"TPersona\":{\"tperId\":" + TPersona.getTperId() + ",";
+            json += "\"TPersona\":{\"tperId\":" + TPersona.getTperId() + ",";
             if (TPersona.getTDatosBasicosPersona() != null) {
                 json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TPersona.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + TPersona.getTDatosBasicosPersona().getTdbpCedula() + "\","
                         + "\"tdbpNombre\":\"" + TPersona.getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + TPersona.getTDatosBasicosPersona().getTdbpApellido() + "\","
@@ -141,13 +143,13 @@ public class TPrestamo implements java.io.Serializable {
                     + "\"tperCasTipo\":\"" + TPersona.getTperCasTipo() + "\","
                     + "\"tperEmpNom\":\"" + TPersona.getTperEmpNom() + "\",\"tperEmpDir\":\"" + TPersona.getTperEmpDir() + "\","
                     + "\"tperEmpTel\":\"" + TPersona.getTperEmpTel() + "\",\"tperTipo\":\"" + TPersona.getTperTipo() + "\","
-                    + "\"tperCodeudor\":\"" + TPersona.getTperCodeudor() + "\",\"TPrestamos\":[]}";
+                    + "\"tperCodeudor\":\"" + TPersona.getTperCodeudor() + "\",\"TPrestamos\":[]},";
         }
         json += " \"tpreValorPrestamo\":" + tpreValorPrestamo + ","
                 + " \"tpreNumCuotas\":" + tpreNumCuotas + ","
                 + " \"tpreIntereses\":" + tpreIntereses + ","
                 + " \"tpreMetodPago\":\"" + tpreMetodPago + "\","
-                + " \"tpreFechaEntrega\":\"" + tpreFechaEntrega + "\","
+                + " \"tpreFechaEntrega\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(tpreFechaEntrega) + "\","
                 + " \"tpreValorTotal\":" + tpreValorTotal + ","
                 + " \"tpreValorCuota\":" + tpreValorCuota + ","
                 + " \"TCuotas\":[]}";

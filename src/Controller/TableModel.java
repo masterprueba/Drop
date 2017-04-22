@@ -69,16 +69,16 @@ public class TableModel extends DefaultTableModel {
     public DefaultTableModel bitacoraGeneralPrestamo() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Usuario");
-        modelo.addColumn("Fecha");
+        modelo.addColumn("Usuario sistema");
+        modelo.addColumn("Fecha accion");
         modelo.addColumn("Tipo de accion");
         modelo.addColumn("Cliente");
         modelo.addColumn("Valor del prestamo");
+        modelo.addColumn("Object");
         return modelo;
     }
-    
-    public DefaultTableModel historialPrestamo(){
+
+    public DefaultTableModel historialPrestamo() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("#");
@@ -106,4 +106,22 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Object");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraIndividualPrestamo() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Nombre Usuario");
+        modelo.addColumn("Metodo pago");
+        modelo.addColumn("Fecha entrega");
+        modelo.addColumn("Numero cuotas");
+        modelo.addColumn("Intereses");
+        modelo.addColumn("Valor prestamo");
+        modelo.addColumn("Valor cuota");
+        modelo.addColumn("Valor total");
+        modelo.addColumn("Tipo accion");
+        modelo.addColumn("Fecha accion"); 
+        return modelo;
+    }
+
 }

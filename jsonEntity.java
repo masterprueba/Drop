@@ -97,7 +97,7 @@
     public String toString() {
         String json = "{\"tpreId\":" + tpreId + ",";
         if (TPersona != null) {
-            json += "{\"TPersona\":{\"tperId\":" + TPersona.getTperId() + ",";
+            json += "\"TPersona\":{\"tperId\":" + TPersona.getTperId() + ",";
             if (TPersona.getTDatosBasicosPersona() != null) {
                 json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TPersona.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + TPersona.getTDatosBasicosPersona().getTdbpCedula() + "\","
                         + "\"tdbpNombre\":\"" + TPersona.getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + TPersona.getTDatosBasicosPersona().getTdbpApellido() + "\","
@@ -107,13 +107,13 @@
                     + "\"tperCasTipo\":\"" + TPersona.getTperCasTipo() + "\","
                     + "\"tperEmpNom\":\"" + TPersona.getTperEmpNom() + "\",\"tperEmpDir\":\"" + TPersona.getTperEmpDir() + "\","
                     + "\"tperEmpTel\":\"" + TPersona.getTperEmpTel() + "\",\"tperTipo\":\"" + TPersona.getTperTipo() + "\","
-                    + "\"tperCodeudor\":\"" + TPersona.getTperCodeudor() + "\",\"TPrestamos\":[]}";
+                    + "\"tperCodeudor\":\"" + TPersona.getTperCodeudor() + "\",\"TPrestamos\":[]},";
         }
         json += " \"tpreValorPrestamo\":" + tpreValorPrestamo + ","
                 + " \"tpreNumCuotas\":" + tpreNumCuotas + ","
                 + " \"tpreIntereses\":" + tpreIntereses + ","
                 + " \"tpreMetodPago\":\"" + tpreMetodPago + "\","
-                + " \"tpreFechaEntrega\":\"" + tpreFechaEntrega + "\","
+                + " \"tpreFechaEntrega\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(tpreFechaEntrega) + "\","
                 + " \"tpreValorTotal\":" + tpreValorTotal + ","
                 + " \"tpreValorCuota\":" + tpreValorCuota + ","
                 + " \"TCuotas\":[]}";

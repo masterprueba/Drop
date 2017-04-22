@@ -11,18 +11,19 @@ import Entity.*;
 import Model.Bitacora_Model;
 import Model.DatosBasicosPersona_Model;
 import UI.Bitacora_UI;
-import UI.Bitacora_Usuario;
-import UI.MainDesktop;
+import UI.Bitacora_Individual;
 import static UI.MainDesktop.checkInstance;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,6 +38,7 @@ public class Bitacora_Controller extends Controllers {
     private final DatosBasicosPersona_Model mLogin = new DatosBasicosPersona_Model();
     protected String fechaInicio = "";
     protected String fechaFin = "";
+    protected final List<TPrestamo> listPrestamo = new ArrayList<>();
 
     public Bitacora_Controller(Bitacora_UI vistaBitacora) {
         this.vistaBitacora = vistaBitacora;
@@ -46,11 +48,12 @@ public class Bitacora_Controller extends Controllers {
         try {
             final Gson gson = new Gson();
             obtenerFechas();
+            vistaBitacora.modeloTabla1.setNumRows(0);
             //CASOS PARA LOS MODULOS
             switch (vistaBitacora.bitacora) {
                 //PARA INICIO DE SESION
                 case "INICIO":
-                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, 1);
+                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
                     if (!lBitacora.isEmpty()) {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TLogin login = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TLogin.class);
@@ -65,12 +68,19 @@ public class Bitacora_Controller extends Controllers {
                     }
                     break;
                 case "PRESTAMO":
-                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, 2);
+                    listPrestamo.clear();
+                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
                     if (!lBitacora.isEmpty()) {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TPrestamo prestamo = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class);
-                            String[] fila = new String[6];
-                            //DATOS
+                            listPrestamo.add(i, prestamo);
+                            String[] fila = new String[7];
+                            fila[1] = lBitacora.get(i).getTLogin().getTlogUserLogin();
+                            fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                            fila[3] = lBitacora.get(i).getTbitIdentificador();
+                            fila[4] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                            fila[5] = "" + prestamo.getTpreValorPrestamo();
+                            fila[6] = "" + prestamo.getTpreId();
                             vistaBitacora.modeloTabla1.addRow(fila);
                         }
                     }
@@ -122,7 +132,7 @@ public class Bitacora_Controller extends Controllers {
         }
     }
 
-    public void verIndependiente() {
+    public void verUsuarios() {
         List<TDatosBasicosPersona> listLogin = mLogin.ConsultarPersonasConLogin();
         vistaBitacora.modeloTabla2.setNumRows(0);
         if (!listLogin.isEmpty()) {
@@ -137,15 +147,17 @@ public class Bitacora_Controller extends Controllers {
         }
     }
 
-    public void bitacoraUsuario(MouseEvent evt) {
+    public void bitacoraGeneralIndividual(MouseEvent evt, JTable table) {
         if (evt.getClickCount() == 2) {
-            int fila = vistaBitacora.jTable2.rowAtPoint(evt.getPoint());
+            int fila = table.rowAtPoint(evt.getPoint());
             if (fila > -1) {
                 DefaultTableModel model = null;
+                String cadena = "";
                 switch (vistaBitacora.bitacora) {
                     case "INICIO":
-                        new TableModel().historialUsuarioInicioSession();
-                        lBitacora = mBitacora.consultarInicioUsuario(vistaBitacora.modeloTabla2.getValueAt(fila, 3).toString());
+                        model = new TableModel().historialUsuarioInicioSession();
+                        cadena = vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString();
+                        lBitacora = mBitacora.consultarInicioUsuario(table.getModel().getValueAt(fila, 3).toString());
                         if (!lBitacora.isEmpty()) {
                             for (int i = 0; i < lBitacora.size(); i++) {
                                 String[] filas = new String[6];
@@ -156,12 +168,41 @@ public class Bitacora_Controller extends Controllers {
                                 model.addRow(filas);
                             }
                         }
+                        break;
+                    case "PRESTAMO":
+                        int idPrestamo = Integer.parseInt(table.getModel().getValueAt(fila, 6).toString());
+                        model = new TableModel().bitacoraIndividualPrestamo();
+                        cadena = "La primera fila que esta resaltada de color verde es el estado actual del prestamo";
+                        if (!listPrestamo.isEmpty()) {
+                            int i = listPrestamo.size() - 1;
+                            for (int j = 0; j < listPrestamo.size(); j++) {                               
+                                if (listPrestamo.get(i).getTpreId() == idPrestamo) {
+                                    String[] filas = new String[12];
+                                    filas[1] = listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "" + listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                    filas[2] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + "" + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                    filas[3] = listPrestamo.get(i).getTpreMetodPago();
+                                    filas[4] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(listPrestamo.get(i).getTpreFechaEntrega());
+                                    filas[5] = "" + listPrestamo.get(i).getTpreNumCuotas();
+                                    filas[6] = "" + listPrestamo.get(i).getTpreIntereses();
+                                    filas[7] = "" + listPrestamo.get(i).getTpreValorPrestamo();
+                                    filas[8] = "" + listPrestamo.get(i).getTpreValorCuota();
+                                    filas[9] = "" + listPrestamo.get(i).getTpreValorTotal();
+                                    filas[10] = lBitacora.get(i).getTbitIdentificador();
+                                    filas[11] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                    model.addRow(filas);
+                                }
+                                i--;
+                            }
+                        }
+                        break;
                 }
-                numerarTabla(model);
-                JInternalFrame in = new Bitacora_Usuario(model, vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString());
-                MainDesktop.DesktopPaneMain.add(in);
-                in.moveToFront();
-                checkInstance(in);
+
+                if (model != null) {
+                    numerarTabla(model);
+                    JInternalFrame in = new Bitacora_Individual(model, cadena);
+                    in.moveToFront();
+                    checkInstance(in);
+                }
             }
         }
     }
