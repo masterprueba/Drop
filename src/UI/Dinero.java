@@ -1,12 +1,13 @@
 package UI;
 
 import java.text.DecimalFormat;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Admin
  */
-public class Dinero extends Views {
+public class Dinero extends JFrame{
 
     /**
      * Creates new form NewPanel
@@ -21,6 +22,10 @@ public class Dinero extends Views {
         inst = instancia;
         initComponents();
         formateador = new DecimalFormat("###,###.##");
+    }
+
+    private Dinero() {
+        initComponents();
     }
 
     /**
@@ -381,9 +386,42 @@ public class Dinero extends Views {
     }//GEN-LAST:event_jvalorKeyPressed
 
     private void jvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jvalorKeyTyped
-        soloNumeros(evt);
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0') || (caracter > '9') && (caracter != '\b')) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jvalorKeyTyped
+public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Dinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Dinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Dinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Dinero().setVisible(true);
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */

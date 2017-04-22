@@ -145,6 +145,7 @@ public class Cuota_Controller extends Prestamo_Controller {
     private boolean validar() {
         String msj = "";
         msj += Cuota_UI.a_cobrador.getText().equals("") ? "Debe ingresar el cobrador \n" : "";
+        msj += Cuota_UI.a_metodo.getText().equals("") ? "Debe ingresar el metodo de pago \n" : "";
         msj += Cuota_UI.a_fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";
         msj += Cuota_UI.a_abono == null ? "Debes ingresar el abono \n" : "";
         try {
