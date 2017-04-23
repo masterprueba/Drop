@@ -28,9 +28,10 @@ public class Gastos_UI extends Views {
         CargarComponentes();
         GControl.desactivarFechas(1);
         GControl.traerGastos(1);
+        GControl.desactivarBotones(0);
     }
-    
-        private void CargarComponentes() {
+
+    private void CargarComponentes() {
         //para dar automaticamente un salto de linea en el jtextarea 
         jTextArea1.setLineWrap(true);
         jRadioButton1.setSelected(true);

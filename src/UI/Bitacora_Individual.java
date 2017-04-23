@@ -5,7 +5,7 @@
  */
 package UI;
 
-import java.awt.Dimension;
+import UI.Bitacora_UI;
 import java.util.Enumeration;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +25,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
      */
     public Bitacora_Individual(DefaultTableModel modelo, String nombre) {
         initComponents();
-        jLabel1.setText("<html><div style='text-align: rigth;'>YOOOOOOOOOOOOLO</div></html>");
+        jLabel1.setText("");
         jTable1.setModel(modelo);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         jLabel2.setText(nombre);
@@ -70,6 +70,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HISTORIAL USUARIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
