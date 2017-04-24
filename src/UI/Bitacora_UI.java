@@ -35,9 +35,9 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
     }
 
     private void cargarComponentes() {
+        modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
         jTable2.setModel(modeloTabla2);
         jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
-        modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
         switch (bitacora) {
             case "INICIO":
                 modeloTabla1 = new TableModel().bitacoraGeneralInicioSession();
@@ -234,9 +234,10 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        bitController.bitacoraGeneralIndividual(evt, jTable1);
+        if (!bitacora.equals("INICIO")) {
+            bitController.bitacoraGeneralIndividual(evt, jTable1);
+        }
     }//GEN-LAST:event_jTable1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;

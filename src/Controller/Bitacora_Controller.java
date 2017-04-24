@@ -175,7 +175,7 @@ public class Bitacora_Controller extends Controllers {
                         cadena = "La primera fila que esta resaltada de color verde es el estado actual del prestamo";
                         if (!listPrestamo.isEmpty()) {
                             int i = listPrestamo.size() - 1;
-                            for (int j = 0; j < listPrestamo.size(); j++) {                               
+                            for (int j = 0; j < listPrestamo.size(); j++) {
                                 if (listPrestamo.get(i).getTpreId() == idPrestamo) {
                                     String[] filas = new String[12];
                                     filas[1] = listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "" + listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpApellido();
