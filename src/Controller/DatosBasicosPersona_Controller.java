@@ -28,13 +28,13 @@ public class DatosBasicosPersona_Controller {
     
 //<editor-fold defaultstate="collapsed" desc="Method to UPDATE">
     public boolean update(TDatosBasicosPersona objDbp) {
-        return dbp_Model.editar(objDbp,"TDatosBasicosPersona");
+        return dbp_Model.editar(objDbp,"CLIENTE");
     }
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT">
     public TDatosBasicosPersona insert(TDatosBasicosPersona objDbp) {
-        ObjectIdAfterInserting = Integer.parseInt("" + dbp_Model.insertar(objDbp,"TDatosBasicosPersona"));
+        ObjectIdAfterInserting = Integer.parseInt("" + dbp_Model.insertar(objDbp,"CLIENTE"));
 
         if (ObjectIdAfterInserting != 0) {
             dbp = objDbp;

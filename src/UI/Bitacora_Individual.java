@@ -25,12 +25,21 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
      */
     public Bitacora_Individual(DefaultTableModel modelo, String nombre) {
         initComponents();
-        jLabel1.setText("");
+        jLabel2.setText(nombre);
         jTable1.setModel(modelo);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-        jLabel2.setText(nombre);
-        setCellRender(jTable1);
-        setSize(1500, 500);
+        switch (Bitacora_UI.bitacora) {
+            case "INICIO":
+                this.setTitle("HISTORIAL DE UN USUARIO");
+                jLabel1.setText("HISTORIAL DE UN USUARIO");
+                break;
+            case "PRESTAMO":
+                this.setTitle("HISTORIAL DE UN PRESTAMO");
+                jLabel1.setText("HISTORIAL DE UN PRESTAMO");
+                setCellRender(jTable1);
+                setSize(1300, 420);
+                break;
+        }
     }
 
     public void setCellRender(JTable table) {
@@ -56,6 +65,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,7 +81,6 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HISTORIAL USUARIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,7 +101,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
         pack();

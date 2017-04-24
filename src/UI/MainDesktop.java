@@ -23,11 +23,11 @@ public class MainDesktop extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public MainDesktop() {        
+    public MainDesktop() {
         initComponents();
-        CerraAplicacion();        
-        jMenuBar1.add(Box.createHorizontalGlue());        
-        jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre()+" "+Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
+        CerraAplicacion();
+        jMenuBar1.add(Box.createHorizontalGlue());
+        jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre() + " " + Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
         jMenuBar1.add(jMenu2);
         //Maximizar la ventana en inicio
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -75,6 +75,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -192,13 +193,21 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem9);
 
-        jMenuItem10.setText("Historial de prestamos");
+        jMenuItem10.setText("Historial de Prestamos");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
             }
         });
         jMenu6.add(jMenuItem10);
+
+        jMenuItem12.setText("Historial de Clientes");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem12);
 
         jMenuBar1.add(jMenu6);
 
@@ -273,7 +282,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       JInternalFrame cli = new Cliente_UI();
+        JInternalFrame cli = new Cliente_UI();
         checkInstance(cli);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -326,18 +335,23 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       JInternalFrame in = new Bitacora_UI("INICIO");
+        JInternalFrame in = new Bitacora_UI("INICIO");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-       JInternalFrame in = new Bitacora_UI("PRESTAMO");
+        JInternalFrame in = new Bitacora_UI("PRESTAMO");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         checkInstance(new InformeCliente());
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        JInternalFrame in = new Bitacora_UI("CLIENTE");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -417,6 +431,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

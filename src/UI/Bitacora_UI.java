@@ -21,13 +21,13 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Bitacora_UI
+     *
      * @param bit
      */
     public Bitacora_UI(String bit) {
         bitacora = bit;
         bitController = new Bitacora_Controller(this);
         initComponents();
-        loadModel();
         cargarComponentes();
         bitController.desactivarFechas(1);
         bitController.verBitacoraGeneral();
@@ -37,31 +37,27 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
     private void cargarComponentes() {
         jTable2.setModel(modeloTabla2);
         jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
+        modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
         switch (bitacora) {
             case "INICIO":
+                modeloTabla1 = new TableModel().bitacoraGeneralInicioSession();
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 break;
             case "PRESTAMO":
+                modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 // jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 break;
-
-        }
-    }
-
-    private void loadModel() {
-        modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
-        switch (bitacora) {
-            case "INICIO":
-                modeloTabla1 = new TableModel().bitacoraGeneralInicioSession();
+            case "CLIENTE":
+//                jTable1.setModel(modeloTabla1);
+//                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+//                jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 break;
-            case "PRESTAMO":
-                modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
-                break;
+
         }
     }
 

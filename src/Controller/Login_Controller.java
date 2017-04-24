@@ -26,13 +26,8 @@ public class Login_Controller {
         return UsuarioLogueado;
     }
 
-    public Login_Controller() {
-        
-    }
+    public void Ingresar(TLogin User, Login login) {
 
-    //Verifica que el usuario y contraseña esnten la DB
-    public void Ingresar(TLogin User, Login login) {    
-        
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
@@ -40,17 +35,17 @@ public class Login_Controller {
                 if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
                     UsuarioLogueado = loginresult.get(i);
-                    Lmodel.bitacora(UsuarioLogueado, "INICIO","LOGIN");
-                    new MainDesktop().setVisible(true);                    
+                    Lmodel.bitacora(UsuarioLogueado, "INICIO", "LOGIN");
+                    new MainDesktop().setVisible(true);
                     login.dispose();
                     break;
                 }
-            }           
+            }
             if (!Continua) {
-                JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
+                JOptionPane.showMessageDialog(null, "Error, usuario o contraseña incorrectos");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error Usuario o Contraseña incorrectos");
+            JOptionPane.showMessageDialog(null, "Error, usuario o contraseña incorrectos");
         }
     }
 }
