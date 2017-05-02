@@ -140,8 +140,18 @@ public class TableModel extends DefaultTableModel {
     public DefaultTableModel bitacoraIndividualClientes() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
-       
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Tipo de cliente");
+        modelo.addColumn("Dirección de vivienda");
+        modelo.addColumn("Tipo de vivienda");                                                                                                                            
+        modelo.addColumn("Nombre de empresa");
+        modelo.addColumn("Direccion de empresa");
+        modelo.addColumn("Telefono de empresa");
+        modelo.addColumn("Usuario de la accion");
+        modelo.addColumn("Tipo  de accion");
+        modelo.addColumn("Fecha de accion");
         return modelo;
     }
-
 }

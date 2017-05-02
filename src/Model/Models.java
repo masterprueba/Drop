@@ -115,6 +115,9 @@ public class Models<T> {
 
     public boolean bitacora(Object obj, String indicador, String modulo) {
         boolean commit = false;
+        switch (obj.getClass().toString()) {
+            
+        }
         try {
             if (!s.isConnected()) { // verifica que  haya una sesion abierta si no hay crea una
                 s = hibernateUtil.getSessionFactory();
