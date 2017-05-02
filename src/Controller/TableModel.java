@@ -120,7 +120,27 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Valor cuota");
         modelo.addColumn("Valor total");
         modelo.addColumn("Tipo accion");
-        modelo.addColumn("Fecha accion"); 
+        modelo.addColumn("Fecha accion");
+        return modelo;
+    }
+
+    public DefaultTableModel bitacoraGeneralClientes() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Cedula del Cliente");
+        modelo.addColumn("Nombre del Cliente");
+        modelo.addColumn("Tipo de Cliente");
+        modelo.addColumn("Usuario del sistema");
+        modelo.addColumn("Fecha accion");
+        modelo.addColumn("Tipo accion");
+        modelo.addColumn("id");
+        return modelo;
+    }
+
+    public DefaultTableModel bitacoraIndividualClientes() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+       
         return modelo;
     }
 

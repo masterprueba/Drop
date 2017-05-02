@@ -53,11 +53,11 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 // jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 break;
             case "CLIENTE":
-//                jTable1.setModel(modeloTabla1);
-//                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-//                jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
+                modeloTabla1 = new TableModel().bitacoraGeneralClientes();
+                jTable1.setModel(modeloTabla1);
+                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 break;
-
         }
     }
 

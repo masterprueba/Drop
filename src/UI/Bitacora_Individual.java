@@ -32,6 +32,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
             case "INICIO":
                 this.setTitle("HISTORIAL DE UN USUARIO");
                 jLabel1.setText("HISTORIAL DE UN USUARIO");
+                setSize(520, 420);
                 break;
             case "PRESTAMO":
                 this.setTitle("HISTORIAL DE UN PRESTAMO");
@@ -89,7 +90,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(232, 232, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );

@@ -38,7 +38,7 @@ public class Bitacora_Controller extends Controllers {
     private final DatosBasicosPersona_Model mLogin = new DatosBasicosPersona_Model();
     protected String fechaInicio = "";
     protected String fechaFin = "";
-    protected final List<TPrestamo> listPrestamo = new ArrayList<>();
+    protected final List<Object> listObject = new ArrayList<>();
 
     public Bitacora_Controller(Bitacora_UI vistaBitacora) {
         this.vistaBitacora = vistaBitacora;
@@ -49,11 +49,9 @@ public class Bitacora_Controller extends Controllers {
             final Gson gson = new Gson();
             obtenerFechas();
             vistaBitacora.modeloTabla1.setNumRows(0);
-            //CASOS PARA LOS MODULOS
+            lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
             switch (vistaBitacora.bitacora) {
-                //PARA INICIO DE SESION
                 case "INICIO":
-                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
                     if (!lBitacora.isEmpty()) {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TLogin login = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TLogin.class);
@@ -68,12 +66,11 @@ public class Bitacora_Controller extends Controllers {
                     }
                     break;
                 case "PRESTAMO":
-                    listPrestamo.clear();
-                    lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
+                    listObject.clear();
                     if (!lBitacora.isEmpty()) {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TPrestamo prestamo = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class);
-                            listPrestamo.add(i, prestamo);
+                            listObject.add(i, prestamo);
                             String[] fila = new String[7];
                             fila[1] = lBitacora.get(i).getTLogin().getTlogUserLogin();
                             fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
@@ -82,6 +79,26 @@ public class Bitacora_Controller extends Controllers {
                             fila[5] = "" + prestamo.getTpreValorPrestamo();
                             fila[6] = "" + prestamo.getTpreId();
                             vistaBitacora.modeloTabla1.addRow(fila);
+                        }
+                    }
+                    break;
+                case "CLIENTE":
+                    listObject.clear();
+                    if (!lBitacora.isEmpty()) {
+                        for (int i = 0; i < lBitacora.size(); i++) {
+                            if (lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
+                                TPersona cliente = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPersona.class);
+                                listObject.add(cliente);
+                                String[] fila = new String[8];
+                                fila[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
+                                fila[2] = cliente.getTDatosBasicosPersona().getTdbpNombre();
+                                fila[3] = cliente.getTperTipo();
+                                fila[4] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                fila[5] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                fila[6] = lBitacora.get(i).getTbitIdentificador();
+                                fila[7] = "" + cliente.getTperId();
+                                vistaBitacora.modeloTabla1.addRow(fila);
+                            }
                         }
                     }
                     break;
@@ -100,7 +117,6 @@ public class Bitacora_Controller extends Controllers {
                 break;
             case 1:
                 fechaInicio = Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-01";
-                //OBTENER LA CANTIDAD DE DIAS EN EL MES -- ESTO ES PARA SABER HASTA DONDE DEBE BUSCAR EL QUERY UN EJEMPLO ES FEBRERO QUE SOLO TIENE 28
                 Calendar cal = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), 1);
                 int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
                 fechaFin = Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + days;
@@ -172,21 +188,23 @@ public class Bitacora_Controller extends Controllers {
                     case "PRESTAMO":
                         int idPrestamo = Integer.parseInt(table.getModel().getValueAt(fila, 6).toString());
                         model = new TableModel().bitacoraIndividualPrestamo();
-                        cadena = "La primera fila que esta resaltada de color verde es el estado actual del prestamo";
-                        if (!listPrestamo.isEmpty()) {
-                            int i = listPrestamo.size() - 1;
-                            for (int j = 0; j < listPrestamo.size(); j++) {
-                                if (listPrestamo.get(i).getTpreId() == idPrestamo) {
+                        cadena = "La primera fila resaltada de color verde es el estado actual del prestamo";
+                        if (!listObject.isEmpty()) {
+                            TPrestamo prestamo;
+                            int i = listObject.size() - 1;
+                            for (int j = 0; j < listObject.size(); j++) {
+                                prestamo = (TPrestamo) listObject.get(i);
+                                if (prestamo.getTpreId() == idPrestamo) {
                                     String[] filas = new String[12];
-                                    filas[1] = listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "" + listPrestamo.get(i).getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                    filas[1] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
                                     filas[2] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + "" + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
-                                    filas[3] = listPrestamo.get(i).getTpreMetodPago();
-                                    filas[4] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(listPrestamo.get(i).getTpreFechaEntrega());
-                                    filas[5] = "" + listPrestamo.get(i).getTpreNumCuotas();
-                                    filas[6] = "" + listPrestamo.get(i).getTpreIntereses();
-                                    filas[7] = "" + listPrestamo.get(i).getTpreValorPrestamo();
-                                    filas[8] = "" + listPrestamo.get(i).getTpreValorCuota();
-                                    filas[9] = "" + listPrestamo.get(i).getTpreValorTotal();
+                                    filas[3] = prestamo.getTpreMetodPago();
+                                    filas[4] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestamo.getTpreFechaEntrega());
+                                    filas[5] = "" + prestamo.getTpreNumCuotas();
+                                    filas[6] = "" + prestamo.getTpreIntereses();
+                                    filas[7] = "" + prestamo.getTpreValorPrestamo();
+                                    filas[8] = "" + prestamo.getTpreValorCuota();
+                                    filas[9] = "" + prestamo.getTpreValorTotal();
                                     filas[10] = lBitacora.get(i).getTbitIdentificador();
                                     filas[11] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                     model.addRow(filas);
@@ -194,6 +212,10 @@ public class Bitacora_Controller extends Controllers {
                                 i--;
                             }
                         }
+                        break;
+                    case "CLIENTE":
+                        int idCLIENTE = Integer.parseInt(table.getModel().getValueAt(fila, 7).toString());
+                        model = new TableModel().bitacoraIndividualPrestamo();
                         break;
                 }
 
