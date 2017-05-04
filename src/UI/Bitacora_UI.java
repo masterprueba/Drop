@@ -86,8 +86,9 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setToolTipText("");
 
-        jLabel1.setText("HISTORIAL DE INICIO DE SESION");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel7.setText("Desde:");
@@ -176,10 +177,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(505, 505, 505))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +208,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();

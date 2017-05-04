@@ -49,11 +49,4 @@ public class TPago implements java.io.Serializable {
     public void setTCuotas(Set TCuotas) {
         this.TCuotas = TCuotas;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tpagId\":" + tpagId + ",\"tipo\":\"" + tipo + "\",\"TCuotas\":[]}";
-
-        return json;
-    }
 }

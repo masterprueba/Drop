@@ -75,17 +75,4 @@ public class TReferencia implements java.io.Serializable {
     public void setTrefTelefono(String trefTelefono) {
         this.trefTelefono = trefTelefono;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"trefId\":" + trefId + ",";
-        if (TDatosBasicosPersona != null) {
-            json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TDatosBasicosPersona.getTdbpId() + ",\"tdbpCedula\":\"" + TDatosBasicosPersona.getTdbpCedula() + "\","
-                    + "\"tdbpNombre\":\"" + TDatosBasicosPersona.getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + TDatosBasicosPersona.getTdbpApellido() + "\","
-                    + "\"tdbpTel\":\"" + TDatosBasicosPersona.getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
-        }
-        json += "\"trefTipo\":\"" + trefTipo + "\",\"trefNombre\":\"" + trefNombre + "\",\"trefApellido\":\"" + trefApellido + "\","
-                + "\"trefTelefono\":\"" + trefTelefono + "\"}";
-        return json;
-    }
 }

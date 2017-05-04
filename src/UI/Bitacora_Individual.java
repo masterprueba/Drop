@@ -5,7 +5,6 @@
  */
 package UI;
 
-import UI.Bitacora_UI;
 import java.util.Enumeration;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +14,7 @@ import javax.swing.table.TableColumn;
  *
  * @author Andres
  */
-public class Bitacora_Individual extends javax.swing.JInternalFrame {
+public final class Bitacora_Individual extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Bitacora_Usuario
@@ -91,7 +90,7 @@ public class Bitacora_Individual extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

@@ -100,12 +100,4 @@ public class TDatosBasicosPersona implements java.io.Serializable {
     public void setTPersonas(Set TPersonas) {
         this.TPersonas = TPersonas;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tdbpId\":" + tdbpId + ",\"tdbpCedula\":\"" + tdbpCedula + "\",\"tdbpNombre\":\"" + tdbpNombre + "\","
-                + "\"tdbpApellido\":\"" + tdbpApellido + "\",\"tdbpTel\":\"" + tdbpTel + "\","
-                + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]}";
-        return json;
-    }
 }

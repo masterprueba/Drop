@@ -49,7 +49,7 @@ public class Bitacora_Controller extends Controllers {
             final Gson gson = new Gson();
             obtenerFechas();
             vistaBitacora.modeloTabla1.setNumRows(0);
-            lBitacora = mBitacora.consultarFechaBitsesion(fechaInicio, fechaFin, vistaBitacora.bitacora);
+            lBitacora = mBitacora.consultarBitacora(fechaInicio, fechaFin, vistaBitacora.bitacora);
             switch (vistaBitacora.bitacora) {
                 case "INICIO":
                     if (!lBitacora.isEmpty()) {
@@ -88,6 +88,7 @@ public class Bitacora_Controller extends Controllers {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             if (lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
                                 TPersona cliente = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPersona.class);
+                                if(cliente.getTperTipo().equals("CLIENTE")){
                                 listObject.add(cliente);
                                 String[] fila = new String[8];
                                 fila[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
@@ -98,7 +99,7 @@ public class Bitacora_Controller extends Controllers {
                                 fila[6] = lBitacora.get(i).getTbitIdentificador();
                                 fila[7] = "" + cliente.getTperId();
                                 vistaBitacora.modeloTabla1.addRow(fila);
-                            }
+                            }}
                         }
                     }
                     break;

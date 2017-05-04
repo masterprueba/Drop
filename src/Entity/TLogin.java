@@ -68,17 +68,4 @@ public class TLogin implements java.io.Serializable {
     public void setTBitacoras(Set TBitacoras) {
         this.TBitacoras = TBitacoras;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tlogId\":" + tlogId + ",";
-        if (TDatosBasicosPersona != null) {
-            json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TDatosBasicosPersona.getTdbpId() + ",\"tdbpCedula\":\"" + TDatosBasicosPersona.getTdbpCedula() + "\",\"tdbpNombre\":\"" + TDatosBasicosPersona.getTdbpNombre() + "\","
-                    + "\"tdbpApellido\":\"" + TDatosBasicosPersona.getTdbpApellido() + "\",\"tdbpTel\":\"" + TDatosBasicosPersona.getTdbpTel() + "\","
-                    + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
-        }
-        json += "\"tlogUserLogin\":\"" + tlogUserLogin + "\",\"tlogPassword\":\"" + tlogPassword + "\",\"TBitacoras\":[]}";
-
-        return json;
-    }
 }

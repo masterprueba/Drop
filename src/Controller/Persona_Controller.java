@@ -147,7 +147,7 @@ public class Persona_Controller extends Controllers {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public boolean insert(TPersona objPer) {
         boolean boo = false;
-        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer, "TPersona"));
+        ObjectIdAfterInserting = Integer.parseInt("" + perModel.insertar(objPer, "CLIENTE"));
 
         if (ObjectIdAfterInserting != 0) {
             p = objPer;
@@ -189,7 +189,7 @@ public class Persona_Controller extends Controllers {
 
 //<editor-fold defaultstate="collapsed" desc="Method to UPDATE">
     public boolean update(TPersona objPer) {
-        return perModel.editar(objPer, "TPersona");
+        return perModel.editar(objPer, "CLIENTE");
     }
 //</editor-fold>     
 

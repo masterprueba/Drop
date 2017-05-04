@@ -130,21 +130,4 @@ public class TPersona implements java.io.Serializable {
     public void setTPrestamos(Set TPrestamos) {
         this.TPrestamos = TPrestamos;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tperId\":" + tperId + ",";
-        if (TDatosBasicosPersona != null) {
-            json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TDatosBasicosPersona.getTdbpId() + ",\"tdbpCedula\":\"" + TDatosBasicosPersona.getTdbpCedula() + "\","
-                    + "\"tdbpNombre\":\"" + TDatosBasicosPersona.getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + TDatosBasicosPersona.getTdbpApellido() + "\","
-                    + "\"tdbpTel\":\"" + TDatosBasicosPersona.getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
-        }
-        json += "\"tperCasDir\":\"" + tperCasDir + "\",\"tperCasPro\":\"" + tperCasPro + "\","
-                + "\"tperCasTipo\":\"" + tperCasTipo + "\","
-                + "\"tperEmpNom\":\"" + tperEmpNom + "\",\"tperEmpDir\":\"" + tperEmpDir + "\","
-                + "\"tperEmpTel\":\"" + tperEmpTel + "\",\"tperTipo\":\"" + tperTipo + "\","
-                + "\"tperCodeudor\":\"" + tperCodeudor + "\",\"TPrestamos\":[]}";
-
-        return json;
-    }
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Bitacora_Model<B> extends Models {
 
-    public List<B> consultarFechaBitsesion(String inicio, String fin, String modulo) {
+    public List<B> consultarBitacora(String inicio, String fin, String modulo) {
         List<B> result = null;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();

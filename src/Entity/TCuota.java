@@ -94,45 +94,6 @@ public class TCuota implements java.io.Serializable {
         this.tcuoCuotasPagadas = tcuoCuotasPagadas;
     }
 
-    @Override
-    public String toString() {
-        String json = "{\"tcuoId\":" + tcuoId + ",";
-        if (TCobrador != null) {
-            json += "\"TCobrador\":{\"tcobId\":" + TCobrador.getTcobId() + ",\"tcobNombre\":\"" + TCobrador.getTcobNombre() + "\",\"TCuotas\":[]},";
-        }
-        if (TPago != null) {
-            json += "\"TPago\":{\"tpagId\":" + TPago.getTpagId() + ",\"tipo\":\"" + TPago.getTipo() + "\",\"TCuotas\":[]},";
-        }
-        if (TPrestamo != null) {
-            json += "\"TPrestamo\":{\"tpreId\":" + TPrestamo.getTpreId() + ",";
-            if (TPrestamo.getTPersona() != null) {
-                json += "\"TPersona\":{\"tperId\":" + TPrestamo.getTPersona().getTperId() + ",";
-                if (TPrestamo.getTPersona().getTDatosBasicosPersona() != null) {
-                    json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + TPrestamo.getTPersona().getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + TPrestamo.getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "\","
-                            + "\"tdbpNombre\":\"" + TPrestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + TPrestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "\","
-                            + "\"tdbpTel\":\"" + TPrestamo.getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
-                }
-                json += "\"tperCasDir\":\"" + TPrestamo.getTPersona().getTperCasDir() + "\",\"tperCasPro\":\"" + TPrestamo.getTPersona().getTperCasPro() + "\","
-                        + "\"tperCasTipo\":\"" + TPrestamo.getTPersona().getTperCasTipo() + "\","
-                        + "\"tperEmpNom\":\"" + TPrestamo.getTPersona().getTperEmpNom() + "\",\"tperEmpDir\":\"" + TPrestamo.getTPersona().getTperEmpDir() + "\","
-                        + "\"tperEmpTel\":\"" + TPrestamo.getTPersona().getTperEmpTel() + "\",\"tperTipo\":\"" + TPrestamo.getTPersona().getTperTipo() + "\","
-                        + "\"tperCodeudor\":\"" + TPrestamo.getTPersona().getTperCodeudor() + "\",\"TPrestamos\":[]},";
-            }
-            json += " \"tpreValorPrestamo\":" + TPrestamo.getTpreValorPrestamo() + ","
-                    + " \"tpreNumCuotas\":" + TPrestamo.getTpreNumCuotas() + ","
-                    + " \"tpreIntereses\":" + TPrestamo.getTpreIntereses() + ","
-                    + " \"tpreMetodPago\":\"" + TPrestamo.getTpreMetodPago() + "\","
-                    + " \"tpreFechaEntrega\":\"" + TPrestamo.getTpreFechaEntrega() + "\","
-                    + " \"tpreValorTotal\":" + TPrestamo.getTpreValorTotal() + ","
-                    + " \"tpreValorCuota\":" + TPrestamo.getTpreValorCuota() + ","
-                    + " \"TCuotas\":[]},";
-        }
-        json += "\"tcuoFecha\":\"" + tcuoFecha + "\",\"tcuoAbono\":" + tcuoAbono + ",\"tcuoNuevoSaldo\":" + tcuoNuevoSaldo + ","
-                + "\"tcuoCuotasPagadas\":" + tcuoCuotasPagadas + "}";
-
-        return json;
-    }
-
     public Object getTcuoMetodoPago() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

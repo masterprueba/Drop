@@ -50,11 +50,4 @@ public class TCobrador implements java.io.Serializable {
     public void setTCuotas(Set TCuotas) {
         this.TCuotas = TCuotas;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tcobId\":" + tcobId + ",\"tcobNombre\":\"" + tcobNombre + "\",\"TCuotas\":[]}";
-
-        return json;
-    }
 }

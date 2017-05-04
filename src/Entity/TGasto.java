@@ -53,10 +53,4 @@ public class TGasto implements java.io.Serializable {
     public void setTgasCosto(Long tgasCosto) {
         this.tgasCosto = tgasCosto;
     }
-
-    @Override
-    public String toString() {
-        String json = "{\"tgasId\":" + tgasId + ",\"tgasDesc\":\"" + tgasDesc + "\",\"tgasFecha\":\"" + tgasFecha + "\",\"tgasCosto\":\"" + tgasCosto + "\"}";
-        return json;
-    }
 }
