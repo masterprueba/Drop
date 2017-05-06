@@ -238,8 +238,8 @@ public class Cliente_Controller extends Persona_Controller {
             f[3] = tc.get(i).getTcuoAbono();
             f[4] = tc.get(i).getTcuoNuevoSaldo();
             f[5] = tc.get(i).getTcuoCuotasPagadas();
-            f[6] = tc.get(i).getTcuoMetodoPago();
-            f[7] = tc.get(i).getTcuoCobrador();
+            f[6] = tc.get(i).getTPago().getTipo();
+            f[7] = tc.get(i).getTCobrador().getTcobNombre();
             f[8] = tc.get(i);
             dtm.addRow(f);
 
