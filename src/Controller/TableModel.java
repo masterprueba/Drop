@@ -33,7 +33,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Cedula");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Telefono");
+        modelo.addColumn("Telefono");        
         return modelo;
     }
 

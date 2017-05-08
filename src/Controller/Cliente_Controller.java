@@ -170,7 +170,7 @@ public class Cliente_Controller extends Persona_Controller {
 
         SelectAll(temp);
 
-        DefaultTableModel dtm = new TableModel().VerUsuarios();
+        DefaultTableModel dtm = new TableModel().VerUsuarios();        
         jt.setModel(dtm);
 
         Object[] f = new Object[4];
