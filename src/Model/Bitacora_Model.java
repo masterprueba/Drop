@@ -47,4 +47,23 @@ public class Bitacora_Model<B> extends Models {
         s.getTransaction().commit();
         return result;
     }
+
+    public List<B> consultarAllModulo(String modulo) {
+        List<B> result = null;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String sql = "";
+        switch (modulo) {
+            case "PRESTAMO":
+                sql = "where tbitModulo = 'PRESTAMO'";
+                break;
+            case "CLIENTE":
+                sql = "where tbitModulo='CLIENTE'";
+                break;
+        }
+        String query = "from TBitacora " + sql + " ORDER BY tbitFecha DESC";
+        result = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return result;
+    }
 }
