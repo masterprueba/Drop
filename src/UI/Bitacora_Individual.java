@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Controller.Bitacora_Controller;
 import java.util.Enumeration;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -84,6 +85,11 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -112,6 +118,10 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        Bitacora_Controller.detalleBitacoraIndividual();
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

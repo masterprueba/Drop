@@ -51,14 +51,14 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
-                jLabel1.setText("HISTORIAL DE INICIO DE PRESTAMOS");
+                jLabel1.setText("HISTORIAL DE PRESTAMOS");
                 break;
             case "CLIENTE":
                 modeloTabla1 = new TableModel().bitacoraGeneralClientes();
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-                jLabel1.setText("HISTORIAL DE INICIO DE CLIENTES");
+                jLabel1.setText("HISTORIAL DE CLIENTES");
                 break;
         }
     }
@@ -227,9 +227,10 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (jComboBox1.getSelectedIndex() == 2) {
             bitController.desactivarFechas(2);
+            modeloTabla1.setNumRows(0);
         } else {
             bitController.desactivarFechas(1);
-            bitController.verBitacoraGeneral();
+            bitController.verBitacoraGeneral();            
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
