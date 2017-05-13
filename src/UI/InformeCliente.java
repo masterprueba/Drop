@@ -7,13 +7,7 @@ package UI;
 
 import Controller.Cliente_Controller;
 import Controller.Cuota_Controller;
-import Controller.Persona_Controller;
 import Controller.Prestamo_Controller;
-import Entity.TPersona;
-import Entity.TPrestamo;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

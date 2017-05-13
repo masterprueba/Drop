@@ -6,12 +6,10 @@
 package UI;
 
 import Controller.Cuota_Controller;
-import Entity.TCobrador;
 import Entity.TPersona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 

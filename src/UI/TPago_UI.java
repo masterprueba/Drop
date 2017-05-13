@@ -6,7 +6,6 @@
 package UI;
 
 import Controller.Cuota_Controller;
-import Entity.TCobrador;
 import Entity.TPersona;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
