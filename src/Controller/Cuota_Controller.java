@@ -18,6 +18,7 @@ import UI.Cuota_UI;
 import UI.ListaPersonas_UI;
 import UI.Prestamo_ui;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -279,5 +280,35 @@ public class Cuota_Controller extends Prestamo_Controller {
         }                            
         pago = null;
         return r;
+    }
+    public boolean updateCuota(JTable tabla){
+        int conteo = 0;
+       DefaultTableModel model = (DefaultTableModel)tabla.getModel();
+       TCuota cuota = new TCuota();
+        for (int i = 0; i < model.getRowCount(); i++) {            
+            cuota.setTcuoId(Integer.parseInt(String.valueOf(model.getValueAt(i, 1))));
+            try {
+               SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+               Date parsedDate;
+               parsedDate = dateFormat.parse(String.valueOf(model.getValueAt(i, 2)));
+               cuota.setTcuoFecha(new java.sql.Date(parsedDate.getTime()));
+           } catch (ParseException ex) {
+               JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
+           }     
+            cuota.setTcuoAbono(Integer.parseInt(String.valueOf(model.getValueAt(i, 3))));
+            cuota.setTcuoNuevoSaldo(Integer.parseInt(String.valueOf(model.getValueAt(i, 4))));
+            cuota.setTcuoCuotasPagadas(Integer.parseInt(String.valueOf(model.getValueAt(i, 5))));
+            cuota.setTPago((TPago)model.getValueAt(i, 9));                     
+            cuota.setTCobrador((TCobrador)model.getValueAt(i, 10));
+            cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));
+            if(cmodel.editar(cuota, "Prestamo")){
+                conteo++;
+           }
+        }        
+        if (conteo == model.getRowCount()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

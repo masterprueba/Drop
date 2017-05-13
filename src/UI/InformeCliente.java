@@ -14,6 +14,8 @@ import Entity.TPrestamo;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -258,13 +260,25 @@ public class InformeCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Prestamo_Controller pc = new Prestamo_Controller();
-        //Metodo de actualizar prestamo
+        if(pc.update(jtbHPrestamo)){
+            JOptionPane.showMessageDialog(rootPane, "Todos los Prestamos Actualizados Correctamente");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de los prestamos");
+        }
         pc = null;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Cuota_Controller cc = new Cuota_Controller();
-        //Metodo de actualizar cuotas
+        if(cc.updateCuota(jtbDCuota)){
+            jtbHPrestamo.setModel(new DefaultTableModel());
+            jtbDCuota.setModel(new DefaultTableModel());
+            JOptionPane.showMessageDialog(rootPane, "Todos las Cuotas Actualizados Correctamente");
+        }else{
+            jtbHPrestamo.setModel(new DefaultTableModel());
+            jtbDCuota.setModel(new DefaultTableModel());
+            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de las Cuotas");
+        }   
         cc = null;
     }//GEN-LAST:event_jButton2ActionPerformed
 

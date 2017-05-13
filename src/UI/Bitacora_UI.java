@@ -44,19 +44,21 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+                jLabel1.setText("HISTORIAL DE INICIO DE SESSION");
                 break;
             case "PRESTAMO":
                 modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
-                // jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+                jLabel1.setText("HISTORIAL DE INICIO DE PRESTAMOS");
                 break;
             case "CLIENTE":
                 modeloTabla1 = new TableModel().bitacoraGeneralClientes();
                 jTable1.setModel(modeloTabla1);
                 jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                jLabel1.setText("HISTORIAL DE INICIO DE CLIENTES");
                 break;
         }
     }

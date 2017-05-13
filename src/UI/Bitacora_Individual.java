@@ -39,6 +39,12 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                 setCellRender(jTable1);
                 setSize(1300, 420);
                 break;
+            case "CLIENTE":
+                this.setTitle("HISTORIAL DE CLIENTE");
+                jLabel1.setText("HISTORIAL DE CLIENTE");
+                setCellRender(jTable1);
+                setSize(1300, 420);
+                break;
         }
     }
 

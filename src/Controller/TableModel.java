@@ -90,6 +90,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Valor Total");
         modelo.addColumn("Valor Cuota");
         modelo.addColumn("Object");
+        modelo.addColumn("Object_persona");
         return modelo;
     }
 
@@ -104,6 +105,9 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Metodo Pago");
         modelo.addColumn("Cobrador");
         modelo.addColumn("Object");
+        modelo.addColumn("Object_pago");
+        modelo.addColumn("Object_cobrador");
+        modelo.addColumn("Object_prestamo");
         return modelo;
     }
 

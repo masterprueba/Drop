@@ -13,13 +13,18 @@ import Model.Persona_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -240,6 +245,38 @@ public class Prestamo_Controller extends Controllers{
             cuota = null;
         }
         return cuota;
+    }
+    
+    public boolean update(JTable tabla){
+        int conteo = 0;
+       DefaultTableModel model = (DefaultTableModel)tabla.getModel();
+       TPrestamo prestamo = new TPrestamo();
+        for (int i = 0; i < model.getRowCount(); i++) {            
+            prestamo.setTpreId(Integer.parseInt(String.valueOf(model.getValueAt(i, 1))));
+            prestamo.setTpreValorPrestamo(Integer.parseInt(String.valueOf(model.getValueAt(i, 2))));
+            prestamo.setTpreNumCuotas(Integer.parseInt(String.valueOf(model.getValueAt(i, 3))));
+            prestamo.setTpreIntereses(Integer.parseInt(String.valueOf(model.getValueAt(i, 4))));
+            prestamo.setTpreMetodPago(String.valueOf(model.getValueAt(i, 5)));                            
+           try {
+               SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+               Date parsedDate;
+               parsedDate = dateFormat.parse(String.valueOf(model.getValueAt(i, 6)));
+               prestamo.setTpreFechaEntrega(new java.sql.Timestamp(parsedDate.getTime()));
+           } catch (ParseException ex) {
+               JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
+           }                
+            prestamo.setTpreValorTotal(Integer.parseInt(String.valueOf(model.getValueAt(i, 7))));
+            prestamo.setTpreValorCuota(Integer.parseInt(String.valueOf(model.getValueAt(i, 8))));
+            prestamo.setTPersona((TPersona) model.getValueAt(i, 10));
+            if(pmodel.editar(prestamo, "Prestamo")){
+                conteo++;
+           }
+        }        
+        if (conteo == model.getRowCount()) {
+            return true;
+        } else {
+            return false;
+        }
     }
      
 }

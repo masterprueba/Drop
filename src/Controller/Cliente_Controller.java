@@ -202,7 +202,7 @@ public class Cliente_Controller extends Persona_Controller {
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
 
-        Object[] f = new Object[10];
+        Object[] f = new Object[11];
         for (int i = 0; i < tp.size(); i++) {
             f[1] = tp.get(i).getTpreId();
             f[2] = tp.get(i).getTpreValorPrestamo();
@@ -213,12 +213,13 @@ public class Cliente_Controller extends Persona_Controller {
             f[7] = tp.get(i).getTpreValorTotal();
             f[8] = tp.get(i).getTpreValorCuota();
             f[9] = tp.get(i);
+            f[10] = tp.get(i).getTPersona();
             dtm.addRow(f);
 
         }
         numerarTabla(dtm);
 
-        int[] position = {1, 9};
+        int[] position = {1, 9, 10};
         setVisibleColumnTable(jt, position);
     }
 
@@ -231,7 +232,7 @@ public class Cliente_Controller extends Persona_Controller {
         DefaultTableModel dtm = new TableModel().historialCuota();
         jtbCuota.setModel(dtm);
 
-        Object[] f = new Object[9];
+        Object[] f = new Object[12];
         for (int i = 0; i < tc.size(); i++) {
             f[1] = tc.get(i).getTcuoId();
             f[2] = tc.get(i).getTcuoFecha();
@@ -241,11 +242,14 @@ public class Cliente_Controller extends Persona_Controller {
             f[6] = tc.get(i).getTPago().getTipo();
             f[7] = tc.get(i).getTCobrador().getTcobNombre();
             f[8] = tc.get(i);
+            f[9] = tc.get(i).getTPago();
+            f[10] = tc.get(i).getTCobrador();
+            f[11] = tc.get(i).getTPrestamo();
             dtm.addRow(f);
 
         }
         numerarTabla(dtm);
-        int[] position = {1, 8};
+        int[] position = {1, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
 
