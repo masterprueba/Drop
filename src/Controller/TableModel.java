@@ -33,7 +33,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Cedula");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Telefono");        
+        modelo.addColumn("Telefono");
         return modelo;
     }
 
@@ -147,15 +147,16 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Cedula");
         modelo.addColumn("Nombre");
         modelo.addColumn("Telefono");
-        modelo.addColumn("Tipo de cliente");
         modelo.addColumn("Dirección de vivienda");
-        modelo.addColumn("Tipo de vivienda");                                                                                                                            
+        modelo.addColumn("Tipo de vivienda");
         modelo.addColumn("Nombre de empresa");
         modelo.addColumn("Direccion de empresa");
         modelo.addColumn("Telefono de empresa");
         modelo.addColumn("Usuario de la accion");
         modelo.addColumn("Tipo  de accion");
         modelo.addColumn("Fecha de accion");
+        modelo.addColumn("cedula");
+        modelo.addColumn("id");
         return modelo;
     }
 }

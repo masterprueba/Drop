@@ -50,6 +50,7 @@ public class Gastos_UI extends Views {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,6 +82,7 @@ public class Gastos_UI extends Views {
         jTextField4 = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("GASTOS");
 
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setText("AGREGAR GASTOS");
@@ -186,6 +188,7 @@ public class Gastos_UI extends Views {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Gastos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton1.setText("Mostrar gastos de este mes.");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +197,7 @@ public class Gastos_UI extends Views {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton2.setText("Mostrar todos los gastos.");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +206,7 @@ public class Gastos_UI extends Views {
             }
         });
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton3.setText("Filtrar gastos por fechas.");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -432,6 +437,7 @@ public class Gastos_UI extends Views {
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Gasto;
+    private javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton3;

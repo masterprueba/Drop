@@ -6,7 +6,12 @@
 package UI;
 
 import Controller.Bitacora_Controller;
+import Entity.TPersona;
+import Entity.TReferencia;
+import java.awt.event.MouseEvent;
 import java.util.Enumeration;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -30,26 +35,70 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         switch (Bitacora_UI.bitacora) {
             case "INICIO":
-                this.setTitle("HISTORIAL DE UN USUARIO");
+                setTitle("HISTORIAL DE UN USUARIO");
                 jLabel1.setText("HISTORIAL DE UN USUARIO");
                 setSize(520, 420);
                 break;
             case "PRESTAMO":
-                this.setTitle("HISTORIAL DE UN PRESTAMO");
+                setTitle("HISTORIAL DE UN PRESTAMO");
                 jLabel1.setText("HISTORIAL DE UN PRESTAMO");
                 setCellRender(jTable1);
                 setSize(1300, 420);
                 break;
             case "CLIENTE":
-                this.setTitle("HISTORIAL DE CLIENTE");
+                setTitle("HISTORIAL DE CLIENTE");
                 jLabel1.setText("HISTORIAL DE CLIENTE");
                 setCellRender(jTable1);
                 setSize(1300, 420);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(13));
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(12));
+                crearPopup();
                 break;
         }
     }
 
-    public void setCellRender(JTable table) {
+    private void crearPopup() {
+        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
+                TPersona codeud = (TPersona) Bitacora_Controller.listObject.get(i);
+                if (codeud.getTperTipo().equals("CODEUDOR") && codeud.getTDatosBasicosPersona().getTdbpCedula().equals(jTable1.getModel().getValueAt(0, 12).toString())) {
+                    TPersona codeudor = codeud;
+                    JMenuItem popupCodoudor = new JMenuItem(codeudor.getTDatosBasicosPersona().getTdbpNombre() + " " + codeudor.getTDatosBasicosPersona().getTdbpApellido());
+                    jPopupMenu1.add(popupCodoudor);
+                    break;
+                }
+            }
+        }
+
+        int ref = 0;
+        int j = 0;
+        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
+                TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
+                if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString())) {
+                    ref++;
+                }
+            }
+        }
+
+        
+        JMenuItem[] popupReferencia = new JMenuItem[ref];
+        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
+                TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
+                if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString()) && Bitacora_Controller.lBitacora.get(i).getTbitIdentificador().equals("AGREGO")) {
+                    popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido());
+                    jPopupMenu2.addSeparator();
+                    jPopupMenu2.add(popupReferencia[j]);
+                    jPopupMenu2.addSeparator();
+                    j++;
+                }
+            }
+        }
+        System.err.println(ref + "sdf" + j);
+    }
+
+    private void setCellRender(JTable table) {
         Enumeration<TableColumn> en = table.getColumnModel().getColumns();
         while (en.hasMoreElements()) {
             TableColumn tc = en.nextElement();
@@ -66,6 +115,8 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -120,14 +171,22 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        Bitacora_Controller.detalleBitacoraIndividual();
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            jPopupMenu1.show(evt.getComponent(),
+                    evt.getX(), evt.getY());
+        } else if (evt.getButton() == MouseEvent.BUTTON3) {
+            jPopupMenu2.show(evt.getComponent(),
+                    evt.getX(), evt.getY());
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,36 +31,41 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         cargarComponentes();
         bitController.desactivarFechas(1);
         bitController.verBitacoraGeneral();
-        bitController.verUsuarios();
     }
 
     private void cargarComponentes() {
-        modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
-        jTable2.setModel(modeloTabla2);
-        jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
         switch (bitacora) {
             case "INICIO":
                 modeloTabla1 = new TableModel().bitacoraGeneralInicioSession();
+                modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
                 jTable1.setModel(modeloTabla1);
-                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+                jTable2.setModel(modeloTabla2);
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 jLabel1.setText("HISTORIAL DE INICIO DE SESSION");
+                jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
+                jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
+                bitController.verUsuarios();
                 break;
             case "PRESTAMO":
                 modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
                 jTable1.setModel(modeloTabla1);
-                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 jLabel1.setText("HISTORIAL DE PRESTAMOS");
+                this.getContentPane().remove(9);
+                jLabel3.setVisible(false);
+                setSize(900, 555);
                 break;
             case "CLIENTE":
                 modeloTabla1 = new TableModel().bitacoraGeneralClientes();
                 jTable1.setModel(modeloTabla1);
-                jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jLabel1.setText("HISTORIAL DE CLIENTES");
+                this.getContentPane().remove(9);
+                jLabel3.setVisible(false);
+                setSize(900, 555);
                 break;
         }
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
     }
 
     /**
@@ -216,10 +221,6 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        bitController.bitacoraGeneralIndividual(evt, jTable2);
-    }//GEN-LAST:event_jTable2MouseClicked
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         bitController.verBitacoraGeneral();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -230,15 +231,17 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
             modeloTabla1.setNumRows(0);
         } else {
             bitController.desactivarFechas(1);
-            bitController.verBitacoraGeneral();            
+            bitController.verBitacoraGeneral();
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if (!bitacora.equals("INICIO")) {
-            bitController.bitacoraGeneralIndividual(evt, jTable1);
-        }
+        bitController.bitacoraGeneralIndividual(evt, 1);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        bitController.bitacoraGeneralIndividual(evt, 2);
+    }//GEN-LAST:event_jTable2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
