@@ -5,10 +5,13 @@
  */
 package Model;
 
+import Persistence.hibernateUtil;
+import java.util.List;
+
 
 /**
  *
- * @author Andre
+ * @author Breiner
  */
 public class Prestamo_model extends Models{
 
@@ -17,4 +20,13 @@ public class Prestamo_model extends Models{
     public Prestamo_model() {
     }
     
+    public List<String> ConsultarUsuarioContraseña() {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "from TLogin where tlogUserLogin = and tlogPassword = '";
+        List<String> result = s.createQuery(query).list();
+        s.getTransaction().commit();
+
+        return result;
+    }
 }
