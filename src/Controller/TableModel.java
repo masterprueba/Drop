@@ -141,7 +141,7 @@ public class TableModel extends DefaultTableModel {
         return modelo;
     }
 
-    public DefaultTableModel bitacoraIndividualClientes() {
+    public DefaultTableModel bitacoraIndividualClientesCodeudores() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Cedula");
@@ -156,6 +156,30 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Tipo  de accion");
         modelo.addColumn("Fecha de accion");
         modelo.addColumn("cedula");
+        modelo.addColumn("id");
+        return modelo;
+    }
+
+    public DefaultTableModel bitacoraIndividualReferencia() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Usuario del sistema");
+        modelo.addColumn("Fecha accion");
+        modelo.addColumn("Tipo accion");
+        return modelo;
+    }
+
+    public DefaultTableModel bitacoraGeneralGastos() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Fecha del gasto");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Costo");
+        modelo.addColumn("Usuario del sistema");
+        modelo.addColumn("Fecha accion");
+        modelo.addColumn("Tipo accion");
         modelo.addColumn("id");
         return modelo;
     }

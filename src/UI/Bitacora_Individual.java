@@ -51,18 +51,31 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                 setSize(1300, 420);
                 break;
             case "CLIENTE":
-                if (flag == 1) {
-                    setTitle("HISTORIAL DE CLIENTE");
-                    jLabel1.setText("HISTORIAL DE CLIENTE");
-                } else if (flag == 2) {
-                    setTitle("HISTORIAL DE CODEUDOR");
-                    jLabel1.setText("HISTORIAL DE CODEUDOR");
-                }
                 setCellRender(jTable1);
-                setSize(1300, 420);
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(13));
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(12));
-                crearPopup();
+                if (flag != 3) {
+                    if (flag == 1) {
+                        setTitle("HISTORIAL DE CLIENTE");
+                        jLabel1.setText("HISTORIAL DE CLIENTE");
+                    } else if (flag == 2) {
+                        setTitle("HISTORIAL DE CODEUDOR");
+                        jLabel1.setText("HISTORIAL DE CODEUDOR");
+                    }
+                    setSize(1300, 420);
+                    jTable1.removeColumn(jTable1.getColumnModel().getColumn(13));
+                    jTable1.removeColumn(jTable1.getColumnModel().getColumn(12));
+                    crearPopup();
+
+                } else {
+                    jLabel1.setText("HISTORIAL DE UN REFERENCIA");
+                    setSize(520, 420);
+                }
+                break;
+            case "GASTOS":
+                setTitle("HISTORIAL DE UN GASTO");
+                jLabel1.setText("HISTORIAL DE UN GASTO");
+                setSize(680, 420);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));                
+                jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
         }
     }

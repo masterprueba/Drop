@@ -67,6 +67,17 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jLabel3.setVisible(false);
                 setSize(900, 555);
                 break;
+            case "GASTOS":
+                modeloTabla1 = new TableModel().bitacoraGeneralGastos();
+                jTable1.setModel(modeloTabla1);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
+                jLabel1.setText("HISTORIAL DE GASTOS");
+                setTitle("HISTORIAL DE GASTOS");
+                this.getContentPane().remove(9);
+                jLabel3.setVisible(false);
+                setSize(900, 555);
+                break;
         }
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
     }
