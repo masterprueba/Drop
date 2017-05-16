@@ -275,7 +275,7 @@ public class Bitacora_Controller extends Controllers {
         }
     }
 
-    public static void detalleBitacoraIndividual(int posicion, String persona) {
+    public static void detalleBitacoraIndividual(int id, String persona) {
         String cadena = "";
         DefaultTableModel model = null;
         int flag = 0;
@@ -284,23 +284,45 @@ public class Bitacora_Controller extends Controllers {
                 cadena = "La primera fila resaltada de color verde es el estado actual del codeudor";
                 model = new TableModel().bitacoraIndividualClientes();
                 flag = 2;
-                if (lBitacora.get(posicion).getTbitClassname().equals("Entity.TPersona")) {
-                    TPersona cliente = (TPersona) listObject.get(posicion);
-                    String[] filas = new String[14];
-                    filas[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
-                    filas[2] = cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido();
-                    filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel();
-                    filas[4] = cliente.getTperCasDir();
-                    filas[5] = cliente.getTperCasTipo();
-                    filas[6] = cliente.getTperEmpNom();
-                    filas[7] = cliente.getTperEmpDir();
-                    filas[8] = cliente.getTperEmpTel();
-                    filas[9] = lBitacora.get(posicion).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(posicion).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
-                    filas[10] = lBitacora.get(posicion).getTbitIdentificador();
-                    filas[11] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(posicion).getTbitFecha());
-                    filas[12] = cliente.getTperCodeudor();
-                    filas[13] = cliente.getTDatosBasicosPersona().getTdbpId().toString();
-                    model.addRow(filas);
+                int idcodeudor = id;
+                for (int i = 0; i < listObject.size(); i++) {
+                    if (lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
+                        TPersona cliente = (TPersona) listObject.get(i);
+                        if (cliente.getTperId() == idcodeudor) {
+                            String[] filas = new String[14];
+                            filas[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
+                            filas[2] = cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido();
+                            filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel();
+                            filas[4] = cliente.getTperCasDir();
+                            filas[5] = cliente.getTperCasTipo();
+                            filas[6] = cliente.getTperEmpNom();
+                            filas[7] = cliente.getTperEmpDir();
+                            filas[8] = cliente.getTperEmpTel();
+                            filas[9] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                            filas[10] = lBitacora.get(i).getTbitIdentificador();
+                            filas[11] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                            filas[12] = cliente.getTperCodeudor();
+                            filas[13] = cliente.getTDatosBasicosPersona().getTdbpId().toString();
+                            model.addRow(filas);
+                        }
+                    }
+                }
+                break;
+            case "REFERENCIA":
+                cadena = "La primera fila resaltada de color verde es el estado actual de esta referencia";
+                model = new TableModel().bitacoraIndividualClientes();
+                flag = 3;
+                int idreferencia = id;
+                for (int i = 0; i < listObject.size(); i++) {
+                    if (lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
+                        TReferencia referencia = (TReferencia) listObject.get(i);
+                        if (referencia.getTrefId() == idreferencia) {
+                            String[] filas = new String[14];
+                            //filas[1] = referencia.getTDatosBasicosPersona().getTdbpCedula();
+
+                            model.addRow(filas);
+                        }
+                    }
                 }
                 break;
         }

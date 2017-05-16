@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Objects;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -80,11 +81,9 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                         TPersona codeudor = codeud;
                         JMenuItem popupCodoudor = new JMenuItem(codeudor.getTDatosBasicosPersona().getTdbpNombre() + " " + codeudor.getTDatosBasicosPersona().getTdbpApellido());
                         jPopupMenu1.add(popupCodoudor);
-                        final int posicionCod = i;
-                        System.err.println("Esta es la posicion" + i);
+                        final int id = codeudor.getTperId();
                         popupCodoudor.addActionListener(e -> {
-                            int posicion = posicionCod;
-                            Bitacora_Controller.detalleBitacoraIndividual(posicion, "CODEUDOR");
+                            Bitacora_Controller.detalleBitacoraIndividual(id, "CODEUDOR");
                         });
                         noCodeudor = true;
                         break;
@@ -112,7 +111,7 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                         if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString())) {
                             boolean continu = true;
                             for (int k = 0; k < idReferencia.size(); k++) {
-                                if (referencia.getTrefId() == idReferencia.get(k)) {
+                                if (Objects.equals(referencia.getTrefId(), idReferencia.get(k))) {
                                     continu = false;
                                     break;
                                 }
@@ -122,9 +121,13 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                                 if (Bitacora_Controller.lBitacora.get(i).getTbitIdentificador().equals("ELIMINO")) {
                                     popupReferencia[j].setBackground(Color.red);
                                 }
+                                final int id = referencia.getTrefId();
                                 jPopupMenu2.addSeparator();
                                 jPopupMenu2.add(popupReferencia[j]);
                                 jPopupMenu2.addSeparator();
+                                popupReferencia[j].addActionListener(e -> {
+                                    Bitacora_Controller.detalleBitacoraIndividual(id, "REFERENCIA");
+                                });
                                 idReferencia.add(referencia.getTrefId());
                                 j++;
                             }
