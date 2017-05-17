@@ -74,7 +74,6 @@
                       <Component id="jTextField5" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="383" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
@@ -160,9 +159,9 @@
         <Component class="javax.swing.JTable" name="jtable_infprestamo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="4">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="No" type="java.lang.Integer"/>
-                <Column editable="false" title="Fecha" type="java.lang.String"/>
+                <Column editable="false" title="Fecha" type="java.lang.Object"/>
                 <Column editable="false" title="Cedula" type="java.lang.String"/>
                 <Column editable="false" title="Prestado" type="java.lang.Integer"/>
                 <Column editable="false" title="Invertido" type="java.lang.Integer"/>

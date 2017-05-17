@@ -9,6 +9,11 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cuota_Controller.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TCuota.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TDatosBasicosPersona.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TPrestamo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TPersona.java</file>
+        </group>
     </open-files>
 </project-private>
