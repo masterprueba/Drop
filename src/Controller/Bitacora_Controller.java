@@ -172,11 +172,10 @@ public class Bitacora_Controller extends Controllers {
                             }
                         }
                     }
-                    lBitacora = mBitacora.consultarAllModulo("PRESTAMO");
+                    lBitacora = mBitacora.consultarAllModulo("ABONO");
                     for (int i = 0; i < lBitacora.size(); i++) {
                         switch (lBitacora.get(i).getTbitClassname()) {
                             case "Entity.TCuota":
-                                TCuota cuota = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class);
                                 listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class));
                                 break;
                             case "Entity.TPrestamo":
@@ -335,6 +334,43 @@ public class Bitacora_Controller extends Controllers {
                                     model.addRow(filagasto);
                                 }
                             }
+                            break;
+                        case "ABONO":
+                            int idcuota = Integer.parseInt(Bitacora_UI.jTable1.getModel().getValueAt(fila, 10).toString());
+                            model = new TableModel().bitacoraGeneralAbonos();
+                            TPrestamo prestamo = null;
+                            boolean True = false;
+                            for (int i = 0; i < listObject.size(); i++) {
+                                if (lBitacora.get(i).getTbitClassname().equals("Entity.TCuota")) {
+                                    TCuota cuota = (TCuota) listObject.get(i);
+                                    System.err.println(cuota.getTcuoId() + "  id" + idcuota);
+                                    if (cuota.getTcuoId() == idcuota) {
+                                        if (!True) {
+                                            prestamo = cuota.getTPrestamo();
+                                            True = true;
+                                        }
+                                        String[] filasgasto = new String[11];
+                                        filasgasto[1] = cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                        filasgasto[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
+                                        filasgasto[3] = "" + cuota.getTcuoAbono();
+                                        filasgasto[4] = "" + cuota.getTcuoNuevoSaldo();
+                                        filasgasto[5] = "" + cuota.getTcuoCuotasPagadas();
+                                        filasgasto[6] = cuota.getTPago().getTipo();
+                                        filasgasto[7] = cuota.getTCobrador().getTcobNombre();
+                                        filasgasto[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                        filasgasto[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                        filasgasto[10] = "" + cuota.getTcuoId();
+                                        model.addRow(filasgasto);
+                                    }
+                                }
+                            }
+                            cadena = prestamo != null ? "<html><table>"
+                                    + "<tr><td>Cliente:</td><td>" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
+                                    + "<td>N° Cuotas:</td><td>" + prestamo.getTpreNumCuotas() + "</td></tr> "
+                                    + "<tr><td>Valor Prestamo:</td><td>" + prestamo.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestamo.getTpreIntereses() + "</td></tr>"
+                                    + "<tr><td>Metodo pago:</td><td>" + prestamo.getTpreMetodPago() + "</td></tr>"
+                                    + "<tr><td>Valor Total:</td><td>" + prestamo.getTpreValorTotal() + "</td></tr>"
+                                    + "</table></html>" : "";
                             break;
                         default:
                             break;

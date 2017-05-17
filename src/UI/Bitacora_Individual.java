@@ -74,8 +74,15 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                 setTitle("HISTORIAL DE UN GASTO");
                 jLabel1.setText("HISTORIAL DE UN GASTO");
                 setSize(680, 420);
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));                
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+                break;
+            case "ABONO":
+                setTitle("HISTORIAL DE CUOTAS");
+                jLabel1.setText("HISTORIAL DE CUOTAS");
+                setSize(900, 420);
+               // jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                //jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
         }
     }
@@ -220,10 +227,10 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
         );
 
         pack();

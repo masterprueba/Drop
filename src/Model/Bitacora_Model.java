@@ -69,6 +69,9 @@ public class Bitacora_Model<B> extends Models {
             case "GASTOS":
                 sql = "where tbitModulo='GASTOS'";
                 break;
+            case "ABONO":
+                sql = "where tbitModulo='PRESTAMO'";
+                break;
         }
         String query = "from TBitacora " + sql + " ORDER BY tbitFecha DESC";
         result = s.createQuery(query).list();
