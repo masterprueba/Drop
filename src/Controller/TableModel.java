@@ -183,4 +183,20 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("id");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraGeneralAbonos() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Cliente prestamo");
+        modelo.addColumn("Fecha abono");
+        modelo.addColumn("Total abonado");
+        modelo.addColumn("Nuevo saldo");
+        modelo.addColumn("Cuotas pagadas");
+        modelo.addColumn("Tipo pago");
+        modelo.addColumn("Cobrador");
+        modelo.addColumn("Usuario sistema");
+        modelo.addColumn("Fecha accion");
+        modelo.addColumn("id");
+        return modelo;
+    }
 }

@@ -6,9 +6,12 @@
 package Controller;
 
 import Entity.TBitacora;
+import Entity.TCobrador;
+import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
 import Entity.TGasto;
 import Entity.TLogin;
+import Entity.TPago;
 import Entity.TPersona;
 import Entity.TPrestamo;
 import Entity.TReferencia;
@@ -80,7 +83,7 @@ public class Bitacora_Controller extends Controllers {
                             fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                             fila[3] = lBitacora.get(i).getTbitIdentificador();
                             fila[4] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
-                            fila[5] = "" + prestamo.getTpreValorPrestamo();
+                            fila[5] = "" + prestamo.getTpreValorTotal();
                             fila[6] = "" + prestamo.getTpreId();
                             vistaBitacora.modeloTabla1.addRow(fila);
                         }
@@ -112,15 +115,18 @@ public class Bitacora_Controller extends Controllers {
                     }
                     lBitacora = mBitacora.consultarAllModulo("CLIENTE");
                     for (int i = 0; i < lBitacora.size(); i++) {
-                        if (lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
-                            TPersona cliente = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPersona.class);
-                            listObject.add(i, cliente);
-                        } else if (lBitacora.get(i).getTbitClassname().equals("Entity.TDatosBasicosPersona")) {
-                            TDatosBasicosPersona datosBasicos = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TDatosBasicosPersona.class);
-                            listObject.add(i, datosBasicos);
-                        } else if (lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
-                            TReferencia referencia = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TReferencia.class);
-                            listObject.add(i, referencia);
+                        switch (lBitacora.get(i).getTbitClassname()) {
+                            case "Entity.TPersona":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPersona.class));
+                                break;
+                            case "Entity.TDatosBasicosPersona":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TDatosBasicosPersona.class));
+                                break;
+                            case "Entity.TReferencia":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TReferencia.class));
+                                break;
+                            default:
+                                break;
                         }
                     }
                     break;
@@ -142,8 +148,50 @@ public class Bitacora_Controller extends Controllers {
                     }
                     lBitacora = mBitacora.consultarAllModulo("GASTOS");
                     for (int i = 0; i < lBitacora.size(); i++) {
-                        TGasto gasto = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TGasto.class);
-                        listObject.add(i, gasto);
+                        listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TGasto.class));
+                    }
+                    break;
+                case "ABONO":
+                    listObject.clear();
+                    if (!lBitacora.isEmpty()) {
+                        for (int i = 0; i < lBitacora.size(); i++) {
+                            if (lBitacora.get(i).getTbitClassname().equals("Entity.TCuota")) {
+                                TCuota cuota = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class);
+                                String[] fila = new String[11];
+                                fila[1] = cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
+                                fila[3] = "" + cuota.getTcuoAbono();
+                                fila[4] = "" + cuota.getTcuoNuevoSaldo();
+                                fila[5] = "" + cuota.getTcuoCuotasPagadas();
+                                fila[6] = cuota.getTPago().getTipo();
+                                fila[7] = cuota.getTCobrador().getTcobNombre();
+                                fila[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                fila[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                fila[10] = "" + cuota.getTcuoId();
+                                vistaBitacora.modeloTabla1.addRow(fila);
+                            }
+                        }
+                    }
+                    lBitacora = mBitacora.consultarAllModulo("PRESTAMO");
+                    for (int i = 0; i < lBitacora.size(); i++) {
+                        switch (lBitacora.get(i).getTbitClassname()) {
+                            case "Entity.TCuota":
+                                TCuota cuota = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class);
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class));
+                                break;
+                            case "Entity.TPrestamo":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class));
+                                break;
+                            case "Entity.TPago":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPago.class));
+                                break;
+                            case "Entity.TCobrador":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCobrador.class));
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(DesktopPaneMain, "Se agrego una nueva clase al modulo de prestamo  -" + lBitacora.get(i).getTbitClassname() + ", informar a su programador ");
+                                break;
+                        }
                     }
                     break;
             }

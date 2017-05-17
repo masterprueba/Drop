@@ -116,7 +116,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                     TPago pagos = new TPago();
                     pagos.setTipo(Cuota_UI.a_metodo.getText());
                     TCuota cuota = new TCuota(cmodel.SelectOne(cobrador),pamodel.SelectOne(pagos),prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
-                    if (pmodel.insertar(cuota,"TCuota") != null) {                       
+                    if (pmodel.insertar(cuota,"PRESTAMO") != null) {                       
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
                         Cuota_UI.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));
@@ -299,7 +299,7 @@ public class Cuota_Controller extends Prestamo_Controller {
             cuota.setTPago((TPago)model.getValueAt(i, 9));                     
             cuota.setTCobrador((TCobrador)model.getValueAt(i, 10));
             cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));
-            if(cmodel.editar(cuota, "Prestamo")){
+            if(cmodel.editar(cuota, "PRESTAMO")){
                 conteo++;
            }
         }        

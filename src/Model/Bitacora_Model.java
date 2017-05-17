@@ -34,6 +34,9 @@ public class Bitacora_Model<B> extends Models {
             case "GASTOS":
                 sql = "and tbitModulo='GASTOS'";
                 break;
+            case "ABONO":
+                sql = "and tbitModulo='PRESTAMO'";
+                break;
         }
         String query = "from TBitacora where tbitFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + " ORDER BY tbitFecha DESC";
         result = s.createQuery(query).list();
@@ -58,7 +61,7 @@ public class Bitacora_Model<B> extends Models {
         String sql = "";
         switch (modulo) {
             case "PRESTAMO":
-                sql = "where tbitModulo = 'PRESTAMO'";
+                sql = "where tbitModulo = 'PRESTAMO' and tbitClassname = 'Entity.TPrestamo'";
                 break;
             case "CLIENTE":
                 sql = "where tbitModulo='CLIENTE'";
