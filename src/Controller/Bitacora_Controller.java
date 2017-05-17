@@ -267,7 +267,7 @@ public class Bitacora_Controller extends Controllers {
                 }
                 if (model != null) {
                     numerarTabla(model);
-                    JInternalFrame in = new Bitacora_Individual(model, cadena);
+                    JInternalFrame in = new Bitacora_Individual(model, cadena, 1);
                     in.moveToFront();
                     checkInstance(in);
                 }
@@ -275,8 +275,36 @@ public class Bitacora_Controller extends Controllers {
         }
     }
 
-    public static void detalleBitacoraIndividual() {
-        JInternalFrame in = new Bitacora_Individual(new TableModel().bitacoraIndividualClientes(), "Yolo");
+    public static void detalleBitacoraIndividual(int posicion, String persona) {
+        String cadena = "";
+        DefaultTableModel model = null;
+        int flag = 0;
+        switch (persona) {
+            case "CODEUDOR":
+                cadena = "La primera fila resaltada de color verde es el estado actual del codeudor";
+                model = new TableModel().bitacoraIndividualClientes();
+                flag = 2;
+                if (lBitacora.get(posicion).getTbitClassname().equals("Entity.TPersona")) {
+                    TPersona cliente = (TPersona) listObject.get(posicion);
+                    String[] filas = new String[14];
+                    filas[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
+                    filas[2] = cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido();
+                    filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel();
+                    filas[4] = cliente.getTperCasDir();
+                    filas[5] = cliente.getTperCasTipo();
+                    filas[6] = cliente.getTperEmpNom();
+                    filas[7] = cliente.getTperEmpDir();
+                    filas[8] = cliente.getTperEmpTel();
+                    filas[9] = lBitacora.get(posicion).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(posicion).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                    filas[10] = lBitacora.get(posicion).getTbitIdentificador();
+                    filas[11] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(posicion).getTbitFecha());
+                    filas[12] = cliente.getTperCodeudor();
+                    filas[13] = cliente.getTDatosBasicosPersona().getTdbpId().toString();
+                    model.addRow(filas);
+                }
+                break;
+        }
+        JInternalFrame in = new Bitacora_Individual(model, cadena, flag);
         in.moveToFront();
         DesktopPaneMain.add(in);
         calcWidthHeight(in);

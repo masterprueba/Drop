@@ -8,9 +8,10 @@ package UI;
 import Controller.Bitacora_Controller;
 import Entity.TPersona;
 import Entity.TReferencia;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Enumeration;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,9 +27,12 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
      * Creates new form Bitacora_Usuario
      *
      * @param modelo
-     * @param nombre
+     * @param nombre //1 -cliente 2.- codeudor - 3 referencia
      */
-    public Bitacora_Individual(DefaultTableModel modelo, String nombre) {
+    int flag;
+
+    public Bitacora_Individual(DefaultTableModel modelo, String nombre, int flag) {
+        this.flag = flag;
         initComponents();
         jLabel2.setText(nombre);
         jTable1.setModel(modelo);
@@ -46,8 +50,13 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                 setSize(1300, 420);
                 break;
             case "CLIENTE":
-                setTitle("HISTORIAL DE CLIENTE");
-                jLabel1.setText("HISTORIAL DE CLIENTE");
+                if (flag == 1) {
+                    setTitle("HISTORIAL DE CLIENTE");
+                    jLabel1.setText("HISTORIAL DE CLIENTE");
+                } else if (flag == 2) {
+                    setTitle("HISTORIAL DE CODEUDOR");
+                    jLabel1.setText("HISTORIAL DE CODEUDOR");
+                }
                 setCellRender(jTable1);
                 setSize(1300, 420);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(13));
@@ -58,44 +67,78 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
     }
 
     private void crearPopup() {
-        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
-            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
-                TPersona codeud = (TPersona) Bitacora_Controller.listObject.get(i);
-                if (codeud.getTperTipo().equals("CODEUDOR") && codeud.getTDatosBasicosPersona().getTdbpCedula().equals(jTable1.getModel().getValueAt(0, 12).toString())) {
-                    TPersona codeudor = codeud;
-                    JMenuItem popupCodoudor = new JMenuItem(codeudor.getTDatosBasicosPersona().getTdbpNombre() + " " + codeudor.getTDatosBasicosPersona().getTdbpApellido());
-                    jPopupMenu1.add(popupCodoudor);
-                    break;
-                }
-            }
-        }
-
+        ArrayList<Integer> idReferencia = new ArrayList<>();
+        JMenuItem[] popupReferencia;
         int ref = 0;
         int j = 0;
-        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
-            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
-                TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
-                if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString())) {
-                    ref++;
+        if (flag == 1) {
+            boolean noCodeudor = false;
+            for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+                if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
+                    TPersona codeud = (TPersona) Bitacora_Controller.listObject.get(i);
+                    if (codeud.getTperTipo().equals("CODEUDOR") && codeud.getTDatosBasicosPersona().getTdbpCedula().equals(jTable1.getModel().getValueAt(0, 12).toString())) {
+                        TPersona codeudor = codeud;
+                        JMenuItem popupCodoudor = new JMenuItem(codeudor.getTDatosBasicosPersona().getTdbpNombre() + " " + codeudor.getTDatosBasicosPersona().getTdbpApellido());
+                        jPopupMenu1.add(popupCodoudor);
+                        final int posicionCod = i;
+                        System.err.println("Esta es la posicion" + i);
+                        popupCodoudor.addActionListener(e -> {
+                            int posicion = posicionCod;
+                            Bitacora_Controller.detalleBitacoraIndividual(posicion, "CODEUDOR");
+                        });
+                        noCodeudor = true;
+                        break;
+                    }
                 }
             }
-        }
-
-        
-        JMenuItem[] popupReferencia = new JMenuItem[ref];
-        for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
-            if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
-                TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
-                if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString()) && Bitacora_Controller.lBitacora.get(i).getTbitIdentificador().equals("AGREGO")) {
-                    popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido());
-                    jPopupMenu2.addSeparator();
-                    jPopupMenu2.add(popupReferencia[j]);
-                    jPopupMenu2.addSeparator();
-                    j++;
-                }
+            if (!noCodeudor) {
+                jPopupMenu1.add(new JMenuItem("No hay Codeudor para este cliente"));
             }
         }
-        System.err.println(ref + "sdf" + j);
+        if (flag != 3) {
+            for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+                if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
+                    TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
+                    if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString())) {
+                        ref++;
+                    }
+                }
+            }
+            if (ref != 0) {
+                popupReferencia = new JMenuItem[ref];
+                for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
+                    if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TReferencia")) {
+                        TReferencia referencia = (TReferencia) Bitacora_Controller.listObject.get(i);
+                        if (referencia.getTDatosBasicosPersona().getTdbpId() == Integer.parseInt(jTable1.getModel().getValueAt(0, 13).toString())) {
+                            boolean continu = true;
+                            for (int k = 0; k < idReferencia.size(); k++) {
+                                if (referencia.getTrefId() == idReferencia.get(k)) {
+                                    continu = false;
+                                    break;
+                                }
+                            }
+                            if (continu) {
+                                popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido());
+                                if (Bitacora_Controller.lBitacora.get(i).getTbitIdentificador().equals("ELIMINO")) {
+                                    popupReferencia[j].setBackground(Color.red);
+                                }
+                                jPopupMenu2.addSeparator();
+                                jPopupMenu2.add(popupReferencia[j]);
+                                jPopupMenu2.addSeparator();
+                                idReferencia.add(referencia.getTrefId());
+                                j++;
+                            }
+                        }
+                    }
+                }
+            }
+            if (idReferencia.isEmpty() || ref == 0) {
+                String mensaje = flag == 1 ? "No hay referencias para este cliente" : "No hay referencias para este codeudor";
+                popupReferencia = new JMenuItem[1];
+                popupReferencia[0] = new JMenuItem(mensaje);
+                jPopupMenu2.add(popupReferencia[0]);
+            }
+        }
     }
 
     private void setCellRender(JTable table) {
