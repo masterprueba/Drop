@@ -152,6 +152,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Historial inicio de sesion"/>
               </Properties>
               <Events>
@@ -160,6 +163,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Historial de Prestamos"/>
               </Properties>
               <Events>
@@ -168,6 +174,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Historial de Clientes"/>
               </Properties>
               <Events>
@@ -176,6 +185,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Historial de Gastos"/>
               </Properties>
               <Events>
@@ -184,6 +196,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/1465696263_Plus.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Historial de Abonos"/>
               </Properties>
               <Events>
@@ -222,6 +237,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/selec_row.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="General"/>
               </Properties>
               <Events>
@@ -264,6 +282,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Icons/guardar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Backup"/>
               </Properties>
               <Events>

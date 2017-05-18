@@ -188,6 +188,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6.setText("Historial");
         jMenu6.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
         jMenuItem9.setText("Historial inicio de sesion");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +197,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem9);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
         jMenuItem10.setText("Historial de Prestamos");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +206,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem10);
 
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
         jMenuItem12.setText("Historial de Clientes");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +215,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem12);
 
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
         jMenuItem14.setText("Historial de Gastos");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +224,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem14);
 
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
         jMenuItem15.setText("Historial de Abonos");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +250,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem11);
 
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem13.setText("General");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,6 +277,7 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
         jMenuItem8.setText("Backup");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
