@@ -106,7 +106,6 @@ public class Cliente_UI extends Views {
         jtfApellidoCodeudor = new javax.swing.JTextField();
         jtfNombreCodeudor = new javax.swing.JTextField();
         jtfCedulaCodeudor = new javax.swing.JTextField();
-        btnCodeudorCedula = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jtfCasaDirCodeudor = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -409,6 +408,7 @@ public class Cliente_UI extends Views {
         );
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
+        btnEditar.setText("Editar");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.setEnabled(false);
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -468,6 +468,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap())
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/refresh.png"))); // NOI18N
         jButton1.setText("Limpiar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -526,15 +527,6 @@ public class Cliente_UI extends Views {
         jtfCedulaCodeudor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCedulaCodeudorKeyTyped(evt);
-            }
-        });
-
-        btnCodeudorCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/aceptar2.png"))); // NOI18N
-        btnCodeudorCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCodeudorCedula.setEnabled(false);
-        btnCodeudorCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCodeudorCedulaActionPerformed(evt);
             }
         });
 
@@ -605,11 +597,8 @@ public class Cliente_UI extends Views {
                             .addComponent(jLabel21))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCodeudorCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                            .addComponent(jtfNombreCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtfNombreCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
@@ -630,8 +619,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCodeudorCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21)
@@ -896,11 +884,6 @@ public class Cliente_UI extends Views {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnCodeudorCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCodeudorCedulaActionPerformed
-        // TODO add your handling code here:
-        //per_Controller.prepareSelect(jtfCedulaCodeudor.getText(), "CODEUDOR");
-    }//GEN-LAST:event_btnCodeudorCedulaActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (cli_Controller.validar()) {
@@ -958,7 +941,6 @@ public class Cliente_UI extends Views {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClienteCedula;
-    private javax.swing.JButton btnCodeudorCedula;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
