@@ -72,6 +72,8 @@ public class Usuarios_UI extends Views {
         jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
+        setResizable(true);
+        setTitle("USUARIOS");
 
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setText("SECCIÓN DE USUARIOS");
