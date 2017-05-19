@@ -22,6 +22,7 @@ public class Prestamo_model<T> extends Models{
     }
     
     public List<T> informePrestamo(String fini, String ffin) {
+        System.out.println("ini "+fini+" fin "+ffin);
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "SELECT  DATE_FORMAT(cuota.TPrestamo.tpreFechaEntrega,'%y-%m-%d') as fecha ,"
@@ -30,11 +31,8 @@ public class Prestamo_model<T> extends Models{
                 + "  (SELECT SUM(prestamo.tpreValorTotal) FROM TPrestamo as prestamo WHERE prestamo.TPersona.tperId = cuota.TPrestamo.TPersona.tperId) as invertido,"
                 + " Sum(cuota.tcuoAbono) as pagado "
                 + "FROM TCuota as cuota "
-                + "WHERE DATE_FORMAT(cuota.TPrestamo.tpreFechaEntrega,'%y-%m-%d') BETWEEN :fechaini AND :fechafin";
-        Query r = s.createQuery(query)
-                .setParameter("fechaini", fini)
-                .setParameter("fechafin", ffin);
-        System.out.println(r.getQueryString());
+                + "WHERE cuota.TPrestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+"'";
+        Query r = s.createQuery(query);                    
             List<T> result = r.list();
         s.getTransaction().commit();
 

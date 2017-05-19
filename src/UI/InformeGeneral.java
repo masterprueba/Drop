@@ -20,8 +20,8 @@ public class InformeGeneral extends Views {
     Informe_Controller ic;
     public InformeGeneral() {
         initComponents();
-        ic = new Informe_Controller();
-        jtable_infprestamo.setModel(ic.obtenerDatos());
+        ic = new Informe_Controller(jtable_infprestamo,jtable_infgasto);
+        ic.obtenerDatos((DefaultTableModel)jtable_infprestamo.getModel());
     }
 
     /**
@@ -215,7 +215,7 @@ public class InformeGeneral extends Views {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ic.CargarTablas(jtable_infprestamo,jtable_infgasto);
+        ic.CargarTablas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

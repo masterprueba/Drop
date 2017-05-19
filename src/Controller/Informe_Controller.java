@@ -19,14 +19,22 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Informe_Controller extends Controllers{
     
-    public void CargarTablas(JTable prestamos, JTable gastos){
-        DefaultTableModel tmodelop = (DefaultTableModel) prestamos.getModel();
-        DefaultTableModel tmodelog = (DefaultTableModel) gastos.getModel();        
-        prestamos.setModel(obtenerDatos());
+    JTable pretamotable;
+    JTable gastotable;
+
+    public Informe_Controller(JTable pretamotable, JTable gastotable) {
+        this.pretamotable = pretamotable;
+        this.gastotable = gastotable;
     }
     
-    public DefaultTableModel obtenerDatos(){
-        DefaultTableModel tablamodel =  new DefaultTableModel();
+    
+    public void CargarTablas(){
+        DefaultTableModel tmodelop = (DefaultTableModel) pretamotable.getModel();
+        DefaultTableModel tmodelog = (DefaultTableModel) gastotable.getModel();        
+        obtenerDatos(tmodelop);
+    }
+    
+    public void obtenerDatos(DefaultTableModel tablamodel){        
         Prestamo_model modelo = new Prestamo_model();
         String fechaini = InformeGeneral.general_fechaini.getDate() != null
                 ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
@@ -54,12 +62,10 @@ public class Informe_Controller extends Controllers{
             tablamodel.addRow(f);
             total += prestado;
          }
-        if (total>0) {
-            System.out.println(total+" mayor");
-            return tablamodel;
-        } else {
-            System.out.println(total+" =0");
-            return new DefaultTableModel();
-        }        
+        if (total>0) {            
+            pretamotable.setModel(tablamodel);
+        }else{
+            ((DefaultTableModel)pretamotable.getModel()).removeRow(0);
+        }     
     }
 }
