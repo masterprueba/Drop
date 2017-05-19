@@ -125,6 +125,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         setTitle("BITACORA");
         setToolTipText("");
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HISTORIAL GENERAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N

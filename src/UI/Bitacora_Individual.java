@@ -209,7 +209,10 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
