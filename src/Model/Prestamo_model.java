@@ -21,17 +21,20 @@ public class Prestamo_model<T> extends Models{
     public Prestamo_model() {
     }
     
-    public List<T> informePrestamo(String fini, String ffin) {
-        System.out.println("ini "+fini+" fin "+ffin);
+    public List<T> informePrestamo(String fini, String ffin) {        
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "SELECT  DATE_FORMAT(cuota.TPrestamo.tpreFechaEntrega,'%y-%m-%d') as fecha ,"
-                + "cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula,"
-                + " (SELECT SUM(prestamo.tpreValorPrestamo) FROM TPrestamo as prestamo WHERE prestamo.TPersona.tperId = cuota.TPrestamo.TPersona.tperId) as prestado,"
-                + "  (SELECT SUM(prestamo.tpreValorTotal) FROM TPrestamo as prestamo WHERE prestamo.TPersona.tperId = cuota.TPrestamo.TPersona.tperId) as invertido,"
-                + " Sum(cuota.tcuoAbono) as pagado "
-                + "FROM TCuota as cuota "
-                + "WHERE cuota.TPrestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+"'";
+        String query = "SELECT " +
+        "DATE_FORMAT(prestamo.tpreFechaEntrega, " +
+        "'%y-%m-%d') as fecha , " +
+        "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, " +
+        "prestamo.tpreValorPrestamo as prestado, " +
+        "prestamo.tpreValorTotal as invertido, " +
+        "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono " +
+        "FROM " +
+        "TPrestamo as prestamo " +
+        "WHERE " +
+        "prestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+"'";
         Query r = s.createQuery(query);                    
             List<T> result = r.list();
         s.getTransaction().commit();

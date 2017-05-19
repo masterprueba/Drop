@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import Entity.TGasto;
+import Model.Gastos_Model;
 import Model.Prestamo_model;
 import UI.InformeGeneral;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -26,20 +29,33 @@ public class Informe_Controller extends Controllers{
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
         this.pretamotable = pretamotable;
         this.gastotable = gastotable;
-    }         
+    } 
     
-    public void obtenerDatos(boolean metodo){        
-        DefaultTableModel tmodelop = new TableModel().informeGeneral();
-        pretamotable.setModel(tmodelop);
-        Prestamo_model modelo = new Prestamo_model();
-        String fechaini = InformeGeneral.general_fechaini.getDate() != null
+    public void cargarDatos(boolean metodo){
+         String fechaini = InformeGeneral.general_fechaini.getDate() != null
                 ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
                 : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
         String fechafin = InformeGeneral.general_fechafin.getDate() != null
                 ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
                 : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
-        List<Object> prueba = modelo.informePrestamo(fechaini,fechafin);
-        Iterator itr = prueba.iterator();                
+        boolean p = obtenerPrestamos(fechaini, fechafin);
+        boolean g = obtenerGastos(fechaini, fechafin);
+        if (!p && !g && metodo) {
+            JOptionPane.showMessageDialog(null, "No existen datos");
+        }
+        InformeGeneral.text_invertido.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 3)+"");
+        InformeGeneral.text_recaudado.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5)+"");
+        float ganacias = totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6);
+        InformeGeneral.text_gasto.setText(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3)+"");
+        InformeGeneral.text_ganacia.setText(""+(ganacias-Float.parseFloat(InformeGeneral.text_gasto.getText())));
+    }
+    
+    public boolean obtenerPrestamos(String fechaini,String fechafin){        
+        DefaultTableModel tmodelop = new TableModel().informeGeneral();
+        pretamotable.setModel(tmodelop);
+        Prestamo_model modelo = new Prestamo_model();       
+        List<Object> prestamos = modelo.informePrestamo(fechaini,fechafin);
+        Iterator itr = prestamos.iterator();                
         Object[] f = new Object[8];
         boolean existe = false;
         while(itr.hasNext()){
@@ -51,15 +67,34 @@ public class Informe_Controller extends Controllers{
             f[3] = prestado;
             f[4] = obj[3];
             f[5] = pagado;
-            f[6] = prestado - pagado;
+            f[6] = pagado - prestado;
             if(obj[1]!=null){                
                 tmodelop.addRow(f);
                 existe = true;
             }            
-         }
-        if (!existe && metodo) {
-            JOptionPane.showMessageDialog(null, "No existen Datos");
+         }  
+         numerarTabla(tmodelop);         
+            return existe;        
+       
+    }
+    
+    public boolean obtenerGastos(String fecha1, String fecha2){
+        List<TGasto> gastos = new ArrayList();
+        boolean exist = false;
+        Gastos_Model MGastos = new Gastos_Model();                
+        gastos = MGastos.ConsultarPorFechas(fecha1, fecha2, "");                    
+        DefaultTableModel tmodelog = new TableModel().VerGastos();
+        gastotable.setModel(tmodelog);
+        tmodelog.setNumRows(0);
+        for (int i = 0; i < gastos.size(); i++) {
+            String[] fila = new String[6];
+            fila[1] = gastos.get(i).getTgasFecha().toString();
+            fila[2] = gastos.get(i).getTgasDesc();
+            fila[3] = gastos.get(i).getTgasCosto().toString();
+            tmodelog.addRow(fila);
+            exist = true;
         }
-        numerarTabla(tmodelop);
+        numerarTabla(tmodelog);        
+        return exist;
     }
 }

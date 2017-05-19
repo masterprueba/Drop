@@ -205,7 +205,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Fecha");
         modelo.addColumn("Cedula");
         modelo.addColumn("Prestado");
-        modelo.addColumn("Invertido");
+        modelo.addColumn("Posible Pago");
         modelo.addColumn("Pagado");
         modelo.addColumn("Ganancia");     
         return modelo;
