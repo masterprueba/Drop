@@ -89,6 +89,8 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 //jLabel3.setVisible(false);
                 setSize(1000, 555);
                 jTable1.setSize(500, 450);
+                jPanel1.setSize(2500, 200);
+                //jPanel1.setSize(d);
                 break;
         }
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
@@ -291,7 +293,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();

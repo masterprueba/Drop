@@ -165,9 +165,10 @@ public class Bitacora_Controller extends Controllers {
                                 fila[5] = "" + cuota.getTcuoCuotasPagadas();
                                 fila[6] = cuota.getTPago().getTipo();
                                 fila[7] = cuota.getTCobrador().getTcobNombre();
-                                fila[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                                 fila[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                 fila[10] = "" + cuota.getTcuoId();
+                                fila[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+
                                 vistaBitacora.modeloTabla1.addRow(fila);
                             }
                         }
@@ -364,12 +365,12 @@ public class Bitacora_Controller extends Controllers {
                                     }
                                 }
                             }
-                            cadena = prestamo != null ? "<html><table>"
+                            cadena = prestamo != null ? "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
                                     + "<tr><td>Cliente:</td><td>" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
                                     + "<td>N° Cuotas:</td><td>" + prestamo.getTpreNumCuotas() + "</td></tr> "
                                     + "<tr><td>Valor Prestamo:</td><td>" + prestamo.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestamo.getTpreIntereses() + "</td></tr>"
-                                    + "<tr><td>Metodo pago:</td><td>" + prestamo.getTpreMetodPago() + "</td></tr>"
-                                    + "<tr><td>Valor Total:</td><td>" + prestamo.getTpreValorTotal() + "</td></tr>"
+                                    + "<tr><td>Metodo pago:</td><td>" + prestamo.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestamo.getTpreFechaEntrega()) + "</td></tr>"
+                                    + "<tr><td>Valor Total:</td><td>" + prestamo.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestamo.getTpreValorCuota() + "</td></tr>"
                                     + "</table></html>" : "";
                             break;
                         default:
