@@ -6,7 +6,6 @@
 package UI;
 
 import Controller.Informe_Controller;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +20,7 @@ public class InformeGeneral extends Views {
     public InformeGeneral() {
         initComponents();
         ic = new Informe_Controller(jtable_infprestamo,jtable_infgasto);
-        ic.obtenerDatos((DefaultTableModel)jtable_infprestamo.getModel());
+        ic.obtenerDatos(false);
     }
 
     /**
@@ -280,7 +279,7 @@ public class InformeGeneral extends Views {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ic.CargarTablas();
+        ic.obtenerDatos(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

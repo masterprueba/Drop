@@ -10,6 +10,7 @@ import UI.InformeGeneral;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,16 +26,11 @@ public class Informe_Controller extends Controllers{
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
         this.pretamotable = pretamotable;
         this.gastotable = gastotable;
-    }
+    }         
     
-    
-    public void CargarTablas(){
-        DefaultTableModel tmodelop = (DefaultTableModel) pretamotable.getModel();
-        DefaultTableModel tmodelog = (DefaultTableModel) gastotable.getModel();        
-        obtenerDatos(tmodelop);
-    }
-    
-    public void obtenerDatos(DefaultTableModel tablamodel){        
+    public void obtenerDatos(boolean metodo){        
+        DefaultTableModel tmodelop = new TableModel().informeGeneral();
+        pretamotable.setModel(tmodelop);
         Prestamo_model modelo = new Prestamo_model();
         String fechaini = InformeGeneral.general_fechaini.getDate() != null
                 ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
@@ -45,11 +41,9 @@ public class Informe_Controller extends Controllers{
         List<Object> prueba = modelo.informePrestamo(fechaini,fechafin);
         Iterator itr = prueba.iterator();                
         Object[] f = new Object[8];
-        int total = 0;
-        int i = 1;
+        boolean existe = false;
         while(itr.hasNext()){
-            Object[] obj = (Object[]) itr.next();
-            f[0] = i;            
+            Object[] obj = (Object[]) itr.next();                        
             f[1] = obj[0];
             f[2] = obj[1];
             int prestado = obj[2] != null ? Integer.parseInt(String.valueOf(obj[2])) : 0;
@@ -58,14 +52,14 @@ public class Informe_Controller extends Controllers{
             f[4] = obj[3];
             f[5] = pagado;
             f[6] = prestado - pagado;
-            i++;
-            tablamodel.addRow(f);
-            total += prestado;
+            if(obj[1]!=null){                
+                tmodelop.addRow(f);
+                existe = true;
+            }            
          }
-        if (total>0) {            
-            pretamotable.setModel(tablamodel);
-        }else{
-            ((DefaultTableModel)pretamotable.getModel()).removeRow(0);
-        }     
+        if (!existe && metodo) {
+            JOptionPane.showMessageDialog(null, "No existen Datos");
+        }
+        numerarTabla(tmodelop);
     }
 }

@@ -199,4 +199,15 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("id");
         return modelo;
     }
+    public DefaultTableModel informeGeneral() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Prestado");
+        modelo.addColumn("Invertido");
+        modelo.addColumn("Pagado");
+        modelo.addColumn("Ganancia");     
+        return modelo;
+    }
 }

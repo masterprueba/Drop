@@ -12,7 +12,9 @@
         <group>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Informe_Controller.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cliente_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/InformeCliente.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Persona_Controller.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/InformeGeneral.java</file>
         </group>
     </open-files>
