@@ -10,13 +10,9 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TCuota.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Informe_Controller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/TableModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TPrestamo.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Controllers.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/InformeGeneral.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Views.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cuota_UI.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cuota_Controller.java</file>
         </group>
     </open-files>
 </project-private>

@@ -68,6 +68,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -112,7 +113,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu4.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/user.png"))); // NOI18N
         jMenuItem1.setText("Nuevo Cliente ");
         jMenuItem1.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +131,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         jMenuItem4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/prestamo.png"))); // NOI18N
         jMenuItem4.setText("Prestar");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +141,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu3.add(jMenuItem4);
 
         jMenuItem7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/monedas.png"))); // NOI18N
         jMenuItem7.setText("Abonar");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +149,15 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem7);
+
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
+        jMenuItem16.setText("Multa");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem16);
 
         jMenuBar1.add(jMenu3);
 
@@ -173,7 +183,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu5.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
         jMenuItem6.setText("Usuarios");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +250,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1465696263_Plus.png"))); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem11.setText("Prestamos");
         jMenuItem11.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -401,6 +411,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        JInternalFrame in = new Multa_Ui();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -483,6 +498,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
