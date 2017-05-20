@@ -79,7 +79,7 @@ public class Bitacora_Controller extends Controllers {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TPrestamo prestamo = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class);
                             String[] fila = new String[7];
-                            fila[1] = lBitacora.get(i).getTLogin().getTlogUserLogin();
+                            fila[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                             fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                             fila[3] = lBitacora.get(i).getTbitIdentificador();
                             fila[4] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
@@ -344,7 +344,6 @@ public class Bitacora_Controller extends Controllers {
                             for (int i = 0; i < listObject.size(); i++) {
                                 if (lBitacora.get(i).getTbitClassname().equals("Entity.TCuota")) {
                                     TCuota cuota = (TCuota) listObject.get(i);
-                                    System.err.println(cuota.getTcuoId() + "  id" + idcuota);
                                     if (cuota.getTcuoId() == idcuota) {
                                         if (!True) {
                                             prestamo = cuota.getTPrestamo();

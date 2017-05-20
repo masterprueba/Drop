@@ -81,7 +81,7 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
                 setTitle("HISTORIAL DE CUOTAS");
                 jLabel1.setText("HISTORIAL DE CUOTAS");
                 setSize(900, 420);
-               // jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(10));
                 //jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
         }
