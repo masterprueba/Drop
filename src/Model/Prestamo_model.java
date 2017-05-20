@@ -34,7 +34,7 @@ public class Prestamo_model<T> extends Models{
         "FROM " +
         "TPrestamo as prestamo " +
         "WHERE " +
-        "prestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+"'";
+        "prestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+" 23:59:59'";
         Query r = s.createQuery(query);                    
             List<T> result = r.list();
         s.getTransaction().commit();

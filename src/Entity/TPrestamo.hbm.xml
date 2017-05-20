@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/04/2017 07:05:10 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-may-2017 19:08:28 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </many-to-one>
         <property name="tpreValorPrestamo" type="int">
             <column name="tpre_valor_prestamo" not-null="true" />
+        </property>
+        <property name="tpreRefinanciado" type="int">
+            <column name="tpre_refinanciado" not-null="true" />
         </property>
         <property name="tpreNumCuotas" type="int">
             <column name="tpre_num_cuotas" not-null="true">

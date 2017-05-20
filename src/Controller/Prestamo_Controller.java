@@ -65,11 +65,11 @@ public class Prestamo_Controller extends Controllers{
             double inter = ((double) Integer.parseInt((String) interes.getSelectedItem()) / 100) + 1;
             Long vcuota = null;
             try {
-                Long valorprestamo = ((Long) formateador.parse(valor_prestamo.getText())) + Integer.parseInt(prestamo_actual.getText());
-                Long valortotal = Math.round(valorprestamo * inter);
+                Long valorprestamo = ((Long) formateador.parse(valor_prestamo.getText()));
+                Long valortotal = Math.round((valorprestamo+Integer.parseInt(prestamo_actual.getText())) * inter);
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
                 System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
-                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getSelectedItem()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
+                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getSelectedItem()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
                 if (pmodel.insertar(prestamo,"PRESTAMO") != null) {
                     JOptionPane.showMessageDialog(null, "Prestamo total: $" + valortotal + " Realizado  correctamente!!");
                     Prestamo_ui.jPanel2.setVisible(false);
@@ -160,10 +160,10 @@ public class Prestamo_Controller extends Controllers{
     //calcula el valor de cuota y la cantidad de cuotas a pagar    
     public void calcularCuota() {
         String presta = valor_prestamo.getText().equals("") ? "0" : parsearFormato(valor_prestamo.getText());
-        int prestamo = Integer.parseInt(presta) + Integer.parseInt(prestamo_actual.getText());
+        int prestamo = Integer.parseInt(presta);
         float inter = (1 + ((float) Integer.parseInt(String.valueOf(interes.getSelectedItem())) / 100));
         int dias = cantidad_cuotas.getText().equals("") || cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());
-        float valorcuota = (prestamo * inter) / dias;
+        float valorcuota = ((prestamo+Integer.parseInt(prestamo_actual.getText())) * inter) / dias;
         if (Math.round(valorcuota) > 0) {
             valor_cuota.setText(formateador.format(Math.round(valorcuota)));
         } else {

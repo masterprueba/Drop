@@ -218,7 +218,7 @@ public class Cliente_Controller extends Persona_Controller {
 
         }
         numerarTabla(dtm);
-
+        InformeCliente.text_totalprestamo.setText(totalDeUnaTabla(dtm, 2)+"");
         int[] position = {1, 9, 10};
         setVisibleColumnTable(jt, position);
     }
@@ -249,6 +249,7 @@ public class Cliente_Controller extends Persona_Controller {
 
         }
         numerarTabla(dtm);
+        InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3)+"");
         int[] position = {1, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
