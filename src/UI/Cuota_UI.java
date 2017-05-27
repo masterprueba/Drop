@@ -131,6 +131,7 @@ public class Cuota_UI extends Views {
         jLabel18.setText("Cobrador:");
 
         a_cobrador.setEditable(false);
+        a_cobrador.setText("Por defecto");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
         jButton4.setText("Tipo");
@@ -149,6 +150,7 @@ public class Cuota_UI extends Views {
         });
 
         a_metodo.setEditable(false);
+        a_metodo.setText("Por defecto");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

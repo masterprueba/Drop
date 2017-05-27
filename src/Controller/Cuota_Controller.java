@@ -189,9 +189,17 @@ public class Cuota_Controller extends Prestamo_Controller {
                 if (prestamo != null) {
                     //error
                     TCobrador cobrador = new TCobrador();
-                    cobrador.setTcobNombre(Cuota_UI.a_cobrador.getText());
+                    if (Cuota_UI.a_cobrador.getText().equals("Por defecto")) {
+                        cobrador = cmodel.first();                                
+                    } else {
+                        cobrador.setTcobNombre(Cuota_UI.a_cobrador.getText());
+                    }                    
                     TPago pagos = new TPago();
-                    pagos.setTipo(Cuota_UI.a_metodo.getText());
+                    if (Cuota_UI.a_metodo.getText().equals("Por defecto")) {
+                        pagos = pamodel.first();
+                    } else {
+                        pagos.setTipo(Cuota_UI.a_metodo.getText());
+                    }                    
                     TCuota cuota = new TCuota(cmodel.SelectOne(cobrador), pamodel.SelectOne(pagos), prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
                     if (pmodel.insertar(cuota, "PRESTAMO") != null) {
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");

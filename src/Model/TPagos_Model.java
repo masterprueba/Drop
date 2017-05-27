@@ -7,6 +7,7 @@ package Model;
 
 import Entity.TPago;
 import Persistence.hibernateUtil;
+import org.hibernate.Query;
 
 /**
  *
@@ -19,6 +20,19 @@ public class TPagos_Model extends Models{
         s.beginTransaction();
         String query = "FROM TPago p WHERE p.tipo = '" + p.getTipo()+"'";
         TPago result = (TPago) s.createQuery(query).uniqueResult();
+        s.getTransaction().commit();
+
+        return result;
+    }
+    
+    public TPago first() {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TPago p ORDER BY p.id"; 
+        Query q = s.createQuery(query);
+        q.setMaxResults(1);
+        TPago result = (TPago) q.uniqueResult();
         s.getTransaction().commit();
 
         return result;

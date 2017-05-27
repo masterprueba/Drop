@@ -7,6 +7,7 @@ package Model;
 
 import Entity.TCobrador;
 import Persistence.hibernateUtil;
+import org.hibernate.Query;
 
 /**
  *
@@ -20,6 +21,19 @@ public class Cobrador_Model extends Models {
         s.beginTransaction();
         String query = "FROM TCobrador p WHERE p.tcobNombre = '" + p.getTcobNombre()+"'";
         TCobrador result = (TCobrador) s.createQuery(query).uniqueResult();
+        s.getTransaction().commit();
+
+        return result;
+    }
+    
+    public TCobrador first() {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TCobrador p ORDER BY p.id";   
+        Query q = s.createQuery(query);
+        q.setMaxResults(1);
+        TCobrador result = (TCobrador) q.uniqueResult();
         s.getTransaction().commit();
 
         return result;
