@@ -52,7 +52,6 @@ public class Prestamo_ui extends Views {
         P_valor_cuota = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         P_metodo = new javax.swing.JComboBox<>();
-        P_interes = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         P_cantcuotas = new javax.swing.JTextField();
@@ -61,6 +60,7 @@ public class Prestamo_ui extends Views {
         jSeparator3 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
+        P_interes = new javax.swing.JTextField();
         P_consulCliente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         P_cedula = new javax.swing.JTextField();
@@ -122,12 +122,10 @@ public class Prestamo_ui extends Views {
         jLabel10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel10.setText("Valor cuota:");
 
-        P_metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diario", "Semanal", "Quincenal" }));
-
-        P_interes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "15", "20" }));
-        P_interes.addItemListener(new java.awt.event.ItemListener() {
+        P_metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diario", "Semanal", "Quincenal", "Mensual" }));
+        P_metodo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                P_interesItemStateChanged(evt);
+                P_metodoItemStateChanged(evt);
             }
         });
 
@@ -164,6 +162,8 @@ public class Prestamo_ui extends Views {
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        P_interes.setText("1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -171,6 +171,7 @@ public class Prestamo_ui extends Views {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -188,7 +189,7 @@ public class Prestamo_ui extends Views {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(P_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(P_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel16))
                             .addComponent(P_cantcuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -196,10 +197,7 @@ public class Prestamo_ui extends Views {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(P_valorprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(153, 153, 153))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(153, 153, 153)))
                 .addGap(47, 47, 47)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -239,8 +237,8 @@ public class Prestamo_ui extends Views {
                             .addComponent(jLabel8)
                             .addComponent(P_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(P_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
+                            .addComponent(jLabel16)
+                            .addComponent(P_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -397,7 +395,7 @@ public class Prestamo_ui extends Views {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(11, Short.MAX_VALUE)
                         .addComponent(P_consulCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(288, 288, 288)
@@ -439,10 +437,6 @@ public class Prestamo_ui extends Views {
         soloNumeros(evt);
     }//GEN-LAST:event_P_valor_cuotaKeyTyped
 
-    private void P_interesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_P_interesItemStateChanged
-        pc.calcularCuota();
-    }//GEN-LAST:event_P_interesItemStateChanged
-
     private void P_cantcuotasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_cantcuotasFocusLost
         pc.calcularCuota();
     }//GEN-LAST:event_P_cantcuotasFocusLost
@@ -475,6 +469,10 @@ public class Prestamo_ui extends Views {
         MainDesktop.checkInstance(l);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void P_metodoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_P_metodoItemStateChanged
+        pc.calcularCuota();
+    }//GEN-LAST:event_P_metodoItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField P_cantcuotas;
@@ -482,7 +480,7 @@ public class Prestamo_ui extends Views {
     private javax.swing.JPanel P_consulCliente;
     public static javax.swing.JTextField P_dir;
     public static com.toedter.calendar.JDateChooser P_fecha;
-    public static javax.swing.JComboBox<String> P_interes;
+    public static javax.swing.JTextField P_interes;
     public static javax.swing.JComboBox<String> P_metodo;
     public static javax.swing.JTextField P_nombre;
     public static javax.swing.JTextField P_tel;

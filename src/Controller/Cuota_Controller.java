@@ -109,9 +109,10 @@ public class Cuota_Controller extends Prestamo_Controller {
                 if (abono != null) {
                     prestamo = abono.getTPrestamo();
                     Long valorc = prestamo.getTpreValorCuota();
+                    float interes_cuota = (prestamo.getTpreValorTotal()-prestamo.getTpreValorPrestamo())/( prestamo.getTpreNumCuotas());
                     Cuota_UI.a_totalcuota.setText(valorc + "");
-                    Cuota_UI.a_cuotaneto.setText(valorc - (valorc * ((float) prestamo.getTpreIntereses() / 100)) + "");
-                    Cuota_UI.a_interes.setText(valorc * ((float) prestamo.getTpreIntereses() / 100) + "");
+                    Cuota_UI.a_cuotaneto.setText(valorc-interes_cuota + "");
+                    Cuota_UI.a_interes.setText(interes_cuota + "");
                     Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                     Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
                     if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {

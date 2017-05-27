@@ -13,12 +13,14 @@ import Model.Persona_Model;
 import Model.Prestamo_model;
 import UI.Prestamo_ui;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -38,7 +40,7 @@ public class Prestamo_Controller extends Controllers{
     private final JTextField valor_cuota;
     private final JTextField cantidad_cuotas;
     private final JComboBox metodo;
-    private final JComboBox interes;
+    private final JTextField interes;
     private final Prestamo_model pmodel;
     
     
@@ -62,16 +64,21 @@ public class Prestamo_Controller extends Controllers{
     public void create(TPersona cliente) {
         if (validar()) {
             calcularCuota();
-            double inter = ((double) Integer.parseInt((String) interes.getSelectedItem()) / 100) + 1;
+            double inter = ((double) Integer.parseInt((String) interes.getText()) / 100) + 1;
             Long vcuota = null;
             try {
                 Long valorprestamo = ((Long) formateador.parse(valor_prestamo.getText()));
                 Long valortotal = Math.round((valorprestamo+Integer.parseInt(prestamo_actual.getText())) * inter);
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
                 System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
-                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getSelectedItem()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
+                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
                 if (pmodel.insertar(prestamo,"PRESTAMO") != null) {
-                    JOptionPane.showMessageDialog(null, "Prestamo total: $" + valortotal + " Realizado  correctamente!!");
+                    String msg = "<html>Prestamo realizado correctamente:<ul><li>Prestamo realizado : $<b>"+formateador.parse(String.valueOf(valortotal))+"</b></li>"
+        + "<li>Valor cuota : $<b>"+formateador.parse(valor_cuota.getText())+"</b></li>"
+        + "</ul></html>";
+        JLabel label = new JLabel(msg);
+        label.setFont(new Font("serif", Font.PLAIN, 14));
+                    JOptionPane.showMessageDialog(null, label);
                     Prestamo_ui.jPanel2.setVisible(false);
                     nombre.setText("");
                     Prestamo_ui.P_tel.setText("");
@@ -158,10 +165,10 @@ public class Prestamo_Controller extends Controllers{
     }
 
     //calcula el valor de cuota y la cantidad de cuotas a pagar    
-    public void calcularCuota() {
+    public void calcularCuota() {                
         String presta = valor_prestamo.getText().equals("") ? "0" : parsearFormato(valor_prestamo.getText());
         int prestamo = Integer.parseInt(presta);
-        float inter = (1 + ((float) Integer.parseInt(String.valueOf(interes.getSelectedItem())) / 100));
+        float inter = (1 + ((float) Integer.parseInt(String.valueOf(interes.getText())) / 100));
         int dias = cantidad_cuotas.getText().equals("") || cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());
         float valorcuota = ((prestamo+Integer.parseInt(prestamo_actual.getText())) * inter) / dias;
         if (Math.round(valorcuota) > 0) {
