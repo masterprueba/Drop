@@ -25,6 +25,7 @@ public class Cuota_UI extends Views {
         jPanel3.setVisible(false);
         a_cedula.requestFocus();
         ac = new Cuota_Controller();
+        ac.indicador="cuota";
     }
 
     /**

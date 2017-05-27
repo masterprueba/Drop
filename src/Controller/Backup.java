@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class Backup {
     public static void execute(){
          try {
-            String[] tablas = {"t_bitacora","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_persona","t_prestamo","t_referencia"};
+            String[] tablas = {"t_bitacora","t_cobrador","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_persona","t_prestamo","t_referencia"};
             Calendar c1 = Calendar.getInstance();
             String fechaactual = c1.get(Calendar.YEAR) + "-" + (c1.get(Calendar.MONTH) + 1) + "-" + c1.get(Calendar.DATE);
             File archivo = new File("exp.bat");
@@ -25,7 +25,7 @@ public class Backup {
                 File fecha = new File("backup/"+fechaactual);
                 fecha.mkdirs();
                 for (int i = 0; i < tablas.length; i++) {
-                    escribir.write("@echo off\n mysql -u droti --password=admin13082016 drop_db -e \"SELECT * FROM "+tablas[i]+"\" -B > backup/"+fechaactual+"/"+tablas[i]+".csv \n");
+                    escribir.write("@echo off\n mysql -h 192.168.1.12 -u droti --password=admin13082016 drop_db -e \"SELECT * FROM "+tablas[i]+"\" -B > backup/"+fechaactual+"/"+tablas[i]+".csv \n");
                 }
                 escribir.write(" exit");
             }
