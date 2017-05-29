@@ -262,6 +262,37 @@ public class Models<T> {
                 json += "\"trefTipo\":\"" + referencia.getTrefTipo() + "\",\"trefNombre\":\"" + referencia.getTrefNombre() + "\",\"trefApellido\":\"" + referencia.getTrefApellido() + "\","
                         + "\"trefTelefono\":\"" + referencia.getTrefTelefono() + "\"}";
                 break;
+            case "Entity.TMulta":
+                TMulta multa = (TMulta) object;
+                json = "{\"tmulId\":" + multa.getTmulId() + ",";
+                if (multa.getTPrestamo() != null) {
+                    json += "\"TPrestamo\":{ \"tpreId\":" + multa.getTPrestamo().getTpreId() + ",";
+                    if (multa.getTPrestamo().getTPersona() != null) {
+                        json += "\"TPersona\":{\"tperId\":" + multa.getTPrestamo().getTPersona().getTperId() + ",";
+                        if (multa.getTPrestamo().getTPersona().getTDatosBasicosPersona() != null) {
+                            json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "\","
+                                    + "\"tdbpNombre\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "\","
+                                    + "\"tdbpTel\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                        }
+                        json += "\"tperCasDir\":\"" + multa.getTPrestamo().getTPersona().getTperCasDir() + "\",\"tperCasPro\":\"" + multa.getTPrestamo().getTPersona().getTperCasPro() + "\","
+                                + "\"tperCasTipo\":\"" + multa.getTPrestamo().getTPersona().getTperCasTipo() + "\","
+                                + "\"tperEmpNom\":\"" + multa.getTPrestamo().getTPersona().getTperEmpNom() + "\",\"tperEmpDir\":\"" + multa.getTPrestamo().getTPersona().getTperEmpDir() + "\","
+                                + "\"tperEmpTel\":\"" + multa.getTPrestamo().getTPersona().getTperEmpTel() + "\",\"tperTipo\":\"" + multa.getTPrestamo().getTPersona().getTperTipo() + "\","
+                                + "\"tperCodeudor\":\"" + multa.getTPrestamo().getTPersona().getTperCodeudor() + "\",\"TPrestamos\":[]},";
+                    }
+                    json += " \"tpreValorPrestamo\":" + multa.getTPrestamo().getTpreValorPrestamo() + ","
+                            + " \"tpreNumCuotas\":" + multa.getTPrestamo().getTpreNumCuotas() + ","
+                            + " \"tpreIntereses\":" + multa.getTPrestamo().getTpreIntereses() + ","
+                            + " \"tpreMetodPago\":\"" + multa.getTPrestamo().getTpreMetodPago() + "\","
+                            + " \"tpreFechaEntrega\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(multa.getTPrestamo().getTpreFechaEntrega()) + "\","
+                            + " \"tpreValorTotal\":" + multa.getTPrestamo().getTpreValorTotal() + ","
+                            + " \"tpreValorCuota\":" + multa.getTPrestamo().getTpreValorCuota() + ","
+                            + " \"TCuotas\":[]},";
+
+                }
+                json += "\"tmulValor\":" + multa.getTmulValor() + ",\"tmulDescripcion\":\"" + multa.getTmulDescripcion() + "\",\"tmulFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(multa.getTmulFecha()) + "\","
+                        + "\"tmulEstado\":\"" + multa.getTmulEstado() + "\"}";
+                break;
         }
         return json;
     }
