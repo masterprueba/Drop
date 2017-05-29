@@ -1,5 +1,5 @@
 package Entity;
-// Generated 19-may-2017 19:08:27 by Hibernate Tools 4.3.1
+// Generated 29-may-2017 7:41:45 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,6 +23,7 @@ public class TPrestamo  implements java.io.Serializable {
      private long tpreValorTotal;
      private long tpreValorCuota;
      private Set TCuotas = new HashSet(0);
+     private Set TMultas = new HashSet(0);
 
     public TPrestamo() {
     }
@@ -39,7 +40,7 @@ public class TPrestamo  implements java.io.Serializable {
         this.tpreValorTotal = tpreValorTotal;
         this.tpreValorCuota = tpreValorCuota;
     }
-    public TPrestamo(TPersona TPersona, int tpreValorPrestamo, int tpreRefinanciado, int tpreNumCuotas, int tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, long tpreValorTotal, long tpreValorCuota, Set TCuotas) {
+    public TPrestamo(TPersona TPersona, int tpreValorPrestamo, int tpreRefinanciado, int tpreNumCuotas, int tpreIntereses, String tpreMetodPago, Date tpreFechaEntrega, long tpreValorTotal, long tpreValorCuota, Set TCuotas, Set TMultas) {
        this.TPersona = TPersona;
        this.tpreValorPrestamo = tpreValorPrestamo;
        this.tpreRefinanciado = tpreRefinanciado;
@@ -50,6 +51,7 @@ public class TPrestamo  implements java.io.Serializable {
        this.tpreValorTotal = tpreValorTotal;
        this.tpreValorCuota = tpreValorCuota;
        this.TCuotas = TCuotas;
+       this.TMultas = TMultas;
     }
    
     public Integer getTpreId() {
@@ -128,6 +130,13 @@ public class TPrestamo  implements java.io.Serializable {
     
     public void setTCuotas(Set TCuotas) {
         this.TCuotas = TCuotas;
+    }
+    public Set getTMultas() {
+        return this.TMultas;
+    }
+    
+    public void setTMultas(Set TMultas) {
+        this.TMultas = TMultas;
     }
 
 

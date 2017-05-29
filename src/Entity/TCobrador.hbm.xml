@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-may-2017 19:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-may-2017 7:41:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCobrador" table="t_cobrador" catalog="drop_db" optimistic-lock="version">
-        <id name="tcobId" type="java.lang.Integer">
+        <id name="tcobId" type="int">
             <column name="tcob_id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <property name="tcobNombre" type="string">
-            <column name="tcob_nombre" length="80" not-null="true" unique="true" />
+            <column name="tcob_nombre" length="80" not-null="true" />
         </property>
         <set name="TCuotas" table="t_cuota" inverse="true" lazy="true" fetch="select">
             <key>

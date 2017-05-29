@@ -40,68 +40,27 @@ public class Cuota_Controller extends Prestamo_Controller {
     public DefaultTableModel dfm;
     private List<TPersona> listp;
     private List<TCobrador> listc;
-    private List<TPago> listpa;
-    public static String indicador = "cuota";
+    private List<TPago> listpa;    
 
     public Cuota_Controller() {
         pmodel = new Prestamo_model();
         if (Cuota_UI.a_fecha != null) {
             Cuota_UI.a_fecha.setDate(new Date());
-        }
-        if (Multa_Ui.a_fecha != null) {
-            Multa_Ui.a_fecha.setDate(new Date());
-        }
+        }        
         cmodel = new Cobrador_Model();
         pamodel = new TPagos_Model();
     }
 
     @Override
-    public void setCliente(TPersona cliente) {
-        if (indicador.equals("multa")) {
-            Multa_Ui.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
-        } else {
-            Cuota_UI.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
-        }
+    public void setCliente(TPersona cliente) {        
+            Cuota_UI.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());        
     }
 
     @Override
     public void setClienteError(TPersona Cliente) {
     }
 
-    public boolean setData(String cc) {
-        if (indicador.equals("multa")) {
-            TPersona cliente = consultarCliente(cc);
-
-            if (cliente != null) {
-                abono = ultimaCuota(cliente, 'c');
-                if (abono != null) {
-                    prestamo = abono.getTPrestamo();
-                    Long valorc = prestamo.getTpreValorCuota();
-                    Multa_Ui.a_totalcuota.setText(valorc + "");
-                    Multa_Ui.a_cuotaneto.setText(valorc - (valorc * ((float) prestamo.getTpreIntereses() / 100)) + "");
-                    Multa_Ui.a_interes.setText(valorc * ((float) prestamo.getTpreIntereses() / 100) + "");
-                    Multa_Ui.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
-                    Multa_Ui.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
-                    if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
-                        cliente = null;
-                        JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
-                        Multa_Ui.jPanel5.setVisible(false);
-                        return false;
-                    }
-                } else {
-                    cliente = null;
-                    Multa_Ui.jPanel5.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo");
-                    return false;
-                }
-
-                return true;
-            } else {
-                abono = null;
-                prestamo = null;
-                return false;
-            }
-        } else {
+    public boolean setData(String cc) {        
             TPersona cliente = consultarCliente(cc);
 
             if (cliente != null) {
@@ -132,45 +91,11 @@ public class Cuota_Controller extends Prestamo_Controller {
                 prestamo = null;
                 return false;
             }
-        }
+        
     }
 
     public void insertar() {
-        if (indicador.equals("multa")) {
-            if (validar()) {
-                calcularCantidad();
-                int r = JOptionPane.showConfirmDialog(null, "Esta seguro de multar con \n $ -" + formateador.format(Integer.parseInt(Multa_Ui.a_abono.getText())), "Agregar abono", JOptionPane.YES_NO_OPTION);
-                if (r == JOptionPane.YES_OPTION) {
-                    Multa_Ui.jPanel1.setVisible(false);
-                    Multa_Ui.jPanel2.setVisible(false);
-                    Multa_Ui.jPanel3.setVisible(false);
-                    Multa_Ui.jPanel5.setVisible(false);
-                    Long saldo;
-                    int cpagadas;
-                    if (abono != null) {
-                        saldo = abono.getTcuoNuevoSaldo() + Long.parseLong(Multa_Ui.a_abono.getText());
-                        cpagadas = (int) ((float) saldo / prestamo.getTpreValorCuota());
-                    } else {
-                        saldo = Long.parseLong(Multa_Ui.a_abono.getText());
-                        cpagadas = Integer.parseInt(Multa_Ui.a_cantcuotas.getText());
-                    }
-                    if (prestamo != null) {
-                        //error
-                        TCobrador cobrador = new TCobrador();
-                        cobrador.setTcobNombre("multa");
-                        TPago pagos = new TPago();
-                        pagos.setTipo("multa-.");
-                        TCuota cuota = new TCuota(cmodel.SelectOne(cobrador), pamodel.SelectOne(pagos), prestamo, Multa_Ui.a_fecha.getDate(), Long.parseLong("-" + Multa_Ui.a_abono.getText()), saldo, cpagadas);
-                        if (pmodel.insertar(cuota, "PRESTAMO") != null) {
-                            clearPanel(Multa_Ui.jPanel2);
-                            clearPanel(Multa_Ui.jPanel3);
-                            JOptionPane.showMessageDialog(null, "Multa Agregada al cliente ");
-                            Multa_Ui.a_cobrador.setText("multa");
-                        }
-                    }
-                }
-            }
-        } else if (validar()) {
+        if (validar()) {
             calcularCantidad();
             int r = JOptionPane.showConfirmDialog(null, "Esta seguro de abonar \n $" + formateador.format(Integer.parseInt(Cuota_UI.a_abono.getText())), "Agregar abono", JOptionPane.YES_NO_OPTION);
             if (r == JOptionPane.YES_OPTION) {
@@ -220,38 +145,16 @@ public class Cuota_Controller extends Prestamo_Controller {
 
     }
 
-    public void calcularCantidad() {
-        
-        System.err.println(indicador);
-        if (indicador.equals("multa")) {
-            int valorcuota = (int) prestamo.getTpreValorCuota();
-            int abonotemp = Integer.parseInt(Multa_Ui.a_abono.getText());
-            int cantidad = (int) ((float) abonotemp / valorcuota);
-            Multa_Ui.a_cantcuotas.setText(String.valueOf(cantidad));
-        } else {
+    public void calcularCantidad() {                        
             int valorcuota = (int) prestamo.getTpreValorCuota();
             int abonotemp = Integer.parseInt(Cuota_UI.a_abono.getText());
             int cantidad = (int) ((float) abonotemp / valorcuota);
             Cuota_UI.a_cantcuotas.setText(String.valueOf(cantidad));
-        }
+        
 
     }
 
-    private boolean validar() {
-        if (indicador.equals("multa")) {
-            String msj = Multa_Ui.a_abono == null ? "Debes ingresar el abono \n" : "";
-            try {
-                Integer.parseInt(Multa_Ui.a_abono.getText());
-            } catch (NumberFormatException ex) {
-                msj += "El valor de la cuota debe ser numerico \n";
-            }
-            if (msj.equals("")) {
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
-                return false;
-            }
-        } else {
+    private boolean validar() {        
             String msj = "";
             msj += Cuota_UI.a_cobrador.getText().equals("") ? "Debe ingresar el cobrador \n" : "";
             msj += Cuota_UI.a_metodo.getText().equals("") ? "Debe ingresar el metodo de pago \n" : "";
@@ -268,7 +171,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                 JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
-        }
+        
 
     }
 

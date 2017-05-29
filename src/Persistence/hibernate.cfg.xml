@@ -15,6 +15,7 @@
     <mapping resource="Entity/TReferencia.hbm.xml"/>
     <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TLogin.hbm.xml"/>
+    <mapping resource="Entity/TMulta.hbm.xml"/>
     <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TBitacora.hbm.xml"/>
     <mapping resource="Entity/TPago.hbm.xml"/>

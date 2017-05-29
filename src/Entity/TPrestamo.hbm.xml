@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-may-2017 19:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-may-2017 7:41:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TPrestamo" table="t_prestamo" catalog="drop_db" optimistic-lock="version">
         <id name="tpreId" type="java.lang.Integer">
@@ -52,6 +52,12 @@
                 <column name="tcuo_tpre_id" not-null="true" />
             </key>
             <one-to-many class="Entity.TCuota" />
+        </set>
+        <set name="TMultas" table="t_multa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tmul_idprestamo" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TMulta" />
         </set>
     </class>
 </hibernate-mapping>

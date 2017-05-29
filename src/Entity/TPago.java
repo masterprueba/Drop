@@ -1,5 +1,5 @@
 package Entity;
-// Generated 19-may-2017 19:08:27 by Hibernate Tools 4.3.1
+// Generated 29-may-2017 7:41:45 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,23 +11,28 @@ import java.util.Set;
 public class TPago  implements java.io.Serializable {
 
 
-     private Integer tpagId;
+     private int tpagId;
      private String tipo;
      private Set TCuotas = new HashSet(0);
 
     public TPago() {
     }
 
-    public TPago(String tipo, Set TCuotas) {
+	
+    public TPago(int tpagId) {
+        this.tpagId = tpagId;
+    }
+    public TPago(int tpagId, String tipo, Set TCuotas) {
+       this.tpagId = tpagId;
        this.tipo = tipo;
        this.TCuotas = TCuotas;
     }
    
-    public Integer getTpagId() {
+    public int getTpagId() {
         return this.tpagId;
     }
     
-    public void setTpagId(Integer tpagId) {
+    public void setTpagId(int tpagId) {
         this.tpagId = tpagId;
     }
     public String getTipo() {

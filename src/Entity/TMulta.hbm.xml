@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29-may-2017 7:41:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TMulta" table="t_multa" catalog="drop_db" optimistic-lock="version">
+        <id name="tmulId" type="java.lang.Integer">
+            <column name="tmul_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TPrestamo" class="Entity.TPrestamo" fetch="select">
+            <column name="tmul_idprestamo" not-null="true" />
+        </many-to-one>
+        <property name="tmulValor" type="int">
+            <column name="tmul_valor" not-null="true" />
+        </property>
+        <property name="tmulDescripcion" type="string">
+            <column name="tmul_descripcion" length="200" not-null="true" />
+        </property>
+        <property name="tmulFecha" type="date">
+            <column name="tmul_fecha" length="10" not-null="true" />
+        </property>
+        <property name="tmulEstado" type="string">
+            <column name="tmul_estado" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

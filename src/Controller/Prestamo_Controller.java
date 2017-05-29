@@ -71,7 +71,7 @@ public class Prestamo_Controller extends Controllers{
                 Long valortotal = Math.round((valorprestamo+Integer.parseInt(prestamo_actual.getText())) * inter);
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
                 System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
-                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null);
+                TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null,null);
                 if (pmodel.insertar(prestamo,"PRESTAMO") != null) {
                     String msg = "<html>Prestamo realizado correctamente:<ul><li>Prestamo realizado : $<b>"+formateador.parse(String.valueOf(valortotal))+"</b></li>"
         + "<li>Valor cuota : $<b>"+formateador.parse(valor_cuota.getText())+"</b></li>"
