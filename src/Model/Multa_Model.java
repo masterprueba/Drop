@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Entity.TMulta;
 import Persistence.hibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
@@ -18,7 +19,7 @@ public class Multa_Model<G> extends Models{
     public List<G> ConsultarMes(int Mes, int Año, String sql) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TMulta where MONTH(tmulFecha) = " + Mes + " and YEAR(tmulFecha)= " + Año + " " + sql;
+        String query = "from TMulta where tmulEstado = 'realizada' AND MONTH(tmulFecha) = " + Mes + " and YEAR(tmulFecha)= " + Año + " " + sql;
         List<G> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
@@ -28,7 +29,7 @@ public class Multa_Model<G> extends Models{
     public List<G> ConsultarPorFechas(String inicio, String fin, String sql) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TMulta where tmulFecha  BETWEEN '" + inicio + "' AND '" + fin + "' " + sql;
+        String query = "from TMulta where tmulEstado = 'realizada' AND tmulFecha  BETWEEN '" + inicio + "' AND '" + fin + "' " + sql;
         List<G> result = s.createQuery(query).list();
         s.getTransaction().commit();
 

@@ -151,7 +151,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
-        jMenuItem16.setText("Multa");
+        jMenuItem16.setText("Interes Extra");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);

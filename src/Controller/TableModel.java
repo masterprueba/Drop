@@ -27,7 +27,18 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Costo");
         return modelo;
     }
-
+    
+    public DefaultTableModel VerMultas() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Detalle");
+        modelo.addColumn("Costo");
+        modelo.addColumn("ID prestamo");
+        modelo.addColumn("ID multa");
+        return modelo;
+    }
+    
     public DefaultTableModel VerUsuarios() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");

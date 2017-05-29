@@ -134,10 +134,11 @@ public class Cuota_Controller extends Prestamo_Controller {
                         Cuota_UI.a_abonado.setText(cuota.getTcuoNuevoSaldo() + "");
                         Cuota_UI.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
-                        Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
+                        Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");                        
                         clearPanel(Cuota_UI.jPanel2);
                         clearPanel(Cuota_UI.jPanel3);
-                        Cuota_UI.a_cobrador.setText("Cobrador");
+                        Cuota_UI.a_cobrador.setText("Por defecto");
+                        Cuota_UI.a_metodo.setText("Por defecto");
                     }
                 }
             }
@@ -266,18 +267,13 @@ public class Cuota_Controller extends Prestamo_Controller {
         cobrador.setTcobNombre(nombre);
         boolean r = false;
         try {
-            if (Integer.parseInt(String.valueOf(pmodel.insertar(cobrador, "prestamo"))) <= 0) {
+            pmodel.insertar(cobrador, "prestamo");
                 Cuota_UI.a_cobrador.setText(nombre);
                 cobrador = null;
-                r = true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
-            }
+                r = true;            
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Error: Cobrador ya existe");
-        }
+        } 
         cobrador = null;
         return r;
     }
@@ -287,15 +283,12 @@ public class Cuota_Controller extends Prestamo_Controller {
         pago.setTipo(nombre);
         boolean r = false;
         try {
-            if (Integer.parseInt(String.valueOf(pmodel.insertar(pago, "prestamo"))) <= 0) {
-                Cuota_UI.a_metodo.setText(nombre);
-                pago = null;
-                r = true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
-            }
+            pmodel.insertar(pago, "prestamo");
+            Cuota_UI.a_metodo.setText(nombre);
+            pago = null;
+            r = true;            
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
+            JOptionPane.showMessageDialog(null, "Error: Tipo de pago no agregado");
         }
         pago = null;
         return r;
