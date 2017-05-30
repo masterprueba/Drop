@@ -91,8 +91,8 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel historialPrestamo() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
         modelo.addColumn("#");
+        modelo.addColumn("ID");
         modelo.addColumn("Valor");
         modelo.addColumn("N° Cuotas");
         modelo.addColumn("Intereses");
@@ -107,8 +107,8 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel historialCuota() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
         modelo.addColumn("#");
+        modelo.addColumn("ID");
         modelo.addColumn("Fecha");
         modelo.addColumn("Abono");
         modelo.addColumn("Nuevo Saldo");
@@ -216,8 +216,10 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Fecha");
         modelo.addColumn("Cedula");
         modelo.addColumn("Prestado");
-        modelo.addColumn("Posible Pago");
+        modelo.addColumn("Entregado");        
+        modelo.addColumn("Prestamo total");
         modelo.addColumn("Pagado");
+        modelo.addColumn("Debe");
         modelo.addColumn("Ganancia");     
         return modelo;
     }

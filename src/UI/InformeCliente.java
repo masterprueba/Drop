@@ -8,6 +8,7 @@ package UI;
 import Controller.Cliente_Controller;
 import Controller.Cuota_Controller;
 import Controller.Prestamo_Controller;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Andres
  */
-public class InformeCliente extends javax.swing.JInternalFrame {
+public class InformeCliente extends Views {
 
     private Cliente_Controller cli_Controller;
 
@@ -261,7 +262,7 @@ public class InformeCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         cli_Controller = new Cliente_Controller(this);
         cli_Controller.initTablePrestamo(jtbHPrestamo);
-
+        setCellRender(jtbHPrestamo,new Color(223, 27, 27));
     }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jtbHPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbHPrestamoMouseClicked

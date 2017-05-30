@@ -29,8 +29,10 @@ public class Prestamo_model<T> extends Models{
         "'%y-%m-%d') as fecha , " +
         "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, " +
         "prestamo.tpreValorPrestamo as prestado, " +
-        "prestamo.tpreValorTotal as invertido, " +
-        "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono " +
+        "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "+        
+        "prestamo.tpreValorTotal as valortotal, " +
+        "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono, " +
+        "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda "+
         "FROM " +
         "TPrestamo as prestamo " +
         "WHERE " +

@@ -22,7 +22,7 @@ import javax.swing.table.TableColumn;
  *
  * @author Andres
  */
-public final class Bitacora_Individual extends javax.swing.JInternalFrame {
+public final class Bitacora_Individual extends Views {
 
     /**
      * Creates new form Bitacora_Usuario
@@ -47,11 +47,11 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
             case "PRESTAMO":
                 setTitle("HISTORIAL DE UN PRESTAMO");
                 jLabel1.setText("HISTORIAL DE UN PRESTAMO");
-                setCellRender(jTable1);
+                setCellRender(jTable1, new Color(87, 166, 057));
                 setSize(1300, 420);
                 break;
             case "CLIENTE":
-                setCellRender(jTable1);
+                setCellRender(jTable1, new Color(87, 166, 057));
                 if (flag != 3) {
                     if (flag == 1) {
                         setTitle("HISTORIAL DE CLIENTE");
@@ -163,14 +163,7 @@ public final class Bitacora_Individual extends javax.swing.JInternalFrame {
             }
         }
     }
-
-    private void setCellRender(JTable table) {
-        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
-        while (en.hasMoreElements()) {
-            TableColumn tc = en.nextElement();
-            tc.setCellRenderer(new CellRenderer());
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

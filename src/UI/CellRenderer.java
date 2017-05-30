@@ -16,16 +16,22 @@ import javax.swing.table.TableCellRenderer;
  * @author ITERIA
  */
 public class CellRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+    
+    Color c;
+    public CellRenderer(Color color) {
+        c =color;
+    }
+    
+    
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        Color c = new Color(87, 166, 057);
-        setBackground(null);
-        if (row == 0) {
-            setBackground(c);
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);        
+        setBackground(c);
+        if (row == 0) {            
+            setBackground(null);
         }
         return this;
-    }
+    }             
 
 }

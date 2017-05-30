@@ -9,13 +9,18 @@ import Entity.TGasto;
 import Model.Gastos_Model;
 import Model.Prestamo_model;
 import UI.InformeGeneral;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,10 +30,11 @@ public class Informe_Controller extends Controllers{
     
     JTable pretamotable;
     JTable gastotable;
+    TableRowSorter trs = null;
 
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
         this.pretamotable = pretamotable;
-        this.gastotable = gastotable;
+        this.gastotable = gastotable;        
     } 
     
     public void cargarDatos(boolean metodo){
@@ -56,18 +62,23 @@ public class Informe_Controller extends Controllers{
         Prestamo_model modelo = new Prestamo_model();       
         List<Object> prestamos = modelo.informePrestamo(fechaini,fechafin);
         Iterator itr = prestamos.iterator();                
-        Object[] f = new Object[8];
+        Object[] f = new Object[9];
         boolean existe = false;
         while(itr.hasNext()){
             Object[] obj = (Object[]) itr.next();                        
             f[1] = obj[0];
             f[2] = obj[1];
             int prestado = obj[2] != null ? Integer.parseInt(String.valueOf(obj[2])) : 0;
-            int pagado = obj[4] != null ? Integer.parseInt(String.valueOf(obj[4])) : 0;
+            int invertido = obj[3] != null ? Integer.parseInt(String.valueOf(obj[3])) : 0;
+            int total = obj[4] != null ? Integer.parseInt(String.valueOf(obj[4])) : 0;
+            int pagado = obj[5] != null ? Integer.parseInt(String.valueOf(obj[5])) : 0;
+            int deuda = obj[6] != null ? Integer.parseInt(String.valueOf(obj[6])) : 0;
             f[3] = prestado;
-            f[4] = obj[3];
-            f[5] = pagado;
-            f[6] = pagado - prestado;
+            f[4] = invertido;
+            f[5] = total;
+            f[6] = pagado;
+            f[7] = total-pagado;
+            f[8] = pagado - prestado;
             if(obj[1]!=null){                
                 tmodelop.addRow(f);
                 existe = true;
@@ -96,5 +107,19 @@ public class Informe_Controller extends Controllers{
         }
         numerarTabla(tmodelog);        
         return exist;
+    }
+    
+   public void filter(JTextField jtf, JTable jtb){
+        
+        
+        jtf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent ke){
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+jtf.getText(), 2));
+            }
+        });
+        
+        trs = new TableRowSorter(jtb.getModel());
+        jtb.setRowSorter(trs);
     }
 }

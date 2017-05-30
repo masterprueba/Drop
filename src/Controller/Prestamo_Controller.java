@@ -68,13 +68,13 @@ public class Prestamo_Controller extends Controllers{
             Long vcuota = null;
             try {
                 Long valorprestamo = ((Long) formateador.parse(valor_prestamo.getText()));
-                Long valortotal = Math.round((valorprestamo+Integer.parseInt(prestamo_actual.getText())) * inter);
+                Long valortotal = Math.round((valorprestamo) * inter);
                 vcuota = (Long) formateador.parse(valor_cuota.getText());
                 System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
                 TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null,null);
                 if (pmodel.insertar(prestamo,"PRESTAMO") != null) {
-                    String msg = "<html>Prestamo realizado correctamente:<ul><li>Prestamo realizado : $<b>"+formateador.parse(String.valueOf(valortotal))+"</b></li>"
-        + "<li>Valor cuota : $<b>"+formateador.parse(valor_cuota.getText())+"</b></li>"
+                    String msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>"+formateador.format(valorprestamo-(Long) formateador.parse(prestamo_actual.getText()))+"</b></li>"
+        + "<li>Valor cuota : $<b>"+valor_cuota.getText()+"</b></li>"
         + "</ul></html>";
         JLabel label = new JLabel(msg);
         label.setFont(new Font("serif", Font.PLAIN, 14));
@@ -170,7 +170,7 @@ public class Prestamo_Controller extends Controllers{
         int prestamo = Integer.parseInt(presta);
         float inter = (1 + ((float) Integer.parseInt(String.valueOf(interes.getText())) / 100));
         int dias = cantidad_cuotas.getText().equals("") || cantidad_cuotas.getText().equals("0") ? 1 : Integer.parseInt(cantidad_cuotas.getText());
-        float valorcuota = ((prestamo+Integer.parseInt(prestamo_actual.getText())) * inter) / dias;
+        float valorcuota = (prestamo * inter) / dias;
         if (Math.round(valorcuota) > 0) {
             valor_cuota.setText(formateador.format(Math.round(valorcuota)));
         } else {

@@ -5,9 +5,13 @@
  */
 package UI;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.Enumeration;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -33,5 +37,13 @@ public class Views extends javax.swing.JInternalFrame{
         if (JT.getText().length() == cant) {
             evt.consume();
         }
-    }   
+    }
+    
+    public void setCellRender(JTable table, Color color) {
+        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
+        while (en.hasMoreElements()) {
+            TableColumn tc = en.nextElement();
+            tc.setCellRenderer(new CellRenderer(color));
+        }
+    }
 }
