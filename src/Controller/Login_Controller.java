@@ -9,18 +9,59 @@ import Entity.TLogin;
 import Model.Login_Model;
 import UI.Login;
 import UI.MainDesktop;
+import static java.lang.Thread.sleep;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Yoimar
  */
-public class Login_Controller {
+public class Login_Controller extends Thread {
 
     private final Login_Model Lmodel = new Login_Model();
     private static TLogin UsuarioLogueado;
     private List<TLogin> loginresult;
+    private boolean cone = false;
+    public static boolean continuar = true;
+
+    @Override
+    public void run() {
+        new Hilo().start();
+        int contador = 0;
+        long velocidad = 1000;
+        while (continuar == true) {
+            if (cone == false) {
+                Login.jProgressBar1.setValue(contador = contador + 5);
+                contador++;
+            } else if (cone) {
+                velocidad = 5;
+                Login.jProgressBar1.setValue(contador = contador + 3);
+            }
+            try {
+                sleep(velocidad);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (contador >= 100) {
+                continuar = false;
+            }
+        }
+    }
+
+    class Hilo extends Thread {
+
+        @Override
+        public void run() {
+            carga();
+        }
+    }
+
+    public void carga() {
+        cone = Lmodel.conexion();
+    }
 
     public static TLogin getUsuarioLogueado() {
         return UsuarioLogueado;

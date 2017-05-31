@@ -23,11 +23,13 @@ public class Login extends javax.swing.JFrame {
     private final Login_Controller LoginController;
     private final TLogin Login;
     Cargando c;
+
     /**
      * Creates new form Login
      */
-    public Login() {                       
+    public Login() {
         initComponents();
+        //jPanel1.setVisible(false);
         LoginController = new Login_Controller();
         Login = new TLogin();
         //Cerrar login
@@ -36,7 +38,8 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new Color(0, 0, 0, 65));
         jButton2.setBackground(new Color(0, 0, 0, 65));
         //Configurar JFrame, Centrar
-        this.setLocationRelativeTo(null);       
+        this.setLocationRelativeTo(null);
+        //LoginController.start();
     }
 
     private void CerraAplicacion() {
@@ -64,7 +67,7 @@ public class Login extends javax.swing.JFrame {
         Login.setTlogPassword(new String(jPasswordField1.getPassword()));
         //Llama el metoro ingresar y envia el objeto 
         LoginController.Ingresar(Login, this);
-    }   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +87,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -181,6 +185,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jInternalFrame1.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
+        jInternalFrame1.getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 500, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Login.jpg"))); // NOI18N
         jInternalFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
@@ -204,7 +209,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {        
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             iniciarEnter();
         }
     }//GEN-LAST:event_jPasswordField1KeyPressed
@@ -262,6 +267,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
+    public static javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

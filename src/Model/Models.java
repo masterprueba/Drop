@@ -25,7 +25,11 @@ public class Models<T> {
     protected Session s;
 
     public Models() {
+    }
 
+    public boolean conexion() {
+        s = hibernateUtil.getSessionFactory();
+        return true;
     }
 
     public Serializable insertar(T obj, String modulo) {

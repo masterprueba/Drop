@@ -76,12 +76,14 @@ public final class Bitacora_Individual extends Views {
                 setSize(680, 420);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+                setCellRender(jTable1, new Color(87, 166, 057));
                 break;
             case "ABONO":
                 setTitle("HISTORIAL DE CUOTAS");
                 jLabel1.setText("HISTORIAL DE CUOTAS");
                 setSize(900, 420);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(10));
+                setCellRender(jTable1, new Color(87, 166, 057));
                 //jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
         }
@@ -163,7 +165,6 @@ public final class Bitacora_Individual extends Views {
             }
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

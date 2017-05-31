@@ -5,12 +5,12 @@
  */
 package Persistence;
 
+import Controller.Login_Controller;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
-
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -33,6 +33,9 @@ public class hibernateUtil {
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
+            Login_Controller.continuar = false;
+            JOptionPane.showMessageDialog(null, "No hay conexion con la base de datos!\n -Verifique la conexion con el servidor e intente nuevamente", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
             throw new ExceptionInInitializerError(ex);
         }
     }
