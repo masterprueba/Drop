@@ -20,13 +20,13 @@ import javax.swing.JOptionPane;
  * @author Yoimar
  */
 public class Login_Controller extends Thread {
-
+    
     private final Login_Model Lmodel = new Login_Model();
     private static TLogin UsuarioLogueado;
     private List<TLogin> loginresult;
     private boolean cone = false;
     public static boolean continuar = true;
-
+    
     @Override
     public void run() {
         new Hilo().start();
@@ -45,34 +45,34 @@ public class Login_Controller extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (contador >= 100) {
-                System.err.println();
+            if (contador >= 100) {              
                 continuar = false;
             }
         }
+        Login.jLabel5.setVisible(false);
         if (cone) {
             Login.jPanel1.setVisible(true);
         }
     }
-
+    
     class Hilo extends Thread {
-
+        
         @Override
         public void run() {
             carga();
         }
     }
-
+    
     public void carga() {
         cone = Lmodel.conexion();
     }
-
+    
     public static TLogin getUsuarioLogueado() {
         return UsuarioLogueado;
     }
-
+    
     public void Ingresar(TLogin User, Login login) {
-
+        
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
