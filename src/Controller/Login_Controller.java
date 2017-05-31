@@ -46,9 +46,11 @@ public class Login_Controller extends Thread {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (contador >= 100) {
+                System.err.println();
                 continuar = false;
             }
         }
+        Login.jPanel1.setVisible(true);
     }
 
     class Hilo extends Thread {

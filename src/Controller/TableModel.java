@@ -27,7 +27,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Costo");
         return modelo;
     }
-    
+
     public DefaultTableModel VerMultas() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
@@ -38,7 +38,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("ID multa");
         return modelo;
     }
-    
+
     public DefaultTableModel VerUsuarios() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
@@ -210,17 +210,25 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("id");
         return modelo;
     }
+
     public DefaultTableModel informeGeneral() {
         TableModel modelo = new TableModel();
         modelo.addColumn("");
         modelo.addColumn("Fecha");
         modelo.addColumn("Cedula");
         modelo.addColumn("Prestado");
-        modelo.addColumn("Entregado");        
+        modelo.addColumn("Entregado");
         modelo.addColumn("Prestamo total");
         modelo.addColumn("Pagado");
         modelo.addColumn("Debe");
-        modelo.addColumn("Ganancia");     
+        modelo.addColumn("Ganancia");
+        return modelo;
+    }
+
+    public DefaultTableModel listaPersonas() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("Nombre y Apellido");
+        modelo.addColumn("Cedula");
         return modelo;
     }
 }

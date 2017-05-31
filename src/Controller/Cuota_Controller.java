@@ -40,58 +40,58 @@ public class Cuota_Controller extends Prestamo_Controller {
     public DefaultTableModel dfm;
     private List<TPersona> listp;
     private List<TCobrador> listc;
-    private List<TPago> listpa;    
+    private List<TPago> listpa;
 
     public Cuota_Controller() {
         pmodel = new Prestamo_model();
         if (Cuota_UI.a_fecha != null) {
             Cuota_UI.a_fecha.setDate(new Date());
-        }        
+        }
         cmodel = new Cobrador_Model();
         pamodel = new TPagos_Model();
     }
 
     @Override
-    public void setCliente(TPersona cliente) {        
-            Cuota_UI.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());        
+    public void setCliente(TPersona cliente) {
+        Cuota_UI.a_nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
     }
 
     @Override
     public void setClienteError(TPersona Cliente) {
     }
 
-    public boolean setData(String cc) {        
-            TPersona cliente = consultarCliente(cc);
+    public boolean setData(String cc) {
+        TPersona cliente = consultarCliente(cc);
 
-            if (cliente != null) {
-                abono = ultimaCuota(cliente, 'c');
-                if (abono != null) {
-                    prestamo = abono.getTPrestamo();
-                    Long valorc = prestamo.getTpreValorCuota();
-                    float interes_cuota = (prestamo.getTpreValorTotal()-prestamo.getTpreValorPrestamo())/( prestamo.getTpreNumCuotas());
-                    Cuota_UI.a_totalcuota.setText(valorc + "");
-                    Cuota_UI.a_cuotaneto.setText(valorc-interes_cuota + "");
-                    Cuota_UI.a_interes.setText(interes_cuota + "");
-                    Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
-                    Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
-                    if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
-                        cliente = null;
-                        JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
-                        return false;
-                    }
-                } else {
+        if (cliente != null) {
+            abono = ultimaCuota(cliente, 'c');
+            if (abono != null) {
+                prestamo = abono.getTPrestamo();
+                Long valorc = prestamo.getTpreValorCuota();
+                float interes_cuota = (prestamo.getTpreValorTotal() - prestamo.getTpreValorPrestamo()) / (prestamo.getTpreNumCuotas());
+                Cuota_UI.a_totalcuota.setText(valorc + "");
+                Cuota_UI.a_cuotaneto.setText(valorc - interes_cuota + "");
+                Cuota_UI.a_interes.setText(interes_cuota + "");
+                Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
+                Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
+                if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
                     cliente = null;
-                    JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo");
+                    JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
                     return false;
                 }
-
-                return true;
             } else {
-                abono = null;
-                prestamo = null;
+                cliente = null;
+                JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo");
                 return false;
             }
-        
+
+            return true;
+        } else {
+            abono = null;
+            prestamo = null;
+            return false;
+        }
+
     }
 
     public void insertar() {
@@ -115,16 +115,16 @@ public class Cuota_Controller extends Prestamo_Controller {
                     //error
                     TCobrador cobrador = new TCobrador();
                     if (Cuota_UI.a_cobrador.getText().equals("Por defecto")) {
-                        cobrador = cmodel.first();                                
+                        cobrador = cmodel.first();
                     } else {
                         cobrador.setTcobNombre(Cuota_UI.a_cobrador.getText());
-                    }                    
+                    }
                     TPago pagos = new TPago();
                     if (Cuota_UI.a_metodo.getText().equals("Por defecto")) {
                         pagos = pamodel.first();
                     } else {
                         pagos.setTipo(Cuota_UI.a_metodo.getText());
-                    }                    
+                    }
                     TCuota cuota = new TCuota(cmodel.SelectOne(cobrador), pamodel.SelectOne(pagos), prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
                     if (pmodel.insertar(cuota, "PRESTAMO") != null) {
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
@@ -134,7 +134,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                         Cuota_UI.a_abonado.setText(cuota.getTcuoNuevoSaldo() + "");
                         Cuota_UI.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
-                        Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");                        
+                        Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
                         clearPanel(Cuota_UI.jPanel2);
                         clearPanel(Cuota_UI.jPanel3);
                         Cuota_UI.a_cobrador.setText("Por defecto");
@@ -146,33 +146,31 @@ public class Cuota_Controller extends Prestamo_Controller {
 
     }
 
-    public void calcularCantidad() {                        
-            int valorcuota = (int) prestamo.getTpreValorCuota();
-            int abonotemp = Integer.parseInt(Cuota_UI.a_abono.getText());
-            int cantidad = (int) ((float) abonotemp / valorcuota);
-            Cuota_UI.a_cantcuotas.setText(String.valueOf(cantidad));
-        
+    public void calcularCantidad() {
+        int valorcuota = (int) prestamo.getTpreValorCuota();
+        int abonotemp = Integer.parseInt(Cuota_UI.a_abono.getText());
+        int cantidad = (int) ((float) abonotemp / valorcuota);
+        Cuota_UI.a_cantcuotas.setText(String.valueOf(cantidad));
 
     }
 
-    private boolean validar() {        
-            String msj = "";
-            msj += Cuota_UI.a_cobrador.getText().equals("") ? "Debe ingresar el cobrador \n" : "";
-            msj += Cuota_UI.a_metodo.getText().equals("") ? "Debe ingresar el metodo de pago \n" : "";
-            msj += Cuota_UI.a_fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";
-            msj += Cuota_UI.a_abono == null ? "Debes ingresar el abono \n" : "";
-            try {
-                Integer.parseInt(Cuota_UI.a_abono.getText());
-            } catch (NumberFormatException ex) {
-                msj += "El valor de la cuota debe ser numerico \n";
-            }
-            if (msj.equals("")) {
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
-                return false;
-            }
-        
+    private boolean validar() {
+        String msj = "";
+        msj += Cuota_UI.a_cobrador.getText().equals("") ? "Debe ingresar el cobrador \n" : "";
+        msj += Cuota_UI.a_metodo.getText().equals("") ? "Debe ingresar el metodo de pago \n" : "";
+        msj += Cuota_UI.a_fecha.getDate() == null ? "Debes seleccionar la fecha de inicio \n" : "";
+        msj += Cuota_UI.a_abono == null ? "Debes ingresar el abono \n" : "";
+        try {
+            Integer.parseInt(Cuota_UI.a_abono.getText());
+        } catch (NumberFormatException ex) {
+            msj += "El valor de la cuota debe ser numerico \n";
+        }
+        if (msj.equals("")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, msj, "ERROR AL REGISTAR ", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
 
     }
 
@@ -201,7 +199,8 @@ public class Cuota_Controller extends Prestamo_Controller {
         dfm = new DefaultTableModel();
         table.setModel(dfm);
         if (indicador.equals("pyc")) {
-            dfm.setColumnIdentifiers(new Object[]{"Nombre y Apellido", "Cedula"});
+            dfm = new TableModel().listaPersonas();
+            table.setModel(dfm);
             selectPersona();
             for (int i = 0; i < listp.size(); i++) {
                 dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
@@ -268,12 +267,12 @@ public class Cuota_Controller extends Prestamo_Controller {
         boolean r = false;
         try {
             pmodel.insertar(cobrador, "prestamo");
-                Cuota_UI.a_cobrador.setText(nombre);
-                cobrador = null;
-                r = true;            
+            Cuota_UI.a_cobrador.setText(nombre);
+            cobrador = null;
+            r = true;
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Error: Cobrador no agregado");
-        } 
+        }
         cobrador = null;
         return r;
     }
@@ -286,7 +285,7 @@ public class Cuota_Controller extends Prestamo_Controller {
             pmodel.insertar(pago, "prestamo");
             Cuota_UI.a_metodo.setText(nombre);
             pago = null;
-            r = true;            
+            r = true;
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Error: Tipo de pago no agregado");
         }
