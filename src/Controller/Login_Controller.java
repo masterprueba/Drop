@@ -50,7 +50,9 @@ public class Login_Controller extends Thread {
                 continuar = false;
             }
         }
-        Login.jPanel1.setVisible(true);
+        if (cone) {
+            Login.jPanel1.setVisible(true);
+        }
     }
 
     class Hilo extends Thread {
