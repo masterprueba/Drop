@@ -10,12 +10,14 @@ import Entity.TDatosBasicosPersona;
 import Entity.TPersona;
 import Entity.TPrestamo;
 import Entity.TReferencia;
-import UI.CellRenderer;
 import UI.Cliente_UI;
 import UI.InformeCliente;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
@@ -199,7 +201,7 @@ public class Cliente_Controller extends Persona_Controller {
         Set temp = getP().getTPrestamos();
         List<TPrestamo> tp = new ArrayList<>();
         tp.addAll(temp);
-
+        ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
 
@@ -214,14 +216,14 @@ public class Cliente_Controller extends Persona_Controller {
             f[7] = tp.get(i).getTpreValorTotal();
             f[8] = tp.get(i).getTpreValorCuota();
             f[9] = tp.get(i);
-            f[10] = tp.get(i).getTPersona();
+            f[10] = tp.get(i).getTPersona();            
             dtm.addRow(f);
 
-        }
+        }        
         numerarTabla(dtm);
         InformeCliente.text_totalprestamo.setText(totalDeUnaTabla(dtm, 2)+"");
-        int[] position = {0,9, 10};
-        setVisibleColumnTable(jt, position);        
+        int[] position = {0,9, 10};        
+        setVisibleColumnTable(jt, position);         
     }
 
     public void initTableCuotas(JTable jtbCuota, JTable jtbPrestamo) {
@@ -348,5 +350,13 @@ public class Cliente_Controller extends Persona_Controller {
         trs = new TableRowSorter(jtb.getModel());
         jtb.setRowSorter(trs);
     }
-
+    private void ordenarPrestamo(List prestamos){
+        Collections.sort(prestamos, new Comparator<TPrestamo>() {
+  public int compare(TPrestamo o1, TPrestamo o2) {
+      if (o1.getTpreFechaEntrega() == null || o2.getTpreFechaEntrega() == null)
+        return 0;
+      return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
+  }
+});
+    }            
 }
