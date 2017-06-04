@@ -32,9 +32,10 @@ public class Prestamo_model<T> extends Models{
         "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "+        
         "prestamo.tpreValorTotal as valortotal, " +
         "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono, " +
-        "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda "+
+        "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda, "+
+        "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra " +
         "FROM " +
-        "TPrestamo as prestamo " +
+        "TPrestamo as prestamo " +        
         "WHERE " +
         "prestamo.tpreFechaEntrega BETWEEN '"+fini+"' AND '"+ffin+" 23:59:59'";
         Query r = s.createQuery(query);                    

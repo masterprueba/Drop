@@ -221,6 +221,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Prestamo total");
         modelo.addColumn("Pagado");
         modelo.addColumn("Debe");
+        modelo.addColumn("Extra");
         modelo.addColumn("Ganancia");
         return modelo;
     }

@@ -10,8 +10,11 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Prestamo_ui.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Prestamo_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Informe_Controller.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Entity/TMulta.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/TableModel.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/InformeGeneral.java</file>
         </group>
     </open-files>
 </project-private>
