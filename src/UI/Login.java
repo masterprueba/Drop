@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
         CerraAplicacion();
         //Configurar JPanel para darle el toque de transparencia 65 o 125
         jPanel1.setBackground(new Color(0, 0, 0, 65));
-        jButton2.setBackground(new Color(0, 0, 0, 65));
+        //jButton2.setBackground(new Color(0, 0, 0, 65));
         //Configurar JFrame, Centrar
         this.setLocationRelativeTo(null);
         LoginController.start();
@@ -178,6 +178,7 @@ public class Login extends javax.swing.JFrame {
 
         jInternalFrame1.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 410, 80));
 
+        jButton2.setBackground(new java.awt.Color(108, 105, 105));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/salida.png"))); // NOI18N
         jButton2.setNextFocusableComponent(jTextField1);

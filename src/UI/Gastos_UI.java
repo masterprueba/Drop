@@ -123,6 +123,7 @@ public class Gastos_UI extends Views {
         });
 
         jButton3.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         jButton3.setText("Editar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +132,7 @@ public class Gastos_UI extends Views {
         });
 
         jButton4.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
         jButton4.setText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +255,7 @@ public class Gastos_UI extends Views {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Filtrar detalle:");
 
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -261,6 +264,7 @@ public class Gastos_UI extends Views {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Filtrar gasto:");
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {

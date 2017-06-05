@@ -115,7 +115,8 @@ public class Usuarios_UI extends Views {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         U_btn_Guardar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        U_btn_Guardar.setText("GUARDAR");
+        U_btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
+        U_btn_Guardar.setText("Guardar");
         U_btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 U_btn_GuardarActionPerformed(evt);
@@ -123,7 +124,8 @@ public class Usuarios_UI extends Views {
         });
 
         U_btn_Limpiar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        U_btn_Limpiar.setText("LIMPIAR");
+        U_btn_Limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/eliminar.png"))); // NOI18N
+        U_btn_Limpiar.setText("Limpiar");
         U_btn_Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 U_btn_LimpiarActionPerformed(evt);
@@ -131,7 +133,8 @@ public class Usuarios_UI extends Views {
         });
 
         U_btn_Registrar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        U_btn_Registrar.setText("REGISTRAR");
+        U_btn_Registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/aceptar1.png"))); // NOI18N
+        U_btn_Registrar.setText("Registrar");
         U_btn_Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 U_btn_RegistrarActionPerformed(evt);

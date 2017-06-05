@@ -93,6 +93,7 @@ public class InformeCliente extends Views {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
         jLabel1.setText("Buscar");
 
@@ -139,6 +140,7 @@ public class InformeCliente extends Views {
         ));
         jScrollPane3.setViewportView(jtbDCuota);
 
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton2.setText("Guardar Cambios en Cuotas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +168,7 @@ public class InformeCliente extends Views {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jtbHPrestamo.setEditingColumn(0);
@@ -178,6 +180,7 @@ public class InformeCliente extends Views {
         });
         jScrollPane2.setViewportView(jtbHPrestamo);
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton1.setText("Guardar Cambios en Prestamo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,8 +188,10 @@ public class InformeCliente extends Views {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel2.setText("Total Prestado");
 
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Total Abonado");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

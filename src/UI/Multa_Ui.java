@@ -319,6 +319,7 @@ public class Multa_Ui extends Views {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Filtrar detalle:");
 
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -327,6 +328,7 @@ public class Multa_Ui extends Views {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Filtrar gasto:");
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {

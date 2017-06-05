@@ -583,6 +583,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cambria" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Filtrar detalle:"/>
           </Properties>
         </Component>
@@ -596,6 +599,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cambria" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Filtrar gasto:"/>
           </Properties>
         </Component>
