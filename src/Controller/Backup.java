@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class Backup {
     public static void execute(){
          try {
-            String[] tablas = {"t_bitacora","t_cobrador","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_persona","t_prestamo","t_referencia"};
+            String[] tablas = {"t_bitacora","t_cobrador","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_persona","t_prestamo","t_referencia","t_multa","t_pago"};
             Calendar c1 = Calendar.getInstance();
             String fechaactual = c1.get(Calendar.YEAR) + "-" + (c1.get(Calendar.MONTH) + 1) + "-" + c1.get(Calendar.DATE);
             File archivo = new File("exp.bat");
