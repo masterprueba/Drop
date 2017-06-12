@@ -96,6 +96,7 @@ public class Referencia_UI extends Views {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Referencia");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Referencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
 
@@ -158,7 +159,7 @@ public class Referencia_UI extends Views {
                             .addComponent(jLabel3)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(5, 5, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jcbTipoReferencia, 0, 217, Short.MAX_VALUE)
                             .addComponent(jtfNombreReferencia)

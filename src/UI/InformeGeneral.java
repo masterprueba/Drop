@@ -68,7 +68,7 @@ public class InformeGeneral extends Views {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("INFORME GENERAL");
+        setTitle("Informe General");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Balance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 16))); // NOI18N
 

@@ -53,7 +53,7 @@ public class Cobrador_UI extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("COBRADOR");
+        setTitle("Cobrador");
 
         jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

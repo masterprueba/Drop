@@ -59,7 +59,7 @@ public class TPago_UI extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("TIPO DE PAGO");
+        setTitle("Tipo de Pago");
 
         jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

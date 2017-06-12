@@ -69,6 +69,7 @@ public class InformeCliente extends Views {
         txt_totalcuota = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Informe Prestamo");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 

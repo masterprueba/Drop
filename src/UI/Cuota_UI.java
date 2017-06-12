@@ -88,6 +88,7 @@ public class Cuota_UI extends Views {
         a_nombre = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Cuota");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de Abono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
         jPanel3.setToolTipText("");

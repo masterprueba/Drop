@@ -125,6 +125,7 @@ public class Cliente_UI extends Views {
         jButton3 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Clientes");
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Solicitante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 1, 18))); // NOI18N
 
@@ -631,9 +632,7 @@ public class Cliente_UI extends Views {
                             .addComponent(jtfNombreCodeudor)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel23))
+                            .addComponent(jLabel23)
                             .addComponent(jLabel22))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

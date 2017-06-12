@@ -82,7 +82,7 @@ public class Gastos_UI extends Views {
         jTextField4 = new javax.swing.JTextField();
 
         setClosable(true);
-        setTitle("GASTOS");
+        setTitle("Gastos");
 
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setText("AGREGAR GASTOS");

@@ -50,7 +50,7 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("PERSONAS");
+        setTitle("Clientes");
 
         jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
