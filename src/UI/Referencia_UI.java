@@ -99,10 +99,13 @@ public class Referencia_UI extends Views {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Referencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel1.setText("Nombre");
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel2.setText("Apellido");
 
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel3.setText("Teléfono");
 
         jtfApellidoReferencia.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +120,7 @@ public class Referencia_UI extends Views {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton1.setText("Agregar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setEnabled(false);
@@ -126,8 +130,10 @@ public class Referencia_UI extends Views {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel4.setText("Tipo Refe.");
 
+        jcbTipoReferencia.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jcbTipoReferencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Personal", "Familiar" }));
         jcbTipoReferencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbTipoReferencia.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +158,7 @@ public class Referencia_UI extends Views {
                             .addComponent(jLabel3)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4))
-                        .addGap(4, 4, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jcbTipoReferencia, 0, 217, Short.MAX_VALUE)
                             .addComponent(jtfNombreReferencia)
@@ -184,6 +190,7 @@ public class Referencia_UI extends Views {
                 .addContainerGap())
         );
 
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
         jButton2.setText("Guardar");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -193,6 +200,7 @@ public class Referencia_UI extends Views {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
         jButton3.setText("Quitar");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -202,6 +210,7 @@ public class Referencia_UI extends Views {
             }
         });
 
+        btnEditarReferencia.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnEditarReferencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         btnEditarReferencia.setText("Editar");
         btnEditarReferencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

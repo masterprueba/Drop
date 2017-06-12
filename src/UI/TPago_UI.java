@@ -84,6 +84,7 @@ public class TPago_UI extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton1.setText("Agregar otro");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,10 +94,13 @@ public class TPago_UI extends javax.swing.JInternalFrame {
 
         tp_panel_add.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel4.setText("Banco");
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel2.setText("# de Cuenta");
 
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton2.setText("Agregar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -180,7 +180,6 @@ public final class Bitacora_Individual extends Views {
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
-        setIconifiable(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -192,6 +192,7 @@ public class Multa_Ui extends Views {
         });
 
         jButton4.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         jButton4.setText("Editar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +201,7 @@ public class Multa_Ui extends Views {
         });
 
         jButton5.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
         jButton5.setText("Cancelar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

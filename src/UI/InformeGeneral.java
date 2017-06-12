@@ -220,7 +220,7 @@ public class InformeGeneral extends Views {
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Fecha Fin");
 
-        jButton1.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
         jButton1.setText("Consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +229,7 @@ public class InformeGeneral extends Views {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton2.setText("Filtrar x Cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

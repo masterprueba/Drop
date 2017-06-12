@@ -245,6 +245,7 @@ public class Cuota_UI extends Views {
 
         a_totalPrestamo.setEditable(false);
 
+        jLabel19.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel19.setText("Numero de Cuotas");
 
         a_pnumcuotas.setEditable(false);
@@ -346,6 +347,7 @@ public class Cuota_UI extends Views {
         jLabel14.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel14.setText("Cuotas Pendientes:");
 
+        jLabel10.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel10.setText("Numero de Cuotas");
 
         a_cnumcuotas.setEditable(false);

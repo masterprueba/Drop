@@ -22,7 +22,6 @@ public class Login extends javax.swing.JFrame {
 
     private final Login_Controller LoginController;
     private final TLogin Login;
-    Cargando c;
 
     /**
      * Creates new form Login
@@ -173,10 +172,10 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
-        jInternalFrame1.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 410, 80));
+        jInternalFrame1.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 410, 90));
 
         jButton2.setBackground(new java.awt.Color(108, 105, 105));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));

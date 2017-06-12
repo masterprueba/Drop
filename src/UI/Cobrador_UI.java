@@ -78,6 +78,7 @@ public class Cobrador_UI extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel2.setText("Otro :");
 
         C_otro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -86,6 +87,7 @@ public class Cobrador_UI extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel3.setText("Digita cual");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -7,12 +7,15 @@ package UI;
 
 import Controller.Backup;
 import Controller.Login_Controller;
+import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,9 +33,9 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre() + " " + Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
         jMenuBar1.add(jMenu2);
         //Maximizar la ventana en inicio
-        this.setExtendedState(MAXIMIZED_BOTH);
+        //this.setExtendedState(MAXIMIZED_BOTH);
     }
-
+    
     private void CerraAplicacion() {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -44,7 +47,7 @@ public class MainDesktop extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+    
     private void Confirmar() {
         int Valor = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cerrar la aplicacion?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (Valor == JOptionPane.YES_OPTION) {
@@ -61,7 +64,12 @@ public class MainDesktop extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DesktopPaneMain = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Icons/menu1366.png"));
+        Image image = icon.getImage();
+        DesktopPaneMain = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);}
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -89,10 +97,11 @@ public class MainDesktop extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Drop");
+        setExtendedState(6);
         setMinimumSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getSize());
         setUndecorated(true);
 
-        DesktopPaneMain.setBackground(new java.awt.Color(51, 153, 255));
+        DesktopPaneMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout DesktopPaneMainLayout = new javax.swing.GroupLayout(DesktopPaneMain);
         DesktopPaneMain.setLayout(DesktopPaneMainLayout);
@@ -344,6 +353,7 @@ public class MainDesktop extends javax.swing.JFrame {
         if (Respuesta == JOptionPane.YES_OPTION) {
             Login in = new Login();
             in.setVisible(true);
+            in.jProgressBar1.setValue(100);
             this.dispose();
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -423,7 +433,7 @@ public class MainDesktop extends javax.swing.JFrame {
         JInternalFrame in = new Multa_Ui();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
-
+    
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -437,14 +447,14 @@ public class MainDesktop extends javax.swing.JFrame {
         }
         //Si no es una instancia existente, muestra la ventana
         if (notExist) {
-
+            
             DesktopPaneMain.add(InternalWindow);
             calcWidthHeight(InternalWindow);
-
+            
             InternalWindow.show();
         }
     }
-
+    
     public static void calcWidthHeight(JInternalFrame jif) {
         int width = (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width - jif.getWidth()) / 2;
         int Height = (java.awt.Toolkit.getDefaultToolkit().getScreenSize().height - jif.getHeight()) / 4;

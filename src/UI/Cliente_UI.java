@@ -129,15 +129,20 @@ public class Cliente_UI extends Views {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Solicitante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 1, 18))); // NOI18N
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Básicos"));
+        jPanel11.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jPanel11.setMaximumSize(new java.awt.Dimension(320, 160));
         jPanel11.setMinimumSize(new java.awt.Dimension(320, 160));
 
+        jLabel31.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel31.setText("Cédula");
 
+        jLabel32.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel32.setText("Nombre");
 
+        jLabel33.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel33.setText("Apellido");
 
+        jLabel34.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel34.setText("Teléfono");
 
         jtfTelefonoCliente1.setBackground(new java.awt.Color(204, 204, 255));
@@ -180,14 +185,17 @@ public class Cliente_UI extends Views {
         jtfCasaDirCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtfCasaDirCliente.setFocusable(false);
 
+        jLabel49.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel49.setText("Dirección");
 
+        jLabel50.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel50.setText("Propietario");
 
         jtfCasaPropieCliente.setBackground(new java.awt.Color(204, 204, 255));
         jtfCasaPropieCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtfCasaPropieCliente.setFocusable(false);
 
+        jLabel51.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel51.setText("Tipo");
 
         jcbTipoCasaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
@@ -206,21 +214,21 @@ public class Cliente_UI extends Views {
                     .addComponent(jLabel51))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbTipoCasaCliente, 0, 206, Short.MAX_VALUE)
-                    .addComponent(jtfCasaDirCliente)
-                    .addComponent(jtfCasaPropieCliente))
+                    .addComponent(jcbTipoCasaCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfCasaDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCasaPropieCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCasaDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCasaDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel50)
-                    .addComponent(jtfCasaPropieCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfCasaPropieCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbTipoCasaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,16 +253,16 @@ public class Cliente_UI extends Views {
                                 .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClienteCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(jtfNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfNombreCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel33))
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfApellidoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtfTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,44 +275,50 @@ public class Cliente_UI extends Views {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtfCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel31))
                     .addComponent(btnClienteCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(jtfNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfNombreCliente1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
-                    .addComponent(jtfApellidoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfApellidoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(jtfTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtfTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Adicionales"));
+        jPanel12.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jPanel12.setMaximumSize(new java.awt.Dimension(320, 160));
         jPanel12.setMinimumSize(new java.awt.Dimension(320, 160));
 
+        jLabel35.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel35.setText("Referencia");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Empresa"));
+        jPanel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
 
+        jLabel36.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel36.setText("Razón Social");
 
         jtfRazonSocialEmpresaCliente.setBackground(new java.awt.Color(204, 204, 255));
         jtfRazonSocialEmpresaCliente.setFocusable(false);
 
+        jLabel37.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel37.setText("Dirección");
 
         jtfDireccionEmpresaCliente.setBackground(new java.awt.Color(204, 204, 255));
         jtfDireccionEmpresaCliente.setFocusable(false);
 
+        jLabel38.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel38.setText("Teléfono");
 
         jtfTelefonoEmpresaCliente.setBackground(new java.awt.Color(204, 204, 255));
@@ -322,22 +336,26 @@ public class Cliente_UI extends Views {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel38))
-                .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel38))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtfTelefonoEmpresaCliente)
-                    .addComponent(jtfDireccionEmpresaCliente, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfRazonSocialEmpresaCliente, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jtfTelefonoEmpresaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDireccionEmpresaCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfRazonSocialEmpresaCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfRazonSocialEmpresaCliente)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfRazonSocialEmpresaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -350,6 +368,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap())
         );
 
+        jButton2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton2.setText("Referencias de Solicitante");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,6 +426,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap())
         );
 
+        btnEditar.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -433,6 +453,7 @@ public class Cliente_UI extends Views {
         });
         jScrollPane1.setViewportView(jtbClientes);
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
         jLabel1.setText("Buscar");
 
@@ -468,6 +489,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap())
         );
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/refresh.png"))); // NOI18N
         jButton1.setText("Limpiar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -479,7 +501,7 @@ public class Cliente_UI extends Views {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -495,12 +517,16 @@ public class Cliente_UI extends Views {
         jPanel8.setMaximumSize(new java.awt.Dimension(320, 160));
         jPanel8.setMinimumSize(new java.awt.Dimension(320, 160));
 
+        jLabel20.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel20.setText("Cédula");
 
+        jLabel21.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel21.setText("Nombre");
 
+        jLabel22.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel22.setText("Apellido");
 
+        jLabel23.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel23.setText("Teléfono");
 
         jtfTelefonoCodeudor.setBackground(new java.awt.Color(204, 204, 255));
@@ -537,15 +563,18 @@ public class Cliente_UI extends Views {
         jtfCasaDirCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtfCasaDirCodeudor.setFocusable(false);
 
+        jLabel24.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel24.setText("Dirección");
 
+        jLabel25.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel25.setText("Propietario");
 
         jtfCasaPropieCodeudor.setBackground(new java.awt.Color(204, 204, 255));
         jtfCasaPropieCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jtfCasaPropieCodeudor.setFocusable(false);
 
-        jLabel39.setText("Propietario");
+        jLabel39.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel39.setText("Tipo");
 
         jcbTipoCasaCodeudor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
         jcbTipoCasaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -563,20 +592,20 @@ public class Cliente_UI extends Views {
                     .addComponent(jLabel39))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbTipoCasaCodeudor, 0, 206, Short.MAX_VALUE)
+                    .addComponent(jcbTipoCasaCodeudor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtfCasaDirCodeudor)
-                    .addComponent(jtfCasaPropieCodeudor))
+                    .addComponent(jtfCasaPropieCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCasaDirCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCasaDirCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCasaPropieCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCasaPropieCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -598,19 +627,18 @@ public class Cliente_UI extends Views {
                             .addComponent(jLabel21))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfNombreCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                            .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                            .addComponent(jtfNombreCodeudor)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel22))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jtfApellidoCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfTelefonoCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel23))
+                            .addComponent(jLabel22))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfApellidoCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfTelefonoCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -619,43 +647,49 @@ public class Cliente_UI extends Views {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfCedulaCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addComponent(jtfNombreCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfNombreCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfApellidoCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTelefonoCodeudor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtfTelefonoCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Adicionales"));
+        jPanel9.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jPanel9.setMaximumSize(new java.awt.Dimension(320, 160));
         jPanel9.setMinimumSize(new java.awt.Dimension(320, 160));
 
+        jLabel26.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel26.setText("Referencia");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Empresa"));
+        jPanel2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
 
+        jLabel40.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel40.setText("Razón Social");
 
         jtfRazonSocialEmpresaCodeudor.setBackground(new java.awt.Color(204, 204, 255));
         jtfRazonSocialEmpresaCodeudor.setFocusable(false);
 
+        jLabel41.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel41.setText("Dirección");
 
         jtfDireccionEmpresaCodeudor.setBackground(new java.awt.Color(204, 204, 255));
         jtfDireccionEmpresaCodeudor.setFocusable(false);
 
+        jLabel42.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel42.setText("Teléfono");
 
         jtfTelefonolEmpresaCodeudor.setBackground(new java.awt.Color(204, 204, 255));
@@ -678,17 +712,17 @@ public class Cliente_UI extends Views {
                     .addComponent(jLabel42))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jtfTelefonolEmpresaCodeudor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(jtfDireccionEmpresaCodeudor, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfRazonSocialEmpresaCodeudor))
+                    .addComponent(jtfTelefonolEmpresaCodeudor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDireccionEmpresaCodeudor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfRazonSocialEmpresaCodeudor, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfRazonSocialEmpresaCodeudor)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfRazonSocialEmpresaCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -701,6 +735,7 @@ public class Cliente_UI extends Views {
                 .addContainerGap())
         );
 
+        jButton3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton3.setText("Referencias de Codeudor");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -805,7 +840,7 @@ public class Cliente_UI extends Views {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         pack();

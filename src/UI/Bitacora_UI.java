@@ -55,6 +55,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jLabel1.setText("HISTORIAL DE PRESTAMOS");
                 setTitle("HISTORIAL DE PRESTAMOS");
                 this.getContentPane().remove(2);
+                jPanel1.setPreferredSize(new Dimension(790, 470));
                 //jLabel3.setVisible(false);
                 setSize(825, 565);
                 break;
@@ -65,6 +66,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jLabel1.setText("HISTORIAL DE CLIENTES");
                 setTitle("HISTORIAL DE CLIENTES");
                 this.getContentPane().remove(2);
+                jPanel1.setPreferredSize(new Dimension(790, 470));
                 //jLabel3.setVisible(false);
                 setSize(825, 565);
                 break;
@@ -122,7 +124,6 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         jTable2 = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
         setTitle("BITACORA");
         setToolTipText("");
 
@@ -166,6 +167,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel7.setText("Desde:");
 
+        jComboBox1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoy", "Este mes", "Filtrar por fechas" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,10 +197,6 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -209,7 +207,8 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
                             .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
+                            .addComponent(jLabel8)))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
