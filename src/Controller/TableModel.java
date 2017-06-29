@@ -144,7 +144,6 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Cedula del Cliente");
         modelo.addColumn("Nombre del Cliente");
-        modelo.addColumn("Tipo de Cliente");
         modelo.addColumn("Usuario del sistema");
         modelo.addColumn("Fecha accion");
         modelo.addColumn("Tipo accion");
@@ -173,7 +172,6 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel bitacoraIndividualReferencia() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
         modelo.addColumn("Nombre");
         modelo.addColumn("Telefono");
         modelo.addColumn("Usuario del sistema");

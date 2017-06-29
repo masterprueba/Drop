@@ -110,27 +110,24 @@ public class Cliente_Controller extends Persona_Controller {
 
             if (getDbp_Controller().update(getDbpCliente())) {
                 if (update(getpCliente())) {
-
                     if (getCli_UI().objectRefeCli.size() > 0) {
-
-                        if (getRef__Controller().prepareSelect(getpCliente().getTDatosBasicosPersona().getTdbpCedula(), "")) {
-                            List<TReferencia> temp = new ArrayList<>();
-                            temp = getRef__Controller().getListRef();
-                            for (int j = 0; j < temp.size(); j++) {
-                                getRef__Controller().prepareDelete(temp.get(j));
-
-                                //System.out.println(temp.get(j).getTrefNombre());
-                            }
-                        }
-
                         for (int i = 0; i < getCli_UI().objectRefeCli.size(); i++) {
                             getCli_UI().objectRefeCli.get(i).setTDatosBasicosPersona(getDbpCliente());
-
-                            getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
-
+                            if (getCli_UI().objectRefeCli.get(i).getTrefId() != null) {
+                                getRef__Controller().update(getCli_UI().objectRefeCli.get(i));
+                            } else {
+                                getRef__Controller().prepareInsert(getCli_UI().objectRefeCli.get(i));
+                            }
                         }
                     }
-
+                    if (getCli_UI().refDeleteClie.size() > 0) {
+                        for (int i = 0; i < getCli_UI().refDeleteClie.size(); i++) {
+                            TReferencia reElimin = new TReferencia();
+                            reElimin.setTrefId(getCli_UI().refDeleteClie.get(i));
+                            reElimin.setTDatosBasicosPersona(getDbpCliente());
+                            getRef__Controller().prepareDelete(reElimin);
+                        }
+                    }
                     JOptionPane.showMessageDialog(getCli_UI(), "Datos Actualizados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
                     initTable(getCli_UI().jtbClientes);
                 }
@@ -172,7 +169,7 @@ public class Cliente_Controller extends Persona_Controller {
 
         SelectAll(temp);
 
-        DefaultTableModel dtm = new TableModel().VerUsuarios();        
+        DefaultTableModel dtm = new TableModel().VerUsuarios();
         jt.setModel(dtm);
 
         Object[] f = new Object[4];
@@ -215,14 +212,14 @@ public class Cliente_Controller extends Persona_Controller {
             f[7] = tp.get(i).getTpreValorTotal();
             f[8] = tp.get(i).getTpreValorCuota();
             f[9] = tp.get(i);
-            f[10] = tp.get(i).getTPersona();            
+            f[10] = tp.get(i).getTPersona();
             dtm.addRow(f);
 
-        }        
+        }
         numerarTabla(dtm);
-        InformeCliente.text_totalprestamo.setText(totalDeUnaTabla(dtm, 2)+"");
-        int[] position = {0,9, 10};        
-        setVisibleColumnTable(jt, position);         
+        InformeCliente.text_totalprestamo.setText(totalDeUnaTabla(dtm, 2) + "");
+        int[] position = {0, 9, 10};
+        setVisibleColumnTable(jt, position);
     }
 
     public void initTableCuotas(JTable jtbCuota, JTable jtbPrestamo) {
@@ -251,7 +248,7 @@ public class Cliente_Controller extends Persona_Controller {
 
         }
         numerarTabla(dtm);
-        InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3)+"");
+        InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3) + "");
         int[] position = {0, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
@@ -270,6 +267,7 @@ public class Cliente_Controller extends Persona_Controller {
         getCli_UI().jtfDireccionEmpresaCliente.setText("");
         getCli_UI().jtfTelefonoEmpresaCliente.setText("");
         getCli_UI().objectRefeCli = new ArrayList<>();
+        getCli_UI().refDeleteClie = new ArrayList<>();
 
         getCli_UI().objectCodeudor = new TPersona();
         getCli_UI().jtfCedulaCodeudor.setText("");
@@ -335,27 +333,28 @@ public class Cliente_Controller extends Persona_Controller {
         }
     }
 //</editor-fold>
-    
-    public void filter(JTextField jtf, JTable jtb){
-        
-        
+
+    public void filter(JTextField jtf, JTable jtb) {
+
         jtf.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ke){
-                trs.setRowFilter(RowFilter.regexFilter("(?i)"+jtf.getText(), 1));
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter("(?i)" + jtf.getText(), 1));
             }
         });
-        
+
         trs = new TableRowSorter(jtb.getModel());
         jtb.setRowSorter(trs);
     }
-    private void ordenarPrestamo(List prestamos){
+
+    private void ordenarPrestamo(List prestamos) {
         Collections.sort(prestamos, new Comparator<TPrestamo>() {
-  public int compare(TPrestamo o1, TPrestamo o2) {
-      if (o1.getTpreFechaEntrega() == null || o2.getTpreFechaEntrega() == null)
-        return 0;
-      return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
-  }
-});
-    }            
+            public int compare(TPrestamo o1, TPrestamo o2) {
+                if (o1.getTpreFechaEntrega() == null || o2.getTpreFechaEntrega() == null) {
+                    return 0;
+                }
+                return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
+            }
+        });
+    }
 }

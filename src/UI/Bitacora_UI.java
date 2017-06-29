@@ -62,7 +62,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
             case "CLIENTE":
                 modeloTabla1 = new TableModel().bitacoraGeneralClientes();
                 jTable1.setModel(modeloTabla1);
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 jLabel1.setText("HISTORIAL DE CLIENTES");
                 setTitle("HISTORIAL DE CLIENTES");
                 this.getContentPane().remove(2);

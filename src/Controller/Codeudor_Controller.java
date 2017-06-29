@@ -9,7 +9,6 @@ import Entity.TDatosBasicosPersona;
 import Entity.TPersona;
 import Entity.TReferencia;
 import UI.Cliente_UI;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -76,9 +75,9 @@ public class Codeudor_Controller extends Persona_Controller {
 
     }
 //</editor-fold>
-    
+
 //<editor-fold defaultstate="collapsed" desc="prepare SELECT Codeudor">
-    public List<TPersona>  prepareSelectCodeudor(String cCodeudor) {
+    public List<TPersona> prepareSelectCodeudor(String cCodeudor) {
         setDbpCodeudor(new TDatosBasicosPersona());
         getDbpCodeudor().setTdbpCedula(cCodeudor);
 
@@ -100,29 +99,25 @@ public class Codeudor_Controller extends Persona_Controller {
 
             if (getDbp_Controller().update(getDbpCodeudor())) {
                 if (update(getpCodeudor())) {
-
                     if (getCli_UI().objectRefeCod.size() > 0) {
-
-                        if (getRef__Controller().prepareSelect(getpCodeudor().getTDatosBasicosPersona().getTdbpCedula(), "")) {
-                            List<TReferencia> temp = new ArrayList<>();
-                            temp = getRef__Controller().getListRef();
-
-                            if (temp.size() > 0) {
-                                for (int j = 0; j < temp.size(); j++) {
-                                    getRef__Controller().prepareDelete(temp.get(j));
-
-                                    //System.out.println(temp.get(j).getTrefNombre());
-                                }
-                            }
-                        }
-
                         for (int i = 0; i < getCli_UI().objectRefeCod.size(); i++) {
                             getCli_UI().objectRefeCod.get(i).setTDatosBasicosPersona(getDbpCodeudor());
-
-                            getRef__Controller().prepareInsert(getCli_UI().objectRefeCod.get(i));
-
+                            if (getCli_UI().objectRefeCod.get(i).getTrefId() != null) {
+                                getRef__Controller().update(getCli_UI().objectRefeCod.get(i));
+                            } else {
+                                getRef__Controller().prepareInsert(getCli_UI().objectRefeCod.get(i));
+                            }
                         }
                     }
+                    if (getCli_UI().refDeleteCode.size() > 0) {
+                        for (int i = 0; i < getCli_UI().refDeleteCode.size(); i++) {
+                            TReferencia reElimin = new TReferencia();
+                            reElimin.setTrefId(getCli_UI().refDeleteCode.get(i));
+                            reElimin.setTDatosBasicosPersona(getDbpCodeudor());
+                            getRef__Controller().prepareDelete(reElimin);
+                        }
+                    }
+
                     cli_Controller = new Cliente_Controller(getCli_UI());
                     cli_Controller.prepareUpdate(getpCodeudor());
                     cli_Controller.clean();

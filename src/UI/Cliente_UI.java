@@ -24,7 +24,9 @@ public class Cliente_UI extends Views {
     public TPersona objectCodeudor;
     public List<TReferencia> objectRefeCli;
     public List<TReferencia> objectRefeCod;
-
+    public ArrayList<Integer> refDeleteClie;
+    public ArrayList<Integer> refDeleteCode;
+    
     private Persona_Controller per_Controller;
     private Cliente_Controller cli_Controller;
     private Codeudor_Controller cod_Controller;
@@ -45,7 +47,8 @@ public class Cliente_UI extends Views {
         cli_Controller.initTable(jtbClientes);
         objectRefeCli = new ArrayList<>();
         objectRefeCod = new ArrayList<>();
-
+        refDeleteClie = new ArrayList<>();
+        refDeleteCode = new ArrayList<>();
     }
 
     /**
@@ -199,6 +202,7 @@ public class Cliente_UI extends Views {
         jLabel51.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel51.setText("Tipo");
 
+        jcbTipoCasaCliente.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jcbTipoCasaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
         jcbTipoCasaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbTipoCasaCliente.setEnabled(false);
@@ -577,6 +581,7 @@ public class Cliente_UI extends Views {
         jLabel39.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel39.setText("Tipo");
 
+        jcbTipoCasaCodeudor.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jcbTipoCasaCodeudor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
         jcbTipoCasaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbTipoCasaCodeudor.setEnabled(false);
@@ -895,21 +900,21 @@ public class Cliente_UI extends Views {
         if (objectCliente.getTperId() != null) {
             cod_Controller.prepareUpdate();
         } else {
-            
-            for (int i = 0; i < jtbClientes.getRowCount(); i++) { 
+
+            for (int i = 0; i < jtbClientes.getRowCount(); i++) {
                 //System.out.println("" + String.valueOf(jtClientes.getValueAt(i, 1)));
-                 cod_Controller.prepareSelectCodeudor(jtfCedulaCodeudor.getText());
+                cod_Controller.prepareSelectCodeudor(jtfCedulaCodeudor.getText());
                 if (jtfCedulaCliente.getText().equals(String.valueOf(jtbClientes.getValueAt(i, 1))) || jtfCedulaCodeudor.getText().equals(String.valueOf(jtbClientes.getValueAt(i, 1)))) {
-                    
+
                     //cod_Controller.prepareInsert();
                     //System.out.println("" + String.valueOf(jtClientes.getValueAt(i, 1)));   
-                   //JOptionPane.showMessageDialog(null, "Identificación ya registrada como cliente o codeudor", "Error", JOptionPane.ERROR_MESSAGE);
-                   b = false;
+                    //JOptionPane.showMessageDialog(null, "Identificación ya registrada como cliente o codeudor", "Error", JOptionPane.ERROR_MESSAGE);
+                    b = false;
                 } else if (cod_Controller.prepareSelectCodeudor(jtfCedulaCodeudor.getText()).size() > 0) {
                     b = false;
                 }
             }
-            
+
             if (b) {
                 cod_Controller.prepareInsert();
                 //System.out.println(cod_Controller.prepareSelectCodeudor(jtfCedulaCodeudor.getText()));

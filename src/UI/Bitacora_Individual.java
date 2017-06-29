@@ -44,11 +44,11 @@ public final class Bitacora_Individual extends Views {
             case "PRESTAMO":
                 setTitle("HISTORIAL DE UN PRESTAMO");
                 jLabel1.setText("HISTORIAL DE UN PRESTAMO");
-                setCellRender(jTable1, new Color(87, 166, 057));
+                setCellRender(jTable1, null);
                 setSize(1300, 420);
                 break;
             case "CLIENTE":
-                setCellRender(jTable1, new Color(87, 166, 057));
+                setCellRender(jTable1, null);
                 if (flag != 3) {
                     if (flag == 1) {
                         setTitle("HISTORIAL DE CLIENTE");
@@ -63,8 +63,8 @@ public final class Bitacora_Individual extends Views {
                     crearPopup();
 
                 } else {
-                    jLabel1.setText("HISTORIAL DE UN REFERENCIA");
-                    setSize(520, 420);
+                    jLabel1.setText("HISTORIAL DE UNA REFERENCIA");
+                    setSize(720, 420);
                 }
                 break;
             case "GASTOS":
@@ -73,14 +73,14 @@ public final class Bitacora_Individual extends Views {
                 setSize(680, 420);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
-                setCellRender(jTable1, new Color(87, 166, 057));
+                setCellRender(jTable1, null);
                 break;
             case "ABONO":
                 setTitle("HISTORIAL DE CUOTAS");
                 jLabel1.setText("HISTORIAL DE CUOTAS");
                 setSize(900, 420);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(10));
-                setCellRender(jTable1, new Color(87, 166, 057));
+                setCellRender(jTable1, null);
                 //jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
         }
@@ -136,9 +136,10 @@ public final class Bitacora_Individual extends Views {
                                 }
                             }
                             if (continu) {
-                                popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido());
                                 if (Bitacora_Controller.lBitacora.get(i).getTbitIdentificador().equals("ELIMINO")) {
-                                    popupReferencia[j].setBackground(Color.red);
+                                    popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido() + " - ELIMINADO");
+                                } else {
+                                    popupReferencia[j] = new JMenuItem(referencia.getTrefNombre() + " " + referencia.getTrefApellido());
                                 }
                                 final int id = referencia.getTrefId();
                                 jPopupMenu2.addSeparator();

@@ -27,6 +27,7 @@ public class Referencia_UI extends Views {
      */
     public Referencia_UI(Cliente_UI cli_UI, String cc, String by) {
         initComponents();
+        jTable1.removeColumn(jTable1.getColumnModel().getColumn(5));
         this.cli_UI = cli_UI;
         this.by = by;
         ref_Controller = new Referencia_Controller(cli_UI, this);
@@ -35,7 +36,7 @@ public class Referencia_UI extends Views {
         } else {
             ref_Controller.setDataRefCodeudor();
         }
-        
+
         closingWindow();
 
     }
@@ -52,7 +53,7 @@ public class Referencia_UI extends Views {
                 setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
                 int opcion = JOptionPane.showConfirmDialog(null, "Desea salir?", "Salir...", JOptionPane.YES_NO_OPTION);
                 if (opcion == JOptionPane.YES_OPTION) {
-                    ref_Controller.setData();    
+                    ref_Controller.setData();
                 }
             }
 
@@ -227,14 +228,14 @@ public class Referencia_UI extends Views {
 
             },
             new String [] {
-                "", "Nombre", "Apellido", "Teléfono", "Tipo Referencia"
+                "", "Nombre", "Apellido", "Teléfono", "Tipo Referencia", "id"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                true, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -256,11 +257,6 @@ public class Referencia_UI extends Views {
             jTable1.getColumnModel().getColumn(0).setMinWidth(20);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(20);
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Nombre");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Apellido");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Teléfono");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Tipo Referencia");
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

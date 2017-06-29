@@ -123,8 +123,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/user.png"))); // NOI18N
-        jMenuItem1.setText("Nuevo Cliente ");
-        jMenuItem1.setPreferredSize(new java.awt.Dimension(141, 30));
+        jMenuItem1.setText("Gestion de Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -178,7 +177,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118261_Money.png"))); // NOI18N
-        jMenuItem5.setText("Nuevo Gasto");
+        jMenuItem5.setText("Gestion de Gastos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -194,7 +193,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
-        jMenuItem6.setText("Usuarios");
+        jMenuItem6.setText("Gestion de Usuarios");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -441,7 +440,7 @@ public class MainDesktop extends javax.swing.JFrame {
         // Verificar si es instancia de algun componente que ya este en el jDesktopPane
         for (int a = 0; a < DesktopPaneMain.getComponentCount(); a++) {
             if (InternalWindow.getClass().isInstance(DesktopPaneMain.getComponent(a))) {
-                System.out.println("La ventana ya esta abierta");
+                JOptionPane.showMessageDialog(null, "Esta ventana ya se encuentra abierta, revisa atras de las otras ventanas");
                 notExist = false;
             }
         }
