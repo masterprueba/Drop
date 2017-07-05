@@ -172,6 +172,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel bitacoraIndividualReferencia() {
         TableModel modelo = new TableModel();
+        modelo.addColumn("");
         modelo.addColumn("Nombre");
         modelo.addColumn("Telefono");
         modelo.addColumn("Usuario del sistema");

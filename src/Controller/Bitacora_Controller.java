@@ -454,6 +454,7 @@ public class Bitacora_Controller extends Controllers {
                 }
                 break;
         }
+        numerarTabla(model);
         JInternalFrame in = new Bitacora_Individual(model, cadena, flag);
         in.moveToFront();
         DesktopPaneMain.add(in);
