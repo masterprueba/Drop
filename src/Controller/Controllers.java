@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Controllers {
 protected DecimalFormat formateador;
-    protected static void numerarTabla(DefaultTableModel modelo) {
+    protected void numerarTabla(DefaultTableModel modelo) {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.setValueAt(i + 1, i, 0);
         }
