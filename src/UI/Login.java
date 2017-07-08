@@ -8,6 +8,7 @@ package UI;
 import Controller.Login_Controller;
 import Entity.TLogin;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -90,6 +91,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icons/icono.png")));
         setIconImages(null);
         setLocation(new java.awt.Point(0, 0));
         setUndecorated(true);

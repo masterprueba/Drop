@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -35,7 +36,7 @@ public class MainDesktop extends javax.swing.JFrame {
         //Maximizar la ventana en inicio
         //this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
+
     private void CerraAplicacion() {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -47,7 +48,7 @@ public class MainDesktop extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
+
     private void Confirmar() {
         int Valor = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cerrar la aplicacion?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (Valor == JOptionPane.YES_OPTION) {
@@ -98,8 +99,8 @@ public class MainDesktop extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Drop");
         setExtendedState(6);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Icons/icono.png")));
         setMinimumSize(java.awt.Toolkit.getDefaultToolkit().getScreenSize().getSize());
-        setUndecorated(true);
 
         DesktopPaneMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -432,28 +433,16 @@ public class MainDesktop extends javax.swing.JFrame {
         JInternalFrame in = new Multa_Ui();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
-    
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
+        DesktopPaneMain.add(InternalWindow);
+        calcWidthHeight(InternalWindow);
+        InternalWindow.show();
 
-        // Verificar si es instancia de algun componente que ya este en el jDesktopPane
-        for (int a = 0; a < DesktopPaneMain.getComponentCount(); a++) {
-            if (InternalWindow.getClass().isInstance(DesktopPaneMain.getComponent(a))) {
-                JOptionPane.showMessageDialog(null, "Esta ventana ya se encuentra abierta, revisa atras de las otras ventanas");
-                notExist = false;
-            }
-        }
-        //Si no es una instancia existente, muestra la ventana
-        if (notExist) {
-            
-            DesktopPaneMain.add(InternalWindow);
-            calcWidthHeight(InternalWindow);
-            
-            InternalWindow.show();
-        }
     }
-    
+
     public static void calcWidthHeight(JInternalFrame jif) {
         int width = (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width - jif.getWidth()) / 2;
         int Height = (java.awt.Toolkit.getDefaultToolkit().getScreenSize().height - jif.getHeight()) / 4;
