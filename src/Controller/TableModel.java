@@ -111,7 +111,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("ID");
         modelo.addColumn("Fecha");
         modelo.addColumn("Abono");
-        modelo.addColumn("Nuevo Saldo");
+        modelo.addColumn("Valor Pagado");
         modelo.addColumn("Cuotas Pagadas");
         modelo.addColumn("Metodo Pago");
         modelo.addColumn("Cobrador");

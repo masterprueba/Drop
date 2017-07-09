@@ -118,7 +118,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                         cobrador = cmodel.first();
                     } else {
                         cobrador.setTcobNombre(Cuota_UI.a_cobrador.getText());
-                        cobrador = (TCobrador) cmodel.insertar(cobrador, "PRESTAMO");
+                        cobrador = (TCobrador) cmodel.SelectOne(cobrador);
                     }
                     TPago pagos = new TPago();
                     if (Cuota_UI.a_metodo.getText().equals("Por defecto")) {

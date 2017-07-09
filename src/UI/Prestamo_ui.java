@@ -21,9 +21,6 @@ public class Prestamo_ui extends Views {
     private TPersona cliente;    
     
     
-    
-    
-    
     //Prueba Yoimar iniiniubuybuvbu
     //erddaaaa
     //Prueba 4
@@ -110,8 +107,8 @@ public class Prestamo_ui extends Views {
 
         P_valor_cuota.setText("0");
         P_valor_cuota.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                P_valor_cuotaFocusLost(evt);
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                P_valor_cuotaFocusGained(evt);
             }
         });
         P_valor_cuota.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -164,6 +161,11 @@ public class Prestamo_ui extends Views {
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         P_interes.setText("1");
+        P_interes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                P_interesFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -426,10 +428,6 @@ public class Prestamo_ui extends Views {
         new Dinero("prestamo",this).setVisible(true);
     }//GEN-LAST:event_P_valorprestamoMouseClicked
 
-    private void P_valor_cuotaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_valor_cuotaFocusLost
-        pc.calcularCuota();
-    }//GEN-LAST:event_P_valor_cuotaFocusLost
-
     private void P_valor_cuotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_P_valor_cuotaKeyTyped
         soloNumeros(evt);
     }//GEN-LAST:event_P_valor_cuotaKeyTyped
@@ -469,6 +467,14 @@ public class Prestamo_ui extends Views {
     private void P_metodoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_P_metodoItemStateChanged
         pc.calcularCuota();
     }//GEN-LAST:event_P_metodoItemStateChanged
+
+    private void P_interesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_interesFocusLost
+        pc.calcularCuota();
+    }//GEN-LAST:event_P_interesFocusLost
+
+    private void P_valor_cuotaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_P_valor_cuotaFocusGained
+        pc.calcularCuota();
+    }//GEN-LAST:event_P_valor_cuotaFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
