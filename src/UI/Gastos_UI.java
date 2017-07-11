@@ -6,7 +6,7 @@
 package UI;
 
 import Controller.TableModel;
-import Controller.Gastos_Controller;
+import Controller.gastos_Controller;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,14 +15,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Gastos_UI extends Views {
 
-    private final Gastos_Controller GControl;
+    private final gastos_Controller GControl;
     public final DefaultTableModel modelo;
 
     /**
      * Creates new form Gastos_UI
      */
     public Gastos_UI() {
-        GControl = new Gastos_Controller(this);
+        GControl = new gastos_Controller(this);
         modelo = new TableModel().VerGastos();
         initComponents();
         CargarComponentes();
