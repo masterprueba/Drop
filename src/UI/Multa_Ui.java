@@ -56,6 +56,7 @@ public class Multa_Ui extends Views {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         a_cedula = new javax.swing.JTextField();
@@ -259,6 +260,7 @@ public class Multa_Ui extends Views {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Interes extra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton1.setText("Mostrar este mes.");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +269,7 @@ public class Multa_Ui extends Views {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton2.setText("Mostrar todos los Intereses.");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +278,7 @@ public class Multa_Ui extends Views {
             }
         });
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton3.setText("Filtrar por fechas.");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -407,14 +411,15 @@ public class Multa_Ui extends Views {
                         .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
@@ -546,6 +551,7 @@ public class Multa_Ui extends Views {
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Gasto;
     public static javax.swing.JTextField a_cedula;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     public static javax.swing.JButton jButton3;

@@ -66,8 +66,6 @@ public class InformeGeneral extends Views {
         jtable_infgasto = new javax.swing.JTable();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Informe General");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Balance", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 16))); // NOI18N
