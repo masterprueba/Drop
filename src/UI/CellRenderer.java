@@ -26,7 +26,7 @@ public class CellRenderer extends DefaultTableCellRenderer implements TableCellR
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         if (c != null) {
-            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            super.getTableCellRendererComponent(table, value, false, hasFocus, row, column);
             setBackground(c);
             if (row == table.getRowCount() - 1) {
                 setBackground(null);

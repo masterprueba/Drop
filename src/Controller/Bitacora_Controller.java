@@ -283,11 +283,11 @@ public class Bitacora_Controller extends Controllers {
 
     public void bitacoraGeneralIndividual(MouseEvent evt, int flag) {
         if (evt.getClickCount() == 2) {
-            int fila = flag == 1 ? Bitacora_UI.jTable1.rowAtPoint(evt.getPoint()) : Bitacora_UI.jTable2.rowAtPoint(evt.getPoint());
+            int fila = flag == 1 ? Bitacora_UI.jTable1.rowAtPoint(evt.getPoint()) : flag == 3 ? Bitacora_Individual.jTable1.rowAtPoint(evt.getPoint()) : Bitacora_UI.jTable2.rowAtPoint(evt.getPoint());
             if (fila > -1) {
                 DefaultTableModel model = null;
                 String cadena = "";
-                if (flag == 1) {
+                if (flag == 1 || flag == 4) {
                     switch (Bitacora_UI.bitacora) {
                         case "PRESTAMO":
                             int idPrestamo = Integer.parseInt(Bitacora_UI.jTable1.getModel().getValueAt(fila, 6).toString());
@@ -401,42 +401,40 @@ public class Bitacora_Controller extends Controllers {
                         case "MULTA":
                             int idmulta = Integer.parseInt(Bitacora_UI.jTable1.getModel().getValueAt(fila, 11).toString());
                             model = new TableModel().bitacoraGeneralMulta();
-                            enconctrarMulta:
+                            boolean continuar = true;
                             for (int i = 0; i < listObject.size(); i++) {
-                                System.err.println("Buscando multa...");
                                 if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta")) {
                                     TMulta multa = (TMulta) listObject.get(i);
                                     if (multa.getTmulId() == idmulta) {
-                                        for (int j = 0; j < listObject.size(); j++) {
-                                            if (lBitacora.get(j).getTbitClassname().equals("Entity.TPrestamo")) {
-                                                TPrestamo prestaMulta = (TPrestamo) listObject.get(j);
-                                                if (Objects.equals(prestaMulta.getTpreId(), multa.getTPrestamo().getTpreId())) {
-                                                    System.err.println("Entonctro todo, no deberia seguir");
-                                                    cadena = prestaMulta != null ? "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
-                                                            + "<tr><td>Cliente:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
-                                                            + "<td>N° Cuotas:</td><td>" + prestaMulta.getTpreNumCuotas() + "</td></tr> "
-                                                            + "<tr><td>Valor Prestamo:</td><td>" + prestaMulta.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestaMulta.getTpreIntereses() + "</td></tr>"
-                                                            + "<tr><td>Metodo pago:</td><td>" + prestaMulta.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestaMulta.getTpreFechaEntrega()) + "</td></tr>"
-                                                            + "<tr><td>Valor Total:</td><td>" + prestaMulta.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestaMulta.getTpreValorCuota() + "</td></tr>"
-                                                            + "</table></html>" : "";
-
-                                                    String[] filamulta = new String[12];
-                                                    filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
-                                                    filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
-                                                    filamulta[3] = lBitacora.get(i).getTbitIdentificador();
-                                                    filamulta[4] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula();
-                                                    filamulta[5] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
-                                                    filamulta[6] = "" + multa.getTmulValor();
-                                                    filamulta[7] = "" + multa.getTPrestamo().getTpreValorPrestamo();
-                                                    filamulta[8] = multa.getTmulDescripcion();
-                                                    filamulta[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
-                                                    filamulta[10] = multa.getTmulEstado();
-                                                    filamulta[11] = "" + multa.getTmulId();
-
-                                                    break enconctrarMulta;
+                                        if (continuar) {
+                                            for (int j = 0; j < listObject.size(); j++) {
+                                                if (lBitacora.get(j).getTbitClassname().equals("Entity.TPrestamo")) {
+                                                    TPrestamo prestaMulta = (TPrestamo) listObject.get(j);
+                                                    if (Objects.equals(prestaMulta.getTpreId(), multa.getTPrestamo().getTpreId())) {
+                                                        cadena = "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
+                                                                + "<tr><td>Cliente:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
+                                                                + "<td>N° Cuotas:</td><td>" + prestaMulta.getTpreNumCuotas() + "</td></tr> "
+                                                                + "<tr><td>Valor Prestamo:</td><td>" + prestaMulta.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestaMulta.getTpreIntereses() + "</td></tr>"
+                                                                + "<tr><td>Metodo pago:</td><td>" + prestaMulta.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestaMulta.getTpreFechaEntrega()) + "</td></tr>"
+                                                                + "<tr><td>Valor Total:</td><td>" + prestaMulta.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestaMulta.getTpreValorCuota() + "</td></tr>"
+                                                                + "</table></html>";
+                                                    }
                                                 }
                                             }
                                         }
+                                        String[] filamulta = new String[12];
+                                        filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                        filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                        filamulta[3] = lBitacora.get(i).getTbitIdentificador();
+                                        filamulta[4] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula();
+                                        filamulta[5] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                        filamulta[6] = "" + multa.getTmulValor();
+                                        filamulta[7] = "" + multa.getTPrestamo().getTpreValorPrestamo();
+                                        filamulta[8] = multa.getTmulDescripcion();
+                                        filamulta[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
+                                        filamulta[10] = multa.getTmulEstado();
+                                        filamulta[11] = "" + multa.getTmulId();
+                                        model.addRow(filamulta);
                                     }
                                 }
                             }
@@ -461,7 +459,39 @@ public class Bitacora_Controller extends Controllers {
                             }
                         }
                     } else {
-                    
+                        String cedula = Bitacora_UI.jTable2.getModel().getValueAt(fila, 1).toString();
+                        model = new TableModel().bitacoraHistorialMultas();
+                        ArrayList<Integer> multasAñadidas = new ArrayList();
+                        for (int i = 0; i < listObject.size(); i++) {
+                            if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta") && lBitacora.get(i).getTbitIdentificador().equals("AGREGO")) {
+                                TMulta multa = (TMulta) listObject.get(i);
+                                if (multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula().equals(cedula)) {
+                                    boolean multas = true;
+                                    for (int j = 0; j < multasAñadidas.size(); j++) {
+                                        if (Objects.equals(multa.getTmulId(), multasAñadidas.get(j))) {
+                                            multas = false;
+                                        }
+                                    }
+                                    if (multas) {
+                                        String[] filamulta = new String[12];
+                                        filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                        filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                        filamulta[3] = "" + multa.getTmulValor();
+                                        filamulta[4] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
+                                        filamulta[5] = multa.getTmulEstado();
+                                        filamulta[6] = "" + multa.getTPrestamo().getTpreValorPrestamo();
+                                        filamulta[7] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTPrestamo().getTpreFechaEntrega());
+                                        filamulta[8] = "" + multa.getTPrestamo().getTpreNumCuotas();
+                                        filamulta[9] = "" + multa.getTPrestamo().getTpreValorCuota();
+                                        filamulta[10] = "" + multa.getTPrestamo().getTpreValorTotal();
+                                        filamulta[11] = "" + multa.getTmulId();
+
+                                        multasAñadidas.add(multa.getTmulId());
+                                        model.addRow(filamulta);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 if (model != null) {

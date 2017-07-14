@@ -62,7 +62,7 @@ public class Multa_Controller extends Controllers{
         if (validar()) {
             llenarObjeto();
             if (Mmulta.editar(Multa,"PRESTAMO")) {
-                JOptionPane.showMessageDialog(null, "El gasto fue editado correctamente!");                
+                JOptionPane.showMessageDialog(null, "El interes fue editado correctamente!");                
                 traer(obtenerRadiobuttonSeleccionado());
                 vaciarCampos();
                 desactivarBotones(0);

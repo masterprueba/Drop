@@ -248,4 +248,21 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("id");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraHistorialMultas() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Usuario sistema");
+        modelo.addColumn("Fecha evento");
+        modelo.addColumn("Valor multa");
+        modelo.addColumn("Fecha multa");
+        modelo.addColumn("Estado Multa");
+        modelo.addColumn("Valor prestamo");
+        modelo.addColumn("Fecha Prestamo");
+        modelo.addColumn("Numero cuotas");
+        modelo.addColumn("Valor cuotas");
+        modelo.addColumn("Valor total");
+        modelo.addColumn("id");
+        return modelo;
+    }
 }

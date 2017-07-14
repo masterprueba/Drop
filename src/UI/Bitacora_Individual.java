@@ -83,6 +83,13 @@ public final class Bitacora_Individual extends Views {
                 setCellRender(jTable1, null);
                 //jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
                 break;
+            case "MULTA":
+                setTitle("HISTORIAL INTERES EXTRA");
+                jLabel1.setText("HISTORIAL INTERES EXTRA");
+                setSize(1200, 420);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(11));
+                setCellRender(jTable1, null);
+                break;
         }
     }
 
