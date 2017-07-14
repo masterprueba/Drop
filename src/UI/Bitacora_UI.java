@@ -46,7 +46,7 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 setTitle("HISTORIAL DE INICIO DE SESSION");
                 jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
                 jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
-                bitController.verUsuarios();
+                bitController.verPersonas(1);
                 break;
             case "PRESTAMO":
                 modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
@@ -94,6 +94,19 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 setSize(1000, 555);
                 jPanel1.setPreferredSize(new Dimension(965, 460));
                 //jPanel1.setSize(d);
+                break;
+            case "MULTA":
+                modeloTabla1 = new TableModel().bitacoraGeneralMulta();
+                modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
+                jTable1.setModel(modeloTabla1);
+                jTable2.setModel(modeloTabla2);
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(11));
+                jLabel1.setText("HISTORIAL INTERES EXTRA");
+                setTitle("HISTORIAL INTERES EXTRA");
+                setSize(1500, 600);
+                jPanel1.setPreferredSize(new Dimension(1027, jPanel1.getPreferredSize().height));
+                jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
+                bitController.verPersonas(2);
                 break;
         }
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);

@@ -5,7 +5,6 @@
  */
 package Model;
 
-import Entity.TMulta;
 import Persistence.hibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
@@ -14,8 +13,8 @@ import org.hibernate.Query;
  *
  * @author Usuario
  */
-public class Multa_Model<G> extends Models{
-    
+public class Multa_Model<G> extends Models {
+
     public List<G> ConsultarMes(int Mes, int Año, String sql) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
@@ -44,14 +43,23 @@ public class Multa_Model<G> extends Models{
         s.getTransaction().commit();
         return list;
     }
-    
+
     public Object getPrestamo(String cc) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TPrestamo as prestamo where prestamo.TPersona.TDatosBasicosPersona.tdbpCedula = "+cc+" ORDER BY prestamo.tpreFechaEntrega DESC";
+        String query = "from TPrestamo as prestamo where prestamo.TPersona.TDatosBasicosPersona.tdbpCedula = " + cc + " ORDER BY prestamo.tpreFechaEntrega DESC";
         Query q = s.createQuery(query).setMaxResults(1);
         Object obj = q.uniqueResult();
         s.getTransaction().commit();
         return obj;
+    }
+
+    public List<G> personasConMulta() {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "select datos from TMulta as multa join multa.TPrestamo as prestamo join prestamo.TPersona as persona inner join persona.TDatosBasicosPersona as datos group by datos.tdbpCedula";
+        List<G> list = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return list;
     }
 }

@@ -5,18 +5,10 @@
  */
 package Controller;
 
-import Entity.TBitacora;
-import Entity.TCobrador;
-import Entity.TCuota;
-import Entity.TDatosBasicosPersona;
-import Entity.TGasto;
-import Entity.TLogin;
-import Entity.TPago;
-import Entity.TPersona;
-import Entity.TPrestamo;
-import Entity.TReferencia;
+import Entity.*;
 import Model.Bitacora_Model;
 import Model.DatosBasicosPersona_Model;
+import Model.Multa_Model;
 import UI.Bitacora_UI;
 import UI.Bitacora_Individual;
 import static UI.MainDesktop.DesktopPaneMain;
@@ -30,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +36,6 @@ public class Bitacora_Controller extends Controllers {
     private final Bitacora_Model mBitacora = new Bitacora_Model();
     private final Bitacora_UI vistaBitacora;
     public static List<TBitacora> lBitacora;
-    private final DatosBasicosPersona_Model mLogin = new DatosBasicosPersona_Model();
     protected String fechaInicio = "";
     protected String fechaFin = "";
     public static final List<Object> listObject = new ArrayList<>();
@@ -188,10 +180,44 @@ public class Bitacora_Controller extends Controllers {
                             case "Entity.TCobrador":
                                 listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCobrador.class));
                                 break;
+                            case "Entity.TMulta":
+                                listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TMulta.class));
+                                break;
                             default:
                                 JOptionPane.showMessageDialog(DesktopPaneMain, "Se agrego una nueva clase al modulo de prestamo  -" + lBitacora.get(i).getTbitClassname() + ", informar a su programador ");
                                 break;
                         }
+                    }
+                    break;
+                case "MULTA":
+                    listObject.clear();
+                    if (!lBitacora.isEmpty()) {
+                        for (int i = 0; i < lBitacora.size(); i++) {
+                            TMulta multa = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TMulta.class);
+                            String[] fila = new String[12];
+                            fila[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                            fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                            fila[3] = lBitacora.get(i).getTbitIdentificador();
+                            fila[4] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula();
+                            fila[5] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                            fila[6] = "" + multa.getTmulValor();
+                            fila[7] = "" + multa.getTPrestamo().getTpreValorPrestamo();
+                            fila[8] = multa.getTmulDescripcion();
+                            fila[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
+                            fila[10] = multa.getTmulEstado();
+                            fila[11] = "" + multa.getTmulId();
+
+                            vistaBitacora.modeloTabla1.addRow(fila);
+                        }
+                    }
+                    lBitacora = mBitacora.consultarAllModulo("MULTA");
+                    for (int i = 0; i < lBitacora.size(); i++) {
+                        if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta")) {
+                            listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TMulta.class));
+                        } else {
+                            listObject.add(i, gson.fromJson(lBitacora.get(i).getTbitRegistro(), TPrestamo.class));
+                        }
+
                     }
                     break;
             }
@@ -240,15 +266,15 @@ public class Bitacora_Controller extends Controllers {
         }
     }
 
-    public void verUsuarios() {
-        List<TDatosBasicosPersona> listLogin = mLogin.ConsultarPersonasConLogin();
+    public void verPersonas(int v) {
+        List<TDatosBasicosPersona> personas = v == 1 ? new DatosBasicosPersona_Model().ConsultarPersonasConLogin() : new Multa_Model().personasConMulta();
         vistaBitacora.modeloTabla2.setNumRows(0);
-        if (!listLogin.isEmpty()) {
-            for (int i = 0; i < listLogin.size(); i++) {
-                String[] fila = new String[6];
-                fila[1] = listLogin.get(i).getTdbpCedula();
-                fila[2] = listLogin.get(i).getTdbpNombre() + " " + listLogin.get(i).getTdbpApellido();
-                fila[3] = listLogin.get(i).getTdbpId().toString();
+        if (!personas.isEmpty()) {
+            for (int i = 0; i < personas.size(); i++) {
+                String[] fila = new String[4];
+                fila[1] = personas.get(i).getTdbpCedula();
+                fila[2] = personas.get(i).getTdbpNombre() + " " + personas.get(i).getTdbpApellido();
+                fila[3] = personas.get(i).getTdbpId().toString();
                 vistaBitacora.modeloTabla2.addRow(fila);
             }
             numerarTabla(vistaBitacora.modeloTabla2);
@@ -372,22 +398,70 @@ public class Bitacora_Controller extends Controllers {
                                     + "<tr><td>Valor Total:</td><td>" + prestamo.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestamo.getTpreValorCuota() + "</td></tr>"
                                     + "</table></html>" : "";
                             break;
+                        case "MULTA":
+                            int idmulta = Integer.parseInt(Bitacora_UI.jTable1.getModel().getValueAt(fila, 11).toString());
+                            model = new TableModel().bitacoraGeneralMulta();
+                            enconctrarMulta:
+                            for (int i = 0; i < listObject.size(); i++) {
+                                System.err.println("Buscando multa...");
+                                if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta")) {
+                                    TMulta multa = (TMulta) listObject.get(i);
+                                    if (multa.getTmulId() == idmulta) {
+                                        for (int j = 0; j < listObject.size(); j++) {
+                                            if (lBitacora.get(j).getTbitClassname().equals("Entity.TPrestamo")) {
+                                                TPrestamo prestaMulta = (TPrestamo) listObject.get(j);
+                                                if (Objects.equals(prestaMulta.getTpreId(), multa.getTPrestamo().getTpreId())) {
+                                                    System.err.println("Entonctro todo, no deberia seguir");
+                                                    cadena = prestaMulta != null ? "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
+                                                            + "<tr><td>Cliente:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
+                                                            + "<td>N° Cuotas:</td><td>" + prestaMulta.getTpreNumCuotas() + "</td></tr> "
+                                                            + "<tr><td>Valor Prestamo:</td><td>" + prestaMulta.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestaMulta.getTpreIntereses() + "</td></tr>"
+                                                            + "<tr><td>Metodo pago:</td><td>" + prestaMulta.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestaMulta.getTpreFechaEntrega()) + "</td></tr>"
+                                                            + "<tr><td>Valor Total:</td><td>" + prestaMulta.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestaMulta.getTpreValorCuota() + "</td></tr>"
+                                                            + "</table></html>" : "";
+
+                                                    String[] filamulta = new String[12];
+                                                    filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
+                                                    filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                                    filamulta[3] = lBitacora.get(i).getTbitIdentificador();
+                                                    filamulta[4] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula();
+                                                    filamulta[5] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+                                                    filamulta[6] = "" + multa.getTmulValor();
+                                                    filamulta[7] = "" + multa.getTPrestamo().getTpreValorPrestamo();
+                                                    filamulta[8] = multa.getTmulDescripcion();
+                                                    filamulta[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
+                                                    filamulta[10] = multa.getTmulEstado();
+                                                    filamulta[11] = "" + multa.getTmulId();
+
+                                                    break enconctrarMulta;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+
                         default:
                             break;
                     }
                 } else {
-                    model = new TableModel().historialUsuarioInicioSession();
-                    cadena = vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString();
-                    lBitacora = mBitacora.consultarInicioUsuario(Bitacora_UI.jTable2.getModel().getValueAt(fila, 3).toString());
-                    if (!lBitacora.isEmpty()) {
-                        for (int i = 0; i < lBitacora.size(); i++) {
-                            String[] filas = new String[6];
-                            filas[1] = new SimpleDateFormat("yyyy").format(lBitacora.get(i).getTbitFecha());
-                            filas[2] = new SimpleDateFormat("MM").format(lBitacora.get(i).getTbitFecha());
-                            filas[3] = new SimpleDateFormat("dd").format(lBitacora.get(i).getTbitFecha());
-                            filas[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
-                            model.addRow(filas);
+                    if (!Bitacora_UI.bitacora.equals("MULTA")) {
+                        model = new TableModel().historialUsuarioInicioSession();
+                        cadena = vistaBitacora.modeloTabla2.getValueAt(fila, 2).toString();
+                        lBitacora = mBitacora.consultarInicioUsuario(Bitacora_UI.jTable2.getModel().getValueAt(fila, 3).toString());
+                        if (!lBitacora.isEmpty()) {
+                            for (int i = 0; i < lBitacora.size(); i++) {
+                                String[] filas = new String[6];
+                                filas[1] = new SimpleDateFormat("yyyy").format(lBitacora.get(i).getTbitFecha());
+                                filas[2] = new SimpleDateFormat("MM").format(lBitacora.get(i).getTbitFecha());
+                                filas[3] = new SimpleDateFormat("dd").format(lBitacora.get(i).getTbitFecha());
+                                filas[4] = new SimpleDateFormat("HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
+                                model.addRow(filas);
+                            }
                         }
+                    } else {
+                    
                     }
                 }
                 if (model != null) {

@@ -231,4 +231,21 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Cedula");
         return modelo;
     }
+
+    public DefaultTableModel bitacoraGeneralMulta() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Usuario sistema");
+        modelo.addColumn("Fecha evento");
+        modelo.addColumn("Tipo evento");
+        modelo.addColumn("Cedula Cliente");
+        modelo.addColumn("Nombre cliente");
+        modelo.addColumn("Valor multa");
+        modelo.addColumn("Valor prestamo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Estado");
+        modelo.addColumn("id");
+        return modelo;
+    }
 }
