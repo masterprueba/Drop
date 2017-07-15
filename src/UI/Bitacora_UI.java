@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class Bitacora_UI extends javax.swing.JInternalFrame {
 
     public DefaultTableModel modeloTabla1, modeloTabla2;
-    private final Bitacora_Controller bitController;
+    public static Bitacora_Controller bitController;
     public static String bitacora;
 
     /**
@@ -101,10 +101,12 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 jTable1.setModel(modeloTabla1);
                 jTable2.setModel(modeloTabla2);
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(11));
+                jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
                 jLabel1.setText("HISTORIAL INTERES EXTRA");
                 setTitle("HISTORIAL INTERES EXTRA");
-                setSize(1500, 600);
-                jPanel1.setPreferredSize(new Dimension(1027, jPanel1.getPreferredSize().height));
+                setSize(1300, 600);
+                jPanel1.setPreferredSize(new Dimension(830, jPanel1.getPreferredSize().height));
+                jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
                 jTable2.getColumnModel().getColumn(0).setPreferredWidth(1);
                 bitController.verPersonas(2);
                 break;

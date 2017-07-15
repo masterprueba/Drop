@@ -10,9 +10,11 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
         <group>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Bitacora_Individual.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cliente_Controller.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/InformeCliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Bitacora_UI.java</file>
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/TableModel.java</file>
+            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Bitacora_Controller.java</file>
         </group>
     </open-files>
 </project-private>

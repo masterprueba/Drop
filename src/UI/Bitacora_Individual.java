@@ -8,7 +8,6 @@ package UI;
 import Controller.Bitacora_Controller;
 import Entity.TPersona;
 import Entity.TReferencia;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -26,11 +25,14 @@ public final class Bitacora_Individual extends Views {
      *
      * @param modelo
      * @param nombre //1 -cliente 2.- codeudor - 3 referencia
+     * @param controller
      */
     int flag;
+    Bitacora_Controller controller;
 
-    public Bitacora_Individual(DefaultTableModel modelo, String nombre, int flag) {
+    public Bitacora_Individual(DefaultTableModel modelo, String nombre, int flag, Bitacora_Controller controller) {
         this.flag = flag;
+        this.controller = controller;
         initComponents();
         jLabel2.setText(nombre);
         jTable1.setModel(modelo);
@@ -244,6 +246,9 @@ public final class Bitacora_Individual extends Views {
         } else if (evt.getButton() == MouseEvent.BUTTON3) {
             jPopupMenu2.show(evt.getComponent(),
                     evt.getX(), evt.getY());
+        }
+        if (controller.vistaBitacora.bitacora.equals("MULTA")) {
+            controller.bitacoraGeneralIndividual(evt, 3);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
