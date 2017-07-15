@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -320,5 +321,15 @@ public class Prestamo_Controller extends Controllers {
             return false;
         }
     }
-
+    
+    public void initTableRefinancia(JTable table){
+        List<TPrestamo> listp = pmodel.findAll(TPrestamo.class);
+        DefaultTableModel dfm = new TableModel().listaClientesRefinancia();
+        table.setModel(dfm);             
+        dfm.addRow(new Object[]{true,"carlos","1231212","32000","7"});
+        pmodel.refinanciaPrestamo();
+        for (int i = 0; i < listp.size(); i++) {
+           // dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
+        }
+    }
 }
