@@ -47,7 +47,7 @@ public class Codeudor_Controller extends Persona_Controller {
                     }
 
                     cli_Controller = new Cliente_Controller(getCli_UI());
-                    cli_Controller.prepareInsert(getpCodeudor());
+                    cli_Controller.prepareInsert(getpCodeudor().getTDatosBasicosPersona().getTdbpCedula());
                     cli_Controller.clean();
                     cli_Controller.enabledForEdit(false);
                     cli_Controller.colorJText(new java.awt.Color(205, 205, 255));
@@ -119,7 +119,7 @@ public class Codeudor_Controller extends Persona_Controller {
                     }
 
                     cli_Controller = new Cliente_Controller(getCli_UI());
-                    cli_Controller.prepareUpdate(getpCodeudor());
+                    cli_Controller.prepareUpdate(getpCodeudor().getTDatosBasicosPersona().getTdbpCedula());
                     cli_Controller.clean();
                     cli_Controller.enabledForEdit(false);
                     cli_Controller.colorJText(new java.awt.Color(205, 205, 255));

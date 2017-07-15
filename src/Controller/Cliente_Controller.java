@@ -44,14 +44,14 @@ public class Cliente_Controller extends Persona_Controller {
     }
 
 //<editor-fold defaultstate="collapsed" desc="prepare INSERT">
-    public void prepareInsert(TPersona codeudor) {
+    public void prepareInsert(String codeudor) {
         if (validar()) {
             createObjectClienteTo();
             setDbpCliente(getDbp_Controller().insert(getDbpCliente()));
 
             if (getDbpCliente().getTdbpId() != null) {
                 getpCliente().getTDatosBasicosPersona().setTdbpId(getDbpCliente().getTdbpId());
-                getpCliente().setTperCodeudor(codeudor.getTDatosBasicosPersona().getTdbpCedula());
+                getpCliente().setTperCodeudor(codeudor);
 
                 if (insert(getpCliente())) {
 
@@ -65,6 +65,9 @@ public class Cliente_Controller extends Persona_Controller {
                     }
                 }
                 JOptionPane.showMessageDialog(getCli_UI(), "Cliente registrado con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
+                clean();
+                enabledForEdit(false);
+                colorJText(new java.awt.Color(205, 205, 255));
                 initTable(getCli_UI().jtbClientes);
             }
         }
@@ -101,12 +104,12 @@ public class Cliente_Controller extends Persona_Controller {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="prepare UPDATE">
-    public void prepareUpdate(TPersona codeudor) {
+    public void prepareUpdate(String codeudor) {
         if (validar()) {
             createObjectClienteTo();
             getDbpCliente().setTdbpId(getCli_UI().objectCliente.getTDatosBasicosPersona().getTdbpId());
             getpCliente().setTperId(getCli_UI().objectCliente.getTperId());
-            getpCliente().setTperCodeudor(codeudor.getTDatosBasicosPersona().getTdbpCedula());
+            getpCliente().setTperCodeudor(codeudor);
 
             if (getDbp_Controller().update(getDbpCliente())) {
                 if (update(getpCliente())) {
@@ -129,6 +132,10 @@ public class Cliente_Controller extends Persona_Controller {
                         }
                     }
                     JOptionPane.showMessageDialog(getCli_UI(), "Datos Actualizados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
+                    initTable(getCli_UI().jtbClientes);
+                    clean();
+                    enabledForEdit(false);
+                    colorJText(new java.awt.Color(205, 205, 255));
                     initTable(getCli_UI().jtbClientes);
                 }
             }
