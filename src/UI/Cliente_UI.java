@@ -832,7 +832,7 @@ public class Cliente_UI extends Views {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnEditar)
                                 .addComponent(jButton1)))
-                        .addGap(0, 14, Short.MAX_VALUE)))
+                        .addGap(0, 18, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -951,7 +951,6 @@ public class Cliente_UI extends Views {
 
     private void jtfTelefonoCliente1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCliente1KeyTyped
         // TODO add your handling code here:
-        soloNumeros(evt);
     }//GEN-LAST:event_jtfTelefonoCliente1KeyTyped
 
     private void jtfTelefonoCodeudorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCodeudorKeyTyped

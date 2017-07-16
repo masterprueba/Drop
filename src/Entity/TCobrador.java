@@ -1,5 +1,5 @@
 package Entity;
-// Generated 29-may-2017 7:41:45 by Hibernate Tools 4.3.1
+// Generated 16/07/2017 01:33:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class TCobrador  implements java.io.Serializable {
 
 
-     private int tcobId;
+     private Integer tcobId;
      private String tcobNombre;
      private Set TCuotas = new HashSet(0);
 
@@ -19,21 +19,19 @@ public class TCobrador  implements java.io.Serializable {
     }
 
 	
-    public TCobrador(int tcobId, String tcobNombre) {
-        this.tcobId = tcobId;
+    public TCobrador(String tcobNombre) {
         this.tcobNombre = tcobNombre;
     }
-    public TCobrador(int tcobId, String tcobNombre, Set TCuotas) {
-       this.tcobId = tcobId;
+    public TCobrador(String tcobNombre, Set TCuotas) {
        this.tcobNombre = tcobNombre;
        this.TCuotas = TCuotas;
     }
    
-    public int getTcobId() {
+    public Integer getTcobId() {
         return this.tcobId;
     }
     
-    public void setTcobId(int tcobId) {
+    public void setTcobId(Integer tcobId) {
         this.tcobId = tcobId;
     }
     public String getTcobNombre() {

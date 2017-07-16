@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-may-2017 7:41:46 by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/07/2017 01:33:00 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCuota" table="t_cuota" catalog="drop_db" optimistic-lock="version">
         <id name="tcuoId" type="java.lang.Integer">
