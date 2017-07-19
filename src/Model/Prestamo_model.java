@@ -54,8 +54,9 @@ public class Prestamo_model<T> extends Models{
         "max(prestamo.tpreId),"+
         "concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as nombre, " +
         "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, " +
-        "prestamo.tpreValorTotal as valortotal, " +
-        "CASE WHEN (prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) <= 0 THEN '' ELSE (prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) END as deuda "+
+        "prestamo.tpreValorTotal as valortotal, " +                
+        "CASE WHEN (prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) <= 0 THEN '' ELSE (prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) END as deuda, "+
+                "prestamo.tpreNumCuotas as cuotas " +
         "FROM " +
         "TPrestamo as prestamo "+
         "GROUP BY prestamo.TPersona.TDatosBasicosPersona.tdbpCedula";

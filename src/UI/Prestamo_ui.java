@@ -58,7 +58,7 @@ public class Prestamo_ui extends Views {
         jButton2 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         P_interes = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        refinanciar = new javax.swing.JButton();
         P_consulCliente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         P_cedula = new javax.swing.JTextField();
@@ -71,7 +71,7 @@ public class Prestamo_ui extends Views {
         jLabel4 = new javax.swing.JLabel();
         P_dir = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        p_deuda = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -83,7 +83,7 @@ public class Prestamo_ui extends Views {
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel1.setText("REGISTRAR PRESTAMO");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles", 0, 0, new java.awt.Font("Cambria", 0, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Valor prestamo:");
@@ -168,10 +168,10 @@ public class Prestamo_ui extends Views {
             }
         });
 
-        jButton4.setText("Refinanciar a otro cliente");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        refinanciar.setText("Refinanciar a otro cliente");
+        refinanciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                refinanciarActionPerformed(evt);
             }
         });
 
@@ -188,7 +188,7 @@ public class Prestamo_ui extends Views {
                         .addComponent(P_valorprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(153, 153, 153))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton4)
+                        .addComponent(refinanciar)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -252,7 +252,7 @@ public class Prestamo_ui extends Views {
                             .addComponent(jLabel16)
                             .addComponent(P_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(refinanciar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,7 +264,7 @@ public class Prestamo_ui extends Views {
                 .addContainerGap())
         );
 
-        P_consulCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", 0, 0, new java.awt.Font("Cambria", 0, 18))); // NOI18N
+        P_consulCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel2.setText("C.C Cliente:");
@@ -308,8 +308,9 @@ public class Prestamo_ui extends Views {
         jLabel14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel14.setText("Deuda actual:");
 
-        jTextField1.setForeground(new java.awt.Color(0, 0, 153));
-        jTextField1.setText("0");
+        p_deuda.setEditable(false);
+        p_deuda.setForeground(new java.awt.Color(0, 0, 153));
+        p_deuda.setText("0");
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -357,7 +358,7 @@ public class Prestamo_ui extends Views {
                             .addGroup(P_consulClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(7, 7, 7)
-                                .addComponent(jTextField1))
+                                .addComponent(p_deuda))
                             .addGroup(P_consulClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -389,7 +390,7 @@ public class Prestamo_ui extends Views {
                                     .addComponent(jLabel4)
                                     .addComponent(P_dir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(p_deuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(P_consulClienteLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,11 +488,11 @@ public class Prestamo_ui extends Views {
         pc.calcularCuota();
     }//GEN-LAST:event_P_valor_cuotaFocusGained
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void refinanciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refinanciarActionPerformed
         cliente = pc.consultarCliente(P_cedula.getText());
         Refinancia_UI l = new Refinancia_UI();
         MainDesktop.checkInstance(l);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_refinanciarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -509,7 +510,6 @@ public class Prestamo_ui extends Views {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -529,6 +529,7 @@ public class Prestamo_ui extends Views {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    public static javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField p_deuda;
+    public static javax.swing.JButton refinanciar;
     // End of variables declaration//GEN-END:variables
 }

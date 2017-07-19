@@ -5,19 +5,26 @@
  */
 package Controller;
 
+import Entity.TCobrador;
 import Entity.TPersona;
 import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
+import Entity.TPago;
 import Entity.TPrestamo;
+import Model.Cobrador_Model;
 import Model.Persona_Model;
 import Model.Prestamo_model;
+import Model.TPagos_Model;
 import UI.Prestamo_ui;
+import UI.Refinancia_UI;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
@@ -43,11 +50,12 @@ public class Prestamo_Controller extends Controllers {
     private final JComboBox metodo;
     private final JTextField interes;
     private final Prestamo_model pmodel;
+    public static List<TCuota> listc;
 
     public Prestamo_Controller() {
         this.cc = Prestamo_ui.P_cedula;
         this.nombre = Prestamo_ui.P_nombre;
-        this.prestamo_actual = Prestamo_ui.jTextField1;
+        this.prestamo_actual = Prestamo_ui.p_deuda;
         this.valor_prestamo = Prestamo_ui.P_valorprestamo;
         this.valor_cuota = Prestamo_ui.P_valor_cuota;
         this.cantidad_cuotas = Prestamo_ui.P_cantcuotas;
@@ -323,13 +331,50 @@ public class Prestamo_Controller extends Controllers {
     }
     
     public void initTableRefinancia(JTable table){
-        List<TPrestamo> listp = pmodel.findAll(TPrestamo.class);
+        List<Object> listp = pmodel.refinanciaPrestamo();
         DefaultTableModel dfm = new TableModel().listaClientesRefinancia();
-        table.setModel(dfm);             
-        dfm.addRow(new Object[]{true,"carlos","1231212","32000","7"});
-        pmodel.refinanciaPrestamo();
-        for (int i = 0; i < listp.size(); i++) {
-           // dfm.addRow(new Object[]{listp.get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + listp.get(i).getTDatosBasicosPersona().getTdbpApellido(), listp.get(i).getTDatosBasicosPersona().getTdbpCedula()});
+        table.setModel(dfm);
+        Iterator itr = listp.iterator();
+        Object[] f = new Object[7];
+        while(itr.hasNext()){            
+            Object[] obj = (Object[]) itr.next(); 
+            if(obj[4] != null ){
+                f[0] = false;
+                f[1] = obj[1];
+                f[2] = obj[2];
+                f[3] = obj[4];
+                f[4] = obj[0];
+                f[5] = obj[3];
+                f[6] = obj[5];
+                dfm.addRow(f);
+            }                                   
         }
+    }
+    
+    public void abonarDeudas(JTable table, Refinancia_UI refinancia){
+         DefaultTableModel dfm = (DefaultTableModel) table.getModel();
+         listc = new ArrayList();
+         int totalRefinanciados=0;
+         for (int i = 0; i < dfm.getRowCount(); i++) {            
+            if(dfm.getValueAt(i, 0).equals(Boolean.TRUE)){
+                TCuota cuota = new TCuota();
+                cuota.setTcuoAbono(Long.parseLong(String.valueOf(dfm.getValueAt(i, 3))));
+                cuota.setTcuoFecha(new Date());
+                cuota.setTcuoCuotasPagadas(Integer.parseInt(String.valueOf(dfm.getValueAt(i, 6))));
+                cuota.setTPrestamo((TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(String.valueOf(dfm.getValueAt(i, 4)))));
+                cuota.setTcuoNuevoSaldo(Long.parseLong(String.valueOf(dfm.getValueAt(i, 5))));
+                TCobrador cobrador = new TCobrador();
+                cobrador.setTcobNombre("Refinanciado");
+                TPago pago = new TPago();
+                pago.setTipo("Refinanciado-.");
+                cuota.setTCobrador(new Cobrador_Model().SelectOne(cobrador));
+                cuota.setTPago(new TPagos_Model().SelectOne(pago));
+                totalRefinanciados += cuota.getTcuoAbono();
+                listc.add(cuota);
+            }
+        }         
+        Prestamo_ui.p_deuda.setText(Integer.parseInt(Prestamo_ui.p_deuda.getText())+totalRefinanciados+"");
+        Prestamo_ui.refinanciar.setVisible(false);
+        refinancia.dispose();
     }
 }

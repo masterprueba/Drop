@@ -269,19 +269,27 @@ public class TableModel extends DefaultTableModel {
     public DefaultTableModel listaClientesRefinancia() {
         TableModel modelo = new TableModel(){
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
-
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false
+            };
             @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         };
         modelo.addColumn("*");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("Cedula");
         modelo.addColumn("Deuda");
-        modelo.addColumn("id_prestamo");        
+        modelo.addColumn("id_prestamo"); 
+        modelo.addColumn("valor_total"); 
+        modelo.addColumn("cuotas pagadas"); 
         return modelo;
     }
 }

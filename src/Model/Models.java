@@ -114,7 +114,7 @@ public class Models<T> {
     public List<T> findAll(Class clase) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        List<T> list = s.createCriteria(clase).list();
+        List<T> list = s.createCriteria(clase).list();        
         s.getTransaction().commit();
         return list;
     }
