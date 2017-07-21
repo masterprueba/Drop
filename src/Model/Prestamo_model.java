@@ -32,7 +32,6 @@ public class Prestamo_model<T> extends Models {
                 + "prestamo.tpreValorPrestamo as prestado, "
                 + "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "
                 + "prestamo.tpreValorTotal as valortotal, "
-                + "prestamo.tpreNumCuotas as numcuotas, "
                 + "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono, "
                 + "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda, "
                 + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
@@ -78,15 +77,23 @@ public class Prestamo_model<T> extends Models {
     public Serializable insertarPrestamo(T obj, String modulo) {
         //boolean test = false;
         String indicador = "AGREGO";
-        Serializable id = null;        
+        Serializable id = null;
         try {
             s = hibernateUtil.getSessionFactory();
             s.beginTransaction();
+            System.out.println("inicio begin");
             id = s.save(obj);
-            if (Prestamo_Controller.listc.size() > 0) {
-                for (int i = 1; i < Prestamo_Controller.listc.size(); i++) {
-                    s.save(Prestamo_Controller.listc.get(i));
-                    bitacora(Prestamo_Controller.listc.get(i), indicador, modulo);
+            System.out.println("guarde obj ");
+            if (Prestamo_Controller.listc != null) {
+                if (Prestamo_Controller.listc.size() > 0) {
+                    System.out.println("entre a nuevo insert tamaño " + Prestamo_Controller.listc.size());
+                    for (int i = 0; i < Prestamo_Controller.listc.size(); i++) {
+                        System.out.println("entre al for");
+                        s.save(Prestamo_Controller.listc.get(i));
+                        System.out.println("guarde el " + i);
+                        bitacora(Prestamo_Controller.listc.get(i), indicador, modulo);
+                        System.out.println("bitacora " + 1);
+                    }
                 }
             }
             if (bitacora(obj, indicador, modulo)) {
