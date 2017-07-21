@@ -88,7 +88,7 @@ public class Prestamo_Controller extends Controllers {
             
             System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
             TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(prestamo_actual.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null);
-            if (pmodel.insertar(prestamo, "PRESTAMO") != null) {
+            if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
                 String msg = "";
                 try {
                     msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + formateador.format(valorprestamo - (Long) formateador.parse(prestamo_actual.getText())) + "</b></li>"
@@ -337,8 +337,18 @@ public class Prestamo_Controller extends Controllers {
         Iterator itr = listp.iterator();
         Object[] f = new Object[7];
         while(itr.hasNext()){            
-            Object[] obj = (Object[]) itr.next(); 
-            if(obj[4] != null ){
+            Object[] obj = (Object[]) itr.next();
+            if (!Prestamo_ui.P_cedula.getText().equals(String.valueOf(obj[2]))) {
+                if(obj[4] == null ){
+                f[0] = false;
+                f[1] = obj[1];
+                f[2] = obj[2];
+                f[3] = obj[3];
+                f[4] = obj[0];
+                f[5] = obj[3];
+                f[6] = obj[5];
+                dfm.addRow(f);
+            }else if(Integer.parseInt(String.valueOf(obj[4]))>0){
                 f[0] = false;
                 f[1] = obj[1];
                 f[2] = obj[2];
@@ -347,7 +357,8 @@ public class Prestamo_Controller extends Controllers {
                 f[5] = obj[3];
                 f[6] = obj[5];
                 dfm.addRow(f);
-            }                                   
+            }    
+            }            
         }
     }
     
