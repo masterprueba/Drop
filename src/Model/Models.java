@@ -114,7 +114,7 @@ public class Models<T> {
     public List<T> findAll(Class clase) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        List<T> list = s.createCriteria(clase).list();        
+        List<T> list = s.createCriteria(clase).list();
         s.getTransaction().commit();
         return list;
     }
@@ -172,7 +172,7 @@ public class Models<T> {
                         if (cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona() != null) {
                             json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "\","
                                     + "\"tdbpNombre\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "\","
-                                    + "\"tdbpTel\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                                    + "\"tdbpTel\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                         }
                         json += "\"tperCasDir\":\"" + cuota.getTPrestamo().getTPersona().getTperCasDir() + "\",\"tperCasPro\":\"" + cuota.getTPrestamo().getTPersona().getTperCasPro() + "\","
                                 + "\"tperCasTipo\":\"" + cuota.getTPrestamo().getTPersona().getTperCasTipo() + "\","
@@ -195,7 +195,7 @@ public class Models<T> {
             case "Entity.TDatosBasicosPersona":
                 TDatosBasicosPersona dBPersona = (TDatosBasicosPersona) object;
                 json = "{\"tdbpId\":" + dBPersona.getTdbpId() + ",\"tdbpCedula\":\"" + dBPersona.getTdbpCedula() + "\",\"tdbpNombre\":\"" + dBPersona.getTdbpNombre() + "\","
-                        + "\"tdbpApellido\":\"" + dBPersona.getTdbpApellido() + "\",\"tdbpTel\":\"" + dBPersona.getTdbpTel() + "\","
+                        + "\"tdbpApellido\":\"" + dBPersona.getTdbpApellido() + "\",\"tdbpTel\":\"" + dBPersona.getTdbpTel() + "\"," + "\"tdbpCel\":\"" + dBPersona.getTdbpCel() + "\","
                         + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]}";
                 break;
             case "Entity.TGasto":
@@ -207,7 +207,7 @@ public class Models<T> {
                 json = "{\"tlogId\":" + login.getTlogId() + ",";
                 if (login.getTDatosBasicosPersona() != null) {
                     json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + login.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + login.getTDatosBasicosPersona().getTdbpCedula() + "\",\"tdbpNombre\":\"" + login.getTDatosBasicosPersona().getTdbpNombre() + "\","
-                            + "\"tdbpApellido\":\"" + login.getTDatosBasicosPersona().getTdbpApellido() + "\",\"tdbpTel\":\"" + login.getTDatosBasicosPersona().getTdbpTel() + "\","+ "\"tdbpCel\":\"" + login.getTDatosBasicosPersona().getTdbpCel() + "\","
+                            + "\"tdbpApellido\":\"" + login.getTDatosBasicosPersona().getTdbpApellido() + "\",\"tdbpTel\":\"" + login.getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + login.getTDatosBasicosPersona().getTdbpCel() + "\","
                             + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                 }
                 json += "\"tlogUserLogin\":\"" + login.getTlogUserLogin() + "\",\"tlogPassword\":\"" + login.getTlogPassword() + "\",\"TBitacoras\":[]}";
@@ -222,7 +222,7 @@ public class Models<T> {
                 if (persona.getTDatosBasicosPersona() != null) {
                     json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + persona.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + persona.getTDatosBasicosPersona().getTdbpCedula() + "\","
                             + "\"tdbpNombre\":\"" + persona.getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + persona.getTDatosBasicosPersona().getTdbpApellido() + "\","
-                            + "\"tdbpTel\":\"" + persona.getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                            + "\"tdbpTel\":\"" + persona.getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + persona.getTDatosBasicosPersona().getTdbpCel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                 }
                 json += "\"tperCasDir\":\"" + persona.getTperCasDir() + "\",\"tperCasPro\":\"" + persona.getTperCasPro() + "\","
                         + "\"tperCasTipo\":\"" + persona.getTperCasTipo() + "\","
@@ -238,7 +238,7 @@ public class Models<T> {
                     if (prestamo.getTPersona().getTDatosBasicosPersona() != null) {
                         json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "\","
                                 + "\"tdbpNombre\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "\","
-                                + "\"tdbpTel\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                                + "\"tdbpTel\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpCel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                     }
                     json += "\"tperCasDir\":\"" + prestamo.getTPersona().getTperCasDir() + "\",\"tperCasPro\":\"" + prestamo.getTPersona().getTperCasPro() + "\","
                             + "\"tperCasTipo\":\"" + prestamo.getTPersona().getTperCasTipo() + "\","
@@ -261,7 +261,7 @@ public class Models<T> {
                 if (referencia.getTDatosBasicosPersona() != null) {
                     json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + referencia.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + referencia.getTDatosBasicosPersona().getTdbpCedula() + "\","
                             + "\"tdbpNombre\":\"" + referencia.getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + referencia.getTDatosBasicosPersona().getTdbpApellido() + "\","
-                            + "\"tdbpTel\":\"" + referencia.getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                            + "\"tdbpTel\":\"" + referencia.getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + referencia.getTDatosBasicosPersona().getTdbpCel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                 }
                 json += "\"trefTipo\":\"" + referencia.getTrefTipo() + "\",\"trefNombre\":\"" + referencia.getTrefNombre() + "\",\"trefApellido\":\"" + referencia.getTrefApellido() + "\","
                         + "\"trefTelefono\":\"" + referencia.getTrefTelefono() + "\"}";
@@ -276,7 +276,7 @@ public class Models<T> {
                         if (multa.getTPrestamo().getTPersona().getTDatosBasicosPersona() != null) {
                             json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "\","
                                     + "\"tdbpNombre\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "\"," + "\"tdbpApellido\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "\","
-                                    + "\"tdbpTel\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
+                                    + "\"tdbpTel\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpTel() + "\"," + "\"tdbpCel\":\"" + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpCel() + "\"," + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                         }
                         json += "\"tperCasDir\":\"" + multa.getTPrestamo().getTPersona().getTperCasDir() + "\",\"tperCasPro\":\"" + multa.getTPrestamo().getTPersona().getTperCasPro() + "\","
                                 + "\"tperCasTipo\":\"" + multa.getTPrestamo().getTPersona().getTperCasTipo() + "\","
