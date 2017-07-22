@@ -93,6 +93,7 @@ public class Multa_Controller extends Controllers{
         Multa_Ui.Comp_Fecha_Desde1.setDate(null);
         Multa_Ui.Comp_Fecha_Desde2.setDate(null);
         Multa = null;
+        Multa_Ui.jPanel2.setVisible(false);
     }
 
     public void traerUN(MouseEvent evt) {

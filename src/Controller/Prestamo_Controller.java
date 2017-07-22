@@ -129,6 +129,7 @@ public class Prestamo_Controller extends Controllers {
         try {
             cliente = (TPersona) cmodel.SelectOne(temp);
             setCliente(cliente);
+            Prestamo_ui.refinanciar.setVisible(true);
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);
             setClienteError(cliente);
@@ -378,8 +379,22 @@ public class Prestamo_Controller extends Controllers {
                 cobrador.setTcobNombre("Refinanciado");
                 TPago pago = new TPago();
                 pago.setTipo("Refinanciado-.");
-                cuota.setTCobrador(new Cobrador_Model().SelectOne(cobrador));
-                cuota.setTPago(new TPagos_Model().SelectOne(pago));
+                TCobrador cobradorTemp=null;
+                TPago pagoTemp = null;
+                try {
+                    cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
+                    pagoTemp = new TPagos_Model().SelectOne(pago);
+                    System.out.println(cobradorTemp.toString());
+                    System.out.println(pagoTemp.toString());
+                } catch (NullPointerException e) {
+                    System.out.println("entre a insertar cobrador refinanciado");
+                    pmodel.insertar(cobrador, "prestamo");
+                    cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
+                     pmodel.insertar(pago, "prestamo");
+                    pagoTemp = new TPagos_Model().SelectOne(pago);
+                }                                                                                   
+                cuota.setTCobrador(cobradorTemp);                
+                cuota.setTPago(pagoTemp);
                 totalRefinanciados += cuota.getTcuoAbono();
                 listc.add(cuota);
             }

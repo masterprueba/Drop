@@ -7,6 +7,7 @@ package Model;
 
 import Entity.TCobrador;
 import Persistence.hibernateUtil;
+import java.util.List;
 import org.hibernate.Query;
 
 /**
@@ -37,5 +38,15 @@ public class Cobrador_Model extends Models {
         s.getTransaction().commit();
 
         return result;
+    }
+    
+    public List<TCobrador> listCobrador(Class clase) {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TCobrador c WHERE c.tcobNombre != 'Refinanciado'";
+        Query r = s.createQuery(query);
+        List<TCobrador> list = r.list();        
+        s.getTransaction().commit();
+        return list;
     }
 }

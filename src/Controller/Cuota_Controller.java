@@ -185,13 +185,13 @@ public class Cuota_Controller extends Prestamo_Controller {
 
     public List<TPago> selectPago() {
         listpa = new ArrayList<TPago>();
-        listpa = pamodel.findAll(TPago.class);
+        listpa = pamodel.listPagos(TPago.class);
         return listpa;
     }
 
     public List<TCobrador> selectCobrador() {
         listc = new ArrayList<TCobrador>();
-        listc = cmodel.findAll(TCobrador.class);
+        listc = cmodel.listCobrador(TCobrador.class);
         return listc;
     }
 
