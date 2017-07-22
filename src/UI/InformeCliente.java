@@ -5,8 +5,8 @@
  */
 package UI;
 
-import Controller.Cliente_Controller;
 import Controller.Cuota_Controller;
+import Controller.Persona_;
 import Controller.Prestamo_Controller;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InformeCliente extends Views {
 
-    private Cliente_Controller cli_Controller;
+    private Persona_ per_Controller;
 
     /**
      * Creates new form InformeCliente
@@ -29,8 +29,9 @@ public class InformeCliente extends Views {
     }
 
     private void init() {
-        cli_Controller = new Cliente_Controller(this);
-        cli_Controller.initTable(jtbClientes);
+        //cli_Controller = new Cliente_Controller2(this);
+        per_Controller = new Persona_(this);
+        per_Controller.initTable(jtbClientes);
     }
 
     /**
@@ -45,7 +46,7 @@ public class InformeCliente extends Views {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbClientes = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        jtxSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -78,19 +79,41 @@ public class InformeCliente extends Views {
 
             },
             new String [] {
-
+                "#", "Cedula", "Nombre"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jtbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbClientesMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jtbClientes);
+        if (jtbClientes.getColumnModel().getColumnCount() > 0) {
+            jtbClientes.getColumnModel().getColumn(0).setMinWidth(30);
+            jtbClientes.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jtbClientes.getColumnModel().getColumn(0).setMaxWidth(30);
+            jtbClientes.getColumnModel().getColumn(1).setResizable(false);
+            jtbClientes.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtxSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                jtxSearchKeyTyped(evt);
             }
         });
 
@@ -106,7 +129,7 @@ public class InformeCliente extends Views {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -118,7 +141,7 @@ public class InformeCliente extends Views {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1)
@@ -156,7 +179,7 @@ public class InformeCliente extends Views {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)))
@@ -169,7 +192,7 @@ public class InformeCliente extends Views {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jtbHPrestamo.setEditingColumn(0);
@@ -237,7 +260,7 @@ public class InformeCliente extends Views {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_totalcuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,24 +289,25 @@ public class InformeCliente extends Views {
 
     private void jtbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbClientesMouseClicked
         // TODO add your handling code here:
-        cli_Controller = new Cliente_Controller(this);
-        cli_Controller.initTablePrestamo(jtbHPrestamo);
+        //cli_Controller = new Cliente_Controller2(this);
+        per_Controller = new Persona_(this);
+        per_Controller.initTablePrestamo(jtbHPrestamo);
         setCellRender(jtbHPrestamo,new Color(223, 27, 27));
     }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jtbHPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbHPrestamoMouseClicked
-        cli_Controller = new Cliente_Controller(this);
-        cli_Controller.initTableCuotas(jtbDCuota, jtbHPrestamo);
+        per_Controller = new Persona_(this);
+        per_Controller.initTableCuotas(jtbDCuota, jtbHPrestamo);
         //System.out.println(String.valueOf(((TPrestamo) jtbHPrestamo.getValueAt(jtbHPrestamo.getSelectedRow(), 6)).getTpreValorPrestamo()));
     }//GEN-LAST:event_jtbHPrestamoMouseClicked
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void jtxSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxSearchKeyTyped
         // TODO add your handling code here:
-        cli_Controller = new Cliente_Controller(this);
-        cli_Controller.filter(jTextField1, jtbClientes);
+        per_Controller = new Persona_(this);
+        per_Controller.filter(jtbClientes);
         
         
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_jtxSearchKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Prestamo_Controller pc = new Prestamo_Controller();
@@ -322,10 +346,10 @@ public class InformeCliente extends Views {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTable jtbClientes;
     private javax.swing.JTable jtbDCuota;
     private javax.swing.JTable jtbHPrestamo;
+    private javax.swing.JTextField jtxSearch;
     public static javax.swing.JTextField text_totalprestamo;
     public static javax.swing.JTextField txt_totalcuota;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,5 @@
 package Entity;
-// Generated 16/07/2017 01:33:00 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2017 01:32:04 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class TDatosBasicosPersona  implements java.io.Serializable {
      private String tdbpNombre;
      private String tdbpApellido;
      private String tdbpTel;
+     private String tdbpCel;
      private Set TReferencias = new HashSet(0);
      private Set TLogins = new HashSet(0);
      private Set TPersonas = new HashSet(0);
@@ -24,16 +25,18 @@ public class TDatosBasicosPersona  implements java.io.Serializable {
     }
 
 	
-    public TDatosBasicosPersona(String tdbpCedula, String tdbpNombre, String tdbpTel) {
+    public TDatosBasicosPersona(String tdbpCedula, String tdbpNombre, String tdbpTel, String tdbpCel) {
         this.tdbpCedula = tdbpCedula;
         this.tdbpNombre = tdbpNombre;
         this.tdbpTel = tdbpTel;
+        this.tdbpCel = tdbpCel;
     }
-    public TDatosBasicosPersona(String tdbpCedula, String tdbpNombre, String tdbpApellido, String tdbpTel, Set TReferencias, Set TLogins, Set TPersonas) {
+    public TDatosBasicosPersona(String tdbpCedula, String tdbpNombre, String tdbpApellido, String tdbpTel, String tdbpCel, Set TReferencias, Set TLogins, Set TPersonas) {
        this.tdbpCedula = tdbpCedula;
        this.tdbpNombre = tdbpNombre;
        this.tdbpApellido = tdbpApellido;
        this.tdbpTel = tdbpTel;
+       this.tdbpCel = tdbpCel;
        this.TReferencias = TReferencias;
        this.TLogins = TLogins;
        this.TPersonas = TPersonas;
@@ -73,6 +76,13 @@ public class TDatosBasicosPersona  implements java.io.Serializable {
     
     public void setTdbpTel(String tdbpTel) {
         this.tdbpTel = tdbpTel;
+    }
+    public String getTdbpCel() {
+        return this.tdbpCel;
+    }
+    
+    public void setTdbpCel(String tdbpCel) {
+        this.tdbpCel = tdbpCel;
     }
     public Set getTReferencias() {
         return this.TReferencias;

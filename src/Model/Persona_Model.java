@@ -22,7 +22,7 @@ public class Persona_Model extends Models {
 
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "FROM TPersona p WHERE p.TDatosBasicosPersona.tdbpCedula = '" + p.getTDatosBasicosPersona().getTdbpCedula() + "' AND p.tperTipo = '" + p.getTperTipo() + "'";
+        String query = "FROM TPersona p WHERE p.TDatosBasicosPersona.tdbpCedula = '" + p.getTDatosBasicosPersona().getTdbpCedula() +"'";
         TPersona result = (TPersona) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 

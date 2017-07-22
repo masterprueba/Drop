@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Referencia_UI extends Views {
 
-    private final Cliente_UI cli_UI;
+    private final Persona_UI cli_UI;
     public String by;
     private final Referencia_Controller ref_Controller;
 
@@ -25,7 +25,23 @@ public class Referencia_UI extends Views {
      * @param cc
      * @param by
      */
-    public Referencia_UI(Cliente_UI cli_UI, String cc, String by) {
+//    public Referencia_UI(Cliente_UI cli_UI, String cc, String by) {
+//        initComponents();
+//        jTable1.removeColumn(jTable1.getColumnModel().getColumn(5));
+//        this.cli_UI = cli_UI;
+//        this.by = by;
+//        ref_Controller = new Referencia_Controller(cli_UI, this); 
+//        if (by == "CLIENTE") {
+//            ref_Controller.setDataRefCliente();
+//        } else {
+//            ref_Controller.setDataRefCodeudor();
+//        }
+//
+//        closingWindow();
+//
+//    }
+
+    public Referencia_UI(Persona_UI cli_UI, String cc, String by) {
         initComponents();
         jTable1.removeColumn(jTable1.getColumnModel().getColumn(5));
         this.cli_UI = cli_UI;

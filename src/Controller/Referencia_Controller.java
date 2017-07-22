@@ -8,7 +8,7 @@ package Controller;
 import Entity.TDatosBasicosPersona;
 import Entity.TReferencia;
 import Model.Referencia_Model;
-import UI.Cliente_UI;
+import UI.Persona_UI;
 import UI.Referencia_UI;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +26,18 @@ public class Referencia_Controller extends Controllers {
     private Referencia_Model refModel;
     private List<TReferencia> listRef;
 
-    private Cliente_UI cli_UI;
+    private Persona_UI cli_UI;
     private Referencia_UI ref_UI;
 
     private int ObjectIdAfterInserting;
     private int globalSelected = -1;
 
-    public Referencia_Controller(Cliente_UI cli_UI, Referencia_UI ref_UI) {
+//    public Referencia_Controller(Cliente_UI cli_UI, Referencia_UI ref_UI) {
+//        this.cli_UI = cli_UI;
+//        this.ref_UI = ref_UI;
+//        refModel = new Referencia_Model();
+//    }
+    public Referencia_Controller(Persona_UI cli_UI, Referencia_UI ref_UI) {
         this.cli_UI = cli_UI;
         this.ref_UI = ref_UI;
         refModel = new Referencia_Model();
@@ -299,7 +304,7 @@ public class Referencia_Controller extends Controllers {
             }
             tr.add(ref);
         }
-        System.out.println("Se agrego al arreglo" + tr.size());
+        //System.out.println("Se agrego al arreglo" + tr.size());
         return tr;
     }
 //</editor-fold>    
