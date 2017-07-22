@@ -259,6 +259,8 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem15);
 
+        jMenuItem17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
         jMenuItem17.setText("Historial Interes extra");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

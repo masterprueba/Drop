@@ -207,7 +207,7 @@ public class Models<T> {
                 json = "{\"tlogId\":" + login.getTlogId() + ",";
                 if (login.getTDatosBasicosPersona() != null) {
                     json += "\"TDatosBasicosPersona\":{\"tdbpId\":" + login.getTDatosBasicosPersona().getTdbpId() + ",\"tdbpCedula\":\"" + login.getTDatosBasicosPersona().getTdbpCedula() + "\",\"tdbpNombre\":\"" + login.getTDatosBasicosPersona().getTdbpNombre() + "\","
-                            + "\"tdbpApellido\":\"" + login.getTDatosBasicosPersona().getTdbpApellido() + "\",\"tdbpTel\":\"" + login.getTDatosBasicosPersona().getTdbpTel() + "\","
+                            + "\"tdbpApellido\":\"" + login.getTDatosBasicosPersona().getTdbpApellido() + "\",\"tdbpTel\":\"" + login.getTDatosBasicosPersona().getTdbpTel() + "\","+ "\"tdbpCel\":\"" + login.getTDatosBasicosPersona().getTdbpCel() + "\","
                             + "\"TReferencias\":[],\"TLogins\":[],\"TPersonas\":[]},";
                 }
                 json += "\"tlogUserLogin\":\"" + login.getTlogUserLogin() + "\",\"tlogPassword\":\"" + login.getTlogPassword() + "\",\"TBitacoras\":[]}";
