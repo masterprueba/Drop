@@ -105,7 +105,7 @@ public final class Bitacora_Individual extends Views {
             for (int i = 0; i < Bitacora_Controller.listObject.size(); i++) {
                 if (Bitacora_Controller.lBitacora.get(i).getTbitClassname().equals("Entity.TPersona")) {
                     TPersona codeud = (TPersona) Bitacora_Controller.listObject.get(i);
-                    if (codeud.getTperTipo().equals("CODEUDOR") && codeud.getTDatosBasicosPersona().getTdbpCedula().equals(jTable1.getModel().getValueAt(0, 12).toString())) {
+                    if (codeud.getTDatosBasicosPersona().getTdbpCedula().equals(jTable1.getModel().getValueAt(0, 12).toString())) {
                         TPersona codeudor = codeud;
                         JMenuItem popupCodoudor = new JMenuItem(codeudor.getTDatosBasicosPersona().getTdbpNombre() + " " + codeudor.getTDatosBasicosPersona().getTdbpApellido());
                         jPopupMenu1.add(popupCodoudor);

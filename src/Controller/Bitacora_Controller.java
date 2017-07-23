@@ -327,7 +327,7 @@ public class Bitacora_Controller extends Controllers {
                                         String[] filas = new String[14];
                                         filas[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
                                         filas[2] = cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido();
-                                        filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel();
+                                        filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel(); 
                                         filas[4] = cliente.getTperCasDir();
                                         filas[5] = cliente.getTperCasTipo();
                                         filas[6] = cliente.getTperEmpNom();

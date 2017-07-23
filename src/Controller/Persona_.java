@@ -14,7 +14,6 @@ import Entity.TReferencia;
 import Model.Persona_Model;
 import UI.InformeCliente;
 import UI.Persona_UI;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -289,7 +288,8 @@ public class Persona_ extends Controllers {
             } else { //Si el capo cedula de CODEUDOR esta vacio
                 client(null);
             }
-        } else { //Si ID objeto codeudor NO es null PrepareUpdate
+        } else //Si ID objeto codeudor NO es null PrepareUpdate
+        {
             if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0) { //Si el capo cedula de codeudor no esta vacio
                 if (validar(true)) {
                     createObjectCodeudorTo(); //Crear objeto Codeudor
@@ -300,6 +300,7 @@ public class Persona_ extends Controllers {
                         getPerCodeudor().setTperId(getPerUI().objectCodeudor.getTperId());
 
                         getPerCodeudor().setTperTipo(getPerUI().objectCodeudor.getTperTipo());
+                        getPerCodeudor().setTperCodeudor(getPerUI().objectCodeudor.getTperCodeudor());
                         if (update(getPerCodeudor())) {
 
                             //--REFERENCIAS CODEUDOR -> UPDATE 
@@ -374,7 +375,8 @@ public class Persona_ extends Controllers {
                     }
                 }
             }
-        } else { //Si ID objeto CLIENTE es no es null PrepareUpdate
+        } else //Si ID objeto CLIENTE es no es null PrepareUpdate
+        {
             if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0) { //Si el capo cedula de CLIENTE no esta vacio
                 if (validar(false)) {
                     createObjectClienteTo(); //Crar objeto Persona
@@ -486,8 +488,9 @@ public class Persona_ extends Controllers {
 //<editor-fold defaultstate="collapsed" desc="TABLE filter Cliente">
     public void filter(JTable jt) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(getDtm());
+        int i = getPerUI().jComboBox1.getSelectedIndex() + 1;
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + getPerUI().jtxSearch.getText() , i));
         jt.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(getPerUI().jtxSearch.getText().toLowerCase()));
     }
 //</editor-fold>
 

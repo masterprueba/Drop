@@ -11,7 +11,7 @@ import Entity.TReferencia;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 
 /**
  *
@@ -129,6 +129,7 @@ public class Persona_UI extends Views {
         jtbClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jtxSearch = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -842,18 +843,19 @@ public class Persona_UI extends Views {
 
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/busqueda.png"))); // NOI18N
-        jLabel1.setText("Buscar");
+        jLabel1.setText("Buscar: ");
 
-        jtxSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxSearchActionPerformed(evt);
-            }
-        });
         jtxSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtxSearchKeyTyped(evt);
             }
         });
+
+        jComboBox1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula", "Nombre" }));
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -861,11 +863,13 @@ public class Persona_UI extends Views {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtxSearch))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -874,7 +878,8 @@ public class Persona_UI extends Views {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1005,7 +1010,7 @@ public class Persona_UI extends Views {
         // TODO add your handling code here:
         per_Controller.prepareSelectCliente(jtfCedulaCliente.getText());
         btnEditar.setEnabled(false);
-        btnGuardar.setEnabled(false);
+        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnClienteCedulaActionPerformed
 
     private void jtfTelefonoEmpresaClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoEmpresaClienteKeyTyped
@@ -1028,11 +1033,6 @@ public class Persona_UI extends Views {
         // TODO add your handling code here:
         per_Controller.prepareSelectCliente(String.valueOf(jtbClientes.getValueAt(jtbClientes.getSelectedRow(), 1)));
     }//GEN-LAST:event_jtbClientesMouseClicked
-
-    private void jtxSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxSearchKeyTyped
-        // TODO add your handling code here:
-        per_Controller.filter(jtbClientes);
-    }//GEN-LAST:event_jtxSearchKeyTyped
 
     private void jtfCelularCodeudorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularCodeudorKeyTyped
         // TODO add your handling code here:
@@ -1062,10 +1062,6 @@ public class Persona_UI extends Views {
             MainDesktop.checkInstance(ref_UI);
         }
     }//GEN-LAST:event_btnRefCodeudorActionPerformed
-
-    private void jtxSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -1117,6 +1113,18 @@ public class Persona_UI extends Views {
         soloNumeros(evt);
     }//GEN-LAST:event_jtfTelefonoCodeudorKeyTyped
 
+    private void jtxSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxSearchKeyTyped
+   // TODO add your handling code here:
+        if (jComboBox1.getSelectedIndex() == 0) {
+            soloNumeros(evt);
+        }
+    }//GEN-LAST:event_jtxSearchKeyTyped
+
+    private void jtxSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxSearchKeyReleased
+        // TODO add your handling code here:
+        per_Controller.filter(jtbClientes);
+    }//GEN-LAST:event_jtxSearchKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClienteCedula;
@@ -1126,6 +1134,7 @@ public class Persona_UI extends Views {
     public javax.swing.JButton btnRefCliente;
     public javax.swing.JButton btnRefCodeudor;
     private javax.swing.JButton jButton1;
+    public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

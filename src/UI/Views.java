@@ -20,7 +20,6 @@ import javax.swing.table.TableColumn;
 public class Views extends javax.swing.JInternalFrame{
 
     public void soloNumeros(KeyEvent evt) {
-        System.out.println(evt.getKeyChar());
         char caracter = evt.getKeyChar();
         if ((caracter < '0') || (caracter > '9') && (caracter != '\b')) {
             evt.consume();
