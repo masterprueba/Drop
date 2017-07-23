@@ -19,22 +19,22 @@ public class Multa_Ui extends Views {
 
     /**
      * Creates new form Cuota_UI
-     */    
+     */
     private final Multa_Controller GControl;
     public final DefaultTableModel modelo;
 
     public Multa_Ui() {
-        initComponents(); 
+        initComponents();
         a_cedula.requestFocus();
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
-         GControl = new Multa_Controller(this);
+        GControl = new Multa_Controller(this);
         modelo = new TableModel().VerMultas();
         CargarComponentes();
-        GControl.desactivarFechas(1);        
-        GControl.desactivarBotones(0);             
+        GControl.desactivarFechas(1);
+        GControl.desactivarBotones(0);
     }
-    
+
     private void CargarComponentes() {
         //para dar automaticamente un salto de linea en el jtextarea 
         jTextArea1.setLineWrap(true);
@@ -456,13 +456,17 @@ public class Multa_Ui extends Views {
 
     private void a_cedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_a_cedulaKeyPressed
         if (evt.getKeyCode() == 10) {
-            if(GControl.aceptar()){
-            jPanel1.setVisible(true);
-            jPanel2.setVisible(true);
-            GControl.traer(1);
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Este Cliente no tiene Prestamos");
-            }  
+            if (!a_cedula.getText().equals("")) {
+                if (GControl.aceptar()) {
+                    jPanel1.setVisible(true);
+                    jPanel2.setVisible(true);
+                    GControl.traer(1);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Este Cliente no tiene Prestamos");
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Digite el numero de cedula");
+            }
         }
     }//GEN-LAST:event_a_cedulaKeyPressed
 
@@ -472,13 +476,18 @@ public class Multa_Ui extends Views {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(GControl.aceptar()){
-            jPanel1.setVisible(true);
-            jPanel2.setVisible(true);
-            GControl.traer(1);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Este Cliente no tiene Prestamos");
-        }       
+        if (!a_cedula.getText().equals("")) {
+            if (GControl.aceptar()) {
+                jPanel1.setVisible(true);
+                jPanel2.setVisible(true);
+                GControl.traer(1);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Este Cliente no tiene Prestamos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Digite el numero de cedula");
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
@@ -495,7 +504,7 @@ public class Multa_Ui extends Views {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        GControl.actualizar();        
+        GControl.actualizar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -540,9 +549,9 @@ public class Multa_Ui extends Views {
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if(JOptionPane.showConfirmDialog(null, "Esta seguro de ELIMINAR este interes extra", "ELIMINAR", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==0){
+        if (JOptionPane.showConfirmDialog(null, "Esta seguro de ELIMINAR este interes extra", "ELIMINAR", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
             GControl.eliminar(String.valueOf(modelo.getValueAt(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()), 5)));
-        }        
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
