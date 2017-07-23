@@ -183,8 +183,7 @@ public class Multa_Controller extends Controllers{
     }
     public boolean aceptar(){
         cc = Multa_Ui.a_cedula.getText();
-        prestamo = (TPrestamo) Mmulta.getPrestamo(cc);
-        System.out.println("fecha del ultimo prestamo es "+prestamo.getTpreFechaEntrega());
+        prestamo = (TPrestamo) Mmulta.getPrestamo(cc);        
         return prestamo != null;
     }
     
