@@ -318,6 +318,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="U_text_Identificacion">
           <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="U_text_IdentificacionKeyReleased"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="U_text_IdentificacionKeyTyped"/>
           </Events>
           <AuxValues>

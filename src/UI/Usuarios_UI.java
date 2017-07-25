@@ -17,6 +17,7 @@ public class Usuarios_UI extends Views {
 
     public final DefaultTableModel modelo;
     private final Usuarios_Controller UController;
+    public boolean editando = false;
 
     /**
      * Creates new form Usuarios_IU
@@ -171,6 +172,9 @@ public class Usuarios_UI extends Views {
         jLabel2.setText("Identificacion:");
 
         U_text_Identificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                U_text_IdentificacionKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 U_text_IdentificacionKeyTyped(evt);
             }
@@ -322,6 +326,12 @@ public class Usuarios_UI extends Views {
     private void U_text_IdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_IdentificacionKeyTyped
         soloNumeros(evt);
     }//GEN-LAST:event_U_text_IdentificacionKeyTyped
+
+    private void U_text_IdentificacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_IdentificacionKeyReleased
+        if (U_text_Identificacion.getText().length() > 5 && editando == false) {
+            UController.trarDatos();
+        }
+    }//GEN-LAST:event_U_text_IdentificacionKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
