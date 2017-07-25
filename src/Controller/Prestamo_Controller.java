@@ -81,38 +81,39 @@ public class Prestamo_Controller extends Controllers {
             }
             try {
                 valorprestamo = ((Long) formateador.parse(valor_prestamo.getText()));
-                valortotal = vcuota*Long.parseLong(cantidad_cuotas.getText());
+                valortotal = vcuota * Long.parseLong(cantidad_cuotas.getText());
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(null, "ERROR EN parseo!!");
             }
-            
+
             System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
             TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(Prestamo_ui.p_deuda.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null);
-            if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
-                String msg = "";
-                try {
-                    msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + formateador.format(valorprestamo - (Long) formateador.parse(Prestamo_ui.p_deuda.getText())) + "</b></li>"
-                            + "<li>Valor cuota : $<b>" + valor_cuota.getText() + "</b></li>"
-                            + "</ul></html>";
-                } catch (ParseException ex) {
-                    msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" +(valorprestamo - Long.parseLong(Prestamo_ui.p_deuda.getText())) + "</b></li>"
-                            + "<li>Valor cuota : $<b>" + valor_cuota.getText() + "</b></li>"
-                            + "</ul></html>";
-                }
-                JLabel label = new JLabel(msg);
-                label.setFont(new Font("serif", Font.PLAIN, 14));
-                JOptionPane.showMessageDialog(null, label);
-                Prestamo_ui.jPanel2.setVisible(false);
-                nombre.setText("");
-                Prestamo_ui.P_tel.setText("");
-                Prestamo_ui.P_dir.setText("");
-                prestamo_actual.setText("");
-                valor_prestamo.setText("0");
-                cantidad_cuotas.setText("0");
-                valor_cuota.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! ");
+            String msg = "";
+            try {
+                msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + formateador.format(valorprestamo - (Long) formateador.parse(Prestamo_ui.p_deuda.getText())) + "</b></li>"
+                        + "<li>Valor cuota : $<b>" + valor_cuota.getText() + "</b></li>"
+                        + "</ul></html>";
+            } catch (ParseException ex) {
+                msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + (valorprestamo - Long.parseLong(Prestamo_ui.p_deuda.getText())) + "</b></li>"
+                        + "<li>Valor cuota : $<b>" + valor_cuota.getText() + "</b></li>"
+                        + "</ul></html>";
+            }
+            JLabel label = new JLabel(msg);
+            label.setFont(new Font("serif", Font.PLAIN, 14));
+            if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
+                    Prestamo_ui.jPanel2.setVisible(false);
+                    nombre.setText("");
+                    Prestamo_ui.P_tel.setText("");
+                    Prestamo_ui.P_dir.setText("");
+                    prestamo_actual.setText("");
+                    valor_prestamo.setText("0");
+                    cantidad_cuotas.setText("0");
+                    valor_cuota.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! ");
 
+                }
             }
         }
     }
@@ -223,7 +224,7 @@ public class Prestamo_Controller extends Controllers {
             valor_cuota.setText(formateador.format(Math.round(valorcuota)));
         } else {
             valor_cuota.setText("0");
-        }        
+        }
     }
 
     public void setCliente(TPersona cliente) {
@@ -330,45 +331,45 @@ public class Prestamo_Controller extends Controllers {
             return false;
         }
     }
-    
-    public void initTableRefinancia(JTable table){
+
+    public void initTableRefinancia(JTable table) {
         List<Object> listp = pmodel.refinanciaPrestamo();
         DefaultTableModel dfm = new TableModel().listaClientesRefinancia();
         table.setModel(dfm);
         Iterator itr = listp.iterator();
         Object[] f = new Object[7];
-        while(itr.hasNext()){            
+        while (itr.hasNext()) {
             Object[] obj = (Object[]) itr.next();
             if (!Prestamo_ui.P_cedula.getText().equals(String.valueOf(obj[2]))) {
-                if(obj[4] == null ){
-                f[0] = false;
-                f[1] = obj[1];
-                f[2] = obj[2];
-                f[3] = obj[3];
-                f[4] = obj[0];
-                f[5] = obj[3];
-                f[6] = obj[5];
-                dfm.addRow(f);
-            }else if(Integer.parseInt(String.valueOf(obj[4]))>0){
-                f[0] = false;
-                f[1] = obj[1];
-                f[2] = obj[2];
-                f[3] = obj[4];
-                f[4] = obj[0];
-                f[5] = obj[3];
-                f[6] = obj[5];
-                dfm.addRow(f);
-            }    
-            }            
+                if (obj[4] == null) {
+                    f[0] = false;
+                    f[1] = obj[1];
+                    f[2] = obj[2];
+                    f[3] = obj[3];
+                    f[4] = obj[0];
+                    f[5] = obj[3];
+                    f[6] = obj[5];
+                    dfm.addRow(f);
+                } else if (Integer.parseInt(String.valueOf(obj[4])) > 0) {
+                    f[0] = false;
+                    f[1] = obj[1];
+                    f[2] = obj[2];
+                    f[3] = obj[4];
+                    f[4] = obj[0];
+                    f[5] = obj[3];
+                    f[6] = obj[5];
+                    dfm.addRow(f);
+                }
+            }
         }
     }
-    
-    public void abonarDeudas(JTable table, Refinancia_UI refinancia){
-         DefaultTableModel dfm = (DefaultTableModel) table.getModel();
-         listc = new ArrayList();
-         int totalRefinanciados=0;
-         for (int i = 0; i < dfm.getRowCount(); i++) {            
-            if(dfm.getValueAt(i, 0).equals(Boolean.TRUE)){
+
+    public void abonarDeudas(JTable table, Refinancia_UI refinancia) {
+        DefaultTableModel dfm = (DefaultTableModel) table.getModel();
+        listc = new ArrayList();
+        int totalRefinanciados = 0;
+        for (int i = 0; i < dfm.getRowCount(); i++) {
+            if (dfm.getValueAt(i, 0).equals(Boolean.TRUE)) {
                 TCuota cuota = new TCuota();
                 cuota.setTcuoAbono(Long.parseLong(String.valueOf(dfm.getValueAt(i, 3))));
                 cuota.setTcuoFecha(new Date());
@@ -379,7 +380,7 @@ public class Prestamo_Controller extends Controllers {
                 cobrador.setTcobNombre("Refinanciado");
                 TPago pago = new TPago();
                 pago.setTipo("Refinanciado-.");
-                TCobrador cobradorTemp=null;
+                TCobrador cobradorTemp = null;
                 TPago pagoTemp = null;
                 try {
                     cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
@@ -390,16 +391,16 @@ public class Prestamo_Controller extends Controllers {
                     System.out.println("entre a insertar cobrador refinanciado");
                     pmodel.insertar(cobrador, "prestamo");
                     cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
-                     pmodel.insertar(pago, "prestamo");
+                    pmodel.insertar(pago, "prestamo");
                     pagoTemp = new TPagos_Model().SelectOne(pago);
-                }                                                                                   
-                cuota.setTCobrador(cobradorTemp);                
+                }
+                cuota.setTCobrador(cobradorTemp);
                 cuota.setTPago(pagoTemp);
                 totalRefinanciados += cuota.getTcuoAbono();
                 listc.add(cuota);
             }
-        }         
-        Prestamo_ui.p_deuda.setText(Integer.parseInt(Prestamo_ui.p_deuda.getText())+totalRefinanciados+"");
+        }
+        Prestamo_ui.p_deuda.setText(Integer.parseInt(Prestamo_ui.p_deuda.getText()) + totalRefinanciados + "");
         Prestamo_ui.refinanciar.setVisible(false);
         refinancia.dispose();
     }

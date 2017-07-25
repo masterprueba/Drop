@@ -282,7 +282,7 @@ public class TableModel extends DefaultTableModel {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        };
+        };        
         modelo.addColumn("*");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("Cedula");
