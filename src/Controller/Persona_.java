@@ -486,10 +486,9 @@ public class Persona_ extends Controllers {
 //</editor-fold> 
 
 //<editor-fold defaultstate="collapsed" desc="TABLE filter Cliente">
-    public void filter(JTable jt) {
+    public void filter(JTable jt, String textBuscar, int columna) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(getDtm());
-        int i = getPerUI().jComboBox1.getSelectedIndex() + 1;
-        tr.setRowFilter(RowFilter.regexFilter("(?i)" + getPerUI().jtxSearch.getText() , i));
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar , columna));
         jt.setRowSorter(tr);
     }
 //</editor-fold>

@@ -315,7 +315,7 @@ public class Usuarios_UI extends Views {
     }//GEN-LAST:event_U_btn_RegistrarActionPerformed
 
     private void U_text_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_U_text_TelefonoKeyTyped
-        limitarCaracteres(evt, U_text_Telefono, 15);
+        limitarCaracteres(evt, U_text_Telefono, 30);
         soloNumeros(evt);
     }//GEN-LAST:event_U_text_TelefonoKeyTyped
 
