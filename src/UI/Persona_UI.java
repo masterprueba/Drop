@@ -1133,6 +1133,7 @@ public class Persona_UI extends Views {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
          jtxSearch.setText("");
+         per_Controller.filter(jtbClientes, jtxSearch.getText(), jComboBox1.getSelectedIndex() + 1);
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
