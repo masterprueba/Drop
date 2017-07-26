@@ -215,6 +215,11 @@ public class Usuarios_Controller extends Controllers {
             VistaUsuarios.U_text_NomComplet1.setText(persona.getTdbpApellido());
             VistaUsuarios.U_text_Telefono.setText(persona.getTdbpTel());
             old = true;
+        } else {
+            VistaUsuarios.U_text_NomComplet.setText("");
+            VistaUsuarios.U_text_NomComplet1.setText("");
+            VistaUsuarios.U_text_Telefono.setText("");
+            old = false;
         }
     }
 }
