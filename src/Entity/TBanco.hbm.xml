@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/07/2017 08:45:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TBanco" table="t_banco" catalog="drop_db" optimistic-lock="version">
+        <id name="tbanCuenta" type="string">
+            <column name="tban_cuenta" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="tbanNombre" type="string">
+            <column name="tban_nombre" length="45" not-null="true" />
+        </property>
+        <property name="tbanSaldo" type="long">
+            <column name="tban_saldo" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="TMovimientoBancos" table="t_movimiento_banco" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tmov_tban_cuenta" length="40" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TMovimientoBanco" />
+        </set>
+    </class>
+</hibernate-mapping>

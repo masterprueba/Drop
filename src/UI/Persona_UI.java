@@ -122,6 +122,7 @@ public class Persona_UI extends Views {
         jLabel56 = new javax.swing.JLabel();
         jtfTelefonoCodeudor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        btnQuitarCodeudor = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -762,6 +763,16 @@ public class Persona_UI extends Views {
         jLabel3.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
         jLabel3.setText("Codeudor");
 
+        btnQuitarCodeudor.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        btnQuitarCodeudor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
+        btnQuitarCodeudor.setText("Quitar Codeudor del Cliente");
+        btnQuitarCodeudor.setEnabled(false);
+        btnQuitarCodeudor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarCodeudorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -773,8 +784,13 @@ public class Persona_UI extends Views {
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addComponent(btnQuitarCodeudor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -784,6 +800,8 @@ public class Persona_UI extends Views {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnQuitarCodeudor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1014,8 +1032,6 @@ public class Persona_UI extends Views {
     private void btnClienteCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteCedulaActionPerformed
         // TODO add your handling code here:
         per_Controller.prepareSelectCliente(jtfCedulaCliente.getText());
-        btnEditar.setEnabled(false);
-        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnClienteCedulaActionPerformed
 
     private void jtfTelefonoEmpresaClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoEmpresaClienteKeyTyped
@@ -1037,6 +1053,7 @@ public class Persona_UI extends Views {
     private void jtbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbClientesMouseClicked
         // TODO add your handling code here:
         per_Controller.prepareSelectCliente(String.valueOf(jtbClientes.getValueAt(jtbClientes.getSelectedRow(), 1)));
+        
     }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jtfCelularCodeudorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularCodeudorKeyTyped
@@ -1070,7 +1087,8 @@ public class Persona_UI extends Views {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        per_Controller.cleanDataJText(); //Limpiar Campos de Texto
+        per_Controller.cleanDataJTextCliente();
+        per_Controller.cleanDataJTextCodeudor(); //Limpiar Campos de Texto
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
         per_Controller.enabledForEdit(false);
@@ -1079,12 +1097,9 @@ public class Persona_UI extends Views {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        per_Controller.enabledForEdit(true); //Habilitar Campos de texto
-        per_Controller.colorJText(new java.awt.Color(255, 255, 255)); //Cambiar Color Capos de Texto
-        btnEditar.setEnabled(false); //Inhabilitar boton Editar
-        btnGuardar.setEnabled(true); //Habilitar boton Guardar
-        btnRefCliente.setEnabled(true);
-        btnRefCodeudor.setEnabled(true);
+        btnEditar.setEnabled(false);
+        per_Controller.enabledForEdit(true);
+        per_Controller.colorJText(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -1132,9 +1147,14 @@ public class Persona_UI extends Views {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-         jtxSearch.setText("");
-         per_Controller.filter(jtbClientes, jtxSearch.getText(), jComboBox1.getSelectedIndex() + 1);
+        jtxSearch.setText("");
+        per_Controller.filter(jtbClientes, jtxSearch.getText(), jComboBox1.getSelectedIndex() + 1);
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void btnQuitarCodeudorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCodeudorActionPerformed
+        // TODO add your handling code here:
+        per_Controller.cleanDataJTextCodeudor(); //Limpiar Campos de Texto
+    }//GEN-LAST:event_btnQuitarCodeudorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1142,6 +1162,7 @@ public class Persona_UI extends Views {
     public javax.swing.JButton btnCodeudor;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnQuitarCodeudor;
     public javax.swing.JButton btnRefCliente;
     public javax.swing.JButton btnRefCodeudor;
     private javax.swing.JButton jButton1;

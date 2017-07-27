@@ -156,6 +156,7 @@ public class Persona_ extends Controllers {
     }
 
 //</editor-fold>
+    
 //<editor-fold defaultstate="collapsed" desc="prepareSelectCliente">
     public void prepareSelectCliente(String cC) {
 
@@ -170,10 +171,13 @@ public class Persona_ extends Controllers {
 
         TPersona res = selectOne(tper);
         if (res != null) {
-            cleanDataJText(); //Limpiar Campos de Texto
-            //btnEvt(true); //Habilitar Botones (Editar - Guardar)
-
-            getPerUI().btnEditar.setEnabled(true); //Habilita Boton Editar
+            cleanDataJTextCliente();
+            cleanDataJTextCodeudor(); //Limpiar Campos de Texto
+           
+            getPerUI().btnEditar.setEnabled(true);
+            enabledForEdit(false);
+            colorJText(new java.awt.Color(205, 205, 255));
+            
 
             setDataJTextCliente(res); //Insertar datos en Capos de Texto
 
@@ -184,12 +188,9 @@ public class Persona_ extends Controllers {
             int r = JOptionPane.showConfirmDialog(null, "Cliente no Registrado... ¿Desea registrar?", "Cliente NO registrado", JOptionPane.YES_NO_OPTION);
 
             if (r == JOptionPane.YES_OPTION) {
-                cleanDataJText(); //Limpiar Datos
-                enabledForEdit(true); //Habilitar Campos de Texto
-                colorJText(new java.awt.Color(255, 255, 255)); //Cambiar Color Capos de Texto
-                getPerUI().btnGuardar.setEnabled(true);
-                getPerUI().btnRefCliente.setEnabled(true);
-                getPerUI().btnRefCodeudor.setEnabled(true);
+
+                
+                
             }
 
         }
@@ -215,48 +216,6 @@ public class Persona_ extends Controllers {
     }
 //</editor-fold>   
 
-//    public void prepareInsertCliente(String codeudor) {
-//        if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0 && getPerUI().objectCliente.getTperId() == null) {
-//            if (true) {
-//                createObjectClienteTo(); //Crar objeto Persona
-//                setDbpCliente(dbp_Controller.insert(getDbpCliente())); //Obtener ID de datos Basicos
-//
-//                if (getDbpCliente().getTdbpId() != null) {
-//                    getPerCliente().getTDatosBasicosPersona().setTdbpId(getDbpCliente().getTdbpId());
-//
-//                    getPerCliente().setTperCodeudor(codeudor);
-//
-//                    if (insert(getPerCliente()) != 0) {
-//                        JOptionPane.showMessageDialog(null, "Cliente registrado con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    public void prepareInsertCodeudor() {
-//        if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0 && getPerUI().objectCodeudor.getTperId() == null) {
-//            if (true) {
-//                createObjectCodeudorTo();
-//                setDbpCodeudor(dbp_Controller.insert(getDbpCodeudor())); //Obtener ID de datos Basicos
-//
-//                if (getDbpCodeudor().getTdbpId() != null) {
-//                    getPerCodeudor().getTDatosBasicosPersona().setTdbpId(getDbpCodeudor().getTdbpId());
-//
-//                    if (insert(getPerCodeudor()) != 0) {
-//                        prepareInsertCliente(getPerCodeudor().getTDatosBasicosPersona().getTdbpCedula());
-//                    }
-//                }
-//            }
-//        } else {
-//            if (getPerUI().objectCodeudor.getTperId() == null) {
-//                prepareInsertCliente(null);
-//            } else {
-//                prepareInsertCliente(getPerUI().objectCodeudor.getTDatosBasicosPersona().getTdbpCedula());
-//            }
-//
-//        }
-//    }
     public void processClientForm() {
         //--CODEUDOR
         if (getPerUI().objectCodeudor.getTperId() == null) { //Si ID objeto codeudor es null PrepareInsert
@@ -364,13 +323,13 @@ public class Persona_ extends Controllers {
 
                             JOptionPane.showMessageDialog(null, "Datos Guardados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
                             initTable(getPerUI().jtbClientes);
+                           
                             enabledForEdit(false);
-                            cleanDataJText();
-                            colorJText(new java.awt.Color(205, 205, 255)); //COlor de Campos de Texto
-                            getPerUI().btnEditar.setEnabled(false);
-                            getPerUI().btnGuardar.setEnabled(false);
-                            getPerUI().btnRefCliente.setEnabled(false);
-                            getPerUI().btnRefCodeudor.setEnabled(false);
+                            colorJText(new java.awt.Color(205, 205, 255));
+                            cleanDataJTextCliente();
+                            cleanDataJTextCodeudor();
+                            
+                            
                         }
                     }
                 }
@@ -413,13 +372,11 @@ public class Persona_ extends Controllers {
 
                             JOptionPane.showMessageDialog(getPerUI(), "Datos Guardados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
                             initTable(getPerUI().jtbClientes);
+
                             enabledForEdit(false);
-                            cleanDataJText();
-                            colorJText(new java.awt.Color(205, 205, 255)); //COlor de Campos de Texto
-                            getPerUI().btnEditar.setEnabled(false);
-                            getPerUI().btnGuardar.setEnabled(false);
-                            getPerUI().btnRefCliente.setEnabled(false);
-                            getPerUI().btnRefCodeudor.setEnabled(false);
+                            colorJText(new java.awt.Color(205, 205, 255));
+                            cleanDataJTextCliente();
+                            cleanDataJTextCodeudor();
                         }
                     }
                 }
@@ -488,7 +445,7 @@ public class Persona_ extends Controllers {
 //<editor-fold defaultstate="collapsed" desc="TABLE filter Cliente">
     public void filter(JTable jt, String textBuscar, int columna) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(getDtm());
-        tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar , columna));
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
         jt.setRowSorter(tr);
     }
 //</editor-fold>
@@ -570,7 +527,7 @@ public class Persona_ extends Controllers {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="cleanDataJText">
-    public void cleanDataJText() {
+    public void cleanDataJTextCliente() {
         getPerUI().objectCliente = new TPersona();
         //getPerUI().jtfCedulaCliente.setText("");
         getPerUI().jtfNombreCliente.setText("");
@@ -583,6 +540,11 @@ public class Persona_ extends Controllers {
         getPerUI().jtfRazonSocialEmpresaCliente.setText("");
         getPerUI().jtfDireccionEmpresaCliente.setText("");
         getPerUI().jtfTelefonoEmpresaCliente.setText("");
+
+        getPerUI().btnRefCliente.setEnabled(false);
+    }
+
+    public void cleanDataJTextCodeudor() {
 
         getPerUI().objectCodeudor = new TPersona();
         getPerUI().jtfCedulaCodeudor.setText("");
@@ -597,8 +559,8 @@ public class Persona_ extends Controllers {
         getPerUI().jtfDireccionEmpresaCodeudor.setText("");
         getPerUI().jtfTelefonolEmpresaCodeudor.setText("");
 
-        getPerUI().btnRefCliente.setEnabled(false);
         getPerUI().btnRefCodeudor.setEnabled(false);
+        getPerUI().btnQuitarCodeudor.setEnabled(false);
     }
 //</editor-fold>   
 
@@ -652,7 +614,12 @@ public class Persona_ extends Controllers {
         getPerUI().jtfRazonSocialEmpresaCodeudor.setFocusable(b);
         getPerUI().jtfDireccionEmpresaCodeudor.setFocusable(b);
         getPerUI().jtfTelefonolEmpresaCodeudor.setFocusable(b);
-
+        
+        //Buttons
+        getPerUI().btnRefCliente.setEnabled(b);
+        getPerUI().btnRefCodeudor.setEnabled(b);
+        getPerUI().btnQuitarCodeudor.setEnabled(b);
+        getPerUI().btnGuardar.setEnabled(b);
     }
 //</editor-fold>    
 

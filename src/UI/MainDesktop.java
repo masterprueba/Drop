@@ -92,6 +92,8 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -109,7 +111,7 @@ public class MainDesktop extends javax.swing.JFrame {
         DesktopPaneMain.setLayout(DesktopPaneMainLayout);
         DesktopPaneMainLayout.setHorizontalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGap(0, 868, Short.MAX_VALUE)
         );
         DesktopPaneMainLayout.setVerticalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,6 +300,22 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bank.png"))); // NOI18N
+        jMenu8.setText("Banco");
+        jMenu8.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+
+        jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem19.setText("Movimientos");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem19);
+
+        jMenuBar1.add(jMenu8);
+
         jMenu2.setForeground(new java.awt.Color(255, 102, 0));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
         jMenu2.setText("Nick");
@@ -450,6 +468,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        JInternalFrame in = new Banco_UI();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -512,6 +535,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -522,6 +546,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
