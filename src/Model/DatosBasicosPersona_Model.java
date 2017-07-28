@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class DatosBasicosPersona_Model extends Models {
     
-    public TDatosBasicosPersona ConsultarCedula(TDatosBasicosPersona persona) {
+    public TDatosBasicosPersona consultarCedula(TDatosBasicosPersona persona) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "from TDatosBasicosPersona where tdbpCedula = '" + persona.getTdbpCedula() + "'";

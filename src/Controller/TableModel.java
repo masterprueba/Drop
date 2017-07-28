@@ -200,7 +200,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Cliente prestamo");
         modelo.addColumn("Fecha abono");
         modelo.addColumn("Total abonado");
-        modelo.addColumn("Nuevo saldo");
+        modelo.addColumn("Valor pagado del prestamo");
         modelo.addColumn("Cuotas pagadas");
         modelo.addColumn("Tipo pago");
         modelo.addColumn("Cobrador");

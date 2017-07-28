@@ -157,7 +157,7 @@ public class Usuarios_Controller extends Controllers {
             if (fila > -1) {
                 llenarObjetosPersonaLogin();
                 persona.setTdbpCedula(VistaUsuarios.modelo.getValueAt(fila, 1).toString());
-                persona = PModel.ConsultarCedula(persona);
+                persona = PModel.consultarCedula(persona);
                 Login.setTDatosBasicosPersona(persona);
                 Login = LModel.ConsultarUsuario(Login, 3);
                 deshabilitarHabilitar(2);
@@ -208,7 +208,7 @@ public class Usuarios_Controller extends Controllers {
 
     public void trarDatos() {
         persona.setTdbpCedula(VistaUsuarios.U_text_Identificacion.getText());
-        TDatosBasicosPersona temp = PModel.ConsultarCedula(persona);
+        TDatosBasicosPersona temp = PModel.consultarCedula(persona);
         if (temp != null) {
             persona = temp;
             VistaUsuarios.U_text_NomComplet.setText(persona.getTdbpNombre());

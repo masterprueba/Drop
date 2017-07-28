@@ -10,27 +10,19 @@ import Entity.TMovimientoBanco;
 import Model.Banco_Model;
 import UI.Banco_UI;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.year;
-import java.awt.Color;
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
 /**
  *
