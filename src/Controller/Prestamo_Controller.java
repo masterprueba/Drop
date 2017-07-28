@@ -405,20 +405,24 @@ public class Prestamo_Controller extends Controllers {
         Prestamo_ui.refinanciar.setVisible(false);
         refinancia.dispose();
     }
-    
-    public void eliminarPrestamo(){      
-      EliminarP_UI.msj_eliminar.setVisible(false);
-      TPrestamo p = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(EliminarP_UI.id_eliminar.getText()));
-      if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar el prestamo?", "Prestamo de "+p.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+p.getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {         
-         if(pmodel.eliminar(p, "PRESTAMO")){
-             EliminarP_UI.msj_eliminar.setVisible(true);
-             EliminarP_UI.id_eliminar.setText("");
-         }else{
-             EliminarP_UI.id_eliminar.setText("");
-             JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
-         }
-      }else{
-        EliminarP_UI.id_eliminar.setText("");
-      }      
+
+    public void eliminarPrestamo() {
+        EliminarP_UI.msj_eliminar.setVisible(false);
+        TPrestamo p = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(EliminarP_UI.id_eliminar.getText()));
+        if (p != null) {
+            if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar el prestamo?", "Prestamo de " + p.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + p.getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                if (pmodel.eliminar(p, "PRESTAMO")) {
+                    EliminarP_UI.msj_eliminar.setVisible(true);
+                    EliminarP_UI.id_eliminar.setText("");
+                } else {
+                    EliminarP_UI.id_eliminar.setText("");
+                    JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
+                }
+            } else {
+                EliminarP_UI.id_eliminar.setText("");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Error Prestamo no existe");
+        }
     }
 }

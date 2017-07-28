@@ -45,6 +45,12 @@ public class EliminarP_UI extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Digita el ID del prestamo");
 
+        id_eliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                id_eliminarKeyPressed(evt);
+            }
+        });
+
         jButton1.setText("Eliminar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +105,12 @@ public class EliminarP_UI extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         pc.eliminarPrestamo();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void id_eliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_eliminarKeyPressed
+        if (evt.getKeyCode() == 10) {
+            pc.eliminarPrestamo();
+        }
+    }//GEN-LAST:event_id_eliminarKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
