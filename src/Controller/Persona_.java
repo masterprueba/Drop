@@ -426,7 +426,7 @@ public class Persona_ extends Controllers {
 
         //Consulta (Traer todos las pesonas que sean clientes)
         selectAll(temp);
-
+        
         setDtm((DefaultTableModel) jt.getModel());
 
         while (getDtm().getRowCount() > 0) {
@@ -713,6 +713,8 @@ public class Persona_ extends Controllers {
         List<TCuota> tc = new ArrayList<>();
 
         tc.addAll(temp);
+        
+        tc.sort(Comparator.comparing(TCuota::getTcuoFecha));
 
         DefaultTableModel dtm = new TableModel().historialCuota();
         jtbCuota.setModel(dtm);

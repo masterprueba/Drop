@@ -174,7 +174,7 @@ public class Banco_Controller extends Controllers {
             tm.setTmovFecha(getBanUI().jtfFecha.getDate());
             tm.setTmovConcepto(getBanUI().jtaConcepto.getText());
             
-            JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
+            //JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
 
             if (insertMovimientoBanco(tm) > 0) {
                 initTable(getBanUI().jtBanco);
