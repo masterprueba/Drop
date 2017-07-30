@@ -174,6 +174,8 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem16);
 
+        jMenuItem1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/eliminar.png"))); // NOI18N
         jMenuItem1.setText("Eliminar Prestamo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
