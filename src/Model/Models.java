@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 /**
@@ -150,7 +151,7 @@ public class Models<T> {
 
     private String obtenerJson(Object object) {
         String json = null;
-        System.err.println(object.getClass().toString());
+        System.err.println(object.getClass().getName());
         switch (object.getClass().getName()) {
             case "Entity.TCobrador":
                 TCobrador cobrador = (TCobrador) object;
@@ -298,17 +299,19 @@ public class Models<T> {
                         + "\"tmulEstado\":\"" + multa.getTmulEstado() + "\"}";
                 break;
             case "Entity.TBanco":
-                TBanco banco = new TBanco();
+                TBanco banco = (TBanco) object;
                 json = "{\"tbanCuenta\":\"" + banco.getTbanCuenta() + "\",\"tbanNombre\":\"" + banco.getTbanNombre() + "\",\"tbanSaldo\":" + banco.getTbanSaldo() + "\"TMovimientoBancos\":[]}";
                 break;
             case "Entity.TMovimientoBanco":
-                TMovimientoBanco movimiento = new TMovimientoBanco();
-                json = "{\"tmovId\":" + movimiento.getTmovId() + ",";
-
+                TMovimientoBanco movimiento = (TMovimientoBanco) object;
                 if (movimiento.getTBanco() != null) {
                     json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
                 }
                 json += "\"tmovTipo\":\"" + movimiento.getTmovTipo() + "\",\"tmovSaldo\":" + movimiento.getTmovSaldo() + ",\"tmovFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimiento.getTmovFecha()) + "\",\"tmovConcepto\":\"" + movimiento.getTmovConcepto() + "\"}";
+
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Se agrego una nueva entidad, agregar al json");
                 break;
         }
         return json;
