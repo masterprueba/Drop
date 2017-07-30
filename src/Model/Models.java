@@ -297,6 +297,19 @@ public class Models<T> {
                 json += "\"tmulValor\":" + multa.getTmulValor() + ",\"tmulDescripcion\":\"" + multa.getTmulDescripcion() + "\",\"tmulFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(multa.getTmulFecha()) + "\","
                         + "\"tmulEstado\":\"" + multa.getTmulEstado() + "\"}";
                 break;
+            case "Entity.TBanco":
+                TBanco banco = new TBanco();
+                json = "{\"tbanCuenta\":\"" + banco.getTbanCuenta() + "\",\"tbanNombre\":\"" + banco.getTbanNombre() + "\",\"tbanSaldo\":" + banco.getTbanSaldo() + "\"TMovimientoBancos\":[]}";
+                break;
+            case "Entity.TMovimientoBanco":
+                TMovimientoBanco movimiento = new TMovimientoBanco();
+                json = "{\"tmovId\":" + movimiento.getTmovId() + ",";
+
+                if (movimiento.getTBanco() != null) {
+                    json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
+                }
+                json += "\"tmovTipo\":\"" + movimiento.getTmovTipo() + "\",\"tmovSaldo\":" + movimiento.getTmovSaldo() + ",\"tmovFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimiento.getTmovFecha()) + "\",\"tmovConcepto\":\"" + movimiento.getTmovConcepto() + "\"}";
+                break;
         }
         return json;
     }
