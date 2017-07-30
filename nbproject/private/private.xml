@@ -10,16 +10,10 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Persistence/hibernate.cfg.xml</file>
             <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/Persona_.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Model/Persona_Model.java</file>
+            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/UI/Banco_UI.java</file>
             <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/UI/Persona_UI.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/Cliente_Controller.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/Codeudor_Controller.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/DatosBasicosPersona_Controller.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/Persona_Controller.java</file>
-            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/UI/Cliente_UI.java</file>
+            <file>file:/C:/Users/afvc2203/Documents/NetBeansProjects/Drop/src/Controller/Banco_Controller.java</file>
         </group>
     </open-files>
 </project-private>

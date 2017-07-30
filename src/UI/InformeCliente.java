@@ -304,13 +304,13 @@ public class InformeCliente extends Views {
     private void jtbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbClientesMouseClicked
         // TODO add your handling code here:
         //cli_Controller = new Cliente_Controller2(this);
-        per_Controller = new Persona_(this);
+        //per_Controller = new Persona_(this);
         per_Controller.initTablePrestamo(jtbHPrestamo);
         setCellRender(jtbHPrestamo, new Color(223, 27, 27));
     }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jtbHPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbHPrestamoMouseClicked
-        per_Controller = new Persona_(this);
+        //per_Controller = new Persona_(this);
         per_Controller.initTableCuotas(jtbDCuota, jtbHPrestamo);
         //System.out.println(String.valueOf(((TPrestamo) jtbHPrestamo.getValueAt(jtbHPrestamo.getSelectedRow(), 6)).getTpreValorPrestamo()));
     }//GEN-LAST:event_jtbHPrestamoMouseClicked

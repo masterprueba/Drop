@@ -13,12 +13,16 @@ import UI.Banco_UI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -92,6 +96,8 @@ public class Banco_Controller extends Controllers {
 
         setDtm((DefaultTableModel) jt.getModel());
 
+        getListBanco().sort(Comparator.comparing(TBanco::getTbanNombre));
+
         while (getDtm().getRowCount() > 0) {
             getDtm().removeRow(0); //Limpiar Tabla
         }
@@ -108,24 +114,26 @@ public class Banco_Controller extends Controllers {
 //</editor-fold> 
 
     public void initTableMovimiento(JTable jt) {
-        Locale locale = new Locale("es","AR"); // elegimos Argentina
-        
+        Locale locale = new Locale("es", "AR"); // elegimos Argentina
+
         Set temp = ((TBanco) banUI.jtBanco.getValueAt(banUI.jtBanco.getSelectedRow(), 4)).getTMovimientoBancos();
         List<TMovimientoBanco> tmb = new ArrayList<>();
 
         tmb.addAll(temp);
+
+        tmb.sort(Comparator.comparing(TMovimientoBanco::getTmovFecha));
 
         setDtm((DefaultTableModel) jt.getModel());
 
         while (getDtm().getRowCount() > 0) {
             getDtm().removeRow(0); //Limpiar Tabla
         }
-        
+
         Object[] f = new Object[6];
         for (int i = 0; i < tmb.size(); i++) {
-            f[1] = tmb.get(i).getTmovTipo();
-            f[2] = tmb.get(i).getTmovSaldo();
-            f[3] = tmb.get(i).getTmovFecha();
+            f[1] = tmb.get(i).getTmovFecha();
+            f[2] = tmb.get(i).getTmovTipo();
+            f[3] = tmb.get(i).getTmovSaldo();
             f[4] = tmb.get(i).getTmovConcepto();
             getDtm().addRow(f);
 
@@ -134,23 +142,57 @@ public class Banco_Controller extends Controllers {
         numerarTabla(getDtm());
     }
 
-    public void prepareInsert() {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = formatter.parse(getBanUI().jtfFecha.getDate() + "");
+    public void prepareInsertBanco() {
+        if (validar("BANCO")) {
             TBanco tb = new TBanco();
-            //tb.setTbanDinero(Long.parseLong(getBanUI().jtfDinero.getText()));
-            //tb.setTbanFecha(date);
-            //tb.setTbanConcepto(getBanUI().jtaConcepto.getText());
+            tb.setTbanCuenta(getBanUI().jtfNumeroCuenta.getText());
+            tb.setTbanNombre(getBanUI().jtfNombreBanco.getText());
+            tb.setTbanSaldo(Long.parseLong(getBanUI().jtfSaldoBase.getText()));
 
-            if (insert(tb) > 0) {
-                initTable(getBanUI().jtMovimientos);
+            if (insertBanco(tb) > 0) {
+                initTable(getBanUI().jtBanco);
+                JOptionPane.showMessageDialog(null, "Banco Registrado");
 
+                getBanUI().jtfNumeroCuenta.setText("");
+                getBanUI().jtfNombreBanco.setText("");
+                getBanUI().jtfSaldoBase.setText("");
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(Banco_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    public void prepareInsertMovimientoBanco() {
+
+        if (validar("MOVIMIENTO")) {
+
+            TBanco tb = new TBanco();
+            tb.setTbanCuenta(getBanUI().jtfCuenta.getText());
+
+            TMovimientoBanco tm = new TMovimientoBanco();
+            tm.setTBanco(tb);
+            tm.setTmovTipo("" + getBanUI().jcbTipoMovimiento.getSelectedItem());
+            tm.setTmovSaldo((getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
+            tm.setTmovFecha(getBanUI().jtfFecha.getDate());
+            tm.setTmovConcepto(getBanUI().jtaConcepto.getText());
+            
+            JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
+
+            if (insertMovimientoBanco(tm) > 0) {
+                initTable(getBanUI().jtBanco);
+                limpiaTabla(getBanUI().jtMovimientos);
+            }
+        }
+    }
+
+    void limpiaTabla(JTable jt) {
+        try {
+            DefaultTableModel temp = (DefaultTableModel) jt.getModel();
+            int a = temp.getRowCount();
+            for (int i = 0; i < a; i++) {
+                temp.removeRow(0); //aquí estaba el error, antes pasaba la i como parametro.... soy un bacín  XD
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 //<editor-fold defaultstate="collapsed" desc="SELECT all WHERE">
@@ -159,18 +201,78 @@ public class Banco_Controller extends Controllers {
     }
 //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
-    public int insert(TBanco objPer) {
-        return Integer.parseInt("" + banModel.insertar(objPer, "CLIENTE"));
+//<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
+    public int insertBanco(TBanco obj) {
+        return Integer.parseInt("" + banModel.insertar(obj, "BANCO"));
+    }
+//</editor-fold>  
+
+//<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
+    public int insertMovimientoBanco(TMovimientoBanco obj) {
+        System.out.println("Entro aqui");
+        return Integer.parseInt("" + banModel.insertar(obj, "MOVIMIENTO BANCO"));
     }
 //</editor-fold>  
 
 //<editor-fold defaultstate="collapsed" desc="TABLE filter Cliente">
-    public void filter(JTable jt) {
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(getDtm());
-        jt.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(getBanUI().jtxSearchMovimientos.getText().toLowerCase()));
-    }
-//</editor-fold>    
+    public void filter(JTable jt, String textBuscar, int columna) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
 
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
+
+        jt.setRowSorter(tr);
+    }
+//</editor-fold>   
+
+    public void jtMouseClicked() {
+
+        getBanUI().jcbMovimientos.setEnabled(true);
+        getBanUI().jtxSearchMovimientos.setEnabled(true);
+        getBanUI().jtfBanco.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 2));
+        getBanUI().jtfCuenta.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 1));
+        getBanUI().jtSaldoBase.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 3));
+
+        getBanUI().jcbTipoMovimiento.setEnabled(true);
+        getBanUI().jtfSaldo.setEnabled(true);
+        getBanUI().jtfFecha.setEnabled(true);
+        getBanUI().jtaConcepto.setEnabled(true);
+        getBanUI().btnGuardarMovimiento.setEnabled(true);
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="validar">
+    public boolean validar(String v) {
+        String mensaje = "";
+
+        if (v == "BANCO") {
+            if (getBanUI().jtfNumeroCuenta.getText().trim().equals("")) {
+                mensaje += "[- Numero de Cuenta vacío -] \n";
+            }
+
+            if (getBanUI().jtfNombreBanco.getText().trim().equals("")) {
+                mensaje += "[- Nombre de Banco vacío -] \n";
+            }
+
+            if (getBanUI().jtfSaldoBase.getText().trim().equals("")) {
+                mensaje += "[- Saldo Base vacío -] \n";
+            }
+        } else {
+
+            if (getBanUI().jtfSaldo.getText().trim().equals("")) {
+                mensaje += "[- Saldo vacío -] \n";
+            }
+
+            if (("" + getBanUI().jtfFecha.getDate()).length() < 28) {
+                mensaje += "[- Fecha vacía -] \n";
+            }
+        }
+
+        //JOptionPane.showMessageDialog(null, (""+getBanUI().jtfFecha.getDate()).length());
+        if (!mensaje.equals("")) {
+            JOptionPane.showMessageDialog(null, "Se Presentaron los siguientes inconvenientes: \n \n" + mensaje, "Error!!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+//</editor-fold>  
 }
