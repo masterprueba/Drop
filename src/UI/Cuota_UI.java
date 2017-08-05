@@ -556,7 +556,7 @@ public class Cuota_UI extends Views {
         if (ac.setData(a_cedula.getText())) {
             jPanel1.setVisible(false);
             jPanel2.setVisible(true);
-            jPanel3.setVisible(true);
+            jPanel3.setVisible(true);            
         } else {
             jPanel1.setVisible(false);
             jPanel2.setVisible(false);

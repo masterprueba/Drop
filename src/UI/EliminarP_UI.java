@@ -61,6 +61,7 @@ public class EliminarP_UI extends javax.swing.JInternalFrame {
         });
 
         msj_eliminar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        msj_eliminar.setForeground(new java.awt.Color(0, 153, 0));
         msj_eliminar.setText("Prestamo Eliminado Correctamente.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

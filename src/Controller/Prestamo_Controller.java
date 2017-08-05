@@ -130,10 +130,9 @@ public class Prestamo_Controller extends Controllers {
         Persona_Model cmodel = new Persona_Model();
         try {
             cliente = (TPersona) cmodel.SelectOne(temp);
-            setCliente(cliente);
-            Prestamo_ui.refinanciar.setVisible(true);
+            setCliente(cliente);           
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe!", "Error C.c", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe! "+ex.getLocalizedMessage(), "Error C.c", JOptionPane.INFORMATION_MESSAGE);
             setClienteError(cliente);
         }
 
@@ -230,6 +229,7 @@ public class Prestamo_Controller extends Controllers {
 
     public void setCliente(TPersona cliente) {
         Prestamo_ui.jPanel2.setVisible(true);
+        Prestamo_ui.refinanciar.setVisible(true);
         nombre.setText(cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido());
         Prestamo_ui.P_tel.setText(cliente.getTDatosBasicosPersona().getTdbpTel());
         Prestamo_ui.P_dir.setText(cliente.getTperCasDir());
