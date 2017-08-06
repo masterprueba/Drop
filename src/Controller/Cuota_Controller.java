@@ -44,7 +44,8 @@ public class Cuota_Controller extends Prestamo_Controller {
 
     public Cuota_Controller() {
         pmodel = new Prestamo_model();
-        if (Cuota_UI.a_fecha != null) {
+        if (Cuota_UI.a_fecha.getDate() == null) {
+            //System.out.println(Cuota_UI.a_fecha.getDate().toString());
             Cuota_UI.a_fecha.setDate(new Date());
         }
         cmodel = new Cobrador_Model();
