@@ -29,7 +29,7 @@ public class ListaPersonas_UI extends javax.swing.JInternalFrame {
      */
     public ListaPersonas_UI(String indicador) {
         initComponents();        
-        pc = new Cuota_Controller();
+        pc = new Cuota_Controller(true);
         pc.initTable(jTable1,"pyc");
         this.indicador = indicador;
     } 

@@ -67,7 +67,21 @@ public class Multa_Controller extends Controllers{
                 vaciarCampos();
                 desactivarBotones(0);
             } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el gasto, intente nuevamente");
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el interes, intente nuevamente");
+            }
+        }
+    }
+    
+    public void eliminar() {
+        if (validar()) {
+            llenarObjeto();
+            if (Mmulta.eliminar(Multa,"PRESTAMO")) {
+                JOptionPane.showMessageDialog(null, "El interes fue eliminado correctamente!");                
+                traer(obtenerRadiobuttonSeleccionado());
+                vaciarCampos();
+                desactivarBotones(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al eliminar el interes, intente nuevamente");
             }
         }
     }
@@ -174,10 +188,12 @@ public class Multa_Controller extends Controllers{
         if (v == 0) {
             Multa_Ui.jButton3.setEnabled(false);
             Multa_Ui.jButton4.setEnabled(false);
+            Multa_Ui.jButton7.setEnabled(false);
             Multa_Ui.jButton3.setEnabled(true);
         } else {
             Multa_Ui.jButton3.setEnabled(true);
             Multa_Ui.jButton4.setEnabled(true);
+            Multa_Ui.jButton7.setEnabled(true);
             Multa_Ui.jButton3.setEnabled(false);
         }
     }
