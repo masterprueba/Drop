@@ -669,7 +669,7 @@ public class Persona_ extends Controllers {
     }
 //</editor-fold>    
 
-    public void initTablePrestamo(JTable jt) {
+    public void initTablePrestamo(JTable jt, JTable jt2) {
 
         setDbpCliente(new TDatosBasicosPersona());
         getDbpCliente().setTdbpCedula(String.valueOf(getInfCli().jtbClientes.getValueAt(getInfCli().jtbClientes.getSelectedRow(), 1)));
@@ -686,6 +686,9 @@ public class Persona_ extends Controllers {
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
+        
+        DefaultTableModel dtm2 = new TableModel().historialCuota();
+        jt2.setModel(dtm2);
 
         Object[] f = new Object[11];
         for (int i = 0; i < tp.size(); i++) {

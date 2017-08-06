@@ -316,7 +316,7 @@ public class InformeCliente extends Views {
         // TODO add your handling code here:
         //cli_Controller = new Cliente_Controller2(this);
         //per_Controller = new Persona_(this);
-        per_Controller.initTablePrestamo(jtbHPrestamo);
+        per_Controller.initTablePrestamo(jtbHPrestamo,jtbDCuota);
         setCellRender(jtbHPrestamo, new Color(223, 27, 27));
     }//GEN-LAST:event_jtbClientesMouseClicked
 
