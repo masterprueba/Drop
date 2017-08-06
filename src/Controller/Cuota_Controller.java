@@ -15,6 +15,7 @@ import Model.Persona_Model;
 import Model.Prestamo_model;
 import Model.TPagos_Model;
 import UI.Cuota_UI;
+import UI.EliminarA_UI;
 import UI.Multa_Ui;
 import UI.Prestamo_ui;
 import java.text.ParseException;
@@ -50,6 +51,10 @@ public class Cuota_Controller extends Prestamo_Controller {
         }
         cmodel = new Cobrador_Model();
         pamodel = new TPagos_Model();
+    }
+
+    public Cuota_Controller(Boolean eliminar) {
+        pmodel = new Prestamo_model();
     }
 
     @Override
@@ -323,6 +328,30 @@ public class Cuota_Controller extends Prestamo_Controller {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void eliminarAbono() {
+        if (EliminarA_UI.id_eliminar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite el ID por favor.");
+        } else {
+            EliminarA_UI.msj_eliminar.setVisible(false);
+            TCuota c = (TCuota) pmodel.consultar(TCuota.class, Integer.parseInt(EliminarA_UI.id_eliminar.getText()));
+            if (c != null) {
+                if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar la cuota?", "Prestamo de " + c.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + c.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                    if (pmodel.eliminar(c, "PRESTAMO")) {
+                        EliminarA_UI.msj_eliminar.setVisible(true);
+                        EliminarA_UI.id_eliminar.setText("");
+                    } else {
+                        EliminarA_UI.id_eliminar.setText("");
+                        JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo");
+                    }
+                } else {
+                    EliminarA_UI.id_eliminar.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error Cuota no existe");
+            }
         }
     }
 }

@@ -79,6 +79,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -183,6 +184,16 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem1);
+
+        jMenuItem21.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/eliminar.png"))); // NOI18N
+        jMenuItem21.setText("Eliminar Cuota");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem21);
 
         jMenuBar1.add(jMenu3);
 
@@ -505,6 +516,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        JInternalFrame in = new EliminarA_UI();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -582,6 +598,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

@@ -130,9 +130,9 @@ public class Prestamo_Controller extends Controllers {
         Persona_Model cmodel = new Persona_Model();
         try {
             cliente = (TPersona) cmodel.SelectOne(temp);
-            setCliente(cliente);           
+            setCliente(cliente);
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe! "+ex.getLocalizedMessage(), "Error C.c", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(nombre, "Numero de cedula ¡No existe! " + ex.getLocalizedMessage(), "Error C.c", JOptionPane.INFORMATION_MESSAGE);
             setClienteError(cliente);
         }
 
@@ -407,22 +407,26 @@ public class Prestamo_Controller extends Controllers {
     }
 
     public void eliminarPrestamo() {
-        EliminarP_UI.msj_eliminar.setVisible(false);
-        TPrestamo p = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(EliminarP_UI.id_eliminar.getText()));
-        if (p != null) {
-            if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar el prestamo?", "Prestamo de " + p.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + p.getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                if (pmodel.eliminar(p, "PRESTAMO")) {
-                    EliminarP_UI.msj_eliminar.setVisible(true);
-                    EliminarP_UI.id_eliminar.setText("");
+        if (EliminarP_UI.id_eliminar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite el ID por favor.");
+        } else {
+            EliminarP_UI.msj_eliminar.setVisible(false);
+            TPrestamo p = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(EliminarP_UI.id_eliminar.getText()));
+            if (p != null) {
+                if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar el prestamo?", "Prestamo de " + p.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + p.getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                    if (pmodel.eliminar(p, "PRESTAMO")) {
+                        EliminarP_UI.msj_eliminar.setVisible(true);
+                        EliminarP_UI.id_eliminar.setText("");
+                    } else {
+                        EliminarP_UI.id_eliminar.setText("");
+                        JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
+                    }
                 } else {
                     EliminarP_UI.id_eliminar.setText("");
-                    JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
                 }
             } else {
-                EliminarP_UI.id_eliminar.setText("");
+                JOptionPane.showMessageDialog(null, "Error Prestamo no existe");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Error Prestamo no existe");
         }
     }
 }
