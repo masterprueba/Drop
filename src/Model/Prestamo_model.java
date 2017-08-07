@@ -46,6 +46,31 @@ public class Prestamo_model<T> extends Models {
 
         return result;
     }
+    
+    public List<T> informePrestamoXn(String fini, String ffin, String nombre) {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "SELECT "
+                + "DATE_FORMAT(prestamo.tpreFechaEntrega, "
+                + "'%y-%m-%d') as fecha , "
+                + "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
+                + "concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
+                + "prestamo.tpreValorPrestamo as prestado, "
+                + "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "
+                + "prestamo.tpreValorTotal as valortotal, "
+                + "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId) as abono, "
+                + "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda, "
+                + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
+                + "FROM "
+                + "TPrestamo as prestamo "
+                + "WHERE concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) like '%"+nombre+"%' AND "
+                + "prestamo.tpreFechaEntrega BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'";
+        Query r = s.createQuery(query);
+        List<T> result = r.list();
+        s.getTransaction().commit();
+
+        return result;
+    }
 
     public List<T> refinanciaPrestamo() {
         s = hibernateUtil.getSessionFactory();

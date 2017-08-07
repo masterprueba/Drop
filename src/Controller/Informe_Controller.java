@@ -43,7 +43,7 @@ public class Informe_Controller extends Controllers{
                 : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
         String fechafin = InformeGeneral.general_fechafin.getDate() != null
                 ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
+                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);        
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
         if (!p && !g && metodo) {
@@ -64,8 +64,9 @@ public class Informe_Controller extends Controllers{
     public boolean obtenerPrestamos(String fechaini,String fechafin){        
         DefaultTableModel tmodelop = new TableModel().informeGeneral();
         pretamotable.setModel(tmodelop);
-        Prestamo_model modelo = new Prestamo_model();       
-        List<Object> prestamos = modelo.informePrestamo(fechaini,fechafin);
+        Prestamo_model modelo = new Prestamo_model(); 
+        String nombre = InformeGeneral.txt_nombre.getText();        
+        List<Object>  prestamos = modelo.informePrestamoXn(fechaini,fechafin,nombre);        
         Iterator itr = prestamos.iterator();                
         Object[] f = new Object[11];
         boolean existe = false;
