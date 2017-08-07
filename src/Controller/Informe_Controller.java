@@ -49,16 +49,16 @@ public class Informe_Controller extends Controllers{
         if (!p && !g && metodo) {
             JOptionPane.showMessageDialog(null, "No existen datos");
         }
-        InformeGeneral.text_prestado.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 3)+"");
-        InformeGeneral.txt_entregado.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4)+"");
-        InformeGeneral.txt_total.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5)+"");
-        InformeGeneral.text_recaudado.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6)+"");
-        InformeGeneral.txt_deuda.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)+"");
-        InformeGeneral.txt_extra.setText(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8)+"");
-        float ganacias = totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9);
+        InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4))+"");
+        InformeGeneral.txt_entregado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5))+"");
+        InformeGeneral.txt_total.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6))+"");
+        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7))+"");
+        InformeGeneral.txt_deuda.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8))+"");
+        InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9))+"");
+        int ganacias = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 10));
         //gasto
-        InformeGeneral.text_gasto.setText(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3)+"");
-        InformeGeneral.text_ganacia.setText(""+(ganacias-Float.parseFloat(InformeGeneral.text_gasto.getText())));
+        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 4))+"");
+        InformeGeneral.text_ganacia.setText(""+(ganacias-Integer.parseInt(InformeGeneral.text_gasto.getText())));
     }
     
     public boolean obtenerPrestamos(String fechaini,String fechafin){        
@@ -67,25 +67,26 @@ public class Informe_Controller extends Controllers{
         Prestamo_model modelo = new Prestamo_model();       
         List<Object> prestamos = modelo.informePrestamo(fechaini,fechafin);
         Iterator itr = prestamos.iterator();                
-        Object[] f = new Object[10];
+        Object[] f = new Object[11];
         boolean existe = false;
         while(itr.hasNext()){
             Object[] obj = (Object[]) itr.next();                        
             f[1] = obj[0];
             f[2] = obj[1];
-            int prestado = obj[2] != null ? Integer.parseInt(String.valueOf(obj[2])) : 0;
-            int invertido = obj[3] != null ? Integer.parseInt(String.valueOf(obj[3])) : 0;
-            int total = obj[4] != null ? Integer.parseInt(String.valueOf(obj[4])) : 0;
-            int pagado = obj[5] != null ? Integer.parseInt(String.valueOf(obj[5])) : 0;
-            int deuda = obj[6] != null ? Integer.parseInt(String.valueOf(obj[6])) : 0;
-            int extra = obj[7] != null ? Integer.parseInt(String.valueOf(obj[7])) : 0;
-            f[3] = prestado;
-            f[4] = invertido;
-            f[5] = total;
-            f[6] = pagado;
-            f[7] = total-pagado;
-            f[8] = extra;
-            f[9] = pagado - prestado;
+            f[3] = obj[2];
+            int prestado = obj[3] != null ? Integer.parseInt(String.valueOf(obj[3])) : 0;
+            int invertido = obj[4] != null ? Integer.parseInt(String.valueOf(obj[4])) : 0;
+            int total = obj[5] != null ? Integer.parseInt(String.valueOf(obj[5])) : 0;
+            int pagado = obj[6] != null ? Integer.parseInt(String.valueOf(obj[6])) : 0;
+            int deuda = obj[7] != null ? Integer.parseInt(String.valueOf(obj[7])) : 0;
+            int extra = obj[8] != null ? Integer.parseInt(String.valueOf(obj[8])) : 0;
+            f[4] = prestado;
+            f[5] = invertido;
+            f[6] = total;
+            f[7] = pagado;
+            f[8] = total-pagado;
+            f[9] = extra;
+            f[10] = pagado - prestado;
             if(obj[1]!=null){                
                 tmodelop.addRow(f);
                 existe = true;

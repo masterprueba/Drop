@@ -29,6 +29,7 @@ public class Prestamo_model<T> extends Models {
                 + "DATE_FORMAT(prestamo.tpreFechaEntrega, "
                 + "'%y-%m-%d') as fecha , "
                 + "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
+                + "concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
                 + "prestamo.tpreValorPrestamo as prestado, "
                 + "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "
                 + "prestamo.tpreValorTotal as valortotal, "

@@ -215,6 +215,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Fecha");
         modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
         modelo.addColumn("Prestado");
         modelo.addColumn("Entregado");
         modelo.addColumn("Prestamo total");
