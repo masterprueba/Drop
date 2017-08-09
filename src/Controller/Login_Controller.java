@@ -10,6 +10,8 @@ import Model.Login_Model;
 import UI.Login;
 import UI.MainDesktop;
 import static java.lang.Thread.sleep;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,22 +22,22 @@ import javax.swing.JOptionPane;
  * @author Yoimar
  */
 public class Login_Controller extends Thread {
-
+    
     private final Login_Model Lmodel = new Login_Model();
-    private static TLogin UsuarioLogueado;
+    private static TLogin USUARIO_LOGEADO;
     private List<TLogin> loginresult;
     private boolean cone = false;
     public static boolean continuar = true;
-
+    
     @Override
     public void run() {
         new Hilo().start();
         int contador = 0;
         long velocidad = 1000;
-        while (continuar == true) {
+        while (continuar) {
             if (cone == false) {
                 if (contador < 95) {
-                    Login.jProgressBar1.setValue(contador = contador + 5);
+                    Login.jProgressBar1.setValue(contador = contador + 4);
                     contador++;
                 } else {
                     JOptionPane.showMessageDialog(null, "Se ha superado el tiempo maximo de espera!,  intente nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -59,33 +61,45 @@ public class Login_Controller extends Thread {
             Login.jPanel1.setVisible(true);
         }
     }
-
+    
     class Hilo extends Thread {
-
+        
         @Override
         public void run() {
             carga();
         }
     }
-
+    
     public void carga() {
-        cone = Lmodel.conexion();
+        try {
+            if (Lmodel.conexion()) {
+                if (Lmodel.Trial().before(new SimpleDateFormat("yyyy-MM-dd").parse("2017-10-15"))) {
+                    cone = true;
+                } else {
+                    Login_Controller.continuar = false;
+                    JOptionPane.showMessageDialog(null, "El Trial ha expirado, consulte a su desarrollador", "Advertencia", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    
     public static TLogin getUsuarioLogueado() {
-        return UsuarioLogueado;
+        return USUARIO_LOGEADO;
     }
-
+    
     public void Ingresar(TLogin User, Login login) {
-
+        
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
             for (int i = 0; i < loginresult.size(); i++) {
                 if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
-                    UsuarioLogueado = loginresult.get(i);
-                    Lmodel.bitacora(UsuarioLogueado, "INICIO", "LOGIN");
+                    USUARIO_LOGEADO = loginresult.get(i);
+                    Lmodel.bitacora(USUARIO_LOGEADO, "INICIO", "LOGIN");
                     new MainDesktop().setVisible(true);
                     login.dispose();
                     break;

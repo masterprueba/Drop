@@ -124,7 +124,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel bitacoraIndividualPrestamo() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre Cliente");
         modelo.addColumn("Nombre Usuario");
         modelo.addColumn("Metodo pago");
@@ -196,7 +196,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel bitacoraGeneralAbonos() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
+        modelo.addColumn("ID");
         modelo.addColumn("Cliente prestamo");
         modelo.addColumn("Fecha abono");
         modelo.addColumn("Total abonado");
@@ -235,7 +235,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel bitacoraGeneralMulta() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
+        modelo.addColumn("ID");
         modelo.addColumn("Usuario sistema");
         modelo.addColumn("Fecha evento");
         modelo.addColumn("Tipo evento");

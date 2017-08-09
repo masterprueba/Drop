@@ -7,6 +7,7 @@ package Model;
 
 import Entity.TLogin;
 import Persistence.hibernateUtil;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,11 +35,19 @@ public class Login_Model<L> extends Models {
         if (Via == 2) {
             query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "' and TDatosBasicosPersona.tdbpCedula <> " + usuario.getTDatosBasicosPersona().getTdbpCedula();
         } else if (Via == 3) {
-            query = "from TLogin where TDatosBasicosPersona.tdbpId ='" + usuario.getTDatosBasicosPersona().getTdbpId()+ "'";
+            query = "from TLogin where TDatosBasicosPersona.tdbpId ='" + usuario.getTDatosBasicosPersona().getTdbpId() + "'";
         }
         TLogin result = (TLogin) s.createQuery(query).uniqueResult();
         s.getTransaction().commit();
 
         return result;
+    }
+
+    public Date Trial() {
+        s.beginTransaction();
+        String query = "select max(tbitFecha) from TBitacora";
+        Date fecha = (Date) s.createQuery(query).uniqueResult();
+        s.getTransaction().commit();
+        return fecha;
     }
 }

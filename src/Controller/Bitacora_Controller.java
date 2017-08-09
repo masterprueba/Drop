@@ -299,6 +299,7 @@ public class Bitacora_Controller extends Controllers {
                                         TPrestamo prestamo = (TPrestamo) listObject.get(i);
                                         if (prestamo.getTpreId() == idPrestamo) {
                                             String[] filas = new String[12];
+                                            filas[0] = prestamo.getTpreId().toString();
                                             filas[1] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + "" + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
                                             filas[2] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + "" + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                                             filas[3] = prestamo.getTpreMetodPago();
@@ -327,7 +328,7 @@ public class Bitacora_Controller extends Controllers {
                                         String[] filas = new String[14];
                                         filas[1] = cliente.getTDatosBasicosPersona().getTdbpCedula();
                                         filas[2] = cliente.getTDatosBasicosPersona().getTdbpNombre() + " " + cliente.getTDatosBasicosPersona().getTdbpApellido();
-                                        filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel(); 
+                                        filas[3] = cliente.getTDatosBasicosPersona().getTdbpTel();
                                         filas[4] = cliente.getTperCasDir();
                                         filas[5] = cliente.getTperCasTipo();
                                         filas[6] = cliente.getTperEmpNom();
@@ -376,6 +377,7 @@ public class Bitacora_Controller extends Controllers {
                                             True = true;
                                         }
                                         String[] filasgasto = new String[11];
+                                        filasgasto[0] = cuota.getTcuoId().toString();
                                         filasgasto[1] = cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
                                         filasgasto[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
                                         filasgasto[3] = "" + cuota.getTcuoAbono();
@@ -423,6 +425,7 @@ public class Bitacora_Controller extends Controllers {
                                             }
                                         }
                                         String[] filamulta = new String[12];
+                                        filamulta[0] = multa.getTmulId().toString();
                                         filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                                         filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                         filamulta[3] = lBitacora.get(i).getTbitIdentificador();
@@ -504,7 +507,10 @@ public class Bitacora_Controller extends Controllers {
                     }
                 }
                 if (model != null) {
-                    numerarTabla(model);
+                    if (Bitacora_UI.bitacora.equals("PRESTAMO") || Bitacora_UI.bitacora.equals("ABONO") || Bitacora_UI.bitacora.equals("MULTA")) {
+                    } else {
+                        numerarTabla(model);
+                    }
                     JInternalFrame in = new Bitacora_Individual(model, cadena, 1, Bitacora_UI.bitController);
                     in.moveToFront();
                     checkInstance(in);
