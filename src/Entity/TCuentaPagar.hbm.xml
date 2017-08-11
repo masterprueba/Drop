@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/08/2017 08:57:00 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TCuentaPagar" table="t_cuenta_pagar" catalog="drop_db" optimistic-lock="version">
+        <id name="tcueId" type="java.lang.Integer">
+            <column name="tcue_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tcueNombre" type="string">
+            <column name="tcue_nombre" length="45" not-null="true" />
+        </property>
+        <property name="tcueSaldo" type="long">
+            <column name="tcue_saldo" precision="10" scale="0" not-null="true" />
+        </property>
+        <set name="TMovimientoCuentas" table="t_movimiento_cuenta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tmoc_tcue_id" not-null="true" />
+            </key>
+            <one-to-many class="Entity.TMovimientoCuenta" />
+        </set>
+    </class>
+</hibernate-mapping>

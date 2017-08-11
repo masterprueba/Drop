@@ -96,6 +96,8 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -114,7 +116,7 @@ public class MainDesktop extends javax.swing.JFrame {
         DesktopPaneMain.setLayout(DesktopPaneMainLayout);
         DesktopPaneMainLayout.setHorizontalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 868, Short.MAX_VALUE)
+            .addGap(0, 1008, Short.MAX_VALUE)
         );
         DesktopPaneMainLayout.setVerticalGroup(
             DesktopPaneMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +331,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
-        jMenuItem19.setText("Movimientos");
+        jMenuItem19.setText("Movimientos de Banco");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -338,6 +340,22 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu8.add(jMenuItem19);
 
         jMenuBar1.add(jMenu8);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/factura.png"))); // NOI18N
+        jMenu9.setText("Cuentas * Pagar");
+        jMenu9.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+
+        jMenuItem22.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem22.setText("Movimientos de Cuentas * Pagar");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem22);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu2.setForeground(new java.awt.Color(255, 102, 0));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
@@ -521,6 +539,12 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame in = new Cuentas_UI();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -584,6 +608,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -599,6 +624,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

@@ -427,6 +427,14 @@ public class Persona_ extends Controllers {
         //Consulta (Traer todos las pesonas que sean clientes)
         selectAll(temp);
         
+        ArrayList<TDatosBasicosPersona> listtdbTemp = new ArrayList<TDatosBasicosPersona>();
+        
+        for (int l = 0; l < getListPer().size(); l++) {
+            listtdbTemp.add(getListPer().get(l).getTDatosBasicosPersona());
+        }
+        
+        listtdbTemp.sort(Comparator.comparing(TDatosBasicosPersona::getTdbpNombre));
+        
         setDtm((DefaultTableModel) jt.getModel());
 
         while (getDtm().getRowCount() > 0) {
@@ -434,8 +442,8 @@ public class Persona_ extends Controllers {
         }
         Object[] f = new Object[4];
         for (int i = 0; i < getListPer().size(); i++) {
-            f[1] = getListPer().get(i).getTDatosBasicosPersona().getTdbpCedula();
-            f[2] = getListPer().get(i).getTDatosBasicosPersona().getTdbpNombre() + " " + getListPer().get(i).getTDatosBasicosPersona().getTdbpApellido();
+            f[1] = listtdbTemp.get(i).getTdbpCedula();
+            f[2] = listtdbTemp.get(i).getTdbpNombre() + " " + listtdbTemp.get(i).getTdbpApellido();
             getDtm().addRow(f);
         }
         numerarTabla(getDtm());
@@ -683,6 +691,9 @@ public class Persona_ extends Controllers {
         Set temp = getPerCliente().getTPrestamos();
         List<TPrestamo> tp = new ArrayList<>();
         tp.addAll(temp);
+        
+        tp.sort(Comparator.comparing(TPrestamo::getTpreFechaEntrega));
+        
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);

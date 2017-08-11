@@ -22,10 +22,12 @@
     <mapping resource="Entity/TBitacora.hbm.xml"/>
     <mapping resource="Entity/TReferencia.hbm.xml"/>
     <mapping resource="Entity/TLogin.hbm.xml"/>
+    <mapping resource="Entity/TCuentaPagar.hbm.xml"/>
     <mapping resource="Entity/TPersona.hbm.xml"/>
     <mapping resource="Entity/TBanco.hbm.xml"/>
     <mapping resource="Entity/TPrestamo.hbm.xml"/>
     <mapping resource="Entity/TPago.hbm.xml"/>
     <mapping resource="Entity/TGasto.hbm.xml"/>
+    <mapping resource="Entity/TMovimientoCuenta.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
