@@ -306,7 +306,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
-        jMenuItem11.setText("Prestamos");
+        jMenuItem11.setText("Prestamos Cliente");
         jMenuItem11.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +328,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem23.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
-        jMenuItem23.setText("Prestamos por fecha");
+        jMenuItem23.setText("Prestamos Fecha");
         jMenuItem23.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +338,8 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.add(jMenuItem23);
 
         jMenuItem24.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem24.setText("Abonos por fecha");
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem24.setText("Abonos Fecha");
         jMenuItem24.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -582,7 +583,6 @@ public class MainDesktop extends javax.swing.JFrame {
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
-        boolean notExist = true;
         DesktopPaneMain.add(InternalWindow);
         calcWidthHeight(InternalWindow);
         InternalWindow.show();
