@@ -94,6 +94,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -323,6 +324,16 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem13);
 
+        jMenuItem23.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem23.setText("Prestamos por fecha");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem23);
+
         jMenuBar1.add(jMenu7);
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/bank.png"))); // NOI18N
@@ -545,6 +556,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        JInternalFrame in = new Prestamos_x_fecha("PRESTAMO");
+        checkInstance(in);        
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         boolean notExist = true;
@@ -625,6 +641,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

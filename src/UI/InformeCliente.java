@@ -8,7 +8,6 @@ package UI;
 import Controller.Cuota_Controller;
 import Controller.Persona_;
 import Controller.Prestamo_Controller;
-import static UI.Persona_UI.jComboBox1;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

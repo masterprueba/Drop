@@ -266,31 +266,47 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("id");
         return modelo;
     }
-    
+
     public DefaultTableModel listaClientesRefinancia() {
-        TableModel modelo = new TableModel(){
-            Class[] types = new Class [] {
+        TableModel modelo = new TableModel() {
+            Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 true, false, false, false, false, false, false
             };
+
             @Override
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
+
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
-        };        
+        };
         modelo.addColumn("*");
         modelo.addColumn("Nombre y Apellido");
         modelo.addColumn("Cedula");
         modelo.addColumn("Deuda");
-        modelo.addColumn("id_prestamo"); 
-        modelo.addColumn("valor_total"); 
-        modelo.addColumn("cuotas pagadas"); 
+        modelo.addColumn("id_prestamo");
+        modelo.addColumn("valor_total");
+        modelo.addColumn("cuotas pagadas");
+        return modelo;
+    }
+
+    public DefaultTableModel prestamosPorFecha() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Valor prestamo");
+        modelo.addColumn("Numero de Cuotas");
+        modelo.addColumn("Intereses");
+        modelo.addColumn("Metodo de pago");
+        modelo.addColumn("Fecha entrega");
+        modelo.addColumn("Valor Total");
+        modelo.addColumn("Valor Cuota");
         return modelo;
     }
 }

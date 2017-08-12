@@ -46,7 +46,7 @@ public class Prestamo_model<T> extends Models {
 
         return result;
     }
-    
+
     public List<T> informePrestamoXn(String fini, String ffin, String nombre) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
@@ -63,7 +63,7 @@ public class Prestamo_model<T> extends Models {
                 + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
                 + "FROM "
                 + "TPrestamo as prestamo "
-                + "WHERE concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) like '%"+nombre+"%' AND "
+                + "WHERE concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) like '%" + nombre + "%' AND "
                 + "prestamo.tpreFechaEntrega BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'";
         Query r = s.createQuery(query);
         List<T> result = r.list();
@@ -137,5 +137,16 @@ public class Prestamo_model<T> extends Models {
             id = null;
         }
         return id;
+    }
+
+    public List<T> prestamoPorFecha(String inicio, String fin) {
+        List<T> result = null;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String sql = "";        
+        String query = "from TPrestamo where tpreFechaEntrega  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + " ORDER BY tpreFechaEntrega ASC";
+        result = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return result;
     }
 }

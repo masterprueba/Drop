@@ -156,7 +156,6 @@ public class Persona_ extends Controllers {
     }
 
 //</editor-fold>
-    
 //<editor-fold defaultstate="collapsed" desc="prepareSelectCliente">
     public void prepareSelectCliente(String cC) {
 
@@ -173,11 +172,10 @@ public class Persona_ extends Controllers {
         if (res != null) {
             cleanDataJTextCliente();
             cleanDataJTextCodeudor(); //Limpiar Campos de Texto
-           
+
             getPerUI().btnEditar.setEnabled(true);
             enabledForEdit(false);
             colorJText(new java.awt.Color(205, 205, 255));
-            
 
             setDataJTextCliente(res); //Insertar datos en Capos de Texto
 
@@ -189,8 +187,6 @@ public class Persona_ extends Controllers {
 
             if (r == JOptionPane.YES_OPTION) {
 
-                
-                
             }
 
         }
@@ -248,8 +244,7 @@ public class Persona_ extends Controllers {
                 client(null);
             }
         } else //Si ID objeto codeudor NO es null PrepareUpdate
-        {
-            if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0) { //Si el capo cedula de codeudor no esta vacio
+         if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0) { //Si el capo cedula de codeudor no esta vacio
                 if (validar(true)) {
                     createObjectCodeudorTo(); //Crear objeto Codeudor
                     getDbpCodeudor().setTdbpId(getPerUI().objectCodeudor.getTDatosBasicosPersona().getTdbpId()); //Obtener ID de datos Basicos
@@ -289,7 +284,6 @@ public class Persona_ extends Controllers {
                     }
                 }
             }
-        }
         //--END CODEUDOR
     }
 
@@ -323,20 +317,18 @@ public class Persona_ extends Controllers {
 
                             JOptionPane.showMessageDialog(null, "Datos Guardados con exito", "Datos Guardados", JOptionPane.INFORMATION_MESSAGE);
                             initTable(getPerUI().jtbClientes);
-                           
+
                             enabledForEdit(false);
                             colorJText(new java.awt.Color(205, 205, 255));
                             cleanDataJTextCliente();
                             cleanDataJTextCodeudor();
-                            
-                            
+
                         }
                     }
                 }
             }
         } else //Si ID objeto CLIENTE es no es null PrepareUpdate
-        {
-            if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0) { //Si el capo cedula de CLIENTE no esta vacio
+         if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0) { //Si el capo cedula de CLIENTE no esta vacio
                 if (validar(false)) {
                     createObjectClienteTo(); //Crar objeto Persona
                     getDbpCliente().setTdbpId(getPerUI().objectCliente.getTDatosBasicosPersona().getTdbpId()); //Obtener ID de datos Basicos
@@ -381,7 +373,6 @@ public class Persona_ extends Controllers {
                     }
                 }
             }
-        }
         //--END CLIENTE
     }
 
@@ -426,15 +417,15 @@ public class Persona_ extends Controllers {
 
         //Consulta (Traer todos las pesonas que sean clientes)
         selectAll(temp);
-        
+
         ArrayList<TDatosBasicosPersona> listtdbTemp = new ArrayList<TDatosBasicosPersona>();
-        
+
         for (int l = 0; l < getListPer().size(); l++) {
             listtdbTemp.add(getListPer().get(l).getTDatosBasicosPersona());
         }
-        
+
         listtdbTemp.sort(Comparator.comparing(TDatosBasicosPersona::getTdbpNombre));
-        
+
         setDtm((DefaultTableModel) jt.getModel());
 
         while (getDtm().getRowCount() > 0) {
@@ -622,7 +613,7 @@ public class Persona_ extends Controllers {
         getPerUI().jtfRazonSocialEmpresaCodeudor.setFocusable(b);
         getPerUI().jtfDireccionEmpresaCodeudor.setFocusable(b);
         getPerUI().jtfTelefonolEmpresaCodeudor.setFocusable(b);
-        
+
         //Buttons
         getPerUI().btnRefCliente.setEnabled(b);
         getPerUI().btnRefCodeudor.setEnabled(b);
@@ -691,15 +682,20 @@ public class Persona_ extends Controllers {
         Set temp = getPerCliente().getTPrestamos();
         List<TPrestamo> tp = new ArrayList<>();
         tp.addAll(temp);
-        
+
         tp.sort(Comparator.comparing(TPrestamo::getTpreFechaEntrega));
-        
+
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
-        
+
         DefaultTableModel dtm2 = new TableModel().historialCuota();
         jt2.setModel(dtm2);
+        jt2.removeColumn(jt2.getColumnModel().getColumn(11));
+        jt2.removeColumn(jt2.getColumnModel().getColumn(10));
+        jt2.removeColumn(jt2.getColumnModel().getColumn(9));
+        jt2.removeColumn(jt2.getColumnModel().getColumn(8));
+        jt2.removeColumn(jt2.getColumnModel().getColumn(0));
 
         Object[] f = new Object[11];
         for (int i = 0; i < tp.size(); i++) {
@@ -727,7 +723,7 @@ public class Persona_ extends Controllers {
         List<TCuota> tc = new ArrayList<>();
 
         tc.addAll(temp);
-        
+
         tc.sort(Comparator.comparing(TCuota::getTcuoFecha));
 
         DefaultTableModel dtm = new TableModel().historialCuota();
@@ -751,7 +747,7 @@ public class Persona_ extends Controllers {
         }
         numerarTabla(dtm);
         InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3) + "");
-        InformeCliente.txt_debe.setText((Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 7)))-Float.parseFloat(totalDeUnaTabla(dtm, 3) + ""))+"");
+        InformeCliente.txt_debe.setText((Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 7))) - Float.parseFloat(totalDeUnaTabla(dtm, 3) + "")) + "");
         int[] position = {0, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }

@@ -403,24 +403,21 @@ public class Bitacora_Controller extends Controllers {
                         case "MULTA":
                             int idmulta = Integer.parseInt(Bitacora_UI.jTable1.getModel().getValueAt(fila, 11).toString());
                             model = new TableModel().bitacoraGeneralMulta();
-                            boolean continuar = true;
                             for (int i = 0; i < listObject.size(); i++) {
                                 if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta")) {
                                     TMulta multa = (TMulta) listObject.get(i);
                                     if (multa.getTmulId() == idmulta) {
-                                        if (continuar) {
-                                            for (int j = 0; j < listObject.size(); j++) {
-                                                if (lBitacora.get(j).getTbitClassname().equals("Entity.TPrestamo")) {
-                                                    TPrestamo prestaMulta = (TPrestamo) listObject.get(j);
-                                                    if (Objects.equals(prestaMulta.getTpreId(), multa.getTPrestamo().getTpreId())) {
-                                                        cadena = "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
-                                                                + "<tr><td>Cliente:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
-                                                                + "<td>N° Cuotas:</td><td>" + prestaMulta.getTpreNumCuotas() + "</td></tr> "
-                                                                + "<tr><td>Valor Prestamo:</td><td>" + prestaMulta.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestaMulta.getTpreIntereses() + "</td></tr>"
-                                                                + "<tr><td>Metodo pago:</td><td>" + prestaMulta.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestaMulta.getTpreFechaEntrega()) + "</td></tr>"
-                                                                + "<tr><td>Valor Total:</td><td>" + prestaMulta.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestaMulta.getTpreValorCuota() + "</td></tr>"
-                                                                + "</table></html>";
-                                                    }
+                                        for (int j = 0; j < listObject.size(); j++) {
+                                            if (lBitacora.get(j).getTbitClassname().equals("Entity.TPrestamo")) {
+                                                TPrestamo prestaMulta = (TPrestamo) listObject.get(j);
+                                                if (Objects.equals(prestaMulta.getTpreId(), multa.getTPrestamo().getTpreId())) {
+                                                    cadena = "<html>Informacion General del prestamo <br><table cellspacing=\"1\">"
+                                                            + "<tr><td>Cliente:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td>"
+                                                            + "<td>N° Cuotas:</td><td>" + prestaMulta.getTpreNumCuotas() + "</td></tr> "
+                                                            + "<tr><td>Valor Prestamo:</td><td>" + prestaMulta.getTpreValorPrestamo() + "</td><td>Intereses:</td><td>" + prestaMulta.getTpreIntereses() + "</td></tr>"
+                                                            + "<tr><td>Metodo pago:</td><td>" + prestaMulta.getTpreMetodPago() + "</td><td>Fecha de entrega:</td><td>" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestaMulta.getTpreFechaEntrega()) + "</td></tr>"
+                                                            + "<tr><td>Valor Total:</td><td>" + prestaMulta.getTpreValorTotal() + "</td><td>Valor Cuotas:</td><td>" + prestaMulta.getTpreValorCuota() + "</td></tr>"
+                                                            + "</table></html>";
                                                 }
                                             }
                                         }
