@@ -95,6 +95,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -317,6 +318,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem13.setText("General");
+        jMenuItem13.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -327,12 +329,23 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem23.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem23.setText("Prestamos por fecha");
+        jMenuItem23.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem23ActionPerformed(evt);
             }
         });
         jMenu7.add(jMenuItem23);
+
+        jMenuItem24.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem24.setText("Abonos por fecha");
+        jMenuItem24.setPreferredSize(new java.awt.Dimension(141, 30));
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem24);
 
         jMenuBar1.add(jMenu7);
 
@@ -343,6 +356,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem19.setText("Movimientos de Banco");
+        jMenuItem19.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -557,9 +571,14 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        JInternalFrame in = new Prestamos_x_fecha("PRESTAMO");
+        JInternalFrame in = new PrestamosyAbonos_x_fecha("PRESTAMO");
         checkInstance(in);        
     }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        JInternalFrame in = new PrestamosyAbonos_x_fecha("ABONO");
+        checkInstance(in);     
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -642,6 +661,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

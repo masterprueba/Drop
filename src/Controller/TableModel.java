@@ -309,4 +309,17 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Valor Cuota");
         return modelo;
     }
+
+    public DefaultTableModel abonoPorFecha() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Valor Abonado");
+        modelo.addColumn("Fecha de abono");
+        modelo.addColumn("Cobrador");
+        modelo.addColumn("Metodo de Pago");
+        modelo.addColumn("Nuevo saldo");
+        modelo.addColumn("Cuotas Pagadas");
+        return modelo;
+    }
 }

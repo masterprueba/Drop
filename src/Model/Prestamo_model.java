@@ -140,11 +140,22 @@ public class Prestamo_model<T> extends Models {
     }
 
     public List<T> prestamoPorFecha(String inicio, String fin) {
-        List<T> result = null;
+        List<T> result ;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String sql = "";        
+        String sql = "";
         String query = "from TPrestamo where tpreFechaEntrega  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + " ORDER BY tpreFechaEntrega ASC";
+        result = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return result;
+    }
+
+    public List<T> abonoPorFecha(String inicio, String fin) {
+        List<T> result ;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String sql = "";
+        String query = "from TCuota where tcuoFecha  between  '" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' " + sql + " ORDER BY tcuoFecha ASC";
         result = s.createQuery(query).list();
         s.getTransaction().commit();
         return result;

@@ -8,7 +8,7 @@ package Controller;
 import Entity.TCuota;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
-import UI.Prestamos_x_fecha;
+import UI.PrestamosyAbonos_x_fecha;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -19,16 +19,16 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class Prestamos_Abonos_Xfecha {
+public class Prestamos_Abonos_Xfecha extends Controllers {
 
     private final Prestamo_model mPrestamo = new Prestamo_model();
-    private static Prestamos_x_fecha vistaPrestamo_Abonos;
+    private static PrestamosyAbonos_x_fecha vistaPrestamo_Abonos;
     private List<TPrestamo> listPrestamo;
     private List<TCuota> listCuota;
     private String fechaInicio = "";
     private String fechaFin = "";
 
-    public Prestamos_Abonos_Xfecha(Prestamos_x_fecha vista) {
+    public Prestamos_Abonos_Xfecha(PrestamosyAbonos_x_fecha vista) {
         vistaPrestamo_Abonos = vista;
     }
 
@@ -36,7 +36,7 @@ public class Prestamos_Abonos_Xfecha {
         obtenerFechas();
         vistaPrestamo_Abonos.modelo.setNumRows(0);
         listPrestamo = mPrestamo.prestamoPorFecha(fechaInicio, fechaFin);
-        for (TPrestamo prestamo : listPrestamo) {
+        listPrestamo.stream().map((prestamo) -> {
             String[] filas = new String[12];
             filas[0] = prestamo.getTpreId().toString();
             filas[1] = prestamo.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestamo.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
@@ -47,8 +47,32 @@ public class Prestamos_Abonos_Xfecha {
             filas[6] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(prestamo.getTpreFechaEntrega());
             filas[7] = "" + prestamo.getTpreValorTotal();
             filas[8] = "" + prestamo.getTpreValorCuota();
+            return filas;
+        }).forEach((filas) -> {
             vistaPrestamo_Abonos.modelo.addRow(filas);
-        }
+        });
+        vistaPrestamo_Abonos.jTextField1.setText("" + totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2));
+    }
+
+    public void verAbonos() {
+        obtenerFechas();
+        vistaPrestamo_Abonos.modelo.setNumRows(0);
+        listCuota = mPrestamo.abonoPorFecha(fechaInicio, fechaFin);
+        listCuota.stream().map((abono) -> {
+            String[] filas = new String[12];
+            filas[0] = abono.getTcuoId().toString();
+            filas[1] = abono.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + abono.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+            filas[2] = "" + abono.getTcuoAbono();
+            filas[3] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(abono.getTcuoFecha());
+            filas[4] = abono.getTCobrador().getTcobNombre();
+            filas[5] = abono.getTPago().getTipo();
+            filas[6] = "" + abono.getTcuoNuevoSaldo();
+            filas[7] = "" + abono.getTcuoCuotasPagadas();
+            return filas;
+        }).forEach((filas) -> {
+            vistaPrestamo_Abonos.modelo.addRow(filas);
+        });
+        vistaPrestamo_Abonos.jTextField1.setText("" + totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2));
     }
 
     private void obtenerFechas() {

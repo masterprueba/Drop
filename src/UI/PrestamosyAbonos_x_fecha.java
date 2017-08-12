@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
+public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Perstamos_x_fecha
@@ -23,26 +23,29 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
     static String vista;
     public DefaultTableModel modelo;
     private final Prestamos_Abonos_Xfecha paControler;
-    
-    public Prestamos_x_fecha(String vist) {
+
+    public PrestamosyAbonos_x_fecha(String vist) {
         initComponents();
         vista = vist;
         paControler = new Prestamos_Abonos_Xfecha(this);
-        jTable1.setModel(modelo = modelo(vist));
-        paControler.verPrestamos();
+        modelo(vist);
         paControler.desactivarFechas(1);
+
     }
-    
-    private DefaultTableModel modelo(String vista) {
+
+    private void modelo(String vista) {
         switch (vista) {
             case "PRESTAMO":
                 jLabel2.setText("PRESTAMOS POR FECHA");
-                return new TableModel().prestamosPorFecha();
+                modelo = new TableModel().prestamosPorFecha();
+                paControler.verPrestamos();
+                break;
             case "ABONO":
-                return null;
-            default:
-                return null;
+                jLabel2.setText("ABONOS POR FECHA");
+                modelo = new TableModel().abonoPorFecha();
+                break;
         }
+        jTable1.setModel(modelo);
     }
 
     /**
@@ -63,6 +66,8 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -103,13 +108,18 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jTextField1.setEditable(false);
+
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel1.setText("Total");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -123,7 +133,11 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,7 +153,10 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -175,6 +192,7 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
         if (vista.equals("PRESTAMO")) {
             paControler.verPrestamos();
         } else {
+            paControler.verAbonos();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -184,7 +202,12 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
             modelo.setNumRows(0);
         } else {
             paControler.desactivarFechas(1);
-            //bitController.verBitacoraGeneral();
+            if (vista.equals("PRESTAMO")) {
+                paControler.verPrestamos();
+            } else {
+                paControler.verAbonos();
+            }
+
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -194,11 +217,13 @@ public class Prestamos_x_fecha extends javax.swing.JInternalFrame {
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
