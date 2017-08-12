@@ -43,6 +43,7 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
             case "ABONO":
                 jLabel2.setText("ABONOS POR FECHA");
                 modelo = new TableModel().abonoPorFecha();
+                 paControler.verAbonos();
                 break;
         }
         jTable1.setModel(modelo);
