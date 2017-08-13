@@ -380,8 +380,8 @@
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
-                            <StringItem index="0" value="Deposito"/>
-                            <StringItem index="1" value="Retiro"/>
+                            <StringItem index="0" value="Abono"/>
+                            <StringItem index="1" value="Deuda"/>
                           </StringArray>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
@@ -801,7 +801,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Registrar Banco">
+                        <TitledBorder title="Registrar Cuenta por Pagar">
                           <Font PropertyName="font" name="Cambria" size="14" style="0"/>
                         </TitledBorder>
                       </Border>
@@ -819,10 +819,10 @@
                                   <Component id="jtfSaldoBase" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel13" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Component id="jLabel14" min="-2" pref="111" max="-2" attributes="0"/>
+                                          <Component id="jLabel13" min="-2" pref="168" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="299" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -873,7 +873,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Cambria" size="14" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Nombre de Banco"/>
+                        <Property name="text" type="java.lang.String" value="Nombre y/o Descripcion"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel14">

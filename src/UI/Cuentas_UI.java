@@ -221,7 +221,7 @@ public class Cuentas_UI extends Views {
         });
 
         jcbTipoMovimiento.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jcbTipoMovimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deposito", "Retiro" }));
+        jcbTipoMovimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abono", "Deuda" }));
         jcbTipoMovimiento.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -493,7 +493,7 @@ public class Cuentas_UI extends Views {
 
         jTabbedPane2.addTab("Cuentas * Pagar", jPanel4);
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Banco", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Cuenta por Pagar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
 
         btnGuardarCuenta.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnGuardarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
@@ -506,7 +506,7 @@ public class Cuentas_UI extends Views {
         });
 
         jLabel13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel13.setText("Nombre de Banco");
+        jLabel13.setText("Nombre y/o Descripcion");
 
         jLabel14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel14.setText("Saldo Base");
@@ -535,9 +535,9 @@ public class Cuentas_UI extends Views {
                     .addComponent(jtfSaldoBase)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 299, Short.MAX_VALUE)))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -627,8 +627,7 @@ public class Cuentas_UI extends Views {
         // TODO add your handling code here:
         cuentas_controller.prepareInsertMovimientoCuenta();
 
-        jtfSaldo.setText("");
-        btnGuardarMovimiento.setText("");
+        
 
     }//GEN-LAST:event_btnGuardarMovimientoActionPerformed
 
@@ -688,6 +687,7 @@ public class Cuentas_UI extends Views {
 
     private void jtfSaldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfSaldoKeyTyped
         soloNumeros(evt);
+        limitarCaracteres(evt, jtfSaldoBase, 10);
     }//GEN-LAST:event_jtfSaldoKeyTyped
 
     private void btnGuardarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCuentaActionPerformed
@@ -699,10 +699,12 @@ public class Cuentas_UI extends Views {
 
     private void jtfNombreCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreCuentaKeyTyped
         // TODO add your handling code here:
+        limitarCaracteres(evt, jtfSaldoBase, 45);
     }//GEN-LAST:event_jtfNombreCuentaKeyTyped
 
     private void jtfSaldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfSaldoBaseKeyTyped
         // TODO add your handling code here:
+        limitarCaracteres(evt, jtfSaldoBase, 10);
     }//GEN-LAST:event_jtfSaldoBaseKeyTyped
 
 

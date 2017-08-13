@@ -5,11 +5,8 @@
  */
 package Controller;
 
-import Entity.TBanco;
 import Entity.TCuentaPagar;
-import Entity.TMovimientoBanco;
 import Entity.TMovimientoCuenta;
-import Model.Banco_Model;
 import Model.Cuentas_Model;
 import UI.Cuentas_UI;
 
@@ -92,9 +89,6 @@ public class Cuentas_Controller extends Controllers {
         this.dformat = dformat;
     }
 
-    
- 
-
     //<editor-fold defaultstate="collapsed" desc="TABLE init">
     public void initTable(JTable jt) {
 
@@ -152,15 +146,20 @@ public class Cuentas_Controller extends Controllers {
             tb.setTcueNombre(getCueUI().jtfNombreCuenta.getText());
             tb.setTcueSaldo(Long.parseLong(getCueUI().jtfSaldoBase.getText()));
 
-            if (insertCuenta(tb) > 0) {
-                initTable(getCueUI().jtCuenta);
-                JOptionPane.showMessageDialog(null, "Cuenta por Pagar Registrada");
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Nombre de Cuenta : " + getCueUI().jtfNombreCuenta.getText() + "\n Saldo Base : " + Long.parseLong(getCueUI().jtfSaldoBase.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
 
-                getCueUI().jtfNombreCuenta.setText("");
-                getCueUI().jtfSaldoBase.setText("");
+            if (r == JOptionPane.YES_OPTION) {
+
+                if (insertCuenta(tb) > 0) {
+                    initTable(getCueUI().jtCuenta);
+                    JOptionPane.showMessageDialog(null, "Cuenta por Pagar Registrada");
+
+                    getCueUI().jtfNombreCuenta.setText("");
+                    getCueUI().jtfSaldoBase.setText("");
+                }
             }
         }
-    } 
+    }
 
     public void prepareInsertMovimientoCuenta() {
 
@@ -174,12 +173,20 @@ public class Cuentas_Controller extends Controllers {
             tm.setTmocTipo("" + getCueUI().jcbTipoMovimiento.getSelectedItem());
             tm.setTmocSaldo((getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
             tm.setTmocFecha(getCueUI().jtfFecha.getDate());
-            
-            //JOptionPane.showMessageDialog(null, (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
 
-            if (insertMovimientoCuenta(tm) > 0) {
-                initTable(getCueUI().jtCuenta);
-                limpiaTabla(getCueUI().jtMovimientosCuenta);
+            //JOptionPane.showMessageDialog(null, (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getCueUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+
+            if (r == JOptionPane.YES_OPTION) {
+                if (insertMovimientoCuenta(tm) > 0) {
+                    initTable(getCueUI().jtCuenta);
+                    limpiaTabla(getCueUI().jtMovimientosCuenta);
+
+                    getCueUI().jtfSaldo.setText("");
+                    getCueUI().btnGuardarMovimiento.setText("");
+
+                }
+
             }
         }
     }

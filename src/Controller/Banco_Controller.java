@@ -10,18 +10,12 @@ import Entity.TMovimientoBanco;
 import Model.Banco_Model;
 import UI.Banco_UI;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -149,13 +143,18 @@ public class Banco_Controller extends Controllers {
             tb.setTbanNombre(getBanUI().jtfNombreBanco.getText());
             tb.setTbanSaldo(Long.parseLong(getBanUI().jtfSaldoBase.getText()));
 
-            if (insertBanco(tb) > 0) {
-                initTable(getBanUI().jtBanco);
-                JOptionPane.showMessageDialog(null, "Banco Registrado");
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Número de Cuenta : " + getBanUI().jtfNumeroCuenta.getText() + "\n Nombre del Banco : " + getBanUI().jtfNombreBanco.getText() + "\n Saldo Base : "+ Long.parseLong(getBanUI().jtfSaldoBase.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
 
-                getBanUI().jtfNumeroCuenta.setText("");
-                getBanUI().jtfNombreBanco.setText("");
-                getBanUI().jtfSaldoBase.setText("");
+            if (r == JOptionPane.YES_OPTION) {
+
+                if (insertBanco(tb) > 0) {
+                    initTable(getBanUI().jtBanco);
+                    JOptionPane.showMessageDialog(null, "Banco Registrado");
+
+                    getBanUI().jtfNumeroCuenta.setText("");
+                    getBanUI().jtfNombreBanco.setText("");
+                    getBanUI().jtfSaldoBase.setText("");
+                }
             }
         }
     }
@@ -173,12 +172,18 @@ public class Banco_Controller extends Controllers {
             tm.setTmovSaldo((getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
             tm.setTmovFecha(getBanUI().jtfFecha.getDate());
             tm.setTmovConcepto(getBanUI().jtaConcepto.getText());
-            
-            //JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
 
-            if (insertMovimientoBanco(tm) > 0) {
-                initTable(getBanUI().jtBanco);
-                limpiaTabla(getBanUI().jtMovimientos);
+            //JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+
+            if (r == JOptionPane.YES_OPTION) {
+                if (insertMovimientoBanco(tm) > 0) {
+                    initTable(getBanUI().jtBanco);
+                    limpiaTabla(getBanUI().jtMovimientos);
+                    getBanUI().jtfSaldo.setText("");
+                    getBanUI().jtaConcepto.setText("");
+                    getBanUI().btnGuardarMovimiento.setText("");
+                }
             }
         }
     }

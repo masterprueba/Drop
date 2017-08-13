@@ -661,10 +661,6 @@ public class Banco_UI extends Views {
         // TODO add your handling code here:
         banco_controller.prepareInsertMovimientoBanco();
 
-        jtfSaldo.setText("");
-        jtaConcepto.setText("");
-        btnGuardarMovimiento.setText("");
-
     }//GEN-LAST:event_btnGuardarMovimientoActionPerformed
 
     private void jtxSearchMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxSearchMovimientosActionPerformed
@@ -723,10 +719,12 @@ public class Banco_UI extends Views {
 
     private void jtfSaldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfSaldoKeyTyped
         soloNumeros(evt);
+        limitarCaracteres(evt, jtfSaldoBase, 10);
     }//GEN-LAST:event_jtfSaldoKeyTyped
 
     private void jtfNumeroCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNumeroCuentaKeyTyped
         // TODO add your handling code here:
+        limitarCaracteres(evt, jtfSaldoBase, 40);
     }//GEN-LAST:event_jtfNumeroCuentaKeyTyped
 
     private void btnGuardarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBancoActionPerformed
@@ -738,10 +736,12 @@ public class Banco_UI extends Views {
 
     private void jtfNombreBancoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreBancoKeyTyped
         // TODO add your handling code here:
+        limitarCaracteres(evt, jtfSaldoBase, 45);
     }//GEN-LAST:event_jtfNombreBancoKeyTyped
 
     private void jtfSaldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfSaldoBaseKeyTyped
         // TODO add your handling code here:
+        limitarCaracteres(evt, jtfSaldoBase, 10);
     }//GEN-LAST:event_jtfSaldoBaseKeyTyped
 
 

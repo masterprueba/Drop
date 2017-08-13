@@ -186,7 +186,11 @@ public class Persona_ extends Controllers {
             int r = JOptionPane.showConfirmDialog(null, "Cliente no Registrado... ¿Desea registrar?", "Cliente NO registrado", JOptionPane.YES_NO_OPTION);
 
             if (r == JOptionPane.YES_OPTION) {
-
+                getPerUI().btnEditar.setEnabled(false);
+                enabledForEdit(true);
+                colorJText(new java.awt.Color(255, 255, 255));
+                cleanDataJTextCliente();
+                cleanDataJTextCodeudor(); //Limpiar Campos de Texto
             }
 
         }
