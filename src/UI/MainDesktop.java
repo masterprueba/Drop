@@ -36,6 +36,7 @@ public class MainDesktop extends javax.swing.JFrame {
         if (!Login_Controller.getUsuarioLogueado().getTlogUserLogin().equals("DULFAY")) {
             jMenuItem1.setVisible(false);
             jMenuItem21.setVisible(false);
+            jMenu5.setVisible(false);
         }
         //Maximizar la ventana en inicio
         //this.setExtendedState(MAXIMIZED_BOTH);
