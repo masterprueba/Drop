@@ -57,7 +57,7 @@ public class Informe_Controller extends Controllers{
         InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9))+"");
         int ganacias = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 10));
         //gasto
-        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 4))+"");
+        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3))+"");
         InformeGeneral.text_ganacia.setText(""+(ganacias-Integer.parseInt(InformeGeneral.text_gasto.getText())));
     }
     

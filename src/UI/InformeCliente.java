@@ -6,6 +6,7 @@
 package UI;
 
 import Controller.Cuota_Controller;
+import Controller.Login_Controller;
 import Controller.Persona_;
 import Controller.Prestamo_Controller;
 import java.awt.Color;
@@ -26,6 +27,10 @@ public class InformeCliente extends Views {
     public InformeCliente() {
         initComponents();
         init();
+        if (!Login_Controller.getUsuarioLogueado().getTlogUserLogin().equals("DULFAY")) {
+            jButton1.setVisible(false);
+            jButton2.setVisible(false);
+        }
     }
 
     private void init() {

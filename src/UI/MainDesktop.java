@@ -33,6 +33,10 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuBar1.add(Box.createHorizontalGlue());
         jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre() + " " + Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
         jMenuBar1.add(jMenu2);
+        if (!Login_Controller.getUsuarioLogueado().getTlogUserLogin().equals("DULFAY")) {
+            jMenuItem1.setVisible(false);
+            jMenuItem21.setVisible(false);
+        }
         //Maximizar la ventana en inicio
         //this.setExtendedState(MAXIMIZED_BOTH);
     }
