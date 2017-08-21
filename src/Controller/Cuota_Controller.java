@@ -142,10 +142,11 @@ public class Cuota_Controller extends Prestamo_Controller {
                         Cuota_UI.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                         Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
+                        Cuota_UI.a_numabono.setText(prestamo.getTCuotas().size()+"");
                         clearPanel(Cuota_UI.jPanel2);
                         clearPanel(Cuota_UI.jPanel3);
                         Cuota_UI.a_cobrador.setText("Por defecto");
-                        Cuota_UI.a_metodo.setText("Por defecto");
+                        Cuota_UI.a_metodo.setText("Por defecto");                        
                     }
                 }
             }

@@ -91,7 +91,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel historialPrestamo() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("#");
+        modelo.addColumn("# de cuota");
         modelo.addColumn("ID");
         modelo.addColumn("Valor");
         modelo.addColumn("N° Cuotas");

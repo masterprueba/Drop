@@ -66,6 +66,8 @@ public class Cuota_UI extends Views {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         a_pnumcuotas = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        a_numabono = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         a_cuotaneto = new javax.swing.JTextField();
@@ -249,9 +251,12 @@ public class Cuota_UI extends Views {
         a_totalPrestamo.setEditable(false);
 
         jLabel19.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel19.setText("Numero de Cuotas");
+        jLabel19.setText("Total de cuotas");
 
         a_pnumcuotas.setEditable(false);
+
+        jLabel20.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel20.setText("# de abonos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -294,6 +299,10 @@ public class Cuota_UI extends Views {
                 .addComponent(jLabel6)
                 .addGap(12, 12, 12)
                 .addComponent(a_cuotaspag, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addComponent(a_numabono, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -316,12 +325,15 @@ public class Cuota_UI extends Views {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(a_cuotaspag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(a_pnumcuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(a_cuotaspag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)
+                        .addComponent(a_pnumcuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(a_numabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de la Cuota:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 18))); // NOI18N
@@ -582,6 +594,7 @@ public class Cuota_UI extends Views {
     public static javax.swing.JTextField a_interes;
     public static javax.swing.JTextField a_metodo;
     public static javax.swing.JTextField a_nombre;
+    public static javax.swing.JTextField a_numabono;
     public static javax.swing.JTextField a_pnumcuotas;
     public static javax.swing.JTextField a_totalPrestamo;
     public static javax.swing.JTextField a_totalcuota;
@@ -603,6 +616,7 @@ public class Cuota_UI extends Views {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
