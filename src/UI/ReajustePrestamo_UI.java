@@ -5,17 +5,19 @@
  */
 package UI;
 
+import Controller.ReajustePrestamo_Controller;
+
 /**
  *
  * @author PC
  */
-public class ReajustePrestamo extends javax.swing.JInternalFrame {
+public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ReajustePrestamo
-     */
-    public ReajustePrestamo() {
+    ReajustePrestamo_Controller rp;
+    
+    public ReajustePrestamo_UI() {
         initComponents();
+        rp = new ReajustePrestamo_Controller();
     }
 
     /**
@@ -28,7 +30,7 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_id_prestamo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -75,6 +77,11 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
         jLabel1.setText("ID prestamo:");
 
         jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Prestamo actual");
 
@@ -322,7 +329,7 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_id_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
@@ -336,7 +343,7 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -349,6 +356,10 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        rp.getPrestamo();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -377,7 +388,7 @@ public class ReajustePrestamo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField txt_id_prestamo;
     public static javax.swing.JTextField txt_r_interes;
     public static javax.swing.JTextField txt_r_tcuotas;
     public static javax.swing.JLabel txt_r_tiempo;

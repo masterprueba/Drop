@@ -58,7 +58,7 @@ public class Models<T> {
 
     public T consultar(Class clase, int id) {
         s = hibernateUtil.getSessionFactory();
-        s.beginTransaction();
+        s.beginTransaction();        
         Objecto = (T) s.get(clase, id);
         s.getTransaction().commit();
         return Objecto;
