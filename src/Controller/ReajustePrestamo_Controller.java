@@ -9,6 +9,7 @@ import Entity.TCuota;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
 import UI.ReajustePrestamo_UI;
+import java.util.Date;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
@@ -40,14 +41,21 @@ public class ReajustePrestamo_Controller extends Controllers {
                 ReajustePrestamo_UI.txt_r_tintereses.setText(prestamo.getTpreValorTotal() - prestamo.getTpreValorPrestamo() + "");
                 ReajustePrestamo_UI.txt_r_vpestamointeres.setText(prestamo.getTpreValorTotal() + "");  
                 
-            //Hasta hoy
+            //Hasta hoyº            
+            int dias =(int) ((new Date().getTime()- prestamo.getTpreFechaEntrega().getTime())/86400000);
                 ReajustePrestamo_UI.txt_rhoy_vprestamo.setText(prestamo.getTpreValorPrestamo() + "");
                 ReajustePrestamo_UI.txt_rhoy_interes.setText(prestamo.getTpreIntereses() + "");
-                //ReajustePrestamo_UI.txt_r_tcuotas.setText(prestamo.getTpreNumCuotas() + "");
-                //ReajustePrestamo_UI.txt_r_tiempo.setText(prestamo.getTpreMetodPago());
+                ReajustePrestamo_UI.txt_rhoy_dias.setText(dias+"");
+            float mes = (float)dias/30;
+            float interes = prestamo.getTpreValorPrestamo()*((float)prestamo.getTpreIntereses()/100);            
+            float valorinteres = (interes/30)*dias;
+            if (mes<1) {
+                valorinteres = interes;
+            }            
                 ReajustePrestamo_UI.txt_rhoy_vpagado.setText(pagado + "");
-                //ReajustePrestamo_UI.txt_r_tintereses.setText(prestamo.getTpreValorTotal() - prestamo.getTpreValorPrestamo() + "");
-                //ReajustePrestamo_UI.txt_r_vpestamointeres.setText(prestamo.getTpreValorTotal() + "");  
+                ReajustePrestamo_UI.txt_thoy_tintereses.setText(valorinteres+"");
+                ReajustePrestamo_UI.txt_rhoy_pretamointeres.setText(prestamo.getTpreValorPrestamo()+valorinteres+"");  
+                ReajustePrestamo_UI.txt_vabonar.setText((prestamo.getTpreValorPrestamo()+valorinteres)-pagado + "");
         } else {
             JOptionPane.showMessageDialog(null, "No existe prestamo");
         }
