@@ -30,6 +30,12 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
         paControler = new Prestamos_Abonos_Xfecha(this);
         modelo(vist);
         paControler.desactivarFechas(1);
+        if (vista.equals("PRESTAMO")) {
+            jComboCobrador.setVisible(false);
+            jComboMetodoPago.setVisible(false);
+            jLabel3.setVisible(false);
+            jLabel4.setVisible(false);
+        }
 
     }
 
@@ -43,7 +49,7 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
             case "ABONO":
                 jLabel2.setText("ABONOS POR FECHA");
                 modelo = new TableModel().abonoPorFecha();
-                 paControler.verAbonos();
+                paControler.verAbonos();
                 break;
         }
         jTable1.setModel(modelo);
@@ -69,6 +75,10 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboCobrador = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jComboMetodoPago = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -111,8 +121,34 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
 
         jTextField1.setEditable(false);
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel1.setText("Total");
+
+        jLabel3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel3.setText("Cobrador");
+
+        jComboCobrador.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jComboCobrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        jComboCobrador.setMinimumSize(new java.awt.Dimension(152, 26));
+        jComboCobrador.setPreferredSize(new java.awt.Dimension(152, 26));
+        jComboCobrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboCobradorActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel4.setText("Metodo Pago");
+
+        jComboMetodoPago.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jComboMetodoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        jComboMetodoPago.setMinimumSize(new java.awt.Dimension(152, 26));
+        jComboMetodoPago.setPreferredSize(new java.awt.Dimension(152, 26));
+        jComboMetodoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMetodoPagoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,15 +166,26 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
                                 .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboCobrador, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,8 +197,13 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboMetodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboCobrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -181,7 +233,7 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addGap(18, 27, Short.MAX_VALUE)
+                .addGap(18, 31, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -212,14 +264,28 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jComboCobradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboCobradorActionPerformed
+        // TODO add your handling code here:
+        paControler.verAbonos();
+    }//GEN-LAST:event_jComboCobradorActionPerformed
+
+    private void jComboMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMetodoPagoActionPerformed
+        // TODO add your handling code here:
+        paControler.verAbonos();
+    }//GEN-LAST:event_jComboMetodoPagoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboCobrador;
+    public static javax.swing.JComboBox<String> jComboMetodoPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

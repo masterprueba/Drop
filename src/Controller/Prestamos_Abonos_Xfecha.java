@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Entity.TCobrador;
 import Entity.TCuota;
+import Entity.TPago;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
 import UI.PrestamosyAbonos_x_fecha;
@@ -22,7 +24,7 @@ import javax.swing.JOptionPane;
 public class Prestamos_Abonos_Xfecha extends Controllers {
 
     private final Prestamo_model mPrestamo = new Prestamo_model();
-    private static PrestamosyAbonos_x_fecha vistaPrestamo_Abonos;
+    private final PrestamosyAbonos_x_fecha vistaPrestamo_Abonos;
     private List<TPrestamo> listPrestamo;
     private List<TCuota> listCuota;
     private String fechaInicio = "";
@@ -30,6 +32,12 @@ public class Prestamos_Abonos_Xfecha extends Controllers {
 
     public Prestamos_Abonos_Xfecha(PrestamosyAbonos_x_fecha vista) {
         vistaPrestamo_Abonos = vista;
+        mPrestamo.findAll(TCobrador.class).stream().forEach((c) -> {
+            vistaPrestamo_Abonos.jComboCobrador.addItem(((TCobrador) c).getTcobNombre());
+        });
+        mPrestamo.findAll(TPago.class).stream().forEach((c) -> {
+            vistaPrestamo_Abonos.jComboMetodoPago.addItem(((TPago) c).getTipo());
+        });
     }
 
     public void verPrestamos() {
@@ -51,13 +59,14 @@ public class Prestamos_Abonos_Xfecha extends Controllers {
         }).forEach((filas) -> {
             vistaPrestamo_Abonos.modelo.addRow(filas);
         });
-        vistaPrestamo_Abonos.jTextField1.setText("" + totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2));
+        vistaPrestamo_Abonos.jTextField1.setText("" + Math.round(totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2)));
     }
 
     public void verAbonos() {
         obtenerFechas();
         vistaPrestamo_Abonos.modelo.setNumRows(0);
-        listCuota = mPrestamo.abonoPorFecha(fechaInicio, fechaFin);
+        String sql = (vistaPrestamo_Abonos.jComboCobrador.getSelectedIndex() != 0 ? "and cobrador.tcobNombre = '" + vistaPrestamo_Abonos.jComboCobrador.getSelectedItem().toString() + "'" : "") + (vistaPrestamo_Abonos.jComboMetodoPago.getSelectedIndex() != 0 ? " and pago.tipo ='" + vistaPrestamo_Abonos.jComboMetodoPago.getSelectedItem().toString() + "'" : "");
+        listCuota = mPrestamo.abonoPorFecha(fechaInicio, fechaFin, sql);
         listCuota.stream().map((abono) -> {
             String[] filas = new String[12];
             filas[0] = abono.getTcuoId().toString();
@@ -72,7 +81,7 @@ public class Prestamos_Abonos_Xfecha extends Controllers {
         }).forEach((filas) -> {
             vistaPrestamo_Abonos.modelo.addRow(filas);
         });
-        vistaPrestamo_Abonos.jTextField1.setText("" + totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2));
+        vistaPrestamo_Abonos.jTextField1.setText("" + Math.round(totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2)));
     }
 
     private void obtenerFechas() {
