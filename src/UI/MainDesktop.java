@@ -33,7 +33,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuBar1.add(Box.createHorizontalGlue());
         jMenu2.setText(Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpNombre() + " " + Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpApellido());
         jMenuBar1.add(jMenu2);
-        if (!Login_Controller.getUsuarioLogueado().getTlogUserLogin().equals("DULFAY")) {
+        if (!Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpCedula().equals("31922118")) {
             jMenuItem1.setVisible(false);
             jMenuItem21.setVisible(false);
             jMenu5.setVisible(false);
@@ -469,6 +469,7 @@ public class MainDesktop extends javax.swing.JFrame {
             Login in = new Login();
             in.setVisible(true);
             in.jProgressBar1.setValue(100);
+            in.jPanel1.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -587,12 +588,12 @@ public class MainDesktop extends javax.swing.JFrame {
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         JInternalFrame in = new PrestamosyAbonos_x_fecha("PRESTAMO");
-        checkInstance(in);        
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         JInternalFrame in = new PrestamosyAbonos_x_fecha("ABONO");
-        checkInstance(in);     
+        checkInstance(in);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
