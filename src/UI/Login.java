@@ -6,6 +6,7 @@
 package UI;
 
 import Controller.Login_Controller;
+import Controller.StringEncrypt;
 import Entity.TLogin;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -60,7 +61,7 @@ public class Login extends javax.swing.JFrame {
     public void iniciarEnter() {
         //setea los valores al objeto de tipo TLogin
         Login.setTlogUserLogin(jTextField1.getText());
-        Login.setTlogPassword(new String(jPasswordField1.getPassword()));
+        Login.setTlogPassword(StringEncrypt.encrypt(new String(jPasswordField1.getPassword())));
         //Llama el metoro ingresar y envia el objeto 
         LoginController.Ingresar(Login, this);
     }

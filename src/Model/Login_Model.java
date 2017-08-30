@@ -28,7 +28,7 @@ public class Login_Model<L> extends Models {
         return result;
     }
 
-    public TLogin ConsultarUsuario(TLogin usuario, int Via) {
+    public TLogin consultarUsuario(TLogin usuario, int Via) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
         String query = "from TLogin where tlogUserLogin ='" + usuario.getTlogUserLogin() + "'";
