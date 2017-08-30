@@ -19,7 +19,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
-import static org.apache.commons.codec.binary.Base64.decodeBase64;
 import static org.apache.commons.codec.binary.Base64.encodeBase64;
 
 public class StringEncrypt {
@@ -37,20 +36,4 @@ public class StringEncrypt {
         }
         return new String(encodeBase64(encrypted));
     }
-
-    public final static String decrypt(String encrypted) {
-        byte[] decrypted = null;
-        try {
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            SecretKeySpec skeySpec = new SecretKeySpec("92AE31A79FEEB2A3".getBytes(), "AES");
-            IvParameterSpec ivParameterSpec = new IvParameterSpec("0123456789ABCDEF".getBytes());
-            byte[] enc = decodeBase64(encrypted);
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
-            decrypted = cipher.doFinal(enc);
-        } catch (InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
-            JOptionPane.showMessageDialog(null, "Error desencriptando contraseña");
-        }
-        return new String(decrypted);
-    }
-
 }
