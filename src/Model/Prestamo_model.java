@@ -7,7 +7,9 @@ package Model;
 
 import Controller.Prestamo_Controller;
 import Entity.TCobrador;
+import Entity.TCuota;
 import Entity.TPago;
+import Entity.TPrestamo;
 import Persistence.hibernateUtil;
 import java.io.Serializable;
 import java.util.Iterator;
@@ -159,5 +161,32 @@ public class Prestamo_model<T> extends Models {
         result = s.createQuery(query).list();
         s.getTransaction().commit();
         return result;
+    }
+    
+    public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota){
+        String indicador = "AGREGO";
+        Serializable id = null;
+        try {
+            s = hibernateUtil.getSessionFactory();
+            s.beginTransaction();
+            System.out.println("inicio begin");
+            Serializable idtemp = s.save(cuota);
+            s.update(prestamo);
+        if (bitacora(cuota, indicador, "Prestamo") && bitacora(prestamo,"EDITO","Prestamo")) {
+                s.getTransaction().commit();
+                id = idtemp;
+                System.err.println("comit");
+            } else {
+                id = null;
+                System.out.println("roolback");
+                s.getTransaction().rollback();
+            }
+            //test = true;
+        } catch (Exception e) {
+            System.out.println("Error al insertar " + e.getLocalizedMessage());
+            s.getTransaction().rollback();
+            id = null;
+        }
+        return id;
     }
 }

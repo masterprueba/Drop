@@ -5,11 +5,18 @@
  */
 package Controller;
 
+import Entity.TCobrador;
 import Entity.TCuota;
+import Entity.TPago;
 import Entity.TPrestamo;
+import Model.Cobrador_Model;
 import Model.Prestamo_model;
+import Model.TPagos_Model;
 import UI.ReajustePrestamo_UI;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
@@ -19,10 +26,17 @@ import javax.swing.JOptionPane;
  */
 public class ReajustePrestamo_Controller extends Controllers {
 
-    public void getPrestamo() {
+    Prestamo_model pmodel;
+    TPrestamo prestamo;
+    
+    public ReajustePrestamo_Controller() {
+        pmodel = new Prestamo_model();
+    }      
+
+    public boolean getPrestamo() {
         String id = ReajustePrestamo_UI.txt_id_prestamo.getText();
-        //if(id.)
-        TPrestamo prestamo = (TPrestamo) new Prestamo_model().consultar(TPrestamo.class, Integer.parseInt(id));
+        Boolean resp = false;
+        prestamo = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(id));
         if (prestamo != null) {
             Set a = prestamo.getTCuotas();
             long pagado = 0;
@@ -56,14 +70,43 @@ public class ReajustePrestamo_Controller extends Controllers {
                 ReajustePrestamo_UI.txt_thoy_tintereses.setText(valorinteres+"");
                 ReajustePrestamo_UI.txt_rhoy_pretamointeres.setText(prestamo.getTpreValorPrestamo()+valorinteres+"");  
                 ReajustePrestamo_UI.txt_vabonar.setText((prestamo.getTpreValorPrestamo()+valorinteres)-pagado + "");
+                resp = true;
         } else {
-            JOptionPane.showMessageDialog(null, "No existe prestamo");
+            resp = false;
         }
-
+        return resp;
     }
     
-    public int abonoAPagar(){
-        return 0;
+    public Serializable abonoAPagar(){
+        TCuota cuota = new TCuota();
+                cuota.setTcuoAbono(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_vabonar.getText()))));
+                cuota.setTcuoFecha(new Date());
+                cuota.setTcuoCuotasPagadas(Integer.parseInt(String.valueOf(ReajustePrestamo_UI.txt_r_tcuotas.getText())));
+                cuota.setTPrestamo(prestamo);
+                cuota.setTcuoNuevoSaldo(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_rhoy_pretamointeres.getText()))));
+                TCobrador cobrador = new TCobrador();
+                cobrador.setTcobNombre("Reajuste");
+                TPago pago = new TPago();
+                pago.setTipo("Reajuste-.");
+                TCobrador cobradorTemp = null;
+                TPago pagoTemp = null;
+                try {
+                    System.err.println("try reajuste");
+                    cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
+                    pagoTemp = new TPagos_Model().SelectOne(pago); 
+                    System.out.println(cobradorTemp.toString());
+                    System.out.println(pagoTemp.toString());
+                } catch (NullPointerException e) {                    
+                    System.err.println("catch reajuste");
+                    pmodel.insertar(cobrador, "prestamo");
+                    cobradorTemp = new Cobrador_Model().SelectOne(cobrador);
+                    pmodel.insertar(pago, "prestamo");
+                    pagoTemp = new TPagos_Model().SelectOne(pago);
+                }
+                cuota.setTCobrador(cobradorTemp);
+                cuota.setTPago(pagoTemp);
+                prestamo.setTpreValorTotal(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_rhoy_pretamointeres.getText()))));                
+                return pmodel.insertReajuste(prestamo, cuota);
     }
 
 }

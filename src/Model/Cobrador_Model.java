@@ -43,7 +43,7 @@ public class Cobrador_Model extends Models {
     public List<TCobrador> listCobrador(Class clase) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "FROM TCobrador c WHERE c.tcobNombre != 'Refinanciado'";
+        String query = "FROM TCobrador c WHERE c.tcobNombre != 'Refinanciado' AND c.tcobNombre != 'Reajuste'";
         Query r = s.createQuery(query);
         List<TCobrador> list = r.list();        
         s.getTransaction().commit();

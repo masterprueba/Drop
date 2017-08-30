@@ -42,7 +42,7 @@ public class TPagos_Model extends Models{
     public List<TPago> listPagos(Class clase) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "FROM TPago p WHERE p.tipo != 'Refinanciado-.'";
+        String query = "FROM TPago p WHERE p.tipo != 'Refinanciado-.' AND p.tipo != 'Reajuste-.'";
         Query r = s.createQuery(query);
         List<TPago> list = r.list();        
         s.getTransaction().commit();
