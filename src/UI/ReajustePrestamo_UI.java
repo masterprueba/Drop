@@ -6,6 +6,7 @@
 package UI;
 
 import Controller.ReajustePrestamo_Controller;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,9 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     public ReajustePrestamo_UI() {
         initComponents();
         rp = new ReajustePrestamo_Controller();
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
     }
 
     /**
@@ -273,6 +277,11 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
 
         jButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jButton2.setText("Reajustar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -342,8 +351,28 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        rp.getPrestamo();
+        if(rp.getPrestamo()){
+            jPanel1.setVisible(true);
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "No existe prestamo");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (rp.abonoAPagar() != null) {
+            JOptionPane.showMessageDialog(rootPane, "Reajuste realizado correctamente.");
+            jPanel1.setVisible(false);
+            jPanel2.setVisible(false);
+            jPanel3.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Hubo un error.");
+            jPanel1.setVisible(false);
+        jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
+        }        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
