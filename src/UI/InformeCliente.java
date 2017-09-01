@@ -368,7 +368,7 @@ public class InformeCliente extends Views {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Cuota_Controller cc = new Cuota_Controller();
+        Cuota_Controller cc = new Cuota_Controller(true);
         if (cc.updateCuota(jtbDCuota)) {
             jtbHPrestamo.setModel(new DefaultTableModel());
             jtbDCuota.setModel(new DefaultTableModel());

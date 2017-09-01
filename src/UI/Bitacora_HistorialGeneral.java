@@ -38,7 +38,12 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jTablePrestamo.removeColumn(jTablePrestamo.getColumnModel().getColumn(8));
         DefaultTableModel modelTablaAbono = new TableModel().abonoPorFecha();
         jTableAbonos.setModel(modelTablaAbono);
-        jTablePrestamo.removeColumn(jTablePrestamo.getColumnModel().getColumn(1));
+        jTableAbonos.removeColumn(jTableAbonos.getColumnModel().getColumn(1));
+        DefaultTableModel modelhistorialPrestamo = new TableModel().bitacoraIndividualPrestamo();
+        jTableCambiosPrestamo.setModel(modelhistorialPrestamo);
+        DefaultTableModel modelHistorialAbono = new TableModel().bitacoraGeneralAbonos();
+        jTableCambiosAbonos.setModel(modelHistorialAbono);
+        jTableCambiosAbonos.removeColumn(jTableCambiosAbonos.getColumnModel().getColumn(10));
     }
 
     /**
@@ -66,7 +71,6 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableAbonos = new javax.swing.JTable();
         jTextTotalAbonos = new javax.swing.JTextField();
@@ -104,6 +108,8 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(jTablePrestamo);
+
+        jTextTotalPrestamos.setEditable(false);
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Total prestado");
@@ -150,6 +156,8 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTableCambiosPrestamo);
 
+        jLabel1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -175,13 +183,22 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Abonos del prestamo seleccioando");
+        jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton1MouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jRadioButton2.setText("Todos los abonos del cliente");
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jTableAbonos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,7 +211,14 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableAbonos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAbonosMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTableAbonos);
+
+        jTextTotalAbonos.setEditable(false);
 
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Total abonado");
@@ -203,7 +227,6 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +244,7 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
@@ -235,6 +257,8 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Abonos", jPanel6);
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jTableCambiosAbonos.setModel(new javax.swing.table.DefaultTableModel(
@@ -263,10 +287,11 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
                 .addComponent(jLabel4)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Cambios", jPanel7);
@@ -357,16 +382,16 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 51, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +402,17 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jButton1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -405,10 +435,10 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -434,22 +464,45 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtxSearchKeyTyped
 
     private void jtbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbClientesMouseClicked
-        bitController.cargarPrestamosCliente(Integer.parseInt(jtbClientes.getModel().getValueAt(jtbClientes.convertRowIndexToModel(jtbClientes.getSelectedRow()), 3).toString()));
+        bitController.limpiar();
+        bitController.cargarAbonos(0);
+        bitController.setIdPersona(Integer.parseInt(jtbClientes.getModel().getValueAt(jtbClientes.convertRowIndexToModel(jtbClientes.getSelectedRow()), 3).toString()));
+        bitController.cargarPrestamosCliente();
     }//GEN-LAST:event_jtbClientesMouseClicked
 
     private void jTablePrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrestamoMouseClicked
+        jLabel1.setText(null);
+        ((DefaultTableModel) jTableCambiosAbonos.getModel()).setNumRows(0);
+        bitController.cargarHistrialPrestamo(Integer.parseInt(jTablePrestamo.getModel().getValueAt(jTablePrestamo.convertRowIndexToModel(jTablePrestamo.getSelectedRow()), 1).toString()));
         bitController.cargarAbonos(Integer.parseInt(jTablePrestamo.getModel().getValueAt(jTablePrestamo.convertRowIndexToModel(jTablePrestamo.getSelectedRow()), 1).toString()));
     }//GEN-LAST:event_jTablePrestamoMouseClicked
+
+    private void jTableAbonosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAbonosMouseClicked
+        jLabel4.setText(null);
+        bitController.cargarHistorialAbono(Integer.parseInt(jTableAbonos.getModel().getValueAt(jTableAbonos.convertRowIndexToModel(jTableAbonos.getSelectedRow()), 0).toString()));
+    }//GEN-LAST:event_jTableAbonosMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        bitController.refrescar();
+        bitController.limpiar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        bitController.cargarAbonos(0);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
+        bitController.cargarAbonos(jTablePrestamo.getSelectedRow() > -1 ? Integer.parseInt(jTablePrestamo.getModel().getValueAt(jTablePrestamo.convertRowIndexToModel(jTablePrestamo.getSelectedRow()), 1).toString()) : 0);
+    }//GEN-LAST:event_jRadioButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     public static javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
@@ -458,8 +511,8 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    public javax.swing.JRadioButton jRadioButton1;
+    public javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
