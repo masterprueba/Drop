@@ -151,8 +151,8 @@ public class Bitacora_Controller extends Controllers {
                                 TCuota cuota = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TCuota.class);
                                 String[] fila = new String[11];
                                 fila[1] = cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
-                                fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
-                                fila[3] = "" + cuota.getTcuoAbono();
+                                fila[2] = lBitacora.get(i).getTbitIdentificador();
+                                fila[3] =  new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
                                 fila[4] = "" + cuota.getTcuoNuevoSaldo();
                                 fila[5] = "" + cuota.getTcuoCuotasPagadas();
                                 fila[6] = cuota.getTPago().getTipo();
@@ -160,7 +160,7 @@ public class Bitacora_Controller extends Controllers {
                                 fila[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                 fila[10] = "" + cuota.getTcuoId();
                                 fila[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
-
+                                
                                 vistaBitacora.modeloTabla1.addRow(fila);
                             }
                         }

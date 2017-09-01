@@ -93,7 +93,7 @@ public class TableModel extends DefaultTableModel {
         TableModel modelo = new TableModel();
         modelo.addColumn("# de cuota");
         modelo.addColumn("ID");
-        modelo.addColumn("Valor");
+        modelo.addColumn("Valor prestado");
         modelo.addColumn("N° Cuotas");
         modelo.addColumn("Intereses");
         modelo.addColumn("Metodo Pago");
@@ -198,8 +198,8 @@ public class TableModel extends DefaultTableModel {
         TableModel modelo = new TableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Cliente prestamo");
+        modelo.addColumn("Tipo de accion");
         modelo.addColumn("Fecha abono");
-        modelo.addColumn("Total abonado");
         modelo.addColumn("Valor pagado del prestamo");
         modelo.addColumn("Cuotas pagadas");
         modelo.addColumn("Tipo pago");

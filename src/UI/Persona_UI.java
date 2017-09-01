@@ -136,6 +136,7 @@ public class Persona_UI extends Views {
         jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
+        setTitle("Gestion de Clientes");
 
         jTabbedPane1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 

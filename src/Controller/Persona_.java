@@ -422,7 +422,7 @@ public class Persona_ extends Controllers {
         //Consulta (Traer todos las pesonas que sean clientes)
         selectAll(temp);
 
-        ArrayList<TDatosBasicosPersona> listtdbTemp = new ArrayList<TDatosBasicosPersona>();
+        ArrayList<TDatosBasicosPersona> listtdbTemp = new ArrayList<>();
 
         for (int l = 0; l < getListPer().size(); l++) {
             listtdbTemp.add(getListPer().get(l).getTDatosBasicosPersona());
@@ -447,7 +447,7 @@ public class Persona_ extends Controllers {
 
 //<editor-fold defaultstate="collapsed" desc="TABLE filter Cliente">
     public void filter(JTable jt, String textBuscar, int columna) {
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(getDtm());
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
         tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
         jt.setRowSorter(tr);
     }

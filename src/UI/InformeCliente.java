@@ -215,7 +215,7 @@ public class InformeCliente extends Views {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jtbHPrestamo.setEditingColumn(0);
@@ -241,8 +241,14 @@ public class InformeCliente extends Views {
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Total Abonado");
 
+        text_totalprestamo.setEditable(false);
+
+        txt_totalcuota.setEditable(false);
+
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Debe");
+
+        txt_debe.setEditable(false);
 
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("Cuotas Pagadas");
@@ -275,7 +281,7 @@ public class InformeCliente extends Views {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_debe, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_cuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

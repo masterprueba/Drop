@@ -97,6 +97,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -254,7 +255,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem9.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118189_circle-clock-time-history-recent-2-outline-stroke.png"))); // NOI18N
-        jMenuItem9.setText("Historial inicio de sesion");
+        jMenuItem9.setText("Historial Inicio de Sesion");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -311,6 +312,15 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem17);
+
+        jMenuItem26.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem26.setText("Historial General de Cliente");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem26);
 
         jMenuBar1.add(jMenu6);
 
@@ -601,6 +611,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        JInternalFrame in = new Bitacora_HistorialGeneral();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         DesktopPaneMain.add(InternalWindow);
@@ -683,6 +698,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
