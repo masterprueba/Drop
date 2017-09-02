@@ -96,7 +96,7 @@ public class Login_Controller extends Thread {
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
             for (int i = 0; i < loginresult.size(); i++) {
-                if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) && loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
+                if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) || loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
                     USUARIO_LOGEADO = loginresult.get(i);
                     Lmodel.bitacora(USUARIO_LOGEADO, "INICIO", "LOGIN");

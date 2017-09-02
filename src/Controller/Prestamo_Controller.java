@@ -88,7 +88,7 @@ public class Prestamo_Controller extends Controllers {
             }
 
             System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
-            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(Prestamo_ui.p_deuda.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null);
+            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(Prestamo_ui.p_deuda.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null,null);
             String msg = "";
             try {
                 msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + formateador.format(valorprestamo - (Long) formateador.parse(Prestamo_ui.p_deuda.getText())) + "</b></li>"

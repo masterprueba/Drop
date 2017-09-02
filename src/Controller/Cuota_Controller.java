@@ -18,6 +18,7 @@ import UI.Cuota_UI;
 import UI.EliminarA_UI;
 import UI.Multa_Ui;
 import UI.Prestamo_ui;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -133,7 +134,8 @@ public class Cuota_Controller extends Prestamo_Controller {
                         pagos.setTipo(Cuota_UI.a_metodo.getText());
                     }
                     TCuota cuota = new TCuota(cmodel.SelectOne(cobrador), pamodel.SelectOne(pagos), prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
-                    if (pmodel.insertar(cuota, "PRESTAMO") != null) {
+                    Serializable idcuota = pmodel.insertar(cuota, "PRESTAMO");
+                    if (idcuota != null) {
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
                         Cuota_UI.a_fechault.setText(dt1.format(cuota.getTcuoFecha()));
@@ -143,6 +145,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                         Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
                         Cuota_UI.a_numabono.setText(prestamo.getTCuotas().size()+"");
+                        Cuota_UI.a_id.setText(idcuota+"");
                         clearPanel(Cuota_UI.jPanel2);
                         clearPanel(Cuota_UI.jPanel3);
                         Cuota_UI.a_cobrador.setText("Por defecto");

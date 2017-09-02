@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-sep-2017 23:40:47 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TReajuste" table="t_reajuste" catalog="drop_db" optimistic-lock="version">
+        <id name="treaId" type="java.lang.Integer">
+            <column name="trea_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TPrestamo" class="Entity.TPrestamo" fetch="select">
+            <column name="trea_tpre_id" not-null="true" />
+        </many-to-one>
+        <property name="treaFecha" type="date">
+            <column name="trea_fecha" length="10" not-null="true" />
+        </property>
+        <property name="treaValor" type="long">
+            <column name="trea_valor" precision="10" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -68,6 +68,8 @@ public class Cuota_UI extends Views {
         a_pnumcuotas = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         a_numabono = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        a_id = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         a_cuotaneto = new javax.swing.JTextField();
@@ -258,6 +260,8 @@ public class Cuota_UI extends Views {
         jLabel20.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         jLabel20.setText("# de abonos");
 
+        jLabel21.setText("ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -277,9 +281,13 @@ public class Cuota_UI extends Views {
                             .addComponent(a_fechault, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                             .addComponent(a_totalPrestamo))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel21))
                         .addGap(26, 26, 26)
-                        .addComponent(a_valorprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(a_valorprestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(a_id))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
@@ -321,7 +329,9 @@ public class Cuota_UI extends Views {
                     .addComponent(jLabel5)
                     .addComponent(a_debe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(a_fechault, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(a_fechault, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21)
+                    .addComponent(a_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -591,6 +601,7 @@ public class Cuota_UI extends Views {
     public static javax.swing.JTextField a_debe;
     public static com.toedter.calendar.JDateChooser a_fecha;
     public static javax.swing.JTextField a_fechault;
+    public static javax.swing.JTextField a_id;
     public static javax.swing.JTextField a_interes;
     public static javax.swing.JTextField a_metodo;
     public static javax.swing.JTextField a_nombre;
@@ -617,6 +628,7 @@ public class Cuota_UI extends Views {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

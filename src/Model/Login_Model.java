@@ -21,7 +21,7 @@ public class Login_Model<L> extends Models {
     public List<L> ConsultarUsuarioContraseña(TLogin usuario) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "from TLogin where tlogUserLogin = '" + usuario.getTlogUserLogin() + "' and tlogPassword = '" + usuario.getTlogPassword() + "'";
+        String query = "from TLogin where tlogUserLogin = '" + usuario.getTlogUserLogin() + "'";
         List<L> result = s.createQuery(query).list();
         s.getTransaction().commit();
 

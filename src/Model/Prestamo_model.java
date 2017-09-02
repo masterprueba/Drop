@@ -10,6 +10,7 @@ import Entity.TCobrador;
 import Entity.TCuota;
 import Entity.TPago;
 import Entity.TPrestamo;
+import Entity.TReajuste;
 import Persistence.hibernateUtil;
 import java.io.Serializable;
 import java.util.Iterator;
@@ -163,7 +164,7 @@ public class Prestamo_model<T> extends Models {
         return result;
     }
     
-    public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota){
+    public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota, TReajuste tr){
         String indicador = "AGREGO";
         Serializable id = null;
         try {
@@ -172,6 +173,7 @@ public class Prestamo_model<T> extends Models {
             System.out.println("inicio begin");
             Serializable idtemp = s.save(cuota);
             s.update(prestamo);
+            s.save(tr);
         if (bitacora(cuota, indicador, "Prestamo") && bitacora(prestamo,"EDITO","Prestamo")) {
                 s.getTransaction().commit();
                 id = idtemp;

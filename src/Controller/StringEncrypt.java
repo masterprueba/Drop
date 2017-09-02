@@ -34,6 +34,6 @@ public class StringEncrypt {
         } catch (InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException e) {
             JOptionPane.showMessageDialog(null, "Error encriptando contraseña");
         }
-        return new String(encodeBase64(encrypted));
+        return new String(encodeBase64(encrypted));       
     }
 }

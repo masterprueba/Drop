@@ -9,16 +9,14 @@ import Entity.TCobrador;
 import Entity.TCuota;
 import Entity.TPago;
 import Entity.TPrestamo;
+import Entity.TReajuste;
 import Model.Cobrador_Model;
 import Model.Prestamo_model;
 import Model.TPagos_Model;
 import UI.ReajustePrestamo_UI;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -106,7 +104,11 @@ public class ReajustePrestamo_Controller extends Controllers {
                 cuota.setTCobrador(cobradorTemp);
                 cuota.setTPago(pagoTemp);
                 prestamo.setTpreValorTotal(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_rhoy_pretamointeres.getText()))));                
-                return pmodel.insertReajuste(prestamo, cuota);
+                TReajuste tr = new TReajuste();
+                tr.setTPrestamo(prestamo);
+                tr.setTreaFecha(new Date());
+                tr.setTreaValor(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_r_vpestamointeres.getText())) - (Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_rhoy_pretamointeres.getText())))));
+                return pmodel.insertReajuste(prestamo, cuota, tr);
     }
 
 }
