@@ -171,11 +171,11 @@ public class Cuentas_Controller extends Controllers {
             TMovimientoCuenta tm = new TMovimientoCuenta();
             tm.setTCuentaPagar(tb);
             tm.setTmocTipo("" + getCueUI().jcbTipoMovimiento.getSelectedItem());
-            tm.setTmocSaldo((getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
+            tm.setTmocSaldo((getCueUI().jcbTipoMovimiento.getSelectedIndex() == 1 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
             tm.setTmocFecha(getCueUI().jtfFecha.getDate());
 
             //JOptionPane.showMessageDialog(null, (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
-            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getCueUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getCueUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 1 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
 
             if (r == JOptionPane.YES_OPTION) {
                 if (insertMovimientoCuenta(tm) > 0) {
