@@ -26,52 +26,52 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Usuario
  */
-public class Informe_Controller extends Controllers{
-    
+public class Informe_Controller extends Controllers {
+
     JTable pretamotable;
     JTable gastotable;
     TableRowSorter trs = null;
 
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
         this.pretamotable = pretamotable;
-        this.gastotable = gastotable;        
-    } 
-    
-    public void cargarDatos(boolean metodo){
-         String fechaini = InformeGeneral.general_fechaini.getDate() != null
+        this.gastotable = gastotable;
+    }
+
+    public void cargarDatos(boolean metodo) {
+        String fechaini = InformeGeneral.general_fechaini.getDate() != null
                 ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
                 : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
         String fechafin = InformeGeneral.general_fechafin.getDate() != null
                 ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);        
+                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
         if (!p && !g && metodo) {
             JOptionPane.showMessageDialog(null, "No existen datos");
         }
-        InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4))+"");
-        InformeGeneral.txt_entregado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5))+"");
-        InformeGeneral.txt_total.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6))+"");
-        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7))+"");
-        InformeGeneral.txt_deuda.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8))+"");
-        InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9))+"");
+        InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4)) + "");
+        InformeGeneral.txt_entregado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5)) + "");
+        InformeGeneral.txt_total.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6)) + "");
+        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)) + "");
+        InformeGeneral.txt_deuda.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8)) + "");
+        InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9)) + "");
         int ganacias = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 10));
         //gasto
-        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3))+"");
-        InformeGeneral.text_ganacia.setText(""+(ganacias-Integer.parseInt(InformeGeneral.text_gasto.getText())));
+        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3)) + "");
+        InformeGeneral.text_ganacia.setText("" + (ganacias - Integer.parseInt(InformeGeneral.text_gasto.getText())));
     }
-    
-    public boolean obtenerPrestamos(String fechaini,String fechafin){        
+
+    public boolean obtenerPrestamos(String fechaini, String fechafin) {
         DefaultTableModel tmodelop = new TableModel().informeGeneral();
         pretamotable.setModel(tmodelop);
-        Prestamo_model modelo = new Prestamo_model(); 
-        String nombre = InformeGeneral.txt_nombre.getText();        
-        List<Object>  prestamos = modelo.informePrestamoXn(fechaini,fechafin,nombre);        
-        Iterator itr = prestamos.iterator();                
+        Prestamo_model modelo = new Prestamo_model();
+        String nombre = InformeGeneral.txt_nombre.getText();
+        List<Object> prestamos = modelo.informePrestamoXn(fechaini, fechafin, nombre);
+        Iterator itr = prestamos.iterator();
         Object[] f = new Object[11];
         boolean existe = false;
-        while(itr.hasNext()){
-            Object[] obj = (Object[]) itr.next();                        
+        while (itr.hasNext()) {
+            Object[] obj = (Object[]) itr.next();
             f[1] = obj[0];
             f[2] = obj[1];
             f[3] = obj[2];
@@ -85,24 +85,24 @@ public class Informe_Controller extends Controllers{
             f[5] = invertido;
             f[6] = total;
             f[7] = pagado;
-            f[8] = total-pagado;
+            f[8] = total - pagado;
             f[9] = extra;
             f[10] = pagado - prestado;
-            if(obj[1]!=null){                
+            if (obj[1] != null) {
                 tmodelop.addRow(f);
                 existe = true;
-            }            
-         }  
-         numerarTabla(tmodelop);         
-            return existe;        
-       
+            }
+        }
+        numerarTabla(tmodelop);
+        return existe;
+
     }
-    
-    public boolean obtenerGastos(String fecha1, String fecha2){
+
+    public boolean obtenerGastos(String fecha1, String fecha2) {
         List<TGasto> gastos = new ArrayList();
         boolean exist = false;
-        Gastos_Model MGastos = new Gastos_Model();                
-        gastos = MGastos.ConsultarPorFechas(fecha1, fecha2, "");                    
+        Gastos_Model MGastos = new Gastos_Model();
+        gastos = MGastos.ConsultarPorFechas(fecha1, fecha2, "");
         DefaultTableModel tmodelog = new TableModel().VerGastos();
         gastotable.setModel(tmodelog);
         tmodelog.setNumRows(0);
@@ -114,20 +114,21 @@ public class Informe_Controller extends Controllers{
             tmodelog.addRow(fila);
             exist = true;
         }
-        numerarTabla(tmodelog);        
+        numerarTabla(tmodelog);
         return exist;
     }
-    
-   public void filter(JTextField jtf, JTable jtb){
-        
-        
+
+
+
+    public void filter(JTextField jtf, JTable jtb) {
+
         jtf.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent ke){
-                trs.setRowFilter(RowFilter.regexFilter("(?i)"+jtf.getText(), 2));
+            public void keyReleased(KeyEvent ke) {
+                trs.setRowFilter(RowFilter.regexFilter("(?i)" + jtf.getText(), 2));
             }
         });
-        
+
         trs = new TableRowSorter(jtb.getModel());
         jtb.setRowSorter(trs);
     }

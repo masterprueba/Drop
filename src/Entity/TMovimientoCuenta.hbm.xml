@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01-sep-2017 23:40:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2/09/2017 10:21:48 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TMovimientoCuenta" table="t_movimiento_cuenta" catalog="drop_db" optimistic-lock="version">
         <id name="tmocId" type="java.lang.Integer">
@@ -19,6 +19,9 @@
         </property>
         <property name="tmocFecha" type="date">
             <column name="tmoc_fecha" length="10" not-null="true" />
+        </property>
+        <property name="tmocConcepto" type="string">
+            <column name="tmoc_concepto" length="65535" />
         </property>
     </class>
 </hibernate-mapping>

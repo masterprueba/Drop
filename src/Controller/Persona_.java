@@ -248,7 +248,8 @@ public class Persona_ extends Controllers {
                 client(null);
             }
         } else //Si ID objeto codeudor NO es null PrepareUpdate
-         if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0) { //Si el capo cedula de codeudor no esta vacio
+        {
+            if (getPerUI().jtfCedulaCodeudor.getText().trim().length() != 0) { //Si el capo cedula de codeudor no esta vacio
                 if (validar(true)) {
                     createObjectCodeudorTo(); //Crear objeto Codeudor
                     getDbpCodeudor().setTdbpId(getPerUI().objectCodeudor.getTDatosBasicosPersona().getTdbpId()); //Obtener ID de datos Basicos
@@ -288,6 +289,7 @@ public class Persona_ extends Controllers {
                     }
                 }
             }
+        }
         //--END CODEUDOR
     }
 
@@ -332,7 +334,8 @@ public class Persona_ extends Controllers {
                 }
             }
         } else //Si ID objeto CLIENTE es no es null PrepareUpdate
-         if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0) { //Si el capo cedula de CLIENTE no esta vacio
+        {
+            if (getPerUI().jtfCedulaCliente.getText().trim().length() != 0) { //Si el capo cedula de CLIENTE no esta vacio
                 if (validar(false)) {
                     createObjectClienteTo(); //Crar objeto Persona
                     getDbpCliente().setTdbpId(getPerUI().objectCliente.getTDatosBasicosPersona().getTdbpId()); //Obtener ID de datos Basicos
@@ -377,6 +380,7 @@ public class Persona_ extends Controllers {
                     }
                 }
             }
+        }
         //--END CLIENTE
     }
 
@@ -752,8 +756,8 @@ public class Persona_ extends Controllers {
         numerarTabla(dtm);
         InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3) + "");
         InformeCliente.txt_debe.setText((Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 7))) - Float.parseFloat(totalDeUnaTabla(dtm, 3) + "")) + "");
-        InformeCliente.txt_cuotas.setText(Math.round(totalDeUnaTabla(dtm, 3))/(Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8))))+"");
-        int[] position = {4,5,8, 9, 10, 11};
+        InformeCliente.txt_cuotas.setText(Math.round(totalDeUnaTabla(dtm, 3)) / (Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)))) + "");
+        int[] position = {4, 5, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
 
@@ -766,5 +770,17 @@ public class Persona_ extends Controllers {
                 return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
             }
         });
+    }
+
+    public void limpiaTabla(JTable jt) {
+        try {
+            DefaultTableModel temp = (DefaultTableModel) jt.getModel();
+            int a = temp.getRowCount();
+            for (int i = 0; i < a; i++) {
+                temp.removeRow(0); //aquí estaba el error, antes pasaba la i como parametro.... soy un bacín  XD
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }

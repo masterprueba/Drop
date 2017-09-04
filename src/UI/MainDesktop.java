@@ -206,6 +206,8 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem21);
 
+        jMenuItem25.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/refresh.png"))); // NOI18N
         jMenuItem25.setText("Reajuste");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +316,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6.add(jMenuItem17);
 
         jMenuItem26.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118189_circle-clock-time-history-recent-2-outline-stroke.png"))); // NOI18N
         jMenuItem26.setText("Historial General de Cliente");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +334,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem11.setText("Prestamos Cliente");
-        jMenuItem11.setPreferredSize(new java.awt.Dimension(141, 30));
+        jMenuItem11.setPreferredSize(new java.awt.Dimension(241, 30));
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -381,7 +384,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenuItem19.setText("Movimientos de Banco");
-        jMenuItem19.setPreferredSize(new java.awt.Dimension(141, 30));
+        jMenuItem19.setPreferredSize(new java.awt.Dimension(248, 30));
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);

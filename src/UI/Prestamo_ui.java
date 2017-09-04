@@ -308,7 +308,6 @@ public class Prestamo_ui extends Views {
         jLabel14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel14.setText("Deuda actual:");
 
-        p_deuda.setEditable(false);
         p_deuda.setForeground(new java.awt.Color(0, 0, 153));
         p_deuda.setText("0");
 

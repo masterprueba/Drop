@@ -1,5 +1,5 @@
 package Entity;
-// Generated 01-sep-2017 23:40:46 by Hibernate Tools 4.3.1
+// Generated 2/09/2017 10:21:47 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,15 +15,24 @@ public class TMovimientoCuenta  implements java.io.Serializable {
      private String tmocTipo;
      private long tmocSaldo;
      private Date tmocFecha;
+     private String tmocConcepto;
 
     public TMovimientoCuenta() {
     }
 
+	
     public TMovimientoCuenta(TCuentaPagar TCuentaPagar, String tmocTipo, long tmocSaldo, Date tmocFecha) {
+        this.TCuentaPagar = TCuentaPagar;
+        this.tmocTipo = tmocTipo;
+        this.tmocSaldo = tmocSaldo;
+        this.tmocFecha = tmocFecha;
+    }
+    public TMovimientoCuenta(TCuentaPagar TCuentaPagar, String tmocTipo, long tmocSaldo, Date tmocFecha, String tmocConcepto) {
        this.TCuentaPagar = TCuentaPagar;
        this.tmocTipo = tmocTipo;
        this.tmocSaldo = tmocSaldo;
        this.tmocFecha = tmocFecha;
+       this.tmocConcepto = tmocConcepto;
     }
    
     public Integer getTmocId() {
@@ -60,6 +69,13 @@ public class TMovimientoCuenta  implements java.io.Serializable {
     
     public void setTmocFecha(Date tmocFecha) {
         this.tmocFecha = tmocFecha;
+    }
+    public String getTmocConcepto() {
+        return this.tmocConcepto;
+    }
+    
+    public void setTmocConcepto(String tmocConcepto) {
+        this.tmocConcepto = tmocConcepto;
     }
 
 

@@ -133,6 +133,7 @@ public class Cuentas_Controller extends Controllers {
             f[1] = tmb.get(i).getTmocFecha();
             f[2] = tmb.get(i).getTmocTipo();
             f[3] = tmb.get(i).getTmocSaldo();
+            f[4] = tmb.get(i).getTmocConcepto();
             getDtm().addRow(f);
 
             getCueUI().jtTotal.setText("" + (Integer.parseInt(getCueUI().jtTotal.getText()) + tmb.get(i).getTmocSaldo()));
@@ -173,6 +174,7 @@ public class Cuentas_Controller extends Controllers {
             tm.setTmocTipo("" + getCueUI().jcbTipoMovimiento.getSelectedItem());
             tm.setTmocSaldo((getCueUI().jcbTipoMovimiento.getSelectedIndex() == 1 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
             tm.setTmocFecha(getCueUI().jtfFecha.getDate());
+            tm.setTmocConcepto(getCueUI().jtaConcepto.getText());
 
             //JOptionPane.showMessageDialog(null, (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())));
             int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getCueUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getCueUI().jcbTipoMovimiento.getSelectedIndex() == 1 ? Long.parseLong(getCueUI().jtfSaldo.getText()) : Long.parseLong("-" + getCueUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
@@ -243,6 +245,7 @@ public class Cuentas_Controller extends Controllers {
         getCueUI().jcbTipoMovimiento.setEnabled(true);
         getCueUI().jtfSaldo.setEnabled(true);
         getCueUI().jtfFecha.setEnabled(true);
+        getCueUI().jtaConcepto.setEnabled(true);
         getCueUI().btnGuardarMovimiento.setEnabled(true);
     }
 
