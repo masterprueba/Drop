@@ -323,8 +323,8 @@ public class Cuota_Controller extends Prestamo_Controller {
             cuota.setTcuoCuotasPagadas(Integer.parseInt(String.valueOf(model.getValueAt(i, 5))));
             cuota.setTPago((TPago) model.getValueAt(i, 9));
             cuota.setTCobrador((TCobrador) model.getValueAt(i, 10));
-            cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));
-            if (cmodel.editar(cuota, "PRESTAMO")) {
+            cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));            
+            if (pmodel.editar(cuota, "PRESTAMO")) {
                 conteo++;
             }
         }
