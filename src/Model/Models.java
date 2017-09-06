@@ -56,9 +56,34 @@ public class Models<T> {
         return id;
     }
 
+    public Serializable insertarSinBitacora(T obj, String modulo) {
+        //boolean test = false;
+        String indicador = "AGREGO";
+        Serializable id = null;
+        try {
+            s = hibernateUtil.getSessionFactory();
+            s.beginTransaction();
+            id = s.save(obj);
+            if (true) {
+                s.getTransaction().commit();
+                System.err.println("comit");
+            } else {
+                id = null;
+                System.out.println("roolback");
+                s.getTransaction().rollback();
+            }
+            //test = true;
+        } catch (Exception e) {
+            System.out.println("Error al insertar " + e.getLocalizedMessage());
+            s.getTransaction().rollback();
+            id = null;
+        }
+        return id;
+    }
+
     public T consultar(Class clase, int id) {
         s = hibernateUtil.getSessionFactory();
-        s.beginTransaction();        
+        s.beginTransaction();
         Objecto = (T) s.get(clase, id);
         s.getTransaction().commit();
         return Objecto;
