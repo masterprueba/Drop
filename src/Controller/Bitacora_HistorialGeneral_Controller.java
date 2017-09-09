@@ -8,7 +8,6 @@ package Controller;
 import Entity.TBitacora;
 import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
-import Entity.TMulta;
 import Entity.TPersona;
 import Entity.TPrestamo;
 import Model.Bitacora_Model;
@@ -25,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Bitacora_HistorialGeneral_Controller extends Controllers {
+public final class Bitacora_HistorialGeneral_Controller extends Controllers {
 
     class Prestamo extends TPrestamo {
 
@@ -56,7 +55,6 @@ public class Bitacora_HistorialGeneral_Controller extends Controllers {
         public void setTDatosBasicosPersonaBitacora(TDatosBasicosPersona tDatosBasicosPersona) {
             this.TDatosBasicosPersonaBitacora = tDatosBasicosPersona;
         }
-
     }
 
     class Abono extends TCuota {
@@ -89,6 +87,7 @@ public class Bitacora_HistorialGeneral_Controller extends Controllers {
             this.TDatosBasicosPersonaBitacora = tDatosBasicosPersona;
         }
     }
+    
     private final Persona_Model pModel;
     private final Bitacora_Model bModel;
     private final Bitacora_HistorialGeneral vistaHistorial;
