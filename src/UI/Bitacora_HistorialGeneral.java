@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ITERIA
  */
-public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
+public class Bitacora_HistorialGeneral extends Views {
 
     /**
      * Creates new form Bitacora_HistorialGeneral
@@ -33,16 +33,20 @@ public class Bitacora_HistorialGeneral extends javax.swing.JInternalFrame {
         jtbClientes.removeColumn(jtbClientes.getColumnModel().getColumn(3));
         DefaultTableModel modelTablaPrestamo = new TableModel().historialPrestamo();
         jTablePrestamo.setModel(modelTablaPrestamo);
+        jTablePrestamo.setRowSorter(filtrarTabla(modelTablaPrestamo));
         jTablePrestamo.removeColumn(jTablePrestamo.getColumnModel().getColumn(0));
         jTablePrestamo.removeColumn(jTablePrestamo.getColumnModel().getColumn(8));
         jTablePrestamo.removeColumn(jTablePrestamo.getColumnModel().getColumn(8));
         DefaultTableModel modelTablaAbono = new TableModel().abonoPorFecha();
         jTableAbonos.setModel(modelTablaAbono);
+        jTableAbonos.setRowSorter(filtrarTabla(modelTablaAbono));
         jTableAbonos.removeColumn(jTableAbonos.getColumnModel().getColumn(1));
         DefaultTableModel modelhistorialPrestamo = new TableModel().bitacoraIndividualPrestamo();
         jTableCambiosPrestamo.setModel(modelhistorialPrestamo);
+        jTableCambiosPrestamo.setRowSorter(filtrarTabla(modelhistorialPrestamo));
         DefaultTableModel modelHistorialAbono = new TableModel().bitacoraGeneralAbonos();
         jTableCambiosAbonos.setModel(modelHistorialAbono);
+        jTableCambiosAbonos.setRowSorter(filtrarTabla(modelHistorialAbono));
         jTableCambiosAbonos.removeColumn(jTableCambiosAbonos.getColumnModel().getColumn(10));
     }
 

@@ -11,7 +11,9 @@ import java.util.Enumeration;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -44,5 +46,9 @@ public class Views extends javax.swing.JInternalFrame{
             TableColumn tc = en.nextElement();
             tc.setCellRenderer(new CellRenderer(color));
         }
+    }
+    public TableRowSorter filtrarTabla(DefaultTableModel modelo){            
+            TableRowSorter sorter = new TableRowSorter(modelo);            
+            return sorter;
     }
 }
