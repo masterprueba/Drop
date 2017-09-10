@@ -696,6 +696,7 @@ public class Persona_ extends Controllers {
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
+        jt.setRowSorter(filtrarTabla(dtm));
 
         DefaultTableModel dtm2 = new TableModel().historialCuota();
         jt2.setModel(dtm2);
@@ -736,7 +737,7 @@ public class Persona_ extends Controllers {
 
         DefaultTableModel dtm = new TableModel().historialCuota();
         jtbCuota.setModel(dtm);
-
+        jtbCuota.setRowSorter(filtrarTabla(dtm));
         Object[] f = new Object[12];
         for (int i = 0; i < tc.size(); i++) {
             f[1] = tc.get(i).getTcuoId();

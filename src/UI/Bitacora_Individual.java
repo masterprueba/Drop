@@ -36,6 +36,7 @@ public final class Bitacora_Individual extends Views {
         initComponents();
         jLabel2.setText(nombre);
         jTable1.setModel(modelo);
+        jTable1.setRowSorter(filtrarTabla(modelo));
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
         switch (Bitacora_UI.bitacora) {
             case "INICIO":

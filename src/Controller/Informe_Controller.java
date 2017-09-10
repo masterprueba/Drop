@@ -64,6 +64,7 @@ public class Informe_Controller extends Controllers {
     public boolean obtenerPrestamos(String fechaini, String fechafin) {
         DefaultTableModel tmodelop = new TableModel().informeGeneral();
         pretamotable.setModel(tmodelop);
+        pretamotable.setRowSorter(filtrarTabla(tmodelop));
         Prestamo_model modelo = new Prestamo_model();
         String nombre = InformeGeneral.txt_nombre.getText();
         List<Object> prestamos = modelo.informePrestamoXn(fechaini, fechafin, nombre);
@@ -105,6 +106,7 @@ public class Informe_Controller extends Controllers {
         gastos = MGastos.ConsultarPorFechas(fecha1, fecha2, "");
         DefaultTableModel tmodelog = new TableModel().VerGastos();
         gastotable.setModel(tmodelog);
+        gastotable.setRowSorter(filtrarTabla(tmodelog));
         tmodelog.setNumRows(0);
         for (int i = 0; i < gastos.size(); i++) {
             String[] fila = new String[6];

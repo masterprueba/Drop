@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Andres
  */
-public class Bitacora_UI extends javax.swing.JInternalFrame {
+public class Bitacora_UI extends Views {
 
     public DefaultTableModel modeloTabla1, modeloTabla2;
     public static Bitacora_Controller bitController;
@@ -41,6 +41,8 @@ public class Bitacora_UI extends javax.swing.JInternalFrame {
                 modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
                 jTable1.setModel(modeloTabla1);
                 jTable2.setModel(modeloTabla2);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));
+                jTable2.setRowSorter(filtrarTabla(modeloTabla2));
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 jLabel1.setText("HISTORIAL DE INICIO DE SESSION");
                 setTitle("HISTORIAL DE INICIO DE SESSION");

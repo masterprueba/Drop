@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
+public class PrestamosyAbonos_x_fecha extends Views {
 
     /**
      * Creates new form Perstamos_x_fecha
@@ -53,6 +53,7 @@ public class PrestamosyAbonos_x_fecha extends javax.swing.JInternalFrame {
                 break;
         }
         jTable1.setModel(modelo);
+        jTable1.setRowSorter(filtrarTabla(modelo));
     }
 
     /**

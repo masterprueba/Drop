@@ -7,6 +7,7 @@ package Controller;
 
 import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -73,5 +74,10 @@ protected DecimalFormat formateador;
             jt.getColumnModel().getColumn(position[i]).setPreferredWidth(0);
         }
 
+    }
+        
+        public TableRowSorter filtrarTabla(DefaultTableModel modelo){            
+            TableRowSorter sorter = new TableRowSorter(modelo);            
+            return sorter;
     }
 }
