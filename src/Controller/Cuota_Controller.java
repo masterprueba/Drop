@@ -81,6 +81,8 @@ public class Cuota_Controller extends Prestamo_Controller {
                 Cuota_UI.a_interes.setText(interes_cuota + "");
                 Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                 Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
+                Cuota_UI.a_cuotaspagas.setText(abono.getTcuoCuotasPagadas()+"");
+                Cuota_UI.a_saldodebe.setText((prestamo.getTpreValorTotal()-abono.getTcuoNuevoSaldo())+"");
                 if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
                     cliente = null;
                     JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");

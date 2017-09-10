@@ -22,6 +22,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jPanel1.setVisible(false);
         jPanel2.setVisible(false);
         jPanel3.setVisible(false);
+        jButton3.setVisible(false);
     }
 
     /**
@@ -49,6 +50,8 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         txt_r_tintereses = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txt_r_vpagado = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        fechaini = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txt_rhoy_vprestamo = new javax.swing.JTextField();
@@ -58,12 +61,9 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         txt_rhoy_dias = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txt_rhoy_pretamointeres = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txt_thoy_tintereses = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        txt_rhoy_vpagado = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        fechafin = new com.toedter.calendar.JDateChooser();
+        txt_nombre = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txt_id_prestamo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -71,6 +71,11 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         txt_vabonar = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        txt_thoy_tintereses = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txt_rhoy_pretamointeres = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -79,12 +84,16 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Valor Prestamo.");
 
+        txt_r_vprestamo.setEditable(false);
         txt_r_vprestamo.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_vprestamo.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel4.setText("Interes al.............");
 
+        txt_r_interes.setEditable(false);
         txt_r_interes.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_interes.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel5.setText("%");
@@ -92,7 +101,9 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel6.setText("Total cuotas........");
 
+        txt_r_tcuotas.setEditable(false);
         txt_r_tcuotas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_tcuotas.setEnabled(false);
 
         txt_r_tiempo.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         txt_r_tiempo.setText("dias");
@@ -100,24 +111,33 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel8.setText("Valor + intereses");
 
+        txt_r_vpestamointeres.setEditable(false);
         txt_r_vpestamointeres.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_vpestamointeres.setEnabled(false);
 
         jLabel18.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel18.setText("Total intereses...");
 
+        txt_r_tintereses.setEditable(false);
         txt_r_tintereses.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_tintereses.setEnabled(false);
 
         jLabel20.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel20.setText("Valor pagado......");
 
+        txt_r_vpagado.setEditable(false);
         txt_r_vpagado.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_r_vpagado.setEnabled(false);
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel2.setText("Fecha inicial");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -125,17 +145,6 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                         .addComponent(txt_r_tcuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_r_tiempo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_r_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5))
-                            .addComponent(txt_r_vprestamo)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addGap(18, 18, 18)
@@ -147,21 +156,39 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_r_vpestamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_r_vpestamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_r_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))
+                            .addComponent(txt_r_vprestamo)
+                            .addComponent(fechaini, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(fechaini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_r_vprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_r_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_r_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -179,7 +206,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txt_r_vpestamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prestamo con Reajuste hasta hoy", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
@@ -187,12 +214,16 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel10.setText("Valor Prestamo.");
 
+        txt_rhoy_vprestamo.setEditable(false);
         txt_rhoy_vprestamo.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_rhoy_vprestamo.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel11.setText("Interes al.............");
 
+        txt_rhoy_interes.setEditable(false);
         txt_rhoy_interes.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_rhoy_interes.setEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel12.setText("%");
@@ -201,88 +232,73 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel13.setText("Total cuotas........");
 
         txt_rhoy_dias.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_rhoy_dias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_rhoy_diasFocusGained(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel14.setText("dias");
 
-        jLabel16.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel16.setText("Valor + intereses");
+        jLabel7.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel7.setText("Fecha final");
 
-        txt_rhoy_pretamointeres.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-
-        jLabel19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel19.setText("Total intereses...");
-
-        txt_thoy_tintereses.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-
-        jLabel21.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel21.setText("Valor pagado......");
-
-        txt_rhoy_vpagado.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_nombre.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        txt_nombre.setText("nombre");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_rhoy_pretamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel21))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txt_rhoy_interes)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel12))
-                            .addComponent(txt_rhoy_vprestamo)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14))
-                            .addComponent(txt_rhoy_vpagado)
-                            .addComponent(txt_thoy_tintereses))))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel7))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_nombre)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txt_rhoy_interes)
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel12))
+                        .addComponent(txt_rhoy_vprestamo)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel14))
+                        .addComponent(fechafin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_rhoy_vprestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_rhoy_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_rhoy_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_rhoy_vpagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(txt_thoy_tintereses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_rhoy_pretamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                .addGap(43, 43, 43)
+                .addComponent(txt_nombre)
+                .addGap(43, 43, 43))
         );
 
         jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -313,35 +329,73 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel19.setText("Total intereses...");
+
+        txt_thoy_tintereses.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel16.setText("Prestamo + intereses");
+
+        txt_rhoy_pretamointeres.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txt_rhoy_pretamointeres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_rhoy_pretamointeresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_vabonar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_vabonar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_thoy_tintereses, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_rhoy_pretamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(txt_thoy_tintereses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_rhoy_pretamointeres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(txt_vabonar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        jButton3.setText("Calcular Reajuste");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,22 +410,28 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(267, 267, 267)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_id_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -397,10 +457,10 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(rp.getPrestamo()){
             jPanel1.setVisible(true);
-        jPanel2.setVisible(true);
-        jPanel3.setVisible(true);
+        jPanel2.setVisible(true); 
+        jButton3.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(rootPane, "No existe prestamo");
+            JOptionPane.showMessageDialog(rootPane, "No existe prestamo o ya esta pago");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -418,10 +478,27 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        rp.calcular();
+        jPanel3.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_rhoy_diasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_rhoy_diasFocusGained
+        int dias = (int) ((fechafin.getDate().getTime() - fechaini.getDate().getTime()) / 86400000);
+        txt_rhoy_dias.setText(dias+"");
+    }//GEN-LAST:event_txt_rhoy_diasFocusGained
+
+    private void txt_rhoy_pretamointeresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_rhoy_pretamointeresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_rhoy_pretamointeresActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static com.toedter.calendar.JDateChooser fechafin;
+    public static com.toedter.calendar.JDateChooser fechaini;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -432,18 +509,20 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     public static javax.swing.JTextField txt_id_prestamo;
+    public static javax.swing.JLabel txt_nombre;
     public static javax.swing.JTextField txt_r_interes;
     public static javax.swing.JTextField txt_r_tcuotas;
     public static javax.swing.JLabel txt_r_tiempo;
@@ -454,7 +533,6 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txt_rhoy_dias;
     public static javax.swing.JTextField txt_rhoy_interes;
     public static javax.swing.JTextField txt_rhoy_pretamointeres;
-    public static javax.swing.JTextField txt_rhoy_vpagado;
     public static javax.swing.JTextField txt_rhoy_vprestamo;
     public static javax.swing.JTextField txt_thoy_tintereses;
     public static javax.swing.JTextField txt_vabonar;
