@@ -10,27 +10,28 @@ import Entity.TCuota;
 import Entity.TPago;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
-import UI.PrestamosyAbonos_x_fecha;
+import UI.PrestamosyAbonos_x_fecha_UI;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author Usuario
  */
-public class Prestamos_Abonos_Xfecha extends Controllers {
+public class Prestamos_Abonos_x_fecha_Controller extends Controllers {
 
     private final Prestamo_model mPrestamo = new Prestamo_model();
-    private final PrestamosyAbonos_x_fecha vistaPrestamo_Abonos;
+    private final PrestamosyAbonos_x_fecha_UI vistaPrestamo_Abonos;
     private List<TPrestamo> listPrestamo;
     private List<TCuota> listCuota;
     private String fechaInicio = "";
     private String fechaFin = "";
 
-    public Prestamos_Abonos_Xfecha(PrestamosyAbonos_x_fecha vista) {
+    public Prestamos_Abonos_x_fecha_Controller(PrestamosyAbonos_x_fecha_UI vista) {
         vistaPrestamo_Abonos = vista;
         mPrestamo.findAll(TCobrador.class).stream().forEach((c) -> {
             vistaPrestamo_Abonos.jComboCobrador.addItem(((TCobrador) c).getTcobNombre());
@@ -121,6 +122,10 @@ public class Prestamos_Abonos_Xfecha extends Controllers {
             vistaPrestamo_Abonos.Comp_Fecha_Desde2.setEnabled(true);
             vistaPrestamo_Abonos.jButton3.setEnabled(true);
         }
+    }
+
+    public void imprimirTabla(JTable jTable, String header, String footer, boolean showPrintDialog) {
+        utilJTablePrint(jTable, header, footer, showPrintDialog);
     }
 
 }

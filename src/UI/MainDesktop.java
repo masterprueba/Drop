@@ -611,12 +611,12 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        JInternalFrame in = new PrestamosyAbonos_x_fecha("PRESTAMO");
+        JInternalFrame in = new PrestamosyAbonos_x_fecha_UI("PRESTAMO");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-        JInternalFrame in = new PrestamosyAbonos_x_fecha("ABONO");
+        JInternalFrame in = new PrestamosyAbonos_x_fecha_UI("ABONO");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 

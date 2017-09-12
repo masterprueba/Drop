@@ -5,15 +5,16 @@
  */
 package UI;
 
-import Controller.Prestamos_Abonos_Xfecha;
+import Controller.Prestamos_Abonos_x_fecha_Controller;
 import Controller.TableModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Usuario
  */
-public class PrestamosyAbonos_x_fecha extends Views {
+public class PrestamosyAbonos_x_fecha_UI extends Views {
 
     /**
      * Creates new form Perstamos_x_fecha
@@ -22,12 +23,13 @@ public class PrestamosyAbonos_x_fecha extends Views {
      */
     static String vista;
     public DefaultTableModel modelo;
-    private final Prestamos_Abonos_Xfecha paControler;
+    private final Prestamos_Abonos_x_fecha_Controller paControler;
+    private String fecha;
 
-    public PrestamosyAbonos_x_fecha(String vist) {
+    public PrestamosyAbonos_x_fecha_UI(String vist) {
         initComponents();
         vista = vist;
-        paControler = new Prestamos_Abonos_Xfecha(this);
+        paControler = new Prestamos_Abonos_x_fecha_Controller(this);
         modelo(vist);
         paControler.desactivarFechas(1);
         if (vista.equals("PRESTAMO")) {
@@ -80,6 +82,7 @@ public class PrestamosyAbonos_x_fecha extends Views {
         jComboCobrador = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jComboMetodoPago = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -151,6 +154,15 @@ public class PrestamosyAbonos_x_fecha extends Views {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/printer.png"))); // NOI18N
+        jButton1.setText("Imprimir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,6 +186,8 @@ public class PrestamosyAbonos_x_fecha extends Views {
                                 .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -196,7 +210,9 @@ public class PrestamosyAbonos_x_fecha extends Views {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Comp_Fecha_Desde2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,9 +221,9 @@ public class PrestamosyAbonos_x_fecha extends Views {
                             .addComponent(jComboCobrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(Comp_Fecha_Desde1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)))
@@ -248,6 +264,8 @@ public class PrestamosyAbonos_x_fecha extends Views {
         } else {
             paControler.verAbonos();
         }
+        fecha = "(" + Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay() + "-" + (Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + ") - "
+                + "(" + Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay() + "-" + (Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + ")";
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -275,10 +293,26 @@ public class PrestamosyAbonos_x_fecha extends Views {
         paControler.verAbonos();
     }//GEN-LAST:event_jComboMetodoPagoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (jTable1.getRowCount() > 0) {
+            ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{});
+            ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{});
+            ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{"", "TOTAL :", jTextField1.getText()});
+            String titulo = vista.equals("PRESTAMO") ? "Historial de prestamos por fecha " : "Historial de abonos por fecha ";
+            paControler.imprimirTabla(jTable1, titulo + fecha, "DrotiSoftwares", true);
+            ((DefaultTableModel) jTable1.getModel()).removeRow(((DefaultTableModel) jTable1.getModel()).getRowCount() - 1);
+            ((DefaultTableModel) jTable1.getModel()).removeRow(((DefaultTableModel) jTable1.getModel()).getRowCount() - 1);
+            ((DefaultTableModel) jTable1.getModel()).removeRow(((DefaultTableModel) jTable1.getModel()).getRowCount() - 1);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No hay filas para imprimir.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde1;
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
+    private javax.swing.JButton jButton1;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JComboBox<String> jComboBox1;
     public static javax.swing.JComboBox<String> jComboCobrador;
