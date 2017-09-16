@@ -53,6 +53,7 @@ public class Bitacora_UI extends Views {
             case "PRESTAMO":
                 modeloTabla1 = new TableModel().bitacoraGeneralPrestamo();
                 jTable1.setModel(modeloTabla1);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));                
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 jLabel1.setText("HISTORIAL DE PRESTAMOS");
                 setTitle("HISTORIAL DE PRESTAMOS");
@@ -64,6 +65,7 @@ public class Bitacora_UI extends Views {
             case "CLIENTE":
                 modeloTabla1 = new TableModel().bitacoraGeneralClientes();
                 jTable1.setModel(modeloTabla1);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(6));
                 jLabel1.setText("HISTORIAL DE CLIENTES");
                 setTitle("HISTORIAL DE CLIENTES");
@@ -75,6 +77,7 @@ public class Bitacora_UI extends Views {
             case "GASTOS":
                 modeloTabla1 = new TableModel().bitacoraGeneralGastos();
                 jTable1.setModel(modeloTabla1);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 jLabel1.setText("HISTORIAL DE GASTOS");
@@ -87,6 +90,7 @@ public class Bitacora_UI extends Views {
             case "ABONO":
                 modeloTabla1 = new TableModel().bitacoraGeneralAbonos();
                 jTable1.setModel(modeloTabla1);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(10));
                 //jTable1.getColumnModel().getColumn(2).setPreferredWidth(300);
                 jLabel1.setText("HISTORIAL DE ABONOS");
@@ -102,6 +106,8 @@ public class Bitacora_UI extends Views {
                 modeloTabla2 = new TableModel().bitacoraIndividualInicioSession();
                 jTable1.setModel(modeloTabla1);
                 jTable2.setModel(modeloTabla2);
+                jTable1.setRowSorter(filtrarTabla(modeloTabla1));
+                jTable2.setRowSorter(filtrarTabla(modeloTabla2));
                 jTable1.removeColumn(jTable1.getColumnModel().getColumn(11));
                 jTable2.removeColumn(jTable2.getColumnModel().getColumn(3));
                 jLabel1.setText("HISTORIAL INTERES EXTRA");
