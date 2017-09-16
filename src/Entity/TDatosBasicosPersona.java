@@ -1,5 +1,5 @@
 package Entity;
-// Generated 2/09/2017 10:21:47 AM by Hibernate Tools 4.3.1
+// Generated 16/09/2017 03:50:19 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -25,8 +25,7 @@ public class TDatosBasicosPersona  implements java.io.Serializable {
     }
 
 	
-    public TDatosBasicosPersona(String tdbpCedula, String tdbpNombre, String tdbpTel, String tdbpCel) {
-        this.tdbpCedula = tdbpCedula;
+    public TDatosBasicosPersona(String tdbpNombre, String tdbpTel, String tdbpCel) {
         this.tdbpNombre = tdbpNombre;
         this.tdbpTel = tdbpTel;
         this.tdbpCel = tdbpCel;
