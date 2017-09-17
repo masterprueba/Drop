@@ -5,26 +5,22 @@
  */
 package Model;
 
-
-import Entity.TReferencia;
 import Persistence.hibernateUtil;
 import java.util.List;
 
 /**
  *
- * @author Andres
+ * @author ITERIA
  */
-public class Referencia_Model extends Models {
+public class Cierre_Model extends Models {
 
-    public List<TReferencia> SelectAllWhere(TReferencia r) {
-
+    public List consultarAllCierre() {
+        List result;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "FROM TReferencia r WHERE r.TDatosBasicosPersona.tdbpCedula = '" + r.getTDatosBasicosPersona().getTdbpCedula() + "'";
-        List<TReferencia> result = s.createQuery(query).list();
+        String query = "FROM TCierre";
+        result = s.createQuery(query).list();
         s.getTransaction().commit();
-
         return result;
     }
-    
 }

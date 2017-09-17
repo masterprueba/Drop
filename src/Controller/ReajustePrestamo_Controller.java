@@ -116,7 +116,7 @@ public class ReajustePrestamo_Controller extends Controllers {
         tr.setTPrestamo(prestamo);
         tr.setTreaFecha(new Date());
         tr.setTreaValor(Math.round(Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_r_vpestamointeres.getText())) - (Double.parseDouble(String.valueOf(ReajustePrestamo_UI.txt_rhoy_pretamointeres.getText())))));
-        return pmodel.insertReajuste(prestamo, cuota, tr);
+        return Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega()) ? pmodel.insertReajuste(prestamo, cuota, tr) : null;
     }
 
     public void calcular() {

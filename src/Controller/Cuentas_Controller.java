@@ -220,7 +220,12 @@ public class Cuentas_Controller extends Controllers {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public int insertMovimientoCuenta(TMovimientoCuenta obj) {
         System.out.println("Entro aqui");
-        return Integer.parseInt("" + getCueModel().insertar(obj, "MOVIMIENTO CUENTAS"));
+        if (Cierre_Controller.consutarCierre(obj.getTmocFecha())) {
+            return Integer.parseInt("" + getCueModel().insertar(obj, "MOVIMIENTO CUENTAS"));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
+            return 0;
+        }
     }
 //</editor-fold>  
 

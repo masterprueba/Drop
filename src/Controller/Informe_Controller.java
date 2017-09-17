@@ -5,12 +5,16 @@
  */
 package Controller;
 
+import Entity.TCierre;
 import Entity.TGasto;
 import Model.Gastos_Model;
+import Model.Models;
 import Model.Prestamo_model;
 import UI.InformeGeneral;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -21,6 +25,9 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -31,10 +38,14 @@ public class Informe_Controller extends Controllers {
     JTable pretamotable;
     JTable gastotable;
     TableRowSorter trs = null;
+    private final List<TCierre> mesesCombo;
+    private final Models modelo;
 
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
+        this.mesesCombo = new ArrayList<>();
         this.pretamotable = pretamotable;
         this.gastotable = gastotable;
+        this.modelo = new Models();
     }
 
     public void cargarDatos(boolean metodo) {
@@ -44,6 +55,7 @@ public class Informe_Controller extends Controllers {
         String fechafin = InformeGeneral.general_fechafin.getDate() != null
                 ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
                 : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
+        System.err.println("fecha inico" + fechaini + "fecha fin " + fechafin);
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
         if (!p && !g && metodo) {
@@ -120,8 +132,6 @@ public class Informe_Controller extends Controllers {
         return exist;
     }
 
-
-
     public void filter(JTextField jtf, JTable jtb) {
 
         jtf.addKeyListener(new KeyAdapter() {
@@ -133,5 +143,95 @@ public class Informe_Controller extends Controllers {
 
         trs = new TableRowSorter(jtb.getModel());
         jtb.setRowSorter(trs);
+    }
+
+    public void cargarUltimosMeses() {
+        InformeGeneral.jComboBox1.removeAllItems();
+        mesesCombo.clear();
+        int mes = LocalDate.now().getMonthValue();
+        int año = LocalDate.now().getYear();
+
+        for (int i = 0; i < 12; i++) {
+            if (mes - 1 != 0) {
+                try {
+                    if (Cierre_Controller.consutarCierre((new SimpleDateFormat("yyyy-MM")).parse(año + "-" + mes))) {
+                        InformeGeneral.jComboBox1.addItem(mes(mes) + "-" + año);
+                        mesesCombo.add(new TCierre(mes, año));
+                    }
+                    mes--;
+                } catch (ParseException e) {
+                }
+            } else {
+                try {
+                    if (Cierre_Controller.consutarCierre((new SimpleDateFormat("yyyy-MM")).parse(año + "-" + mes))) {
+                        InformeGeneral.jComboBox1.addItem(mes(mes) + "-" + año);
+                        mesesCombo.add(new TCierre(mes, año));
+                    }
+                    año--;
+                    mes = 12;
+                } catch (ParseException e) {
+                }
+            }
+        }
+    }
+
+    private String mes(int mes) {
+        switch (mes) {
+            case 1:
+                return "ENERO";
+            case 2:
+                return "FEBRERO";
+            case 3:
+                return "MARZO";
+            case 4:
+                return "ABRIL";
+            case 5:
+                return "MAYO";
+            case 6:
+                return "JUNIO";
+            case 7:
+                return "JULIO";
+            case 8:
+                return "AGOSTO";
+            case 9:
+                return "SEPTIEMBRE";
+            case 10:
+                return "OCTUBRE";
+            case 11:
+                return "NOVIEMBRE";
+            case 12:
+                return "DICIEMBRE";
+            default:
+                return "Mes no encontrado";
+        }
+    }
+
+    public void consultarMes() {
+        if (mesesCombo.size() > 0) {
+            String fechaInicio = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-01";
+            Calendar cal = new GregorianCalendar(mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno(), mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() - 1, 1);
+            int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+            String fechaFin = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-" + days;
+            try {
+                Calendar c = Calendar.getInstance();
+                c.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaInicio));
+                InformeGeneral.general_fechaini.getJCalendar().setCalendar(c);
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaFin));
+                InformeGeneral.general_fechafin.setCalendar(c2);
+            } catch (ParseException e) {
+                System.err.println("Error parseando fecha");
+            }
+            //cargarDatos(true);
+        }
+    }
+
+    public void cerrarMes() {
+        if (modelo.insertar(mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()), "CIERRE") != null) {
+            consultarMes();
+            JOptionPane.showMessageDialog(null, "Se cerro el mes de " + mes(mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes()));
+            Cierre_Controller.consultarCierre();
+            cargarUltimosMeses();
+        }
     }
 }

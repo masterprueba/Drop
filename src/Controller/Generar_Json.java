@@ -193,6 +193,10 @@ public class Generar_Json {
                 }
                 json += "\"tmocTipo\":\"" + movimientocuenta.getTmocTipo() + "\",\"tmocSaldo\":" + movimientocuenta.getTmocSaldo() + ",\"tmocFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimientocuenta.getTmocFecha()) + "\"}";
                 break;
+            case "Entity.TCierre":
+                TCierre cierre = (TCierre) object;
+                json = "{\"tciAno\":" + cierre.getTciAno() + ",\"tciMes\":" + cierre.getTciMes() + "}";
+                break;
         }
         return json;
     }

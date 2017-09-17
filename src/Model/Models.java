@@ -23,9 +23,6 @@ public class Models<T> {
     private T Objecto;
     protected Session s;
 
-    public Models() {
-    }
-
     public boolean conexion() {
         s = hibernateUtil.getSessionFactory();
         return true;

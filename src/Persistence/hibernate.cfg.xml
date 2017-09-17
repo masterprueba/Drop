@@ -30,5 +30,6 @@
     <mapping resource="Entity/TCobrador.hbm.xml"/>
     <mapping resource="Entity/TGasto.hbm.xml"/>
     <mapping resource="Entity/TCuentaPagar.hbm.xml"/>
+    <mapping resource="Entity/TCierre.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

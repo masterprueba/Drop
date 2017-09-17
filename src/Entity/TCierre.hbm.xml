@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/09/2017 09:05:35 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TCierre" table="t_cierre" catalog="drop_db" optimistic-lock="version">
+        <id name="tciId" type="java.lang.Integer">
+            <column name="tci_id" />
+            <generator class="identity" />
+        </id>
+        <property name="tciMes" type="int">
+            <column name="tci_mes" not-null="true" />
+        </property>
+        <property name="tciAno" type="int">
+            <column name="tci_ano" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

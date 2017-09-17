@@ -56,6 +56,8 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
         }
         jTable1.setModel(modelo);
         jTable1.setRowSorter(filtrarTabla(modelo));
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
     }
 
     /**

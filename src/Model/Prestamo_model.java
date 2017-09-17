@@ -6,9 +6,7 @@
 package Model;
 
 import Controller.Prestamo_Controller;
-import Entity.TCobrador;
 import Entity.TCuota;
-import Entity.TPago;
 import Entity.TPrestamo;
 import Entity.TReajuste;
 import Persistence.hibernateUtil;

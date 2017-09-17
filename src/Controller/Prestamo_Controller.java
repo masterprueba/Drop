@@ -88,7 +88,7 @@ public class Prestamo_Controller extends Controllers {
             }
 
             System.out.println(cliente.getTDatosBasicosPersona().getTdbpNombre());
-            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(Prestamo_ui.p_deuda.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null,null);
+            TPrestamo prestamo = new TPrestamo(cliente, valorprestamo.intValue(), Integer.parseInt(Prestamo_ui.p_deuda.getText()), Integer.parseInt(cantidad_cuotas.getText()), Integer.parseInt((String) interes.getText()), (String) metodo.getSelectedItem(), fecha.getDate(), valortotal, vcuota, null, null, null);
             String msg = "";
             try {
                 msg = "<html>Prestamo realizado correctamente:<ul><li>Valor a entregar : $<b>" + formateador.format(valorprestamo - (Long) formateador.parse(Prestamo_ui.p_deuda.getText())) + "</b></li>"
@@ -101,20 +101,24 @@ public class Prestamo_Controller extends Controllers {
             }
             JLabel label = new JLabel(msg);
             label.setFont(new Font("serif", Font.PLAIN, 14));
-            if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
-                    Prestamo_ui.jPanel2.setVisible(false);
-                    nombre.setText("");
-                    Prestamo_ui.P_tel.setText("");
-                    Prestamo_ui.P_dir.setText("");
-                    prestamo_actual.setText("");
-                    valor_prestamo.setText("0");
-                    cantidad_cuotas.setText("0");
-                    valor_cuota.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! ");
+            if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
+                if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                    if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
+                        Prestamo_ui.jPanel2.setVisible(false);
+                        nombre.setText("");
+                        Prestamo_ui.P_tel.setText("");
+                        Prestamo_ui.P_dir.setText("");
+                        prestamo_actual.setText("");
+                        valor_prestamo.setText("0");
+                        cantidad_cuotas.setText("0");
+                        valor_cuota.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error durante el registro del prestamo!! ");
 
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }
@@ -322,8 +326,12 @@ public class Prestamo_Controller extends Controllers {
             prestamo.setTpreValorTotal(Integer.parseInt(String.valueOf(model.getValueAt(i, 7))));
             prestamo.setTpreValorCuota(Integer.parseInt(String.valueOf(model.getValueAt(i, 8))));
             prestamo.setTPersona((TPersona) model.getValueAt(i, 10));
-            if (pmodel.editar(prestamo, "PRESTAMO")) {
-                conteo++;
+            if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
+                if (pmodel.editar(prestamo, "PRESTAMO")) {
+                    conteo++;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
         if (conteo == model.getRowCount()) {
@@ -414,12 +422,16 @@ public class Prestamo_Controller extends Controllers {
             TPrestamo p = (TPrestamo) pmodel.consultar(TPrestamo.class, Integer.parseInt(EliminarP_UI.id_eliminar.getText()));
             if (p != null) {
                 if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar el prestamo?", "Prestamo de " + p.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + p.getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                    if (pmodel.eliminar(p, "PRESTAMO")) {
-                        EliminarP_UI.msj_eliminar.setVisible(true);
-                        EliminarP_UI.id_eliminar.setText("");
+                    if (Cierre_Controller.consutarCierre(p.getTpreFechaEntrega())) {
+                        if (pmodel.eliminar(p, "PRESTAMO")) {
+                            EliminarP_UI.msj_eliminar.setVisible(true);
+                            EliminarP_UI.id_eliminar.setText("");
+                        } else {
+                            EliminarP_UI.id_eliminar.setText("");
+                            JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
+                        }
                     } else {
-                        EliminarP_UI.id_eliminar.setText("");
-                        JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo. Verifique que no tenga abonos");
+                        JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
                     }
                 } else {
                     EliminarP_UI.id_eliminar.setText("");

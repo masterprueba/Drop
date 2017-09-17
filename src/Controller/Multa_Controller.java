@@ -18,13 +18,15 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class Multa_Controller extends Controllers{
+public class Multa_Controller extends Controllers {
+
     private final Multa_Model Mmulta = new Multa_Model();
     private final Multa_Ui VistaMulta;
     private static TMulta Multa;
     private List<TMulta> multaresult;
     private TPrestamo prestamo;
     private String cc;
+
     public Multa_Controller(Multa_Ui VistaGastos) {
         this.VistaMulta = VistaGastos;
     }
@@ -32,10 +34,14 @@ public class Multa_Controller extends Controllers{
     public void registrar() {
         if (validar()) {
             llenarObjeto();
-            if (Mmulta.insertar(Multa,"PRESTAMO") != null) {
-                vaciarCampos();
-                traer(obtenerRadiobuttonSeleccionado());
-                JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo interes");
+            if (Cierre_Controller.consutarCierre(Multa.getTmulFecha())) {
+                if (Mmulta.insertar(Multa, "PRESTAMO") != null) {
+                    vaciarCampos();
+                    traer(obtenerRadiobuttonSeleccionado());
+                    JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo interes");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }
@@ -61,27 +67,35 @@ public class Multa_Controller extends Controllers{
     public void actualizar() {
         if (validar()) {
             llenarObjeto();
-            if (Mmulta.editar(Multa,"PRESTAMO")) {
-                JOptionPane.showMessageDialog(null, "El interes fue editado correctamente!");                
-                traer(obtenerRadiobuttonSeleccionado());
-                vaciarCampos();
-                desactivarBotones(0);
+            if (Cierre_Controller.consutarCierre(Multa.getTmulFecha())) {
+                if (Mmulta.editar(Multa, "PRESTAMO")) {
+                    JOptionPane.showMessageDialog(null, "El interes fue editado correctamente!");
+                    traer(obtenerRadiobuttonSeleccionado());
+                    vaciarCampos();
+                    desactivarBotones(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el interes, intente nuevamente");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el interes, intente nuevamente");
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }
-    
+
     public void eliminar() {
         if (validar()) {
             llenarObjeto();
-            if (Mmulta.eliminar(Multa,"PRESTAMO")) {
-                JOptionPane.showMessageDialog(null, "El interes fue eliminado correctamente!");                
-                traer(obtenerRadiobuttonSeleccionado());
-                vaciarCampos();
-                desactivarBotones(0);
+            if (Cierre_Controller.consutarCierre(Multa.getTmulFecha())) {
+                if (Mmulta.eliminar(Multa, "PRESTAMO")) {
+                    JOptionPane.showMessageDialog(null, "El interes fue eliminado correctamente!");
+                    traer(obtenerRadiobuttonSeleccionado());
+                    vaciarCampos();
+                    desactivarBotones(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al eliminar el interes, intente nuevamente");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al eliminar el interes, intente nuevamente");
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }
@@ -101,7 +115,7 @@ public class Multa_Controller extends Controllers{
         Multa_Ui.jTextArea1.setText(null);
         Multa_Ui.jTextField2.setText(null);
         Multa_Ui.Comp_Fecha_Gasto.setDate(null);
-        Multa_Ui.a_cedula.setText(""); 
+        Multa_Ui.a_cedula.setText("");
         prestamo = null;
         cc = "";
         Multa_Ui.Comp_Fecha_Desde1.setDate(null);
@@ -126,16 +140,16 @@ public class Multa_Controller extends Controllers{
     public void traer(int V) {
         switch (V) {
             case 1:
-                multaresult = Mmulta.ConsultarMes((Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR), "and tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = '"+cc+"'");
+                multaresult = Mmulta.ConsultarMes((Calendar.getInstance().get(Calendar.MONTH) + 1), Calendar.getInstance().get(Calendar.YEAR), "and tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = '" + cc + "'");
                 break;
             case 2:
-                multaresult = Mmulta.findAll(TMulta.class, "tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = "+cc);
+                multaresult = Mmulta.findAll(TMulta.class, "tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = " + cc);
                 break;
             case 3:
                 if (VistaMulta.Comp_Fecha_Desde1.getDate() != null && VistaMulta.Comp_Fecha_Desde2.getDate() != null) {
                     String fecha1 = VistaMulta.Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + "/" + (VistaMulta.Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaMulta.Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay();
                     String fecha2 = VistaMulta.Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + "/" + (VistaMulta.Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + VistaMulta.Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay();
-                    multaresult = Mmulta.ConsultarPorFechas(fecha1, fecha2, "and tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = "+cc);
+                    multaresult = Mmulta.ConsultarPorFechas(fecha1, fecha2, "and tmulDescripcion like '" + VistaMulta.jTextField3.getText() + "%' and tmulValor like '" + VistaMulta.jTextField4.getText() + "%' AND TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula = " + cc);
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor seleccione la fecha de inicio y la fecha final");
                 }
@@ -197,16 +211,17 @@ public class Multa_Controller extends Controllers{
             Multa_Ui.jButton3.setEnabled(false);
         }
     }
-    public boolean aceptar(){
+
+    public boolean aceptar() {
         cc = Multa_Ui.a_cedula.getText();
-        prestamo = (TPrestamo) Mmulta.getPrestamo(cc);        
+        prestamo = (TPrestamo) Mmulta.getPrestamo(cc);
         return prestamo != null;
     }
-    
-    public boolean eliminar(String id){
+
+    public boolean eliminar(String id) {
         TMulta multaTemp = (TMulta) Mmulta.consultar(TMulta.class, Integer.parseInt(id));
         multaTemp.setTmulEstado("eliminado");
-        Boolean editado =Mmulta.editar(multaTemp, "PRESTAMO");
+        Boolean editado = Mmulta.editar(multaTemp, "PRESTAMO");
         traer(1);
         return editado;
     }

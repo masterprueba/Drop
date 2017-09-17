@@ -14,16 +14,10 @@ import Model.Cobrador_Model;
 import Model.Prestamo_model;
 import Model.TPagos_Model;
 import UI.Abonos;
-import UI.Cuota_UI;
-import UI.Multa_Ui;
-import UI.Prestamo_ui;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**

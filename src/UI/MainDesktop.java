@@ -7,6 +7,7 @@ package UI;
 
 import Controller.Backup;
 import Controller.Login_Controller;
+import Controller.Cierre_Controller;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -38,6 +39,7 @@ public class MainDesktop extends javax.swing.JFrame {
             jMenuItem21.setVisible(false);
             jMenu5.setVisible(false);
         }
+        Cierre_Controller.consultarCierre();
         //Maximizar la ventana en inicio
         //this.setExtendedState(MAXIMIZED_BOTH);
     }

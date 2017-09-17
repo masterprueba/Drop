@@ -31,10 +31,14 @@ public class gastos_Controller extends Controllers {
     public void registrarGasto() {
         if (validar()) {
             llenarObjetoGastos();
-            if (MGastos.insertar(Gasto,"GASTOS") != null) {
-                vaciarCampos();
-                traerGastos(obtenerRadiobuttonSeleccionado());
-                JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto");
+            if (Cierre_Controller.consutarCierre(Gasto.getTgasFecha())) {
+                if (MGastos.insertar(Gasto, "GASTOS") != null) {
+                    vaciarCampos();
+                    traerGastos(obtenerRadiobuttonSeleccionado());
+                    JOptionPane.showMessageDialog(null, "Se ha ingresado un nuevo gasto");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }
@@ -60,13 +64,17 @@ public class gastos_Controller extends Controllers {
     public void actualizarGasto() {
         if (validar()) {
             llenarObjetoGastos();
-            if (MGastos.editar(Gasto,"GASTOS")) {
-                JOptionPane.showMessageDialog(null, "El gasto fue editado correctamente!");
-                vaciarCampos();
-                traerGastos(obtenerRadiobuttonSeleccionado());
-                desactivarBotones(0);
+            if (Cierre_Controller.consutarCierre(Gasto.getTgasFecha())) {
+                if (MGastos.editar(Gasto, "GASTOS")) {
+                    JOptionPane.showMessageDialog(null, "El gasto fue editado correctamente!");
+                    vaciarCampos();
+                    traerGastos(obtenerRadiobuttonSeleccionado());
+                    desactivarBotones(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el gasto, intente nuevamente");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el gasto, intente nuevamente");
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
     }

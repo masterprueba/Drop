@@ -143,7 +143,7 @@ public class Banco_Controller extends Controllers {
             tb.setTbanNombre(getBanUI().jtfNombreBanco.getText());
             tb.setTbanSaldo(Long.parseLong(getBanUI().jtfSaldoBase.getText()));
 
-            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Número de Cuenta : " + getBanUI().jtfNumeroCuenta.getText() + "\n Nombre del Banco : " + getBanUI().jtfNombreBanco.getText() + "\n Saldo Base : "+ Long.parseLong(getBanUI().jtfSaldoBase.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+            int r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Número de Cuenta : " + getBanUI().jtfNumeroCuenta.getText() + "\n Nombre del Banco : " + getBanUI().jtfNombreBanco.getText() + "\n Saldo Base : " + Long.parseLong(getBanUI().jtfSaldoBase.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
 
             if (r == JOptionPane.YES_OPTION) {
 
@@ -215,7 +215,13 @@ public class Banco_Controller extends Controllers {
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public int insertMovimientoBanco(TMovimientoBanco obj) {
         System.out.println("Entro aqui");
-        return Integer.parseInt("" + banModel.insertar(obj, "MOVIMIENTO BANCO"));
+        if (Cierre_Controller.consutarCierre(obj.getTmovFecha())) {
+            return Integer.parseInt("" + banModel.insertar(obj, "MOVIMIENTO BANCO"));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
+            return 0;
+        }
+
     }
 //</editor-fold>  
 

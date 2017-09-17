@@ -81,8 +81,8 @@ public class Cuota_Controller extends Prestamo_Controller {
                 Cuota_UI.a_interes.setText(interes_cuota + "");
                 Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                 Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
-                Cuota_UI.a_cuotaspagas.setText(abono.getTcuoCuotasPagadas()+"");
-                Cuota_UI.a_saldodebe.setText((prestamo.getTpreValorTotal()-abono.getTcuoNuevoSaldo())+"");
+                Cuota_UI.a_cuotaspagas.setText(abono.getTcuoCuotasPagadas() + "");
+                Cuota_UI.a_saldodebe.setText((prestamo.getTpreValorTotal() - abono.getTcuoNuevoSaldo()) + "");
                 if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
                     cliente = null;
                     JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
@@ -136,7 +136,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                         pagos.setTipo(Cuota_UI.a_metodo.getText());
                     }
                     TCuota cuota = new TCuota(cmodel.SelectOne(cobrador), pamodel.SelectOne(pagos), prestamo, Cuota_UI.a_fecha.getDate(), Long.parseLong(Cuota_UI.a_abono.getText()), saldo, cpagadas);
-                    Serializable idcuota = pmodel.insertar(cuota, "PRESTAMO");
+                    Serializable idcuota = Cierre_Controller.consutarCierre(cuota.getTcuoFecha()) ? pmodel.insertar(cuota, "PRESTAMO") : null;
                     if (idcuota != null) {
                         Cuota_UI.a_debe.setText(prestamo.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
                         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MMM-dd");
@@ -146,12 +146,14 @@ public class Cuota_Controller extends Prestamo_Controller {
                         Cuota_UI.a_cuotaspag.setText(cuota.getTcuoCuotasPagadas() + "");
                         Cuota_UI.a_pnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                         Cuota_UI.a_valorprestamo.setText(prestamo.getTpreValorPrestamo() + "");
-                        Cuota_UI.a_numabono.setText(prestamo.getTCuotas().size()+"");
-                        Cuota_UI.a_id.setText(idcuota+"");
+                        Cuota_UI.a_numabono.setText(prestamo.getTCuotas().size() + "");
+                        Cuota_UI.a_id.setText(idcuota + "");
                         clearPanel(Cuota_UI.jPanel2);
                         clearPanel(Cuota_UI.jPanel3);
                         Cuota_UI.a_cobrador.setText("Por defecto");
-                        Cuota_UI.a_metodo.setText("Por defecto");                        
+                        Cuota_UI.a_metodo.setText("Por defecto");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
                     }
                 }
             }
@@ -325,9 +327,13 @@ public class Cuota_Controller extends Prestamo_Controller {
             cuota.setTcuoCuotasPagadas(Integer.parseInt(String.valueOf(model.getValueAt(i, 5))));
             cuota.setTPago((TPago) model.getValueAt(i, 9));
             cuota.setTCobrador((TCobrador) model.getValueAt(i, 10));
-            cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));            
-            if (pmodel.editar(cuota, "PRESTAMO")) {
-                conteo++;
+            cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));
+            if (Cierre_Controller.consutarCierre(cuota.getTcuoFecha())) {
+                if (pmodel.editar(cuota, "PRESTAMO")) {
+                    conteo++;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
             }
         }
         if (conteo == model.getRowCount()) {
@@ -345,12 +351,16 @@ public class Cuota_Controller extends Prestamo_Controller {
             TCuota c = (TCuota) pmodel.consultar(TCuota.class, Integer.parseInt(EliminarA_UI.id_eliminar.getText()));
             if (c != null) {
                 if (JOptionPane.showConfirmDialog(null, "Esta segur@ de eliminar la cuota?", "Prestamo de " + c.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + c.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                    if (pmodel.eliminar(c, "PRESTAMO")) {
-                        EliminarA_UI.msj_eliminar.setVisible(true);
-                        EliminarA_UI.id_eliminar.setText("");
+                    if (Cierre_Controller.consutarCierre(c.getTcuoFecha())) {
+                        if (pmodel.eliminar(c, "PRESTAMO")) {
+                            EliminarA_UI.msj_eliminar.setVisible(true);
+                            EliminarA_UI.id_eliminar.setText("");
+                        } else {
+                            EliminarA_UI.id_eliminar.setText("");
+                            JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo");
+                        }
                     } else {
-                        EliminarA_UI.id_eliminar.setText("");
-                        JOptionPane.showMessageDialog(null, "Error no se puede borrar el prestamo");
+                        JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
                     }
                 } else {
                     EliminarA_UI.id_eliminar.setText("");
