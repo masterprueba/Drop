@@ -757,7 +757,7 @@ public class Persona_ extends Controllers {
         InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3) + "");
         InformeCliente.txt_debe.setText((Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 7))) - Float.parseFloat(totalDeUnaTabla(dtm, 3) + "")) + "");
         InformeCliente.txt_cuotas.setText(Math.round(totalDeUnaTabla(dtm, 3)) / (Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)))) + "");
-        int[] position = {4, 8, 9, 10, 11};
+        int[] position = {8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
 

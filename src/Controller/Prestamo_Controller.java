@@ -52,6 +52,7 @@ public class Prestamo_Controller extends Controllers {
     private final JTextField interes;
     private final Prestamo_model pmodel;
     public static List<TCuota> listc;
+    public long saldo = 0;
 
     public Prestamo_Controller() {
         this.cc = Prestamo_ui.P_cedula;
@@ -277,9 +278,10 @@ public class Prestamo_Controller extends Controllers {
             if (tp.getTCuotas().size() > 0) {
                 //Trae la ultima cuota del prestamo                
                 int mayor2 = 0;
-                int obj2 = 0;
-                for (int i = 0; i < tp.getTCuotas().size(); i++) {
+                int obj2 = 0;                
+                for (int i = 0; i < tp.getTCuotas().size(); i++) {                    
                     TCuota tcuota = (TCuota) tp.getTCuotas().toArray()[i];
+                    saldo += tcuota.getTcuoAbono();
                     if (tcuota.getTcuoNuevoSaldo() > mayor2) {
                         obj2 = i;
                         mayor2 = (int) tcuota.getTcuoNuevoSaldo();
@@ -288,7 +290,7 @@ public class Prestamo_Controller extends Controllers {
                 cuota = (TCuota) tp.getTCuotas().toArray()[obj2];
                 //set a prestamo actual
                 if (controller == 'p') {
-                    prestamo_actual.setText(tp.getTpreValorTotal() - cuota.getTcuoNuevoSaldo() + "");
+                    prestamo_actual.setText(tp.getTpreValorTotal() - saldo + "");
                 }
             } else {
                 if (controller == 'p') {

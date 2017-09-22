@@ -82,8 +82,8 @@ public class Cuota_Controller extends Prestamo_Controller {
                 Cuota_UI.a_cnumcuotas.setText(String.valueOf(prestamo.getTpreNumCuotas()));
                 Cuota_UI.a_cuotaspend.setText(String.valueOf(prestamo.getTpreNumCuotas() - abono.getTcuoCuotasPagadas()));
                 Cuota_UI.a_cuotaspagas.setText(abono.getTcuoCuotasPagadas() + "");
-                Cuota_UI.a_saldodebe.setText((prestamo.getTpreValorTotal() - abono.getTcuoNuevoSaldo()) + "");
-                if (abono.getTcuoNuevoSaldo() >= prestamo.getTpreValorTotal()) {
+                Cuota_UI.a_saldodebe.setText((prestamo.getTpreValorTotal() - this.saldo) + "");
+                if (this.saldo >= prestamo.getTpreValorTotal()) {
                     cliente = null;
                     JOptionPane.showMessageDialog(null, "Este cliente no tiene prestamo activo");
                     return false;
@@ -114,7 +114,7 @@ public class Cuota_Controller extends Prestamo_Controller {
                 Long saldo;
                 int cpagadas;
                 if (abono != null) {
-                    saldo = abono.getTcuoNuevoSaldo() + Long.parseLong(Cuota_UI.a_abono.getText());
+                    saldo = this.saldo + Long.parseLong(Cuota_UI.a_abono.getText());
                     cpagadas = (int) ((float) saldo / prestamo.getTpreValorCuota());
                 } else {
                     saldo = Long.parseLong(Cuota_UI.a_abono.getText());
