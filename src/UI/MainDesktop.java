@@ -95,10 +95,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -278,26 +275,6 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem9);
 
-        jMenuItem10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118196_circle-clock-time-history-recent-2-glyph.png"))); // NOI18N
-        jMenuItem10.setText("Historial de Prestamos");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem10);
-
-        jMenuItem12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118212_circle-clock-time-history-recent-outline-stroke.png"))); // NOI18N
-        jMenuItem12.setText("Historial de Clientes");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem12);
-
         jMenuItem14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
         jMenuItem14.setText("Historial de Gastos");
@@ -307,16 +284,6 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem14);
-
-        jMenuItem15.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118207_alarm_alert_clock_event_history_schedule_time_watch.png"))); // NOI18N
-        jMenuItem15.setText("Historial de Abonos");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem15);
 
         jMenuItem17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
@@ -538,48 +505,18 @@ public class MainDesktop extends javax.swing.JFrame {
         Backup.execute();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        JInternalFrame in = new Bitacora_UI("INICIO");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        JInternalFrame in = new Bitacora_UI("PRESTAMO");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         checkInstance(new InformeCliente());
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        JInternalFrame in = new Bitacora_UI("CLIENTE");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         checkInstance(new InformeGeneral());
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        JInternalFrame in = new Bitacora_UI("GASTOS");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
-
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        JInternalFrame in = new Bitacora_UI("ABONO");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         JInternalFrame in = new Multa_Ui();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        JInternalFrame in = new Bitacora_UI("MULTA");
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         JInternalFrame in = new Persona_UI();
@@ -627,16 +564,31 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
-    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
-        JInternalFrame in = new Bitacora_HistorialGeneral();
-        checkInstance(in);
-    }//GEN-LAST:event_jMenuItem26ActionPerformed
-
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
         // TODO add your handling code here:
         JInternalFrame in = new Abonos();
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        JInternalFrame in = new Bitacora_HistorialGeneral();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        JInternalFrame in = new Bitacora_UI("MULTA");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        JInternalFrame in = new Bitacora_UI("GASTOS");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        JInternalFrame in = new Bitacora_UI("INICIO");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -703,12 +655,9 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;

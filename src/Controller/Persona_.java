@@ -696,7 +696,7 @@ public class Persona_ extends Controllers {
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
-        jt.setRowSorter(filtrarTabla(dtm));
+        
 
         DefaultTableModel dtm2 = new TableModel().historialCuota();
         jt2.setModel(dtm2);
@@ -736,8 +736,7 @@ public class Persona_ extends Controllers {
         tc.sort(Comparator.comparing(TCuota::getTcuoFecha));
 
         DefaultTableModel dtm = new TableModel().historialCuota();
-        jtbCuota.setModel(dtm);
-        jtbCuota.setRowSorter(filtrarTabla(dtm));
+        jtbCuota.setModel(dtm);        
         Object[] f = new Object[12];
         for (int i = 0; i < tc.size(); i++) {
             f[1] = tc.get(i).getTcuoId();
@@ -758,7 +757,7 @@ public class Persona_ extends Controllers {
         InformeCliente.txt_totalcuota.setText(totalDeUnaTabla(dtm, 3) + "");
         InformeCliente.txt_debe.setText((Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 7))) - Float.parseFloat(totalDeUnaTabla(dtm, 3) + "")) + "");
         InformeCliente.txt_cuotas.setText(Math.round(totalDeUnaTabla(dtm, 3)) / (Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)))) + "");
-        int[] position = {4, 5, 8, 9, 10, 11};
+        int[] position = {4, 8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
     }
 

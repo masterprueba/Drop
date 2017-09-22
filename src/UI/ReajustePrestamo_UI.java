@@ -64,6 +64,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         fechafin = new com.toedter.calendar.JDateChooser();
         txt_nombre = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txt_id_prestamo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -78,6 +79,8 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(760, 600));
+        setRequestFocusEnabled(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prestamo actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 14))); // NOI18N
 
@@ -247,6 +250,9 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
         txt_nombre.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         txt_nombre.setText("nombre");
 
+        jLabel15.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jLabel15.setText("Cliente:.");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -254,24 +260,28 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel7))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_nombre)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(txt_rhoy_interes)
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel12))
-                        .addComponent(txt_rhoy_vprestamo)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel14))
-                        .addComponent(fechafin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel7))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_rhoy_interes)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel12))
+                            .addComponent(txt_rhoy_vprestamo)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel14))
+                            .addComponent(fechafin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_nombre)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -296,9 +306,11 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                     .addComponent(txt_rhoy_dias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addGap(43, 43, 43)
-                .addComponent(txt_nombre)
-                .addGap(43, 43, 43))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre))
+                .addGap(56, 56, 56))
         );
 
         jButton1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -407,7 +419,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
                         .addComponent(jButton1))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -441,7 +453,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,6 +517,7 @@ public class ReajustePrestamo_UI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
