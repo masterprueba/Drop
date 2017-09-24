@@ -68,6 +68,7 @@ public class Cuota_Controller extends Prestamo_Controller {
     }
 
     public boolean setData(String cc) {
+        this.saldo = 0;
         TPersona cliente = consultarCliente(cc);
 
         if (cliente != null) {
@@ -271,6 +272,7 @@ public class Cuota_Controller extends Prestamo_Controller {
             for (int i = 0; i < listp.size(); i++) {
                 if (listp.get(i).getTDatosBasicosPersona().getTdbpCedula().equals(Select)) {
                     Multa_Ui.a_cedula.setText(listp.get(i).getTDatosBasicosPersona().getTdbpCedula());
+                    Multa_Ui.multa_nombre.setText(listp.get(i).getTDatosBasicosPersona().getTdbpNombre()+" "+listp.get(i).getTDatosBasicosPersona().getTdbpApellido());
                 }
             }
         }

@@ -20,6 +20,7 @@ import UI.Prestamo_ui;
 import UI.Refinancia_UI;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Font;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,7 +105,9 @@ public class Prestamo_Controller extends Controllers {
             label.setFont(new Font("serif", Font.PLAIN, 14));
             if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
                 if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                    if (pmodel.insertarPrestamo(prestamo, "PRESTAMO") != null) {
+                    Serializable idprestamo = pmodel.insertarPrestamo(prestamo, "PRESTAMO");
+                    if (idprestamo != null) {
+                        JOptionPane.showMessageDialog(null, "ID del prestamo : "+(int)idprestamo);
                         Prestamo_ui.jPanel2.setVisible(false);
                         nombre.setText("");
                         Prestamo_ui.P_tel.setText("");
@@ -126,6 +129,7 @@ public class Prestamo_Controller extends Controllers {
 
     //consulta y trae el objeto cliente 
     public TPersona consultarCliente(String cc) {
+        saldo = 0;
         TPersona temp = new TPersona();
         TDatosBasicosPersona datos = new TDatosBasicosPersona();
         datos.setTdbpCedula(cc);
