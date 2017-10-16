@@ -1,5 +1,5 @@
 package Entity;
-// Generated 16/09/2017 09:05:34 PM by Hibernate Tools 4.3.1
+// Generated 16/10/2017 10:23:05 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,6 +14,7 @@ public class TMovimientoBanco  implements java.io.Serializable {
      private TBanco TBanco;
      private String tmovTipo;
      private long tmovSaldo;
+     private double tmovPorcentaje;
      private Date tmovFecha;
      private String tmovConcepto;
 
@@ -21,16 +22,18 @@ public class TMovimientoBanco  implements java.io.Serializable {
     }
 
 	
-    public TMovimientoBanco(TBanco TBanco, String tmovTipo, long tmovSaldo, Date tmovFecha) {
+    public TMovimientoBanco(TBanco TBanco, String tmovTipo, long tmovSaldo, double tmovPorcentaje, Date tmovFecha) {
         this.TBanco = TBanco;
         this.tmovTipo = tmovTipo;
         this.tmovSaldo = tmovSaldo;
+        this.tmovPorcentaje = tmovPorcentaje;
         this.tmovFecha = tmovFecha;
     }
-    public TMovimientoBanco(TBanco TBanco, String tmovTipo, long tmovSaldo, Date tmovFecha, String tmovConcepto) {
+    public TMovimientoBanco(TBanco TBanco, String tmovTipo, long tmovSaldo, double tmovPorcentaje, Date tmovFecha, String tmovConcepto) {
        this.TBanco = TBanco;
        this.tmovTipo = tmovTipo;
        this.tmovSaldo = tmovSaldo;
+       this.tmovPorcentaje = tmovPorcentaje;
        this.tmovFecha = tmovFecha;
        this.tmovConcepto = tmovConcepto;
     }
@@ -62,6 +65,13 @@ public class TMovimientoBanco  implements java.io.Serializable {
     
     public void setTmovSaldo(long tmovSaldo) {
         this.tmovSaldo = tmovSaldo;
+    }
+    public double getTmovPorcentaje() {
+        return this.tmovPorcentaje;
+    }
+    
+    public void setTmovPorcentaje(double tmovPorcentaje) {
+        this.tmovPorcentaje = tmovPorcentaje;
     }
     public Date getTmovFecha() {
         return this.tmovFecha;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/09/2017 09:05:35 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/10/2017 10:23:06 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TMovimientoBanco" table="t_movimiento_banco" catalog="drop_db" optimistic-lock="version">
         <id name="tmovId" type="java.lang.Integer">
@@ -16,6 +16,9 @@
         </property>
         <property name="tmovSaldo" type="long">
             <column name="tmov_saldo" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="tmovPorcentaje" type="double">
+            <column name="tmov_porcentaje" precision="22" scale="0" not-null="true" />
         </property>
         <property name="tmovFecha" type="date">
             <column name="tmov_fecha" length="10" not-null="true" />

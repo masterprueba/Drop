@@ -167,15 +167,15 @@ public class Generar_Json {
                 break;
             case "Entity.TBanco":
                 TBanco banco = (TBanco) object;
-                json = "{\"tbanCuenta\":\"" + banco.getTbanCuenta() + "\",\"tbanNombre\":\"" + banco.getTbanNombre() + "\",\"tbanSaldo\":" + banco.getTbanSaldo() + "\"TMovimientoBancos\":[]}";
+                json = "{\"tbanCuenta\":\"" + banco.getTbanCuenta() + "\",\"tbanNombre\":\"" + banco.getTbanNombre() + "\",\"tbanTipo\":\"" + banco.getTbanTipo() + "\",\"tbanSaldo\":" + banco.getTbanSaldo() + "\"TMovimientoBancos\":[]}";
                 break;
             case "Entity.TMovimientoBanco":
                 TMovimientoBanco movimiento = (TMovimientoBanco) object;
                 json = "{\"tmovId\":" + movimiento.getTmovId() + ",";
                 if (movimiento.getTBanco() != null) {
-                    json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
+                        json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanTipo\":\"" + movimiento.getTBanco().getTbanTipo() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
                 }
-                json += "\"tmovTipo\":\"" + movimiento.getTmovTipo() + "\",\"tmovSaldo\":" + movimiento.getTmovSaldo() + ",\"tmovFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimiento.getTmovFecha()) + "\",\"tmovConcepto\":\"" + movimiento.getTmovConcepto() + "\"}";
+                json += "\"tmovTipo\":\"" + movimiento.getTmovTipo() + "\",\"tmovSaldo\":" + movimiento.getTmovSaldo() + "\",\"tmovPorcentaje\":" + movimiento.getTmovPorcentaje() + ",\"tmovFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimiento.getTmovFecha()) + "\",\"tmovConcepto\":\"" + movimiento.getTmovConcepto() + "\"}";
 
                 break;
             default:

@@ -18,11 +18,11 @@ public class Banco_Model extends Models {
     public Banco_Model() {
     }
 
-    public List<TBanco> SelectAllWhere() {
+    public List<TBanco> SelectAllWhere(char tipoBanco) {
 
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "FROM TBanco";
+        String query = "FROM TBanco WHERE tbanTipo = '" + tipoBanco +"'";
         List<TBanco> result = s.createQuery(query).list();
         s.getTransaction().commit();
 
