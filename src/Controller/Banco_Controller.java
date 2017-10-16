@@ -154,9 +154,9 @@ public class Banco_Controller extends Controllers {
 
         Set temp = ((TBanco) banUI.jtBanco1.getValueAt(banUI.jtBanco1.getSelectedRow(), 4)).getTMovimientoBancos();
         List<TMovimientoBanco> tmb = new ArrayList<>();
-        
+
         Double total = 0.0;
-        
+
         tmb.addAll(temp);
 
         tmb.sort(Comparator.comparing(TMovimientoBanco::getTmovFecha));
@@ -173,14 +173,13 @@ public class Banco_Controller extends Controllers {
             f[2] = tmb.get(i).getTmovTipo();
             f[3] = tmb.get(i).getTmovSaldo();
             f[4] = (tmb.get(i).getTmovPorcentaje() > 0) ? tmb.get(i).getTmovPorcentaje() : "-";
-            f[5] = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje())/100)+tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo();
+            f[5] = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo();
             f[6] = tmb.get(i).getTmovConcepto();
             getDtm().addRow(f);
-            
-            
-            total = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje())/100)+tmb.get(i).getTmovSaldo() + total : tmb.get(i).getTmovSaldo() + total;
+
+            total = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() + total : tmb.get(i).getTmovSaldo() + total;
         }
-        banUI.jtTotal1.setText(""+total.intValue());
+        banUI.jtTotal1.setText("" + total.intValue());
         numerarTabla(getDtm());
     }
 
@@ -239,21 +238,28 @@ public class Banco_Controller extends Controllers {
             } else {
                 r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
             }
-            
 
             if (r == JOptionPane.YES_OPTION) {
                 if (insertMovimientoBanco(tm) > 0) {
-                    initTable(getBanUI().jtBanco, tipoBanco);
-                    initTable(getBanUI().jtBanco1, tipoBanco);
-                    limpiaTabla(getBanUI().jtMovimientos);
-                    limpiaTabla(getBanUI().jtMovimientos1);
-                    getBanUI().jtfSaldo.setText("");
-                    getBanUI().jtaConcepto.setText("");
-                    getBanUI().btnGuardarMovimiento.setText("");
-                    getBanUI().jtfSaldo1.setText("");
-                    getBanUI().jtaConcepto1.setText("");
-                    getBanUI().jtfPorcentaje.setText("0");
-                    getBanUI().btnGuardarMovimiento1.setText("");
+                    
+
+                    if (tipoBanco == 'C') {
+                        initTable(getBanUI().jtBanco1, tipoBanco);
+                        getBanUI().jtfSaldo1.setText("");
+                        getBanUI().jtaConcepto1.setText("");
+                        getBanUI().jtfPorcentaje.setText("0");
+                        getBanUI().btnGuardarMovimiento1.setText("");
+                        limpiaTabla(getBanUI().jtMovimientos1);
+                    } else {
+                        initTable(getBanUI().jtBanco, tipoBanco);
+                        limpiaTabla(getBanUI().jtMovimientos);
+
+                        getBanUI().jtfSaldo.setText("");
+                        getBanUI().jtaConcepto.setText("");
+                        getBanUI().btnGuardarMovimiento.setText("");
+
+                    }
+
                 }
             }
         }

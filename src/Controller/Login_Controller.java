@@ -73,7 +73,7 @@ public class Login_Controller extends Thread {
     public void carga() {
         try {
             if (Lmodel.conexion()) {
-                if (Lmodel.Trial().before(new SimpleDateFormat("yyyy-MM-dd").parse("2017-10-15"))) {
+                if (Lmodel.Trial().before(new SimpleDateFormat("yyyy-MM-dd").parse("2099-10-15"))) {
                     cone = true;
                 } else {
                     Login_Controller.continuar = false;
