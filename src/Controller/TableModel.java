@@ -25,6 +25,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Fecha");
         modelo.addColumn("Detalle");
         modelo.addColumn("Costo");
+        modelo.addColumn("id");
         return modelo;
     }
 
@@ -320,6 +321,26 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Metodo de Pago");
         modelo.addColumn("Nuevo saldo");
         modelo.addColumn("Cuotas Pagadas");
+        return modelo;
+    }
+
+    public DefaultTableModel multaPorFecha() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Valor multa");
+        modelo.addColumn("Valor prestado");
+        return modelo;
+    }
+
+    public DefaultTableModel remanente() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Cobrador");
+        modelo.addColumn("Valor Remanente");
         return modelo;
     }
 }

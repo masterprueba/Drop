@@ -32,7 +32,7 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
         paControler = new Prestamos_Abonos_x_fecha_Controller(this);
         modelo(vist);
         paControler.desactivarFechas(1);
-        if (vista.equals("PRESTAMO")) {
+        if (!vista.equals("ABONO")) {
             jComboCobrador.setVisible(false);
             jComboMetodoPago.setVisible(false);
             jLabel3.setVisible(false);
@@ -53,11 +53,16 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
                 modelo = new TableModel().abonoPorFecha();
                 paControler.verAbonos();
                 break;
+            case "MULTA":
+                jLabel2.setText("INTERES EXTRA POR FECHA");
+                modelo = new TableModel().multaPorFecha();
+                paControler.verMultas();
+                break;
         }
         jTable1.setModel(modelo);
         jTable1.setRowSorter(filtrarTabla(modelo));
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+
     }
 
     /**
@@ -263,8 +268,10 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (vista.equals("PRESTAMO")) {
             paControler.verPrestamos();
-        } else {
+        } else if (vista.equals("ABONO")) {
             paControler.verAbonos();
+        } else {
+            paControler.verMultas();
         }
         fecha = "(" + Comp_Fecha_Desde1.getJCalendar().getDayChooser().getDay() + "-" + (Comp_Fecha_Desde1.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + Comp_Fecha_Desde1.getJCalendar().getYearChooser().getYear() + ") - "
                 + "(" + Comp_Fecha_Desde2.getJCalendar().getDayChooser().getDay() + "-" + (Comp_Fecha_Desde2.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + Comp_Fecha_Desde2.getJCalendar().getYearChooser().getYear() + ")";
@@ -278,8 +285,10 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
             paControler.desactivarFechas(1);
             if (vista.equals("PRESTAMO")) {
                 paControler.verPrestamos();
-            } else {
+            } else if (vista.equals("ABONO")) {
                 paControler.verAbonos();
+            } else {
+                paControler.verMultas();
             }
 
         }
@@ -300,7 +309,7 @@ public class PrestamosyAbonos_x_fecha_UI extends Views {
             ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{});
             ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{});
             ((DefaultTableModel) jTable1.getModel()).addRow(new String[]{"", "TOTAL :", jTextField1.getText()});
-            String titulo = vista.equals("PRESTAMO") ? "Historial de prestamos por fecha " : "Historial de abonos por fecha ";
+            String titulo = vista.equals("PRESTAMO") ? "Historial de prestamos por fecha " : vista.equals("ABONO") ? "Historial de abonos por fecha " : "Historial de interes extra por fecha ";
             paControler.imprimirTabla(jTable1, titulo + fecha, "DrotiSoftwares", true);
             ((DefaultTableModel) jTable1.getModel()).removeRow(((DefaultTableModel) jTable1.getModel()).getRowCount() - 1);
             ((DefaultTableModel) jTable1.getModel()).removeRow(((DefaultTableModel) jTable1.getModel()).getRowCount() - 1);

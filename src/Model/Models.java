@@ -38,10 +38,10 @@ public class Models<T> {
             id = s.save(obj);
             if (bitacora(obj, indicador, modulo)) {
                 s.getTransaction().commit();
-                System.err.println("comit");
+                System.err.println("comit BITACORA");
             } else {
                 id = null;
-                System.out.println("roolback");
+                System.out.println("roolback BITACORA");
                 s.getTransaction().rollback();
             }
             //test = true;

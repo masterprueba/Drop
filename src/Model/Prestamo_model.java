@@ -161,6 +161,15 @@ public class Prestamo_model<T> extends Models {
         s.getTransaction().commit();
         return result;
     }
+    public List<T> multaPorFecha(String inicio, String fin) {
+        List<T> result;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "from TMulta as multa  where multa.tmulFecha  between'" + inicio + " 00:00:00' and  '" + fin + " 23:59:59' ORDER BY multa.tmulId ASC";
+        result = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return result;
+    }
     
     public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota, TReajuste tr){
         String indicador = "AGREGO";

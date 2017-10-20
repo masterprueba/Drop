@@ -69,7 +69,6 @@ public class gastos_Controller extends Controllers {
                     JOptionPane.showMessageDialog(null, "El gasto fue editado correctamente!");
                     vaciarCampos();
                     traerGastos(obtenerRadiobuttonSeleccionado());
-                    desactivarBotones(0);
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocurrio un error al editar el gasto, intente nuevamente");
                 }
@@ -96,15 +95,13 @@ public class gastos_Controller extends Controllers {
     }
 
     public void traerUnGasto(MouseEvent evt) {
-        if (evt.getClickCount() == 2) {
-            int fila = VistaGastos.jTable1.rowAtPoint(evt.getPoint());
-            if (fila > -1) {
-                Gasto = (TGasto) MGastos.consultar(TGasto.class, gastosresult.get(Integer.parseInt(VistaGastos.modelo.getValueAt(fila, 0).toString()) - 1).getTgasId());
-                VistaGastos.jTextField2.setText(Gasto.getTgasCosto().toString());
-                VistaGastos.jTextArea1.setText(Gasto.getTgasDesc());
-                VistaGastos.Comp_Fecha_Gasto.setDate(Gasto.getTgasFecha());
-                desactivarBotones(1);
-            }
+        int fila = VistaGastos.jTable1.rowAtPoint(evt.getPoint());
+        if (fila > -1) {
+            Gasto = (TGasto) MGastos.consultar(TGasto.class, gastosresult.get(Integer.parseInt(VistaGastos.modelo.getValueAt(fila, 4).toString()) - 1).getTgasId());
+            VistaGastos.jTextField2.setText(Gasto.getTgasCosto().toString());
+            VistaGastos.jTextArea1.setText(Gasto.getTgasDesc());
+            VistaGastos.Comp_Fecha_Gasto.setDate(Gasto.getTgasFecha());
+            desactivarBotones(1);
         }
     }
 
@@ -129,12 +126,15 @@ public class gastos_Controller extends Controllers {
         VistaGastos.modelo.setNumRows(0);
         for (int i = 0; i < gastosresult.size(); i++) {
             String[] fila = new String[6];
+            fila[0] = gastosresult.get(i).getTgasId().toString();
             fila[1] = gastosresult.get(i).getTgasFecha().toString();
             fila[2] = gastosresult.get(i).getTgasDesc();
             fila[3] = gastosresult.get(i).getTgasCosto().toString();
             VistaGastos.modelo.addRow(fila);
         }
-        numerarTabla(VistaGastos.modelo);
+         for (int i = 0; i <  VistaGastos.modelo.getRowCount(); i++) {
+             VistaGastos.modelo.setValueAt(i + 1, i, 4);
+        }
         VistaGastos.jTextField1.setText("" + totalDeUnaTabla(VistaGastos.modelo, 3));
 
     }

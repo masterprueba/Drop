@@ -31,5 +31,6 @@
     <mapping resource="Entity/TCobrador.hbm.xml"/>
     <mapping resource="Entity/TDatosBasicosPersona.hbm.xml"/>
     <mapping resource="Entity/TMulta.hbm.xml"/>
+    <mapping resource="Entity/TRemanente.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

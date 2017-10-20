@@ -152,7 +152,7 @@ public class Bitacora_Controller extends Controllers {
                                 String[] fila = new String[11];
                                 fila[1] = cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + cuota.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
                                 fila[2] = lBitacora.get(i).getTbitIdentificador();
-                                fila[3] =  new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
+                                fila[3] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(cuota.getTcuoFecha());
                                 fila[4] = "" + cuota.getTcuoNuevoSaldo();
                                 fila[5] = "" + cuota.getTcuoCuotasPagadas();
                                 fila[6] = cuota.getTPago().getTipo();
@@ -160,7 +160,7 @@ public class Bitacora_Controller extends Controllers {
                                 fila[9] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                 fila[10] = "" + cuota.getTcuoId();
                                 fila[8] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
-                                
+
                                 vistaBitacora.modeloTabla1.addRow(fila);
                             }
                         }
@@ -195,6 +195,7 @@ public class Bitacora_Controller extends Controllers {
                         for (int i = 0; i < lBitacora.size(); i++) {
                             TMulta multa = gson.fromJson(lBitacora.get(i).getTbitRegistro(), TMulta.class);
                             String[] fila = new String[12];
+                            fila[0] = multa.getTmulId().toString();
                             fila[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                             fila[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                             fila[3] = lBitacora.get(i).getTbitIdentificador();
@@ -484,6 +485,7 @@ public class Bitacora_Controller extends Controllers {
                                 }
                                 if (multas) {
                                     String[] filamulta = new String[12];
+                                    filamulta[0] = multa.getTmulId().toString();
                                     filamulta[1] = lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpNombre() + " " + lBitacora.get(i).getTLogin().getTDatosBasicosPersona().getTdbpApellido();
                                     filamulta[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(lBitacora.get(i).getTbitFecha());
                                     filamulta[3] = "" + multa.getTmulValor();

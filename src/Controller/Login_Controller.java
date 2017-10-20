@@ -10,8 +10,6 @@ import Model.Login_Model;
 import UI.Login;
 import UI.MainDesktop;
 import static java.lang.Thread.sleep;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,13 +20,13 @@ import javax.swing.JOptionPane;
  * @author Yoimar
  */
 public class Login_Controller extends Thread {
-    
+
     private final Login_Model Lmodel = new Login_Model();
     private static TLogin USUARIO_LOGEADO;
     private List<TLogin> loginresult;
     private boolean cone = false;
     public static boolean continuar = true;
-    
+
     @Override
     public void run() {
         new Hilo().start();
@@ -61,37 +59,27 @@ public class Login_Controller extends Thread {
             Login.jPanel1.setVisible(true);
         }
     }
-    
+
     class Hilo extends Thread {
-        
+
         @Override
         public void run() {
             carga();
         }
     }
-    
+
     public void carga() {
-        try {
-            if (Lmodel.conexion()) {
-                if (Lmodel.Trial().before(new SimpleDateFormat("yyyy-MM-dd").parse("2099-10-15"))) {
-                    cone = true;
-                } else {
-                    Login_Controller.continuar = false;
-                    JOptionPane.showMessageDialog(null, "El Trial ha expirado, consulte a su desarrollador", "Advertencia", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
-                }
-            }
-        } catch (ParseException ex) {
-            Logger.getLogger(Login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        if (Lmodel.conexion()) {
+            cone = true;
         }
     }
-    
+
     public static TLogin getUsuarioLogueado() {
         return USUARIO_LOGEADO;
     }
-    
+
     public void Ingresar(TLogin User, Login login) {
-        
+
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;

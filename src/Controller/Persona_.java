@@ -548,7 +548,7 @@ public class Persona_ extends Controllers {
         getPerUI().jtfDireccionEmpresaCliente.setText("");
         getPerUI().jtfTelefonoEmpresaCliente.setText("");
 
-        getPerUI().btnRefCliente.setEnabled(false);
+        getPerUI().btnRefCliente.setEnabled(true);
     }
 
     public void cleanDataJTextCodeudor() {
@@ -566,8 +566,8 @@ public class Persona_ extends Controllers {
         getPerUI().jtfDireccionEmpresaCodeudor.setText("");
         getPerUI().jtfTelefonolEmpresaCodeudor.setText("");
 
-        getPerUI().btnRefCodeudor.setEnabled(false);
-        getPerUI().btnQuitarCodeudor.setEnabled(false);
+        getPerUI().btnRefCodeudor.setEnabled(true);
+        getPerUI().btnQuitarCodeudor.setEnabled(true);
     }
 //</editor-fold>   
 

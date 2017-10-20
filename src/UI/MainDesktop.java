@@ -91,6 +91,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -103,6 +104,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem28 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
@@ -236,13 +238,22 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem5.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118261_Money.png"))); // NOI18N
-        jMenuItem5.setText("Gestion de Gastos");
+        jMenuItem5.setText("Agregar Gastos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem5);
+
+        jMenuItem12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem12.setText("Ver Gastos");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
 
         jMenuBar1.add(jMenu1);
 
@@ -278,7 +289,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem14.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
-        jMenuItem14.setText("Historial de Gastos");
+        jMenuItem14.setText("Historial de cambios en Gastos");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -288,7 +299,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
-        jMenuItem17.setText("Historial Interes extra");
+        jMenuItem17.setText("Historial de cambios en Interes extra");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
@@ -355,6 +366,16 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu7.add(jMenuItem24);
+
+        jMenuItem10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem10.setText("Interes Extra Fecha");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem10);
 
         jMenuBar1.add(jMenu7);
 
@@ -496,7 +517,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        JInternalFrame in = new Gastos_UI();
+        JInternalFrame in = new Gastos_UI("AGREGAR");
         //DesktopPaneMain.add(in);
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -609,6 +630,18 @@ public class MainDesktop extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+      JInternalFrame in = new PrestamosyAbonos_x_fecha_UI("MULTA");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+     // TODO add your handling code here:
+        JInternalFrame in = new Gastos_UI("VER");
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         DesktopPaneMain.add(InternalWindow);
@@ -674,7 +707,9 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem16;

@@ -158,7 +158,7 @@ public class Persona_UI extends Views {
         jLabel34.setText("Celular");
 
         jtfCelularCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCelularCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCelularCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCelularCliente.setFocusable(false);
         jtfCelularCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -167,14 +167,14 @@ public class Persona_UI extends Views {
         });
 
         jtfApellidoCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfApellidoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfApellidoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfApellidoCliente.setFocusable(false);
 
         jtfNombreCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfNombreCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfNombreCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfNombreCliente.setFocusable(false);
 
-        jtfCedulaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCedulaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCedulaCliente.setMinimumSize(new java.awt.Dimension(6, 25));
         jtfCedulaCliente.setPreferredSize(new java.awt.Dimension(6, 25));
         jtfCedulaCliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -187,7 +187,7 @@ public class Persona_UI extends Views {
         });
 
         btnClienteCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/aceptar2.png"))); // NOI18N
-        btnClienteCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClienteCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnClienteCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteCedulaActionPerformed(evt);
@@ -358,7 +358,7 @@ public class Persona_UI extends Views {
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Domicilio"));
 
         jtfCasaDirCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCasaDirCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCasaDirCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCasaDirCliente.setFocusable(false);
 
         jLabel49.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
@@ -368,7 +368,7 @@ public class Persona_UI extends Views {
         jLabel50.setText("Propietario");
 
         jtfCasaPropieCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCasaPropieCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCasaPropieCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCasaPropieCliente.setFocusable(false);
 
         jLabel51.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
@@ -376,14 +376,14 @@ public class Persona_UI extends Views {
 
         jcbTipoCasaCliente.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jcbTipoCasaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
-        jcbTipoCasaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcbTipoCasaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jcbTipoCasaCliente.setEnabled(false);
 
         jLabel52.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel52.setText("Teléfono");
 
         jtfTelefonoCliente.setBackground(new java.awt.Color(204, 204, 255));
-        jtfTelefonoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfTelefonoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfTelefonoCliente.setFocusable(false);
         jtfTelefonoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -485,7 +485,7 @@ public class Persona_UI extends Views {
         jLabel42.setText("Celular");
 
         jtfCelularCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCelularCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCelularCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCelularCodeudor.setFocusable(false);
         jtfCelularCodeudor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -494,14 +494,14 @@ public class Persona_UI extends Views {
         });
 
         jtfApellidoCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfApellidoCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfApellidoCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfApellidoCodeudor.setFocusable(false);
 
         jtfNombreCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfNombreCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfNombreCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfNombreCodeudor.setFocusable(false);
 
-        jtfCedulaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCedulaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCedulaCodeudor.setFocusable(false);
         jtfCedulaCodeudor.setMinimumSize(new java.awt.Dimension(6, 25));
         jtfCedulaCodeudor.setPreferredSize(new java.awt.Dimension(6, 25));
@@ -515,7 +515,7 @@ public class Persona_UI extends Views {
         });
 
         btnCodeudor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/aceptar2.png"))); // NOI18N
-        btnCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCodeudor.setEnabled(false);
         btnCodeudor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -651,7 +651,6 @@ public class Persona_UI extends Views {
 
         btnRefCodeudor.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnRefCodeudor.setText("Referencias Codeudor");
-        btnRefCodeudor.setEnabled(false);
         btnRefCodeudor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefCodeudorActionPerformed(evt);
@@ -687,7 +686,7 @@ public class Persona_UI extends Views {
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Domicilio"));
 
         jtfCasaDirCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCasaDirCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCasaDirCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCasaDirCodeudor.setFocusable(false);
 
         jLabel53.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
@@ -697,7 +696,7 @@ public class Persona_UI extends Views {
         jLabel54.setText("Propietario");
 
         jtfCasaPropieCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfCasaPropieCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfCasaPropieCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfCasaPropieCodeudor.setFocusable(false);
 
         jLabel55.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
@@ -705,14 +704,14 @@ public class Persona_UI extends Views {
 
         jcbTipoCasaCodeudor.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jcbTipoCasaCodeudor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Propia", "Familiar", "Rentada" }));
-        jcbTipoCasaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcbTipoCasaCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jcbTipoCasaCodeudor.setEnabled(false);
 
         jLabel56.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel56.setText("Teléfono");
 
         jtfTelefonoCodeudor.setBackground(new java.awt.Color(204, 204, 255));
-        jtfTelefonoCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jtfTelefonoCodeudor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtfTelefonoCodeudor.setFocusable(false);
         jtfTelefonoCodeudor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -843,7 +842,7 @@ public class Persona_UI extends Views {
                 return canEdit [columnIndex];
             }
         });
-        jtbClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtbClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbClientesMouseClicked(evt);
@@ -911,7 +910,7 @@ public class Persona_UI extends Views {
         jButton1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/refresh.png"))); // NOI18N
         jButton1.setText("Limpiar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -921,7 +920,7 @@ public class Persona_UI extends Views {
         btnEditar.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/signing.png"))); // NOI18N
         btnEditar.setText("Editar");
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.setEnabled(false);
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -932,7 +931,7 @@ public class Persona_UI extends Views {
         btnGuardar.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setEnabled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

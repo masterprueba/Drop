@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.TCobrador;
 import Entity.TCuota;
+import Entity.TMulta;
 import Entity.TPago;
 import Entity.TPrestamo;
 import Model.Prestamo_model;
@@ -28,15 +29,22 @@ public class Prestamos_Abonos_x_fecha_Controller extends Controllers {
     private final PrestamosyAbonos_x_fecha_UI vistaPrestamo_Abonos;
     private List<TPrestamo> listPrestamo;
     private List<TCuota> listCuota;
+    private List<TMulta> listMulta;
     private String fechaInicio = "";
     private String fechaFin = "";
 
     public Prestamos_Abonos_x_fecha_Controller(PrestamosyAbonos_x_fecha_UI vista) {
         vistaPrestamo_Abonos = vista;
-        mPrestamo.findAll(TCobrador.class).stream().forEach((c) -> {
+        mPrestamo.findAll(TCobrador.class).stream().filter((t) -> {
+                    return !((TCobrador) t).getTcobNombre().equals("REFINANCIACION");
+                }).forEach((c) -> {
+
             vistaPrestamo_Abonos.jComboCobrador.addItem(((TCobrador) c).getTcobNombre());
         });
-        mPrestamo.findAll(TPago.class).stream().forEach((c) -> {
+        mPrestamo.findAll(TPago.class).stream().
+                filter((t) -> {
+                    return !((TPago) t).getTipo().equals("AJUSTE-.");
+                }).forEach((c) -> {
             vistaPrestamo_Abonos.jComboMetodoPago.addItem(((TPago) c).getTipo());
         });
     }
@@ -83,6 +91,25 @@ public class Prestamos_Abonos_x_fecha_Controller extends Controllers {
             vistaPrestamo_Abonos.modelo.addRow(filas);
         });
         vistaPrestamo_Abonos.jTextField1.setText("" + Math.round(totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 2)));
+    }
+
+    public void verMultas() {
+        obtenerFechas();
+        vistaPrestamo_Abonos.modelo.setNumRows(0);
+        listMulta = mPrestamo.multaPorFecha(fechaInicio, fechaFin);
+        listMulta.stream().map((multa) -> {
+            String[] filas = new String[12];
+            filas[0] = multa.getTmulId().toString();
+            filas[1] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+            filas[2] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(multa.getTmulFecha());
+            filas[3] = multa.getTmulDescripcion();
+            filas[4] = "" + multa.getTmulValor();
+            filas[5] = "" + multa.getTPrestamo().getTpreValorPrestamo();
+            return filas;
+        }).forEach((filas) -> {
+            vistaPrestamo_Abonos.modelo.addRow(filas);
+        });
+        vistaPrestamo_Abonos.jTextField1.setText("" + Math.round(totalDeUnaTabla(vistaPrestamo_Abonos.modelo, 4)));
     }
 
     private void obtenerFechas() {

@@ -10,16 +10,26 @@
             <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cobrador_UI.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Banco_UI.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Persistence/hibernateUtil.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Prestamo_ui.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/UI/Cuentas_UI.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Persistence/hibernate.reveng.xml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Model/Cuentas_Model.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/StringEncrypt.java</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Persistence/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/Usuario/Documents/NetBeansProjects/Drop/src/Controller/Cuentas_Controller.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/Login_Controller.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/Prestamos_Abonos_x_fecha_Controller.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Persistence/hibernateUtil.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/Bitacora_HistorialGeneral.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Model/Prestamo_model.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Entity/TPersona.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Persistence/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/Bitacora_HistorialGeneral_Controller.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/Bitacora_Individual.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/Persona_UI.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/MainDesktop.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/Persona_.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Model/Models.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/Bitacora_UI.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/Bitacora_Controller.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Entity/TPersona.hbm.xml</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Controller/TableModel.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/Gastos_UI.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/UI/PrestamosyAbonos_x_fecha_UI.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/Drop/src/Entity/TMulta.java</file>
         </group>
     </open-files>
 </project-private>

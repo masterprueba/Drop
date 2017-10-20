@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 20, 2017 8:50:50 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TRemanente" table="t_remanente" catalog="drop_db" optimistic-lock="version">
+        <id name="treId" type="java.lang.Integer">
+            <column name="tre_id" />
+            <generator class="identity" />
+        </id>
+        <property name="treFecha" type="date">
+            <column name="tre_fecha" length="10" not-null="true" />
+        </property>
+        <property name="treValor" type="long">
+            <column name="tre_valor" precision="10" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
