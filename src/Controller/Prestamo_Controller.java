@@ -25,10 +25,12 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -267,17 +269,20 @@ public class Prestamo_Controller extends Controllers {
         Set a = cliente.getTPrestamos();
         TCuota cuota = new TCuota();
         if (a.size() > 0) {
-            Date mayor = new Date(2000);
-            int obj = 0;
-            for (int i = 0; i < a.size(); i++) {
-                TPrestamo tp = (TPrestamo) a.toArray()[i];
-                System.out.println("fecha prestamo " + tp.getTpreFechaEntrega() + " fecha mayor " + mayor);
-                if (tp.getTpreFechaEntrega().after(mayor)) {
-                    obj = i;
-                    mayor = tp.getTpreFechaEntrega();
-                }
-            }
-            TPrestamo tp = (TPrestamo) a.toArray()[obj];
+//            Date mayor = new Date(2000);
+//            int obj = 0;
+//            for (int i = 0; i < a.size(); i++) {
+//                TPrestamo tp = (TPrestamo) a.toArray()[i];
+//                System.out.println("fecha prestamo " + tp.getTpreFechaEntrega() + " fecha mayor " + mayor);
+//                if (tp.getTpreFechaEntrega().after(mayor)) {
+//                    obj = i;
+//                    mayor = tp.getTpreFechaEntrega();
+//                }
+//                
+//            }            
+            List<TPrestamo> listp = new ArrayList<>(a);
+            //TPrestamo tp = (TPrestamo) a.toArray()[obj];
+            TPrestamo tp = listp.stream().max((x,y)-> x.getTpreId() - y.getTpreId()).get();
             cuota.setTPrestamo(tp);
             if (tp.getTCuotas().size() > 0) {
                 //Trae la ultima cuota del prestamo                

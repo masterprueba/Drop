@@ -4,6 +4,7 @@ package Entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -146,6 +147,31 @@ public class TPrestamo  implements java.io.Serializable {
     
     public void setTMultas(Set TMultas) {
         this.TMultas = TMultas;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.tpreId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TPrestamo other = (TPrestamo) obj;
+        if (!Objects.equals(this.tpreId, other.tpreId)) {
+            return false;
+        }
+        return true;
     }
 
 
