@@ -94,6 +94,9 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -247,7 +250,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem12.setText("Ver Gastos");
+        jMenuItem12.setText("Listar Gastos");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -272,6 +275,31 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu5.add(jMenuItem6);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/if_money-recycle-dollar-currency_2009876.png"))); // NOI18N
+        jMenu10.setText("Remanente");
+        jMenu10.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jMenu10.setPreferredSize(new java.awt.Dimension(155, 32));
+
+        jMenuItem15.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem15.setText("Agregar Remanente del dia");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem15);
+
+        jMenuItem29.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem29.setText("Listar Remanentes");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem29);
+
+        jMenuBar1.add(jMenu10);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
         jMenu6.setText("Historial");
@@ -642,6 +670,20 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame in = new Remanente_UI("AGREGAR");
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame in = new Remanente_UI("VER");
+        //DesktopPaneMain.add(in);
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         DesktopPaneMain.add(InternalWindow);
@@ -697,6 +739,7 @@ public class MainDesktop extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane DesktopPaneMain;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -712,6 +755,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
@@ -726,6 +770,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

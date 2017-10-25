@@ -6,7 +6,6 @@
 package UI;
 
 import Controller.Banco_Controller;
-import javax.swing.JOptionPane;
 
 /**
  *

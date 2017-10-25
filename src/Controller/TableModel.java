@@ -21,7 +21,7 @@ public class TableModel extends DefaultTableModel {
 
     public DefaultTableModel VerGastos() {
         TableModel modelo = new TableModel();
-        modelo.addColumn("");
+        modelo.addColumn("ID");
         modelo.addColumn("Fecha");
         modelo.addColumn("Detalle");
         modelo.addColumn("Costo");
