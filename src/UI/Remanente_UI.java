@@ -6,8 +6,10 @@
 package UI;
 
 import Controller.Remanente_Controller;
+import Controller.TableModel;
 import java.awt.Font;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,16 +22,19 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
      */
     private final Remanente_Controller remCon;
     private final String vista;
+    public final DefaultTableModel model;
 
     Remanente_UI(String vista) {
         this.vista = vista;
+        model = new TableModel().remanente();
         initComponents();
-        componentes(vista);
         remCon = new Remanente_Controller(this);
+        componentes(vista);
     }
 
     private void componentes(String vista) {
-
+        jTable2.setModel(model);
+        jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
         if (vista.equals("AGREGAR")) {
             jPanel1.setVisible(false);
             jButton4.setText("Guardar");
@@ -47,6 +52,7 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
             this.setTitle("AGREGAR REMANENTE DEL DIA");
             setSize(500, 220);
         } else {
+            remCon.traerRemanentes(jComboBox1.getSelectedIndex());
             Comp_Fecha.setVisible(false);
             jLabel2.setVisible(false);
             jButton4.setVisible(false);
@@ -104,6 +110,11 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
 
         jComboBox1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Fechas", "Todos" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel7.setText("Desde:");
@@ -122,6 +133,11 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
 
         jComboBox2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
 
@@ -139,6 +155,11 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -152,10 +173,9 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 22, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jButton4.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
@@ -247,13 +267,39 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        remCon.traerRemanentes(1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (vista.equals("")) {
+        if (vista.equals("AGREGAR")) {
+            remCon.guardar();
+        } else {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (jComboBox1.getSelectedIndex() != 1) {
+            jComboBox2.setEnabled((jComboBox1.getSelectedIndex() == 0));
+            Comp_Fecha_Desde1.setEnabled(false);
+            Comp_Fecha_Desde2.setEnabled(false);
+            jButton3.setEnabled(false);
+            remCon.traerRemanentes(jComboBox1.getSelectedIndex());
+        } else {
+            jComboBox2.setEnabled(false);
+            Comp_Fecha_Desde1.setEnabled(true);
+            Comp_Fecha_Desde2.setEnabled(true);
+            jButton3.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        remCon.traerRemanentes(0);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -262,8 +308,8 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     public static com.toedter.calendar.JDateChooser Comp_Fecha_Desde2;
     public static javax.swing.JButton jButton3;
     public static javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
     public javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
@@ -274,7 +320,7 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    public javax.swing.JTable jTable2;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

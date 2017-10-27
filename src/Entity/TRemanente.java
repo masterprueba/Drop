@@ -1,5 +1,5 @@
 package Entity;
-// Generated Oct 20, 2017 8:50:46 AM by Hibernate Tools 4.3.1
+// Generated Oct 27, 2017 10:14:44 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,13 +11,15 @@ public class TRemanente  implements java.io.Serializable {
 
 
      private Integer treId;
+     private TCobrador TCobrador;
      private Date treFecha;
      private long treValor;
 
     public TRemanente() {
     }
 
-    public TRemanente(Date treFecha, long treValor) {
+    public TRemanente(TCobrador TCobrador, Date treFecha, long treValor) {
+       this.TCobrador = TCobrador;
        this.treFecha = treFecha;
        this.treValor = treValor;
     }
@@ -28,6 +30,13 @@ public class TRemanente  implements java.io.Serializable {
     
     public void setTreId(Integer treId) {
         this.treId = treId;
+    }
+    public TCobrador getTCobrador() {
+        return this.TCobrador;
+    }
+    
+    public void setTCobrador(TCobrador TCobrador) {
+        this.TCobrador = TCobrador;
     }
     public Date getTreFecha() {
         return this.treFecha;

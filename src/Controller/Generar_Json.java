@@ -173,7 +173,7 @@ public class Generar_Json {
                 TMovimientoBanco movimiento = (TMovimientoBanco) object;
                 json = "{\"tmovId\":" + movimiento.getTmovId() + ",";
                 if (movimiento.getTBanco() != null) {
-                        json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanTipo\":\"" + movimiento.getTBanco().getTbanTipo() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
+                    json += "\"tbanCuenta\":\"" + movimiento.getTBanco().getTbanCuenta() + "\",\"tbanNombre\":\"" + movimiento.getTBanco().getTbanNombre() + "\",\"tbanTipo\":\"" + movimiento.getTBanco().getTbanTipo() + "\",\"tbanSaldo\":" + movimiento.getTBanco().getTbanSaldo() + "\"TMovimientoBancos\":[],";
                 }
                 json += "\"tmovTipo\":\"" + movimiento.getTmovTipo() + "\",\"tmovSaldo\":" + movimiento.getTmovSaldo() + "\",\"tmovPorcentaje\":" + movimiento.getTmovPorcentaje() + ",\"tmovFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(movimiento.getTmovFecha()) + "\",\"tmovConcepto\":\"" + movimiento.getTmovConcepto() + "\"}";
 
@@ -196,6 +196,10 @@ public class Generar_Json {
             case "Entity.TCierre":
                 TCierre cierre = (TCierre) object;
                 json = "{\"tciAno\":" + cierre.getTciAno() + ",\"tciMes\":" + cierre.getTciMes() + "}";
+                break;
+            case "Entity.TRemanente":
+                TRemanente remanente = (TRemanente) object;
+                json = "{\"treId\":" + remanente.getTreId() + ",\"treFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(remanente.getTreFecha()) + "\",\"treValor\":" + remanente.getTreValor() + "}";
                 break;
         }
         return json;
