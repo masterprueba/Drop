@@ -7,7 +7,9 @@ package UI;
 
 import Controller.Remanente_Controller;
 import Controller.TableModel;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +25,7 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     private final Remanente_Controller remCon;
     private final String vista;
     public final DefaultTableModel model;
+    Dimension dimensionOriginal;
 
     Remanente_UI(String vista) {
         this.vista = vista;
@@ -35,33 +38,69 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     private void componentes(String vista) {
         jTable2.setModel(model);
         jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
-        if (vista.equals("AGREGAR")) {
-            jPanel1.setVisible(false);
-            jButton4.setText("Guardar");
-            Comp_Fecha.setDate(new Date());
-            jLabel7.setVisible(false);
-            jLabel8.setVisible(false);
-            jLabel4.setVisible(false);
-            Comp_Fecha_Desde1.setVisible(false);
-            Comp_Fecha_Desde2.setVisible(false);
-            jComboBox1.setVisible(false);
-            jComboBox2.setVisible(false);
-            jButton3.setVisible(false);
-            jLabel1.setText("AGREGAR REMANENTE DEL DIA");
-            jLabel1.setFont(new Font(jLabel1.getFont().getName(), jLabel1.getFont().getStyle(), 18));
-            this.setTitle("AGREGAR REMANENTE DEL DIA");
-            setSize(500, 220);
-        } else {
-            remCon.traerRemanentes(jComboBox1.getSelectedIndex());
-            Comp_Fecha.setVisible(false);
-            jLabel2.setVisible(false);
-            jButton4.setVisible(false);
-            jLabel3.setVisible(false);
-            jLabel5.setVisible(false);
-            jComboBox3.setVisible(false);
-            jTextField1.setVisible(false);
-            jLabel1.setText("LISTAR REMANENTES");
-            this.setTitle("LISTAR REMANENTES");
+        switch (vista) {
+            case "AGREGAR":
+                jPanel1.setVisible(false);
+                jButton4.setText("Guardar");
+                Comp_Fecha.setDate(new Date());
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel4.setVisible(false);
+                Comp_Fecha_Desde1.setVisible(false);
+                Comp_Fecha_Desde2.setVisible(false);
+                jComboBox1.setVisible(false);
+                jComboBox2.setVisible(false);
+                jButton3.setVisible(false);
+                jLabel1.setText("AGREGAR REMANENTE DEL DIA");
+                jLabel1.setFont(new Font(jLabel1.getFont().getName(), jLabel1.getFont().getStyle(), 18));
+                this.setTitle("AGREGAR REMANENTE DEL DIA");
+                setSize(500, 220);
+                break;
+            case "EDITAR":
+                jPanel1.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel4.setVisible(false);
+                Comp_Fecha_Desde1.setVisible(false);
+                Comp_Fecha_Desde2.setVisible(false);
+                jComboBox1.setVisible(false);
+                jComboBox2.setVisible(false);
+                jButton3.setVisible(false);
+                jLabel2.setVisible(true);
+                Comp_Fecha.setVisible(true);
+                jLabel3.setVisible(true);
+                jComboBox3.setVisible(true);
+                jButton4.setVisible(true);
+                jLabel5.setVisible(true);
+                jTextField1.setVisible(true);
+                jButton4.setText("Editar");
+                jLabel1.setText("EDIAR REMANENTE");
+                this.setTitle("EDIAR REMANENTES");
+                jLabel1.setFont(new Font(jLabel1.getFont().getName(), jLabel1.getFont().getStyle(), 18));
+                setSize(500, 220);
+                break;
+            default:
+                jComboBox2.setSelectedIndex((LocalDate.now().getMonthValue() - 1));
+                remCon.traerRemanentes(jComboBox1.getSelectedIndex());
+                Comp_Fecha.setVisible(false);
+                jLabel2.setVisible(false);
+                jButton4.setVisible(false);
+                jLabel3.setVisible(false);
+                jLabel5.setVisible(false);
+                jComboBox3.setVisible(false);
+                jTextField1.setVisible(false);
+                jPanel1.setVisible(true);
+                jLabel7.setVisible(true);
+                jLabel8.setVisible(true);
+                jLabel4.setVisible(true);
+                Comp_Fecha_Desde1.setVisible(true);
+                Comp_Fecha_Desde2.setVisible(true);
+                jComboBox1.setVisible(true);
+                jComboBox2.setVisible(true);
+                jButton3.setVisible(true);
+                jLabel1.setText("LISTAR REMANENTES");
+                this.setTitle("LISTAR REMANENTES");
+                break;
         }
     }
 
@@ -92,6 +131,8 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
 
         setClosable(true);
@@ -162,20 +203,33 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
+        jLabel6.setText("Total:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)))
         );
 
         jButton4.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
@@ -223,7 +277,7 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
                             .addComponent(jTextField1))
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,12 +328,21 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
         if (vista.equals("AGREGAR")) {
             remCon.guardar();
         } else {
+            remCon.actualizarRemanente();
+            componentes("VER");
+            this.setSize(dimensionOriginal);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-
+        dimensionOriginal = this.getSize();
+        componentes("EDITAR");
+        remCon.cargarUnRemanente(Integer.valueOf(jTable2.getModel().getValueAt(jTable2.rowAtPoint(evt.getPoint()), 0).toString()));
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        remCon.traerRemanentes(0);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (jComboBox1.getSelectedIndex() != 1) {
@@ -294,12 +357,7 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
             Comp_Fecha_Desde2.setEnabled(true);
             jButton3.setEnabled(true);
         }
-
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        remCon.traerRemanentes(0);
-    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -316,11 +374,13 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel5;
+    public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTable2;
     public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
