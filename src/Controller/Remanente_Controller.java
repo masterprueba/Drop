@@ -161,5 +161,6 @@ public class Remanente_Controller extends Controllers {
                 listaRemanentes.stream().forEach(consumer);
                 break;
         }
+        vista.jTextField3.setText("" + Math.round(totalDeUnaTabla(vista.model, 3)));
     }
 }

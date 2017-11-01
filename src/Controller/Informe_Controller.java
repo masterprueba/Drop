@@ -26,7 +26,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -234,4 +233,10 @@ public class Informe_Controller extends Controllers {
             cargarUltimosMeses();
         }
     }
+
+    public void listarMesesCerrados(DefaultTableModel model) {
+       // modelo.findAll(TCierre.class).stream().f
+
+    }
+
 }

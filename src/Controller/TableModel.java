@@ -343,4 +343,12 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("Valor Remanente");
         return modelo;
     }
+
+    public DefaultTableModel verMeses() {
+        TableModel modelo = new TableModel();
+        modelo.addColumn("");
+        modelo.addColumn("Mes");
+        modelo.addColumn("Año");
+        return modelo;
+    }
 }

@@ -161,6 +161,7 @@ public class Prestamo_model<T> extends Models {
         s.getTransaction().commit();
         return result;
     }
+
     public List<T> multaPorFecha(String inicio, String fin) {
         List<T> result;
         s = hibernateUtil.getSessionFactory();
@@ -170,8 +171,8 @@ public class Prestamo_model<T> extends Models {
         s.getTransaction().commit();
         return result;
     }
-    
-    public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota, TReajuste tr){
+
+    public Serializable insertReajuste(TPrestamo prestamo, TCuota cuota, TReajuste tr) {
         String indicador = "AGREGO";
         Serializable id = null;
         try {
@@ -181,7 +182,7 @@ public class Prestamo_model<T> extends Models {
             Serializable idtemp = s.save(cuota);
             s.update(prestamo);
             s.save(tr);
-        if (bitacora(cuota, indicador, "Prestamo") && bitacora(prestamo,"EDITO","Prestamo")) {
+            if (bitacora(cuota, indicador, "Prestamo") && bitacora(prestamo, "EDITO", "Prestamo")) {
                 s.getTransaction().commit();
                 id = idtemp;
                 System.err.println("comit");
@@ -197,5 +198,15 @@ public class Prestamo_model<T> extends Models {
             id = null;
         }
         return id;
+    }
+
+    public double remanenteFecha(String inicio, String fin) {
+        double result;
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "select SUM(remanente.treValor) from TRemanente as remanente where remanente.treFecha between '" + inicio + " 00:00:00' AND '" + fin + " 00:00:00'";
+        result = Double.valueOf(s.createQuery(query).uniqueResult().toString());
+        s.getTransaction().commit();
+        return result;
     }
 }

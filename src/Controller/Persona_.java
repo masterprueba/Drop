@@ -762,13 +762,11 @@ public class Persona_ extends Controllers {
     }
 
     private void ordenarPrestamo(List prestamos) {
-        Collections.sort(prestamos, new Comparator<TPrestamo>() {
-            public int compare(TPrestamo o1, TPrestamo o2) {
-                if (o1.getTpreFechaEntrega() == null || o2.getTpreFechaEntrega() == null) {
-                    return 0;
-                }
-                return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
+        Collections.sort(prestamos, (TPrestamo o1, TPrestamo o2) -> {
+            if (o1.getTpreFechaEntrega() == null || o2.getTpreFechaEntrega() == null) {
+                return 0;
             }
+            return o1.getTpreFechaEntrega().compareTo(o2.getTpreFechaEntrega());
         });
     }
 
