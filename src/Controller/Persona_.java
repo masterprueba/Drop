@@ -402,7 +402,42 @@ public class Persona_ extends Controllers {
         }
         return tper;
     }
-//</editor-fold>      
+//</editor-fold>   
+
+//<editor-fold defaultstate="collapsed" desc="SELECT selectOneByCodeudor">
+    public boolean selectOneByCodeudor(TPersona objPer) {
+        TPersona tper = null;
+        try {
+            //Resultado de Consulta
+            tper = perModel.selectOneByCodeudor(objPer);
+            if (tper != null) {
+                return true;
+            }
+        } catch (Exception e) {
+            printStackTrace(e);
+        }
+
+        return false;
+    }
+//</editor-fold>    
+
+//<editor-fold defaultstate="collapsed" desc="SELECT selectOneByCodeudor">
+    public boolean deleteCliente(TPersona objPer) {
+        boolean t, d = false;
+        try {
+            //Resultado de Consulta
+            t = perModel.eliminar(objPer, "CLIENTE");
+            if (t) {
+                d = perModel.eliminar(objPer.getTDatosBasicosPersona(), "CLIENTE");
+            }
+
+        } catch (Exception e) {
+            printStackTrace(e);
+        }
+
+        return d;
+    }
+//</editor-fold>     
 
 //<editor-fold defaultstate="collapsed" desc="Method to INSERT return boolean">
     public int insert(TPersona objPer) {
@@ -696,7 +731,6 @@ public class Persona_ extends Controllers {
         ordenarPrestamo(tp);
         DefaultTableModel dtm = new TableModel().historialPrestamo();
         jt.setModel(dtm);
-        
 
         DefaultTableModel dtm2 = new TableModel().historialCuota();
         jt2.setModel(dtm2);
@@ -736,7 +770,7 @@ public class Persona_ extends Controllers {
         tc.sort(Comparator.comparing(TCuota::getTcuoFecha));
 
         DefaultTableModel dtm = new TableModel().historialCuota();
-        jtbCuota.setModel(dtm);        
+        jtbCuota.setModel(dtm);
         Object[] f = new Object[12];
         for (int i = 0; i < tc.size(); i++) {
             f[1] = tc.get(i).getTcuoId();
@@ -759,6 +793,71 @@ public class Persona_ extends Controllers {
         InformeCliente.txt_cuotas.setText(Math.round(totalDeUnaTabla(dtm, 3)) / (Integer.parseInt(String.valueOf(jtbPrestamo.getValueAt(jtbPrestamo.getSelectedRow(), 8)))) + "");
         int[] position = {8, 9, 10, 11};
         setVisibleColumnTable(jtbCuota, position);
+    }
+
+    public void deleteCliente(String cedula) {
+        TDatosBasicosPersona tdb = new TDatosBasicosPersona();
+        tdb.setTdbpCedula(cedula);
+
+        TPersona p = new TPersona();
+        p.setTDatosBasicosPersona(tdb);
+
+        TPersona temp = selectOne(p);
+
+        //System.out.println(temp);
+        if (temp != null) {
+            if (temp.getTPrestamos().isEmpty()) {
+                System.out.println("El cliente NO tiene historial de prestamo");
+
+                if (temp.getTperCodeudor() != null) {
+                    if (selectOneByCodeudor(temp)) {
+                        JOptionPane.showMessageDialog(null,
+                                "El Cliente se encuentra como codeudor de otro cliente.",
+                                "No se puede eliminar el Cliente.",
+                                JOptionPane.ERROR_MESSAGE);
+                    } else {
+
+                        int r = JOptionPane.showConfirmDialog(null,
+                                "Esta seguro que desea eliminar el Cliente? \n" + temp.getTDatosBasicosPersona().getTdbpNombre() + " " + temp.getTDatosBasicosPersona().getTdbpApellido() + "\n" + temp.getTDatosBasicosPersona().getTdbpCedula(),
+                                "Comprobar datos",
+                                JOptionPane.YES_NO_OPTION);
+
+                        if (r == JOptionPane.YES_OPTION) {
+                            if (deleteCliente(temp)) {
+                                JOptionPane.showMessageDialog(null, "Cliente Eliminado");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error al Eliminado Cliente.");
+                            }
+                        }
+                    }
+                } else {
+
+                    int r = JOptionPane.showConfirmDialog(null,
+                            "Esta seguro que desea eliminar el Cliente? \n" + temp.getTDatosBasicosPersona().getTdbpNombre() + " " + temp.getTDatosBasicosPersona().getTdbpApellido() + "\n" + temp.getTDatosBasicosPersona().getTdbpCedula(),
+                            "Comprobar datos",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (r == JOptionPane.YES_OPTION) {
+
+                        if (deleteCliente(temp)) {
+                            JOptionPane.showMessageDialog(null, "Cliente Eliminado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al Eliminado Cliente.");
+                        }
+                    }
+                }
+
+            } else {
+                System.err.println("El cliente cuenta con historial de prestamo");
+                JOptionPane.showMessageDialog(null,
+                        "No se puede eliminar el Cliente, cuenta con historial de prestamo",
+                        "No se puede eliminar el Cliente.",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente No Existe");
+        }
+
     }
 
     private void ordenarPrestamo(List prestamos) {

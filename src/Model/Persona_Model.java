@@ -28,6 +28,17 @@ public class Persona_Model extends Models {
 
         return result;
     }
+    
+    public TPersona selectOneByCodeudor(TPersona p) {
+
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "FROM TPersona P  WHERE P.tperCodeudor = '" + p.getTperCodeudor() +"'";
+        TPersona result = (TPersona) s.createQuery(query).uniqueResult();
+        s.getTransaction().commit();
+
+        return result;
+    }    
 
     public List<TPersona> SelectAllWhere(TPersona p) {
 
