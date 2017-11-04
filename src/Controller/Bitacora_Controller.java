@@ -466,13 +466,15 @@ public class Bitacora_Controller extends Controllers {
                     for (int i = 0; i < lBitacora.size(); i++) {
                         if (lBitacora.get(i).getTbitClassname().equals("Entity.TPrestamo") && datosbasicos) {
                             TPrestamo prestaMulta = (TPrestamo) listObject.get(i);
-                            cadena = "<html>Informacion General del Cliente<br><table cellspacing=\"1\">"
-                                    + "<tr><td>Cedula:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "</td>"
-                                    + "<td>Nombre:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido() + "</td></tr> "
-                                    + "<tr><td>Telefono:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpTel() + "</td>"
-                                    + "<td>Direccion:</td><td>" + prestaMulta.getTPersona().getTperCasDir() + "</td></tr>"
-                                    + "</table></html>";
-                            datosbasicos = false;
+                            if (prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpCedula().equals(cedula)) {
+                                cadena = "<html>Informacion General del Cliente<br><table cellspacing=\"1\">"
+                                        + "<tr><td>Cedula:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpCedula() + "</td>"
+                                        + "<td>Nombre:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpNombre().toUpperCase() + " " + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpApellido().toUpperCase() + "</td></tr> "
+                                        + "<tr><td>Telefono:</td><td>" + prestaMulta.getTPersona().getTDatosBasicosPersona().getTdbpTel() + "</td>"
+                                        + "<td>Direccion:</td><td>" + prestaMulta.getTPersona().getTperCasDir() + "</td></tr>"
+                                        + "</table></html>";
+                                datosbasicos = false;
+                            }
                         }
                         if (lBitacora.get(i).getTbitClassname().equals("Entity.TMulta") && lBitacora.get(i).getTbitIdentificador().equals("AGREGO")) {
                             TMulta multa = (TMulta) listObject.get(i);

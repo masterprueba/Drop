@@ -204,7 +204,7 @@ public class Prestamo_model<T> extends Models {
         double result;
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
-        String query = "select SUM(remanente.treValor) from TRemanente as remanente where remanente.treFecha between '" + inicio + " 00:00:00' AND '" + fin + " 00:00:00'";
+        String query = "select coalesce(SUM(remanente.treValor), 0)  from TRemanente as remanente where remanente.treFecha between '" + inicio + " 00:00:00' AND '" + fin + " 00:00:00'";
         result = Double.valueOf(s.createQuery(query).uniqueResult().toString());
         s.getTransaction().commit();
         return result;
