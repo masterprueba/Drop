@@ -349,6 +349,7 @@ public class TableModel extends DefaultTableModel {
         modelo.addColumn("");
         modelo.addColumn("Mes");
         modelo.addColumn("Año");
+        modelo.addColumn("id");
         return modelo;
     }
 }

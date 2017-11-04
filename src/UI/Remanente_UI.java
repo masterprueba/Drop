@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class Remanente_UI extends javax.swing.JInternalFrame {
+public class Remanente_UI extends Views {
 
     /**
      * Creates new form NewJInternalFrame
@@ -145,6 +145,12 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel3.setText("Cobrador");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         jLabel4.setText("Filtrar por:");
@@ -358,6 +364,10 @@ public class Remanente_UI extends javax.swing.JInternalFrame {
             jButton3.setEnabled(true);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_jTextField1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

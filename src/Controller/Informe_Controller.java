@@ -39,6 +39,8 @@ public class Informe_Controller extends Controllers {
     TableRowSorter trs = null;
     private final List<TCierre> mesesCombo;
     private final Models modelo;
+    private String fechaini;
+    String fechafin;
 
     public Informe_Controller(JTable pretamotable, JTable gastotable) {
         this.mesesCombo = new ArrayList<>();
@@ -48,13 +50,6 @@ public class Informe_Controller extends Controllers {
     }
 
     public void cargarDatos(boolean metodo) {
-        String fechaini = InformeGeneral.general_fechaini.getDate() != null
-                ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
-        String fechafin = InformeGeneral.general_fechafin.getDate() != null
-                ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
-        System.err.println("fecha inico" + fechaini + "fecha fin " + fechafin);
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
         if (!p && !g && metodo) {
@@ -70,6 +65,16 @@ public class Informe_Controller extends Controllers {
         //gasto
         InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3)) + "");
         InformeGeneral.text_ganacia.setText("" + (ganacias - Integer.parseInt(InformeGeneral.text_gasto.getText())));
+    }
+
+    public void obtenerfechas() {
+        fechaini = InformeGeneral.general_fechaini.getDate() != null
+                ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
+                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
+        fechafin = InformeGeneral.general_fechafin.getDate() != null
+                ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
+                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
+        System.err.println("fecha inico" + fechaini + "fecha fin " + fechafin);
     }
 
     public boolean obtenerPrestamos(String fechaini, String fechafin) {
@@ -207,21 +212,21 @@ public class Informe_Controller extends Controllers {
 
     public void consultarMes() {
         if (mesesCombo.size() > 0) {
-            String fechaInicio = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-01";
+            fechaini = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-01";
             Calendar cal = new GregorianCalendar(mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno(), mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() - 1, 1);
             int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-            String fechaFin = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-" + days;
+            fechafin = mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciAno() + "-" + mesesCombo.get(InformeGeneral.jComboBox1.getSelectedIndex()).getTciMes() + "-" + days;
             try {
                 Calendar c = Calendar.getInstance();
-                c.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaInicio));
-                InformeGeneral.general_fechaini.getJCalendar().setCalendar(c);
+                c.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaini));
+                InformeGeneral.general_fechaini.setCalendar(c);
                 Calendar c2 = Calendar.getInstance();
-                c2.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaFin));
+                c2.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechafin));
                 InformeGeneral.general_fechafin.setCalendar(c2);
             } catch (ParseException e) {
                 System.err.println("Error parseando fecha");
             }
-            //cargarDatos(true);
+             cargarDatos(true);
         }
     }
 
@@ -235,8 +240,23 @@ public class Informe_Controller extends Controllers {
     }
 
     public void listarMesesCerrados(DefaultTableModel model) {
-       // modelo.findAll(TCierre.class).stream().f
-
+        model.setRowCount(0);
+        modelo.findAll(TCierre.class).stream().forEach(a -> {
+            TCierre x = (TCierre) a;
+            model.addRow(new Object[]{"", mes(x.getTciMes()), x.getTciAno(), x.getTciId()});
+        });
+        numerarTabla(model);
     }
 
+    public void eliminarMes(Integer valueOf) {
+        TCierre mes = new TCierre();
+        mes.setTciId(valueOf);
+        if (modelo.eliminar(mes, "CIERRE")) {
+            JOptionPane.showMessageDialog(null, "Se cancelo el mes seleccionado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error al cancelar cierre");
+        }
+        Cierre_Controller.consultarCierre();
+        cargarUltimosMeses();
+    }
 }

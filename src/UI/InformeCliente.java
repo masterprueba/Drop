@@ -27,7 +27,7 @@ public class InformeCliente extends Views {
     public InformeCliente() {
         initComponents();
         init();
-        if (!Login_Controller.getUsuarioLogueado().getTlogUserLogin().equals("DULFAY")) {
+        if (!Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpCedula().equals("31922118")) {
             jButton1.setVisible(false);
             jButton2.setVisible(false);
         }

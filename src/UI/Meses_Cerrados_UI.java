@@ -7,6 +7,9 @@ package UI;
 
 import Controller.Informe_Controller;
 import Controller.TableModel;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,7 +31,21 @@ public class Meses_Cerrados_UI extends javax.swing.JInternalFrame {
         model = new TableModel().verMeses();
         initComponents();
         jTable1.setModel(model);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+        jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
         ic.listarMesesCerrados(model);
+        cargarPopup();
+    }
+
+    private void cargarPopup() {
+        JMenuItem popup = new JMenuItem("Elminar mes de la lista");
+        jPopupMenu1.add(popup);
+        popup.addActionListener(e -> {
+            if (JOptionPane.showInternalConfirmDialog(rootPane, "¿Esta seguro de eliminar el mes de " + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString() + "-" + jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString() + "?", "¿Esta seguro?", JOptionPane.YES_NO_OPTION) == 0) {
+                ic.eliminarMes(Integer.valueOf(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString()));
+                ic.listarMesesCerrados(model);
+            }
+        });
     }
 
     /**
@@ -40,14 +57,17 @@ public class Meses_Cerrados_UI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Clic derecho para cancelar el cierre de un mes");
+        jLabel1.setText("Clic izquierdo para cancelar el cierre de un mes");
 
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 20)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,6 +84,11 @@ public class Meses_Cerrados_UI extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,10 +119,18 @@ public class Meses_Cerrados_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON1) {
+            jPopupMenu1.show(evt.getComponent(),
+                    evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    public javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

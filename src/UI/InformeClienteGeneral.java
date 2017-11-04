@@ -17,10 +17,11 @@ public class InformeClienteGeneral extends Views {
      * Creates new form InformeGeneral
      */
     Informe_Controller ic;
+
     public InformeClienteGeneral() {
         initComponents();
-        ic = new Informe_Controller(jtable_infprestamo,jtable_infgasto);
-        ic.cargarDatos(false);        
+        ic = new Informe_Controller(jtable_infprestamo, jtable_infgasto);
+        ic.cargarDatos(false);
     }
 
     /**
@@ -318,6 +319,7 @@ public class InformeClienteGeneral extends Views {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ic.obtenerfechas();
         ic.cargarDatos(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
