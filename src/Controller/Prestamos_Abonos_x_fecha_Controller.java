@@ -36,14 +36,14 @@ public class Prestamos_Abonos_x_fecha_Controller extends Controllers {
     public Prestamos_Abonos_x_fecha_Controller(PrestamosyAbonos_x_fecha_UI vista) {
         vistaPrestamo_Abonos = vista;
         mPrestamo.findAll(TCobrador.class).stream().filter((t) -> {
-            return !((TCobrador) t).getTcobNombre().equals("REFINANCIACION");
+            return !((TCobrador) t).getTcobNombre().equals("REFINANCIACION") && !((TCobrador) t).getTcobNombre().equals("Reajuste");
         }).forEach((c) -> {
 
             vistaPrestamo_Abonos.jComboCobrador.addItem(((TCobrador) c).getTcobNombre());
         });
         mPrestamo.findAll(TPago.class).stream().
                 filter((t) -> {
-                    return !((TPago) t).getTipo().equals("AJUSTE-.");
+                    return !((TPago) t).getTipo().equals("AJUSTE-.") && !((TPago) t).getTipo().equals("Reajuste-.");
                 }).forEach((c) -> {
             vistaPrestamo_Abonos.jComboMetodoPago.addItem(((TPago) c).getTipo());
         });
@@ -98,7 +98,7 @@ public class Prestamos_Abonos_x_fecha_Controller extends Controllers {
         obtenerFechas();
         vistaPrestamo_Abonos.modelo.setNumRows(0);
         listMulta = mPrestamo.multaPorFecha(fechaInicio, fechaFin);
-        listMulta.stream().filter(a -> a.getTmulEstado().equals("eliminado")).map((multa) -> {
+        listMulta.stream().filter(a -> !a.getTmulEstado().equals("eliminado")).map((multa) -> {
             String[] filas = new String[12];
             filas[0] = multa.getTmulId().toString();
             filas[1] = multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpNombre() + " " + multa.getTPrestamo().getTPersona().getTDatosBasicosPersona().getTdbpApellido();
