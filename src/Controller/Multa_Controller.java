@@ -15,7 +15,10 @@ import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -240,11 +243,20 @@ public class Multa_Controller extends Controllers {
             Object[] o= new Object[7];
             o[0] = refinanceo.getTrefiId();
             o[1] = refinanceo.getTrefiIdprestamor();
+            TPrestamo p = (TPrestamo) Mmulta.consultar(TPrestamo.class, refinanceo.getTrefiIdprestamor());
+            o[2] = p.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+p.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
             o[3] = refinanceo.getTrefiValor();
             o[4] = refinanceo.getTrefiIdprestamoxr();
+            TPrestamo pxr = (TPrestamo) Mmulta.consultar(TPrestamo.class, refinanceo.getTrefiIdprestamoxr());
+            o[5] = pxr.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+pxr.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
             o[6] = refinanceo.getTrefFecha();
             d.addRow(o);
-        }
-        ListaInteres_UI.tabla_estra.setModel(d);
-    }            
+        }        
+        ListaInteres_UI.tabla_estra.setModel(d);                
+    }
+    public void filter(JTable jt, String textBuscar, int columna) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
+        jt.setRowSorter(tr);
+    }
 }
