@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-nov-2017 10:27:34 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/11/2017 03:19:49 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TBanco" table="t_banco" catalog="drop_db" optimistic-lock="version">
         <id name="tbanCuenta" type="string">
@@ -10,6 +10,9 @@
         </id>
         <property name="tbanNombre" type="string">
             <column name="tban_nombre" length="45" not-null="true" />
+        </property>
+        <property name="tbanTipo" type="char">
+            <column name="tban_tipo" length="1" not-null="true" />
         </property>
         <property name="tbanSaldo" type="long">
             <column name="tban_saldo" precision="10" scale="0" not-null="true" />

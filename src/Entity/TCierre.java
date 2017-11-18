@@ -1,5 +1,5 @@
 package Entity;
-// Generated 18-nov-2017 10:27:33 by Hibernate Tools 4.3.1
+// Generated 18/11/2017 03:19:48 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,13 +10,13 @@ public class TCierre  implements java.io.Serializable {
 
 
      private Integer tciId;
-     private Integer tciMes;
-     private Integer tciAno;
+     private int tciMes;
+     private int tciAno;
 
     public TCierre() {
     }
 
-    public TCierre(Integer tciMes, Integer tciAno) {
+    public TCierre(int tciMes, int tciAno) {
        this.tciMes = tciMes;
        this.tciAno = tciAno;
     }
@@ -28,18 +28,18 @@ public class TCierre  implements java.io.Serializable {
     public void setTciId(Integer tciId) {
         this.tciId = tciId;
     }
-    public Integer getTciMes() {
+    public int getTciMes() {
         return this.tciMes;
     }
     
-    public void setTciMes(Integer tciMes) {
+    public void setTciMes(int tciMes) {
         this.tciMes = tciMes;
     }
-    public Integer getTciAno() {
+    public int getTciAno() {
         return this.tciAno;
     }
     
-    public void setTciAno(Integer tciAno) {
+    public void setTciAno(int tciAno) {
         this.tciAno = tciAno;
     }
 
