@@ -7,12 +7,15 @@ package Controller;
 
 import Entity.TMulta;
 import Entity.TPrestamo;
+import Entity.TRefinanciacion;
 import Model.Multa_Model;
+import UI.ListaInteres_UI;
 import UI.Multa_Ui;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +33,10 @@ public class Multa_Controller extends Controllers {
     public Multa_Controller(Multa_Ui VistaGastos) {
         this.VistaMulta = VistaGastos;
     }
+
+    public Multa_Controller() {
+        this.VistaMulta = null;
+    }        
 
     public void registrar() {
         if (validar()) {
@@ -225,4 +232,19 @@ public class Multa_Controller extends Controllers {
         traer(1);
         return editado;
     }
+    
+    public void listar(){
+        List<TRefinanciacion> refinanceos = Mmulta.findAll(TRefinanciacion.class);
+        DefaultTableModel d = new TableModel().verListadoIntereses();
+        for (TRefinanciacion refinanceo : refinanceos) {
+            Object[] o= new Object[7];
+            o[0] = refinanceo.getTrefiId();
+            o[1] = refinanceo.getTrefiIdprestamor();
+            o[3] = refinanceo.getTrefiValor();
+            o[4] = refinanceo.getTrefiIdprestamoxr();
+            o[6] = refinanceo.getTrefFecha();
+            d.addRow(o);
+        }
+        ListaInteres_UI.tabla_estra.setModel(d);
+    }            
 }

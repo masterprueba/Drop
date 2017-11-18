@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-nov-2017 10:27:34 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entity.TRefinanciacion" table="t_refinanciacion" catalog="drop_db" optimistic-lock="version">
+        <id name="trefiId" type="java.lang.Integer">
+            <column name="trefi_id" />
+            <generator class="identity" />
+        </id>
+        <property name="trefiValor" type="java.lang.Long">
+            <column name="trefi_valor" precision="10" scale="0" />
+        </property>
+        <property name="trefiIdprestamoxr" type="java.lang.Integer">
+            <column name="trefi_idprestamoxr" />
+        </property>
+        <property name="trefiIdprestamor" type="java.lang.Integer">
+            <column name="trefi_idprestamor" />
+        </property>
+        <property name="trefFecha" type="date">
+            <column name="tref_fecha" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

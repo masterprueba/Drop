@@ -1,5 +1,5 @@
 package Entity;
-// Generated Oct 20, 2017 8:50:46 AM by Hibernate Tools 4.3.1
+// Generated 18-nov-2017 10:27:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,6 @@ public class TBanco  implements java.io.Serializable {
 
      private String tbanCuenta;
      private String tbanNombre;
-     private char tbanTipo;
      private long tbanSaldo;
      private Set TMovimientoBancos = new HashSet(0);
 
@@ -21,16 +20,14 @@ public class TBanco  implements java.io.Serializable {
     }
 
 	
-    public TBanco(String tbanCuenta, String tbanNombre, char tbanTipo, long tbanSaldo) {
+    public TBanco(String tbanCuenta, String tbanNombre, long tbanSaldo) {
         this.tbanCuenta = tbanCuenta;
         this.tbanNombre = tbanNombre;
-        this.tbanTipo = tbanTipo;
         this.tbanSaldo = tbanSaldo;
     }
-    public TBanco(String tbanCuenta, String tbanNombre, char tbanTipo, long tbanSaldo, Set TMovimientoBancos) {
+    public TBanco(String tbanCuenta, String tbanNombre, long tbanSaldo, Set TMovimientoBancos) {
        this.tbanCuenta = tbanCuenta;
        this.tbanNombre = tbanNombre;
-       this.tbanTipo = tbanTipo;
        this.tbanSaldo = tbanSaldo;
        this.TMovimientoBancos = TMovimientoBancos;
     }
@@ -48,13 +45,6 @@ public class TBanco  implements java.io.Serializable {
     
     public void setTbanNombre(String tbanNombre) {
         this.tbanNombre = tbanNombre;
-    }
-    public char getTbanTipo() {
-        return this.tbanTipo;
-    }
-    
-    public void setTbanTipo(char tbanTipo) {
-        this.tbanTipo = tbanTipo;
     }
     public long getTbanSaldo() {
         return this.tbanSaldo;

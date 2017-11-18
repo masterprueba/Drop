@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 27, 2017 10:14:48 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 18-nov-2017 10:27:34 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entity.TCobrador" table="t_cobrador" catalog="drop_db" optimistic-lock="version">
         <id name="tcobId" type="java.lang.Integer">
@@ -16,12 +16,6 @@
                 <column name="tcuo_tcob_id" not-null="true" />
             </key>
             <one-to-many class="Entity.TCuota" />
-        </set>
-        <set name="TRemanentes" table="t_remanente" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="tre_tcr_id" not-null="true" />
-            </key>
-            <one-to-many class="Entity.TRemanente" />
         </set>
     </class>
 </hibernate-mapping>
