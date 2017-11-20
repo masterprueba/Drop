@@ -9,13 +9,17 @@ import Entity.TMulta;
 import Entity.TPrestamo;
 import Entity.TRefinanciacion;
 import Model.Multa_Model;
+import UI.Fechas_refinancear_UI;
 import UI.ListaInteres_UI;
 import UI.Multa_Ui;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -29,6 +33,7 @@ public class Multa_Controller extends Controllers {
     private List<TMulta> multaresult;
     private TPrestamo prestamo;
     private String cc;
+    List<TRefinanciacion> refinanceos;
 
     public Multa_Controller(Multa_Ui VistaGastos) {
         this.VistaMulta = VistaGastos;
@@ -233,18 +238,37 @@ public class Multa_Controller extends Controllers {
         return editado;
     }
     
-    public void listar(){
-        List<TRefinanciacion> refinanceos = Mmulta.findAll(TRefinanciacion.class);
+    public void listar(){        
         DefaultTableModel d = new TableModel().verListadoIntereses();
         for (TRefinanciacion refinanceo : refinanceos) {
-            Object[] o= new Object[7];
-            o[0] = refinanceo.getTrefiId();
-            o[1] = refinanceo.getTrefiIdprestamor();
-            o[3] = refinanceo.getTrefiValor();
-            o[4] = refinanceo.getTrefiIdprestamoxr();
-            o[6] = refinanceo.getTrefFecha();
-            d.addRow(o);
-        }
-        ListaInteres_UI.tabla_estra.setModel(d);
-    }            
+              Object[] o= new Object[7];
+              o[0] = refinanceo.getTrefiId();
+              o[1] = refinanceo.getTrefiIdprestamor();
+             TPrestamo p = (TPrestamo) Mmulta.consultar(TPrestamo.class, refinanceo.getTrefiIdprestamor());
+             o[2] = p.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+p.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+              o[3] = refinanceo.getTrefiValor();
+              o[4] = refinanceo.getTrefiIdprestamoxr();
+             TPrestamo pxr = (TPrestamo) Mmulta.consultar(TPrestamo.class, refinanceo.getTrefiIdprestamoxr());
+             o[5] = pxr.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+pxr.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
+              o[6] = refinanceo.getTrefFecha();
+              d.addRow(o);
+         }        
+         ListaInteres_UI.tabla_estra.setModel(d);                
+     }
+     public void filter(JTable jt, String textBuscar, int columna) {
+         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
+         tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
+         jt.setRowSorter(tr);
+     }
+     
+     public void consultarRefinaciamientos(){
+         if(Fechas_refinancear_UI.r_fechaini.getDate() == null || Fechas_refinancear_UI.r_fechafin.getDate() == null){
+             JOptionPane.showMessageDialog(null, "DEBES LLENAR LOS CAMPOS");
+         }else{
+            String fechaini = Fechas_refinancear_UI.r_fechaini.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_refinancear_UI.r_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_refinancear_UI.r_fechaini.getJCalendar().getDayChooser().getDay();
+            String fechafin = Fechas_refinancear_UI.r_fechafin.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_refinancear_UI.r_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_refinancear_UI.r_fechafin.getJCalendar().getDayChooser().getDay();
+            refinanceos = Mmulta.ConsultarRefinanciamiento(fechaini, fechafin, "");
+         }
+         
+     }             
 }

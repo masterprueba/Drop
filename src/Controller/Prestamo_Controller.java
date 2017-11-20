@@ -11,6 +11,7 @@ import Entity.TCuota;
 import Entity.TDatosBasicosPersona;
 import Entity.TPago;
 import Entity.TPrestamo;
+import Entity.TRefinanciacion;
 import Model.Cobrador_Model;
 import Model.Persona_Model;
 import Model.Prestamo_model;
@@ -106,8 +107,12 @@ public class Prestamo_Controller extends Controllers {
             JLabel label = new JLabel(msg);
             label.setFont(new Font("serif", Font.PLAIN, 14));
             if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
-                if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                if (JOptionPane.showConfirmDialog(null, label, "Prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {                    
                     Serializable idprestamo = pmodel.insertarPrestamo(prestamo, "PRESTAMO");
+                    if (Long.parseLong(Prestamo_ui.p_deuda.getText()) > 0 && listc == null) {
+                        TRefinanciacion refinaceo = new TRefinanciacion(Long.parseLong(Prestamo_ui.p_deuda.getText()), (int)idprestamo, (int)idprestamo, new Date());
+                        pmodel.insertar(refinaceo, "PRESTAMO");
+                    }                    
                     if (idprestamo != null) {
                         JOptionPane.showMessageDialog(null, "ID del prestamo : "+(int)idprestamo);
                         Prestamo_ui.jPanel2.setVisible(false);

@@ -62,4 +62,14 @@ public class Multa_Model<G> extends Models {
         s.getTransaction().commit();
         return list;
     }
+    
+    public List<G> ConsultarRefinanciamiento(String inicio, String fin, String sql) {
+        s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "from TRefinanciacion where trefFecha  BETWEEN '" + inicio + "' AND '" + fin + "' " + sql;
+        List<G> result = s.createQuery(query).list();
+        s.getTransaction().commit();
+
+        return result;
+    }
 }

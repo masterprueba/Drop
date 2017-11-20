@@ -711,7 +711,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
-        JInternalFrame in = new ListaInteres_UI();
+        JInternalFrame in = new Fechas_refinancear_UI();
         //DesktopPaneMain.add(in);
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem32ActionPerformed

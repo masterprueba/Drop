@@ -9,8 +9,10 @@ import Controller.Prestamo_Controller;
 import Entity.TCuota;
 import Entity.TPrestamo;
 import Entity.TReajuste;
+import Entity.TRefinanciacion;
 import Persistence.hibernateUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
@@ -119,6 +121,8 @@ public class Prestamo_model<T> extends Models {
                     for (int i = 0; i < Prestamo_Controller.listc.size(); i++) {
                         System.out.println("entre al for");
                         s.save(Prestamo_Controller.listc.get(i));
+                        TRefinanciacion r = new TRefinanciacion(Prestamo_Controller.listc.get(i).getTcuoAbono(), (int)id, Prestamo_Controller.listc.get(i).getTPrestamo().getTpreId(), new Date());
+                        s.save(r);
                         System.out.println("guarde el " + i);
                         bitacora(Prestamo_Controller.listc.get(i), indicador, modulo);
                         System.out.println("bitacora " + 1);
