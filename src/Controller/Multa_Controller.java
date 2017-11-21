@@ -34,6 +34,7 @@ public class Multa_Controller extends Controllers {
     private TPrestamo prestamo;
     private String cc;
     List<TRefinanciacion> refinanceos;
+    TableRowSorter trs = null;
 
     public Multa_Controller(Multa_Ui VistaGastos) {
         this.VistaMulta = VistaGastos;
@@ -244,6 +245,7 @@ public class Multa_Controller extends Controllers {
               Object[] o= new Object[7];
               o[0] = refinanceo.getTrefiId();
               o[1] = refinanceo.getTrefiIdprestamor();
+              System.out.println(String.valueOf(o[1]));
              TPrestamo p = (TPrestamo) Mmulta.consultar(TPrestamo.class, refinanceo.getTrefiIdprestamor());
              o[2] = p.getTPersona().getTDatosBasicosPersona().getTdbpNombre()+" "+p.getTPersona().getTDatosBasicosPersona().getTdbpApellido();
               o[3] = refinanceo.getTrefiValor();
@@ -253,7 +255,8 @@ public class Multa_Controller extends Controllers {
               o[6] = refinanceo.getTrefFecha();
               d.addRow(o);
          }        
-         ListaInteres_UI.tabla_estra.setModel(d);                
+         ListaInteres_UI.tabla_estra.setModel(d); 
+         ListaInteres_UI.tabla_estra.setRowSorter(filtrarTabla(d));
      }
      public void filter(JTable jt, String textBuscar, int columna) {
          TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());

@@ -121,7 +121,7 @@ public class Prestamo_model<T> extends Models {
                     for (int i = 0; i < Prestamo_Controller.listc.size(); i++) {
                         System.out.println("entre al for");
                         s.save(Prestamo_Controller.listc.get(i));
-                        TRefinanciacion r = new TRefinanciacion(Prestamo_Controller.listc.get(i).getTcuoAbono(), (int)id, Prestamo_Controller.listc.get(i).getTPrestamo().getTpreId(), new Date());
+                        TRefinanciacion r = new TRefinanciacion(Prestamo_Controller.listc.get(i).getTcuoAbono(), Prestamo_Controller.listc.get(i).getTPrestamo().getTpreId(),(int)id, new Date());
                         s.save(r);
                         System.out.println("guarde el " + i);
                         bitacora(Prestamo_Controller.listc.get(i), indicador, modulo);

@@ -355,11 +355,11 @@ public class TableModel extends DefaultTableModel {
     public DefaultTableModel verListadoIntereses() {
         TableModel modelo = new TableModel();
         modelo.addColumn("ID");
-        modelo.addColumn("Id Prestamo Ref");
-        modelo.addColumn("Nombre Prestamo Ref");
+        modelo.addColumn("Id Prestamo Refinancia");
+        modelo.addColumn("Nombre Prestamo Refinancia");
         modelo.addColumn("valor");
-        modelo.addColumn("Id Prestamo rec");
-        modelo.addColumn("Nombre Prestamo rec");
+        modelo.addColumn("Id Prestamo recibe");
+        modelo.addColumn("Nombre Prestamo recibe");
         modelo.addColumn("Fecha");
         return modelo;
     }
