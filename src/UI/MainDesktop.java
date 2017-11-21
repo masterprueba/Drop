@@ -591,7 +591,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        checkInstance(new InformeGeneral());
+        checkInstance(new Fechas_UI(InformeGeneral.class.getSimpleName()));
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
@@ -711,7 +711,7 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
-        JInternalFrame in = new Fechas_refinancear_UI();
+        JInternalFrame in = new Fechas_UI(Refinancia_UI.class.getSimpleName());
         //DesktopPaneMain.add(in);
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem32ActionPerformed

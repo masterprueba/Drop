@@ -9,8 +9,8 @@ import Entity.TMulta;
 import Entity.TPrestamo;
 import Entity.TRefinanciacion;
 import Model.Multa_Model;
-import UI.Fechas_refinancear_UI;
-import UI.ListaInteres_UI;
+import UI.Fechas_UI;
+import UI.ListaRefinanceos_UI;
 import UI.Multa_Ui;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
@@ -255,8 +255,8 @@ public class Multa_Controller extends Controllers {
               o[6] = refinanceo.getTrefFecha();
               d.addRow(o);
          }        
-         ListaInteres_UI.tabla_estra.setModel(d); 
-         ListaInteres_UI.tabla_estra.setRowSorter(filtrarTabla(d));
+         ListaRefinanceos_UI.tabla_estra.setModel(d); 
+         ListaRefinanceos_UI.tabla_estra.setRowSorter(filtrarTabla(d));
      }
      public void filter(JTable jt, String textBuscar, int columna) {
          TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
@@ -265,11 +265,11 @@ public class Multa_Controller extends Controllers {
      }
      
      public void consultarRefinaciamientos(){
-         if(Fechas_refinancear_UI.r_fechaini.getDate() == null || Fechas_refinancear_UI.r_fechafin.getDate() == null){
+         if(Fechas_UI.r_fechaini.getDate() == null || Fechas_UI.r_fechafin.getDate() == null){
              JOptionPane.showMessageDialog(null, "DEBES LLENAR LOS CAMPOS");
          }else{
-            String fechaini = Fechas_refinancear_UI.r_fechaini.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_refinancear_UI.r_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_refinancear_UI.r_fechaini.getJCalendar().getDayChooser().getDay();
-            String fechafin = Fechas_refinancear_UI.r_fechafin.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_refinancear_UI.r_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_refinancear_UI.r_fechafin.getJCalendar().getDayChooser().getDay();
+            String fechaini = Fechas_UI.r_fechaini.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_UI.r_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_UI.r_fechaini.getJCalendar().getDayChooser().getDay();
+            String fechafin = Fechas_UI.r_fechafin.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_UI.r_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_UI.r_fechafin.getJCalendar().getDayChooser().getDay();
             refinanceos = Mmulta.ConsultarRefinanciamiento(fechaini, fechafin, "");
          }
          

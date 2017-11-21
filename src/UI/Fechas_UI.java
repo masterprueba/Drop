@@ -5,23 +5,25 @@
  */
 package UI;
 
+import Controller.Informe_Controller;
 import Controller.Multa_Controller;
-import Entity.TRefinanciacion;
 import static UI.MainDesktop.checkInstance;
-import java.util.List;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
-public class Fechas_refinancear_UI extends javax.swing.JInternalFrame {
+public class Fechas_UI extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Fechas_refinancear_UI
      */
-    public Fechas_refinancear_UI() {
+    private String indicador;
+    public Fechas_UI(String indicador) {
         initComponents();
+        this.indicador = indicador;
     }
 
     /**
@@ -47,7 +49,7 @@ public class Fechas_refinancear_UI extends javax.swing.JInternalFrame {
         jLabel1.setText("Por favor, seleccione fecha inicio y fin");
 
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jLabel2.setText("Lista De Refinanciamientos");
+        jLabel2.setText("FECHAS");
 
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jLabel3.setText("Fecha de Incio");
@@ -77,19 +79,17 @@ public class Fechas_refinancear_UI extends javax.swing.JInternalFrame {
                     .addComponent(r_fechafin, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(r_fechaini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(73, 73, 73))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(148, 148, 148)
+                            .addComponent(jButton1))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,19 +109,30 @@ public class Fechas_refinancear_UI extends javax.swing.JInternalFrame {
                     .addComponent(r_fechafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Multa_Controller mc = new Multa_Controller();
-        mc.consultarRefinaciamientos();
-        JInternalFrame in = new ListaInteres_UI(mc);
-        //DesktopPaneMain.add(in);
-        checkInstance(in);
-        this.dispose();
+        if(r_fechaini.getDate() == null || r_fechafin.getDate() == null){
+             JOptionPane.showMessageDialog(null, "DEBES LLENAR LOS CAMPOS");
+        }else{
+            if (indicador.equals(Refinancia_UI.class.getSimpleName())) {            
+                Multa_Controller mc = new Multa_Controller();
+                mc.consultarRefinaciamientos();
+                JInternalFrame in = new ListaRefinanceos_UI(mc);            
+                checkInstance(in);
+                this.dispose();
+            } else if(indicador.equals(InformeGeneral.class.getSimpleName())) {
+                Informe_Controller ic = new Informe_Controller();
+                ic.obtenerfechas();            
+                JInternalFrame in = new InformeGeneral(ic);            
+                checkInstance(in);            
+                this.dispose();
+            }        
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

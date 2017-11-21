@@ -11,13 +11,13 @@ import Controller.Multa_Controller;
  *
  * @author Usuario
  */
-public class ListaInteres_UI extends Views {
+public class ListaRefinanceos_UI extends Views {
 
     /**
-     * Creates new form ListaInteres_UI
+     * Creates new form ListaRefinanceos_UI
      */
     Multa_Controller mc;
-    public ListaInteres_UI(Multa_Controller mc) {
+    public ListaRefinanceos_UI(Multa_Controller mc) {
         initComponents();
         this.mc = mc;
         mc.listar();

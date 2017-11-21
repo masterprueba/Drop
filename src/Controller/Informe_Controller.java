@@ -10,6 +10,7 @@ import Entity.TGasto;
 import Model.Gastos_Model;
 import Model.Models;
 import Model.Prestamo_model;
+import UI.Fechas_UI;
 import UI.InformeGeneral;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -40,19 +41,22 @@ public class Informe_Controller extends Controllers {
     private final List<TCierre> mesesCombo;
     private final Models modelo;
     private String fechaini;
-    String fechafin;
+    private String fechafin;
 
-    public Informe_Controller(JTable pretamotable, JTable gastotable) {
-        this.mesesCombo = new ArrayList<>();
-        this.pretamotable = pretamotable;
-        this.gastotable = gastotable;
+    public Informe_Controller() {
+        this.mesesCombo = new ArrayList<>();        
         this.modelo = new Models();
     }
+    
+    public void setTablas(){
+        this.pretamotable = InformeGeneral.jtable_infprestamo;
+        this.gastotable = InformeGeneral.jtable_infgasto;
+    }
 
-    public void cargarDatos(boolean metodo) {
+    public void cargarDatos() {
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
-        if (!p && !g && metodo) {
+        if (!p && !g) {
             JOptionPane.showMessageDialog(null, "No existen datos");
         }
         InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4)) + "");
@@ -68,22 +72,20 @@ public class Informe_Controller extends Controllers {
     }
 
     public void obtenerfechas() {
-        fechaini = InformeGeneral.general_fechaini.getDate() != null
-                ? InformeGeneral.general_fechaini.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechaini.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
-        fechafin = InformeGeneral.general_fechafin.getDate() != null
-                ? InformeGeneral.general_fechafin.getJCalendar().getYearChooser().getYear() + "-" + (InformeGeneral.general_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "-" + InformeGeneral.general_fechafin.getJCalendar().getDayChooser().getDay()
-                : Calendar.getInstance().get(Calendar.YEAR) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.DATE);
-        System.err.println("fecha inico" + fechaini + "fecha fin " + fechafin);
+        if(Fechas_UI.r_fechaini.getDate() == null || Fechas_UI.r_fechafin.getDate() == null){
+             JOptionPane.showMessageDialog(null, "DEBES LLENAR LOS CAMPOS");
+         }else{
+            fechaini = Fechas_UI.r_fechaini.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_UI.r_fechaini.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_UI.r_fechaini.getJCalendar().getDayChooser().getDay();
+            fechafin = Fechas_UI.r_fechafin.getJCalendar().getYearChooser().getYear() + "/" + (Fechas_UI.r_fechafin.getJCalendar().getMonthChooser().getMonth() + 1) + "/" + Fechas_UI.r_fechafin.getJCalendar().getDayChooser().getDay();
+        }                
     }
 
     public boolean obtenerPrestamos(String fechaini, String fechafin) {
         DefaultTableModel tmodelop = new TableModel().informeGeneral();
         pretamotable.setModel(tmodelop);
         pretamotable.setRowSorter(filtrarTabla(tmodelop));
-        Prestamo_model modelo = new Prestamo_model();
-        String nombre = InformeGeneral.txt_nombre.getText();
-        List<Object> prestamos = modelo.informePrestamoXn(fechaini, fechafin, nombre);
+        Prestamo_model modelo = new Prestamo_model();        
+        List<Object> prestamos = modelo.informePrestamo(fechaini, fechafin);
         Iterator itr = prestamos.iterator();
         Object[] f = new Object[11];
         boolean existe = false;
@@ -219,14 +221,14 @@ public class Informe_Controller extends Controllers {
             try {
                 Calendar c = Calendar.getInstance();
                 c.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechaini));
-                InformeGeneral.general_fechaini.setCalendar(c);
+               // InformeGeneral.general_fechaini.setCalendar(c);
                 Calendar c2 = Calendar.getInstance();
                 c2.setTime((new SimpleDateFormat("yyyy-MM-dd")).parse(fechafin));
-                InformeGeneral.general_fechafin.setCalendar(c2);
+                //InformeGeneral.general_fechafin.setCalendar(c2);
             } catch (ParseException e) {
                 System.err.println("Error parseando fecha");
             }
-             cargarDatos(true);
+             //cargarDatos(true);
         }
     }
 
@@ -259,4 +261,10 @@ public class Informe_Controller extends Controllers {
         Cierre_Controller.consultarCierre();
         cargarUltimosMeses();
     }
+    
+    public void filter(JTable jt, String textBuscar, int columna) {
+         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>((DefaultTableModel) jt.getModel());
+         tr.setRowFilter(RowFilter.regexFilter("(?i)" + textBuscar, columna));
+         jt.setRowSorter(tr);
+     }
 }
