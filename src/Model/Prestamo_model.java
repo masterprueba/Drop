@@ -30,21 +30,37 @@ public class Prestamo_model<T> extends Models {
     public List<T> informePrestamo(String fini, String ffin) {
         s = hibernateUtil.getSessionFactory();
         s.beginTransaction();
+//        String query = "SELECT "
+//                + "DATE_FORMAT(prestamo.tpreFechaEntrega, "
+//                + "'%y-%m-%d') as fecha , "
+//                + "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
+//                + "concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
+//                + "prestamo.tpreValorPrestamo as prestado, "
+//                + "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "
+//                + "prestamo.tpreValorTotal as valortotal, "
+//                + "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId AND cuota.TPago.tpagId in (1,2,5,6,7)) as abono, "
+//                + "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId AND cuota.TPago.tpagId in (1,2,5,6,7))) as deuda, "
+//                + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
+//                + "FROM "
+//                + "TPrestamo as prestamo "
+//                + "WHERE "
+//                + "prestamo.tpreFechaEntrega BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'";
         String query = "SELECT "
-                + "DATE_FORMAT(prestamo.tpreFechaEntrega, "
+                + "DATE_FORMAT(cuota.TPrestamo.tpreFechaEntrega, "
                 + "'%y-%m-%d') as fecha , "
-                + "prestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
-                + "concat(prestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',prestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
-                + "prestamo.tpreValorPrestamo as prestado, "
-                + "(prestamo.tpreValorPrestamo-prestamo.tpreRefinanciado) as invertido, "
-                + "prestamo.tpreValorTotal as valortotal, "
-                + "(SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId AND cuota.TPago.tpagId in (1,2,5,6,7)) as abono, "
-                + "(prestamo.tpreValorTotal - (SELECT SUM(cuota.tcuoAbono) FROM TCuota as cuota WHERE prestamo.tpreId = cuota.TPrestamo.tpreId AND cuota.TPago.tpagId in (1,2,5,6,7))) as deuda, "
-                + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE prestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
+                + "cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
+                + "concat(cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
+                + "cuota.TPrestamo.tpreValorPrestamo as prestado, "
+                + "(cuota.TPrestamo.tpreValorPrestamo-cuota.TPrestamo.tpreRefinanciado) as invertido, "
+                + "cuota.TPrestamo.tpreValorTotal as valortotal, "
+                + "SUM(cuota.tcuoAbono) as abono, "
+                + "(cuota.TPrestamo.tpreValorTotal - SUM(cuota.tcuoAbono)) as deuda, "
+                + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE cuota.TPrestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
                 + "FROM "
-                + "TPrestamo as prestamo "
+                + "TCuota as cuota "
                 + "WHERE "
-                + "prestamo.tpreFechaEntrega BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'";
+                + "cuota.tcuoFecha BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'"
+                + " AND cuota.TPago.tpagId in (1,2,5,6,7)";
         Query r = s.createQuery(query);
         List<T> result = r.list();
         s.getTransaction().commit();
