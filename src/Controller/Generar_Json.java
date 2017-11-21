@@ -201,6 +201,11 @@ public class Generar_Json {
                 TRemanente remanente = (TRemanente) object;
                 json = "{\"treId\":" + remanente.getTreId() + ",\"treFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(remanente.getTreFecha()) + "\",\"treValor\":" + remanente.getTreValor() + "}";
                 break;
+
+            case "Entity.TRefinanciacion":
+                TRefinanciacion refinanciacion = (TRefinanciacion) object;
+                json = "{\"trefiId\":" + refinanciacion.getTrefiId() + ",\"trefiValor\":" + refinanciacion.getTrefiValor() + ",\"trefiIdprestamoxr\":" + refinanciacion.getTrefiIdprestamoxr() + ",\"trefiIdprestamor\":" + refinanciacion.getTrefiIdprestamor() + ",\"trefFecha\":\"" + new SimpleDateFormat("MMM d, yyyy hh:mm:ss a", Locale.UK).format(refinanciacion.getTrefFecha()) + "\"}";
+                break;
         }
         return json;
     }
