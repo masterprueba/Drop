@@ -62,7 +62,7 @@ public class Informe_Controller extends Controllers {
         InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4)) + "");
         InformeGeneral.txt_entregado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5)) + "");
         InformeGeneral.txt_total.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6)) + "");
-        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)) + "");
+        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)+totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9)) + "");
         InformeGeneral.txt_deuda.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8)) + "");
         InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9)) + "");
         int ganacias = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 10));
@@ -106,7 +106,7 @@ public class Informe_Controller extends Controllers {
             f[7] = pagado;
             f[8] = deuda;
             f[9] = extra;
-            f[10] = (total - invertido)-deuda;
+            f[10] = ((total - invertido)-deuda)+extra;
             if (obj[1] != null) {
                 tmodelop.addRow(f);
                 existe = true;

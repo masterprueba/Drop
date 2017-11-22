@@ -457,4 +457,8 @@ public class Prestamo_Controller extends Controllers {
             }
         }
     }
+    
+    public int cantCuotas(){
+        return pmodel.cantCuotas(1);
+    }
 }

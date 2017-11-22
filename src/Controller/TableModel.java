@@ -107,7 +107,10 @@ public class TableModel extends DefaultTableModel {
     }
 
     public DefaultTableModel historialCuota() {
-        TableModel modelo = new TableModel();
+        TableModel modelo = new TableModel(){
+    @Override
+    public boolean isCellEditable(int rowIndex,int columnIndex){return false;}
+};
         modelo.addColumn("#");
         modelo.addColumn("ID");
         modelo.addColumn("Fecha");

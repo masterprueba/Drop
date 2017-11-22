@@ -205,4 +205,14 @@ public class Prestamo_model<T> extends Models {
         s.getTransaction().commit();
         return result;
     }
+    
+    public int cantCuotas(int id){
+       //select count(1) FROM TCuota as c WHERE c.TPrestamo.tpreId = 146
+       s = hibernateUtil.getSessionFactory();
+        s.beginTransaction();
+        String query = "select count(1) FROM TCuota as c WHERE c.TPrestamo.tpreId = "+id;
+        int result = Integer.valueOf(s.createQuery(query).uniqueResult().toString());
+        s.getTransaction().commit();
+        return result;
+    }
 }

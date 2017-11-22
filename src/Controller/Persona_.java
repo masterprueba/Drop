@@ -733,7 +733,7 @@ public class Persona_ extends Controllers {
         jt.setModel(dtm);
 
         DefaultTableModel dtm2 = new TableModel().historialCuota();
-        jt2.setModel(dtm2);
+        jt2.setModel(dtm2);        
         jt2.removeColumn(jt2.getColumnModel().getColumn(11));
         jt2.removeColumn(jt2.getColumnModel().getColumn(10));
         jt2.removeColumn(jt2.getColumnModel().getColumn(9));
