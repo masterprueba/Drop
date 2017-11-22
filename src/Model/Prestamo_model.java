@@ -48,19 +48,20 @@ public class Prestamo_model<T> extends Models {
         String query = "SELECT "
                 + "DATE_FORMAT(cuota.TPrestamo.tpreFechaEntrega, "
                 + "'%y-%m-%d') as fecha , "
-                + "cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpCedula as cedula, "
+                + "cuota.TPrestamo.tpreId as cedula, "
                 + "concat(cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpNombre,' ',cuota.TPrestamo.TPersona.TDatosBasicosPersona.tdbpApellido) as Cliente, "
                 + "cuota.TPrestamo.tpreValorPrestamo as prestado, "
                 + "(cuota.TPrestamo.tpreValorPrestamo-cuota.TPrestamo.tpreRefinanciado) as invertido, "
                 + "cuota.TPrestamo.tpreValorTotal as valortotal, "
                 + "SUM(cuota.tcuoAbono) as abono, "
-                + "(cuota.TPrestamo.tpreValorTotal - SUM(cuota.tcuoAbono)) as deuda, "
+                + "(cuota.TPrestamo.tpreValorTotal - (SELECT SUM(c.tcuoAbono) FROM TCuota as c WHERE c.TPrestamo.tpreId = cuota.TPrestamo.tpreId)) as deuda, "
                 + "(SELECT SUM(extra.tmulValor) FROM TMulta as extra WHERE cuota.TPrestamo.tpreId = extra.TPrestamo.tpreId AND extra.tmulEstado = 'realizada') as extra "
                 + "FROM "
                 + "TCuota as cuota "
                 + "WHERE "
                 + "cuota.tcuoFecha BETWEEN '" + fini + "' AND '" + ffin + " 23:59:59'"
-                + " AND cuota.TPago.tpagId in (1,2,5,6,7)";
+                + " AND cuota.TPago.tpagId in (1,2,5,6) "
+                + "group by cuota.TPrestamo.tpreId";
         Query r = s.createQuery(query);
         List<T> result = r.list();
         s.getTransaction().commit();

@@ -104,9 +104,9 @@ public class Informe_Controller extends Controllers {
             f[5] = invertido;
             f[6] = total;
             f[7] = pagado;
-            f[8] = total - pagado;
+            f[8] = deuda;
             f[9] = extra;
-            f[10] = pagado - prestado;
+            f[10] = (total - invertido)-deuda;
             if (obj[1] != null) {
                 tmodelop.addRow(f);
                 existe = true;
