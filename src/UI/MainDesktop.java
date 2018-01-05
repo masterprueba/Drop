@@ -262,6 +262,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem12.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/list.png"))); // NOI18N
         jMenuItem12.setText("Listar Gastos");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +295,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu10.setPreferredSize(new java.awt.Dimension(155, 32));
 
         jMenuItem15.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/sync-symbol.png"))); // NOI18N
         jMenuItem15.setText("Agregar Remanente del dia");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +305,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu10.add(jMenuItem15);
 
         jMenuItem29.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/interface.png"))); // NOI18N
         jMenuItem29.setText("Listar Remanentes");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

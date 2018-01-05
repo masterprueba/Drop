@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -24,15 +26,15 @@ public class Backup {
             try (FileWriter escribir = new FileWriter(archivo, true)) {
                 File fecha = new File("backup/"+fechaactual);
                 fecha.mkdirs();
-                for (int i = 0; i < tablas.length; i++) {
-                    escribir.write("@echo off\n mysql -h localhost -u droti --password=admin13082016 drop_db -e \"SELECT * FROM "+tablas[i]+"\" -B > backup/"+fechaactual+"/"+tablas[i]+".csv \n ");
+                for (String tabla : tablas) {
+                    escribir.write("@echo off\n mysql -h localhost -u droti --password=admin13082016 drop_db -e \"SELECT * FROM " + tabla + "\" -B > backup/" + fechaactual + "/" + tabla + ".csv \n ");
                 }
                 escribir.write(" exit");
             }
             Process p = Runtime.getRuntime().exec("cmd.exe /C start exp.bat -cp");
             JOptionPane.showMessageDialog(null, "Backup creado exitosamente");
             archivo.delete();
-        } catch (Exception e) {
+        } catch (HeadlessException | IOException e) {
             System.out.println("Error al escribir");
         }
     }
