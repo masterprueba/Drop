@@ -6,14 +6,17 @@
 package Model;
 
 import Entity.TBanco;
+import Entity.TMovimientoBanco;
+import Entity.TMovimientoCuenta;
 import Persistence.hibernateUtil;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author afvc2203
  */
-public class Banco_Model extends Models {
+public class Banco_Model<T> extends Models {
 
     public Banco_Model() {
     }
