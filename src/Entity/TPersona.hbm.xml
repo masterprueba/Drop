@@ -32,7 +32,7 @@
             <column name="tper_emp_tel" length="60" />
         </property>
         <property name="tperTipo" type="string">
-            <column name="tper_tipo" length="45" not-null="true" />
+            <column name="tper_tipo" length="45" />
         </property>
         <property name="tperCodeudor" type="string">
             <column name="tper_codeudor" length="15" />
