@@ -595,8 +595,8 @@ public class InformeGeneral extends Views implements Printable{
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void txt_ppeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ppeKeyReleased
-        long corriente = Long.parseLong("".equals(txt_corriente.getText()) ? 0 : txt_corriente.getText());
-        long ppe = Long.parseLong("".equals(txt_ppe.getText()) ? 0 : txt_ppe.getText());
+        long corriente = Long.parseLong("".equals(txt_corriente.getText()) ? "0" : txt_corriente.getText());
+        long ppe = Long.parseLong("".equals(txt_ppe.getText()) ? "0" : txt_ppe.getText());
         txt_atctivos.setText(String.valueOf(corriente+ppe));
     }//GEN-LAST:event_txt_ppeKeyReleased
 
@@ -613,15 +613,15 @@ public class InformeGeneral extends Views implements Printable{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        long corriente = Long.parseLong("".equals(txt_corriente.getText()) ? 0 : txt_corriente.getText());
-        long ppe = Long.parseLong("".equals(txt_ppe.getText()) ? 0 : txt_ppe.getText());
+        long corriente = Long.parseLong("".equals(txt_corriente.getText()) ? "0" : txt_corriente.getText());
+        long ppe = Long.parseLong("".equals(txt_ppe.getText()) ? "0" : txt_ppe.getText());
         txt_atctivos.setText(String.valueOf(corriente+ppe));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        long pasivos = Long.parseLong("".equals(text_pasivos.getText()) ? 0 : text_pasivos.getText());
-        long patrimonio = Long.parseLong("".equals(text_patrimonio.getText()) ? 0 : text_patrimonio.getText());
-        txt_atctivos.setText(String.valueOf(pasivos+patrimonio));
+        long pasivos = Long.parseLong("".equals(text_pasivos.getText()) ? "0" : text_pasivos.getText());
+        long patrimonio = Long.parseLong("".equals(text_patrimonio.getText()) ? "0" : text_patrimonio.getText());
+        text_total_pp.setText(String.valueOf(pasivos+patrimonio));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
