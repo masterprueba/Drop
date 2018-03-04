@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.TCierre;
 import Entity.TGasto;
+import Model.Banco_Model;
 import Model.Gastos_Model;
 import Model.Models;
 import Model.Prestamo_model;
@@ -53,22 +54,40 @@ public class Informe_Controller extends Controllers {
         this.gastotable = InformeGeneral.jtable_infgasto;
     }
 
-    public void cargarDatos() {
+    public void cargarDatos() {        
         boolean p = obtenerPrestamos(fechaini, fechafin);
         boolean g = obtenerGastos(fechaini, fechafin);
         if (!p && !g) {
             JOptionPane.showMessageDialog(null, "No existen datos");
         }
-        InformeGeneral.text_prestado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4)) + "");
-        InformeGeneral.txt_entregado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5)) + "");
-        InformeGeneral.txt_total.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6)) + "");
-        InformeGeneral.text_recaudado.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)+totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9)) + "");
-        InformeGeneral.txt_deuda.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8)) + "");
-        InformeGeneral.txt_extra.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9)) + "");
+        long prestado = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 4));
+        long entregado = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 5));
+        long total = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 6));
+        long recaudado = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 7)+totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9));
+        long deuda = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 8));
+        long extra = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 9));
+        long gasto = Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3));
+        Banco_Model bm = new Banco_Model();
+        long banco = bm.getSaldoDebitoCredito(fechaini, fechafin, 'd');
+        long obligFinanciera = bm.getSaldoDebitoCredito(fechaini, fechafin, 'c');
+        long cxp = bm.getSaldoCuentas(fechaini, fechafin);
+        InformeGeneral.text_prestado.setText(prestado + "");
+        InformeGeneral.txt_entregado.setText(entregado + "");
+        InformeGeneral.txt_total.setText(total + "");
+        InformeGeneral.text_recaudado.setText(recaudado + "");
+        InformeGeneral.txt_deuda.setText(deuda + "");
+        InformeGeneral.txt_extra.setText(extra + "");
         int ganacias = Math.round(totalDeUnaTabla(((DefaultTableModel) pretamotable.getModel()), 10));
         //gasto
-        InformeGeneral.text_gasto.setText(Math.round(totalDeUnaTabla(((DefaultTableModel) gastotable.getModel()), 3)) + "");
-        InformeGeneral.text_ganacia.setText("" + (ganacias - Integer.parseInt(InformeGeneral.text_gasto.getText())));
+       InformeGeneral.text_gasto.setText(String.valueOf(gasto));
+//        InformeGeneral.text_ganacia.setText(String.valueOf(Math.round(ganacias - Integer.parseInt(InformeGeneral.text_gasto.getText()))));        
+        InformeGeneral.txt_banco.setText(String.valueOf(banco));
+        InformeGeneral.text_obliFinanciera.setText(String.valueOf(obligFinanciera));
+        InformeGeneral.text_cxp.setText(String.valueOf(cxp));
+        long corrienteTotal = (long) (recaudado+deuda+banco);
+        InformeGeneral.txt_corriente.setText(String.valueOf(corrienteTotal));
+        long corriente = Long.parseLong(InformeGeneral.txt_corriente.getText());        
+        InformeGeneral.txt_atctivos.setText(InformeGeneral.txt_corriente.getText());
     }
 
     public void obtenerfechas() {
