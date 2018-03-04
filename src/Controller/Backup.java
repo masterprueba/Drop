@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class Backup {
     public static void execute(){
          try {
-            String[] tablas = {"t_banco","t_bitacora","tcierre","t_cobrador","t_cuenta_pagar","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_movimiento_banco","t_movimiento_cuenta","t_multa","t_pago","t_persona","t_prestamo","t_reajuste","t_referencia","t_refinanciacion","t_remanente"};
+            String[] tablas = {"t_banco","t_bitacora","t_cierre","t_cobrador","t_cuenta_pagar","t_cuota","t_datos_basicos_persona","t_gasto","t_login","t_movimiento_banco","t_movimiento_cuenta","t_multa","t_pago","t_persona","t_prestamo","t_reajuste","t_referencia","t_refinanciacion","t_remanente"};
             Calendar c1 = Calendar.getInstance();
             String fechaactual = c1.get(Calendar.YEAR) + "-" + (c1.get(Calendar.MONTH) + 1) + "-" + c1.get(Calendar.DATE);
             File archivo = new File("exp.bat");
