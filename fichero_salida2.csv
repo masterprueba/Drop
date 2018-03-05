@@ -1,0 +1,211 @@
+1;4;"CRA 73# 1A-72";"NO";"Rentada";"SEGURIDAD NAPOLES";"CALL 5H # 37A-21";"3207631047";"";\N
+2;5;"CRA 34 # 5B3-77";"NO";"Rentada";"VENTA";"DR58";"300454514";"CLIENTE";"1059913106"
+3;6;"CRA 38A #47-C20";"SI";"Propia";"PENSIONADO";"";"";"";\N
+4;7;"CALLE 38A # 47-C20";"SI";"Propia";"ESTILO 10";"CRA5 #38-63";"3834327";"CLIENTE";"16624940"
+5;8;"CRA 28 #108-74";"SI";"Propia";"COOPTRANSPORTE SANTA ELENA";"";"";"";\N
+6;9;"CRA 28#108-74";"SI";"Propia";"COO TRASANTA ELENA";"";"";"CLIENTE";"16768547"
+7;10;"5B3#34-11";"NO";"Rentada";"";"";"";"";\N
+8;11;"CRA 52 # 9-79";"NO";"Rentada";"COMIDAS RAPIDAS";"";"";"CLIENTE";"1059909915"
+10;13;"CALLE 42 #52-48";"NO";"Rentada";"";"";"";"CLIENTE";\N
+12;15;"CLLE54C·#43C84";"NO";"Rentada";"";"";"";"CLIENTE";\N
+14;17;"CALLE 17# 10A -31";"";"Seleccionar...";"INDEPENDIENTE";"";"8963058";"CLIENTE";\N
+15;18;"CALLE 4D # 89-36 PLAZUELA APT 606";"S";"Propia";"INDEPENDIENTE";"";"";"";\N
+16;19;"CALLE 4B #89-36 APTO 606";"";"Seleccionar...";"INDEPENDIENTE";"";"";"CLIENTE";"31930129"
+17;20;"CARRERA 10 #72-91";"SI";"Propia";"INDEPENDIENTE";"";"";"";\N
+18;21;"CRA 40A #40-33 ";"S";"Familiar";"INDEPENDIENTE";"CALLE 41 # 39E-26";"";"CLIENTE";"16989145"
+20;23;"CRA10·#72-89";"";"Seleccionar...";"";"";"";"CLIENTE";"31877536"
+21;26;"CRA 80b # 38-53";"no";"Rentada";"";"";"";"";\N
+22;27;"CRA 80 # 36-11";"NO";"Rentada";"INDEPENDIENTE";"CRA 80 # 36-11";"4848198";"CLIENTE";"94402058"
+23;28;"CALLE 15 # 53-125 APT C101 H";"S";"Propia";"";"";"";"";\N
+24;29;"CRA 98A #45-112 AP 403 TORR 5";"S";"Propia";"";"";"";"CLIENTE";"66842568"
+25;30;"CLL 54 E3  #41E.3*-101";"N";"Rentada";"RED DE SALUD LADERA";"CALLE 5C-4-41";"5241323";"";\N
+26;31;"DG 28D6 # 72F2-31";"N";"Rentada";"PENSIONADA";"";"";"CLIENTE";"1143840005"
+27;38;"CRA 16 #17-36";"S";"Propia";"BECELIN";"CALLE  22 NTE 6AN-24 TORRE 1";"3996908";"";\N
+28;39;"CALLE 50 # 80-44";"S";"Propia";"TECNOQUIMICAS";"CALLE 23 # 7-34";"2285555";"CLIENTE";"31898946"
+29;40;"";"";"Seleccionar...";"";"";"";"";\N
+30;41;"AV 5 OESTE # 20-07";"S";"Familiar";"EMMI";"AV 1 NTE # 5NTE -55";"6530404";"CLIENTE";"1111"
+33;47;"CRA 46 # 13-55";"S";"Familiar";"INDEPENDIENTE";"";"";"";\N
+34;48;"CRA 46 # 13-55";"S";"Propia";"INDEPENDIENTE";"CRA 46 # 13-55";"3361875";"CLIENTE";"38555024"
+36;50;"CRA 72 X # 27-43";"N";"Familiar";"IGLESIA";"CRA  94A # 21-22";"3148578639";"CLIENTE";"22222"
+37;51;"CALLE 54C #42B -54 ";"S";"Propia";"INDEPENDIENTE";"";"";"";\N
+38;52;"CALLE 13 # 23C -18 APT 301";"S";"Propia";"HOGAR INFANTIL";"CRA 27 G # 96-00";"5542440";"CLIENTE";"16610121"
+40;54;"CRA 45 # 46-42";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"33333"
+42;56;"CALLE 54E # 41E3-101";"N";"Rentada";"RED DE SALUD LADERA/POLVORINES";"CRA 94 C # 2-33/ CALLE 5C#2-41";"5241323";"CLIENTE";"11441622871"
+44;58;"CRA 26L #112-139";"S";"Familiar";"OPEN DESTINATIONS";"CRA 80 #48-42";"3122155210";"CLIENTE";"319221181"
+46;60;"CALLE 12 # 29B-78";"S";"Propia";"RAMA JUDICIAL";"CALLE 8 #1-16";"";"CLIENTE";"444444"
+48;65;"CRA 82A #42-08";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"319221184"
+49;66;"CRA 80#48-53";"";"Seleccionar...";"";"";"";"";\N
+50;67;"CRA 80# 48-54";"SI";"Propia";"HOSPITAL UNIVERSITARIO";"CALLE 5";"";"CLIENTE";"1023456"
+52;69;"CRA 28 #E5 -76A-10";"S";"Familiar";"ESENCIA CLINICA";"";"";"CLIENTE";"38558784"
+53;70;"";"";"Seleccionar...";"";"";"";"";\N
+54;71;"CRA 34g # 55A-28";"S";"Familiar";"INDEPENDIENTE";"";"";"CLIENTE";"555555"
+56;73;"TORRES SAN JOAQUIN 2";"S";"Propia";"";"";"";"CLIENTE";"665666"
+57;74;"CRRA 16 C #14B -02  YUMBO";"N";"Rentada";"MAQUILA";"";"";"";\N
+58;75;"CRA 16C # 14B-02";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"1118299182"
+59;76;"CRA 80#36-11";"NO";"Rentada";"INDEPENDIENTE";"";"";"";\N
+60;77;"cra 7 p bis ·81-17";"si";"Propia";"SALUCOOD";"AV 3N #32AN -40";"3166927535";"CLIENTE";"149975531"
+61;78;"KRA 83C # 38-49";"N";"Rentada";"";"";"";"";\N
+62;79;"CALLE 42 # 83-20 cj L CAS 20";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"38853421"
+63;80;"";"";"Seleccionar...";"";"";"";"";\N
+64;81;"CRA 83C # 38-49";"N";"Familiar";"INDEPENDIENTE";"";"";"CLIENTE";"388534212"
+68;91;"CRA 10 # 72-41";"S";"Propia";"";"";"";"";\N
+69;94;"CRA 10 # 72-41";"S";"Propia";"";"";"";"";\N
+70;97;"CRA 10 # 72-41";"S";"Propia";"";"";"";"";\N
+71;102;"CRA 10 # 72-41";"S";"Propia";"";"";"";"";\N
+72;106;"CRA 10 # 72-41";"S";"Propia";"";"";"";"";\N
+73;108;"";"";"Seleccionar...";"";"";"";"";\N
+74;109;"CALLE 12A#56-25";"SI";"Propia";"ABOGADA";"CALLE11 #3-67";"8853339";"CLIENTE";"315890"
+77;114;"CRA 2B # 49-50";"NO";"Rentada";"SUBWAY";"CALLE  9 CRA 44 LOCAL 16";"";"CLIENTE";"16285336"
+78;117;"CRA 10·#7291";"SI";"Propia";"";"";"";"";\N
+79;121;"CRA 10·#7291";"SI";"Propia";"";"";"";"";\N
+81;123;"MANZANA 3 CASA 103 POBLADO CAMP";"S";"Propia";"ALISTAMIENTOS OCAM,PO";"CRA 39 # 14-235";"6645842";"";\N
+82;124;"CRA 1A 5 BIS #83-40";"S";"Rentada";"TCC";"CRA 1A # 61-201";"6852828";"CLIENTE";"115194848486"
+83;125;"CALLE 13 23C-18 APT 301";"S";"Propia";"HOGAR INFANTIL";"CRA 27G 96-00";"5542440";"";\N
+84;126;"CALLE 54C #42B-54";"S";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";"319110683"
+85;127;"";"";"Seleccionar...";"";"";"";"";\N
+86;128;"KRA 83C # 38-49";"N";"Rentada";"INDEPENDIETNTE";"";"";"CLIENTE";"3885342111"
+87;129;"CRA 11B # 16A-02";"S";"Propia";"";"";"";"";\N
+88;130;"CRA 11B #16A -02";"N";"Familiar";"INDEPENDIENTE";"";"";"CLIENTE";"66848931"
+89;131;"CR 1C3#64A-22 TOR 14C APT#501";"N";"Rentada";"SODEXXO";"CL 15 # 15-350 PTO ISAACS YUMBO";"6914000";"";\N
+90;132;"XXXXXXXXX";"";"Seleccionar...";"INDEPENDIENTE";"";"";"CLIENTE";"94518026"
+94;139;"CRA 40A # 40-33";"N";"Familiar";"HOSPITAL CARLOS CARMONA";"CALLE 39 CRA 43 ESQUINA";"3280847";"";\N
+95;162;"cra 10# 723-91";"s";"Familiar";"INDEPENDIENTE";"\\N";"\\N";"CLIENTE";"11306521191"
+96;163;"CRA 48 # 12-31";"S";"Propia";"COMERCIANTE";"";"";"";\N
+97;164;"KRA 49A12B-27";"P";"Propia";"GANE";"CALLE 13 CRA 22";"";"CLIENTE";"16753636"
+98;165;"CRA 44 A# 13-27";"S";"Seleccionar...";"";"";"";"CLIENTE";\N
+99;174;"CRA 83C# 38-49";"N";"Rentada";"INDEPENDIENTE";"";"";"";\N
+100;177;"CRA 83C # 38-49";"N";"Rentada";"FOGON DEL SUR";"CALLE 14 # 41 A- 20";"";"CLIENTE";\N
+102;179;"CALLE 23 # 17D-O7";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+103;180;"CRA 39C # 51A -07";"n";"Rentada";"";"";"";"CLIENTE";\N
+104;181;"CRA 29B # 38-79";"S";"Familiar";"LILIANA PEÑA";"CALLE 15A # 22-19";"";"CLIENTE";"66859544"
+105;182;"CRA  29A  # 25 -135";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+106;183;"CALLE 11 # 16 82";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+107;184;"CALLE 11 # 16-82";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+108;185;"CALLE 11 # 16-82";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+109;186;"CALLE 11 # 16-82";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+110;187;"CRA 1C # 78-11";"N";"Rentada";"HOSPITAL CARMONA";"";"";"CLIENTE";\N
+111;188;"CRA 11 # 16-77";"N";"Rentada";"";"";"";"";\N
+112;189;"CRA 11#  16-76";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"14318792"
+113;190;"CRA 11 # 16-75";"S";"Familiar";"BALANZAS IMAN";"CRA 11 #16-73";"";"CLIENTE";\N
+114;191;"CRA 30 # 29-89";"S";"Propia";"BALANZAS IMAN";"CRA 11 # 16-73";"";"CLIENTE";\N
+115;192;"CRA 11# 16-77";"N";"Rentada";"BALANZAS IMAN";"CRA 11A # 19-16";"8881884";"CLIENTE";\N
+116;193;"CRA 11 A # 19-16";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+117;194;"XXXXXXX";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+118;195;"CRA  11B  # 16 46";"S";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";\N
+119;196;"CRA 11B # 16-59";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+120;197;"CRA 47C # 38A -16";"P";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";\N
+121;198;"CRA  10A # 19-52";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+122;199;"CRA 10A -#19-52";"N";"Rentada";"GRANERO MESOPOTAMIA";"CALLE 22 # 11-69";"";"CLIENTE";\N
+123;200;"CRA 28 #108-74";"P";"Propia";"INDEPENDIENTES";"STA HELENA";"";"CLIENTE";\N
+124;204;"kra 28 #108-74";"si";"Propia";"coop trans santa elena ";"";"";"";\N
+125;209;"kra 28 #108-74";"si";"Propia";"coop trans santa elena ";"";"";"";\N
+126;235;"CRA 28 #108-74";"S";"Propia";"COOTRANS  SANTA HELENA";"SANTA HELENA";"";"CLIENTE";\N
+127;236;"CRA 27D1·#123-43";"";"Seleccionar...";"INDEPENDIENTE";"";"";"";\N
+128;237;"CRA 31- #19-90";"SI";"Propia";"INDEPENDIENTE ";"SANTA ELENA";"";"CLIENTE";"114441394861"
+129;238;"31·19-90";"";"Seleccionar...";"INDEPENDIENTE";"";"";"";\N
+130;239;"CRA 27 G#121-63";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"362781288"
+131;240;"31·#19-90";"NO";"Rentada";"INDEPENDIENTE";"SANTA ELENA";"3178578463";"CLIENTE";\N
+132;241;"CALLE71 IZ#3 EM-18";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+133;242;"cra 36 #26-36";"NO";"Rentada";"independiente";"";"";"CLIENTE";\N
+134;243;"CALLE 2 D#71-36";"SI";"Propia";"DROGUERIA LA BUITRERA";"KM2 LA BUITRERA ";"5550928";"";\N
+135;244;"KM 15 BUITRERA";"NO";"Rentada";"INDEPENDIENTE";"3148081781";"";"CLIENTE";"31936041"
+136;245;"CRA 96A # 45-14";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+137;246;"cra 96a #45-14";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+139;248;"CRA 14# 3-37 APT 201";"";"Seleccionar...";"INDEPENDIENTE";"";"";"CLIENTE";"123"
+140;249;"CALLE 2#42-85  LIDO";"NO";"Rentada";"";"";"";"CLIENTE";\N
+141;250;"CALLE 14 # 70-72";"S";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";\N
+142;251;"CRA 28E # 77-22";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+143;252;"cra 28E # 77-22";"s";"Familiar";"PANADERIA PAN PANE";"CALLE 5  CRA 44";"";"CLIENTE";\N
+144;253;"CALLE 16#11-08";"";"Familiar";"SERVICIOS Y LOGISTICA";"";"";"";\N
+145;254;"CALLE 66#4N-36  CALIMA";"N";"Rentada";"LITOGRAFIA LITOCAROL";"CRA 20 >#8A-29";"3717706";"CLIENTE";\N
+146;255;"";"";"Seleccionar...";"PANADERIA PAN PAN";"";"";"";\N
+147;256;"CLLE 77 #28B-47";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"669059550"
+148;257;"CALLE 77#28E-47";"NO";"Rentada";"INDEPENDIENTE";"";"";"";\N
+149;258;"CALLE 77 #28E -47";"NO";"Rentada";"POSTOBON";"ACOPI YUMBO";"";"CLIENTE";"385614530"
+150;259;"CALLE 17 OESTE ";"S";"Seleccionar...";"SEGURIDAD LEONES";"CRA 18 # 44-16";"3007660476";"CLIENTE";\N
+151;260;"CARRERA 28E # 77-22";"SI";"Propia";"PENSIONDA";"";"";"";\N
+152;261;"CARRERA 28·#77-22";"NO";"Rentada";"CASA DE  FAMILIA";"";"4261518";"CLIENTE";"38965439"
+153;262;"CRA 1A5 BIS·83-40";"SI";"Propia";"TCC";"CRA 1A ·61-201";"6852828";"CLIENTE";\N
+154;263;"CRA 44A # 13-99";"SI";"Propia";"CLINICA VERSALLES";"AVENIDA 5A NORTE";"";"";\N
+155;264;"CRA 44#13-99";"SI";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";"1144054407"
+156;265;"CALLE10·2-10";"NO";"Rentada";"";"";"";"CLIENTE";\N
+157;266;"CALLE22N ·64AN-24";"SI";"Propia";"BC LENKS";"CALLE 22NTE #6AN-24";"4892679";"CLIENTE";\N
+158;267;"CALLE 10A#72-36 APT 207";"NO";"Rentada";"EN CASA DE FAMILIA";"";"";"CLIENTE";\N
+159;268;"CRA44·#13-99";"";"Seleccionar...";"INDEPENDIENTE";"";"";"CLIENTE";\N
+160;272;"CRA44·#13-99";"";"Seleccionar...";"";"";"";"";\N
+161;278;"CRA 44A#13-99";"";"Seleccionar...";"";"";"";"";\N
+162;296;"CRA 44A#13-99";"";"Seleccionar...";"";"";"";"";\N
+163;305;"CRA 44A # 13-99";"S";"Propia";"CLINIVA VERSALLES";"";"";"CLIENTE";\N
+164;306;"CALLE 2# 70-70";"NO";"Rentada";"INDEPENDIENTE";"";"";"";\N
+165;307;"CRA47#17-09";"NO";"Rentada";"ESCUELA SALUD PUBLICA ";"";"";"CLIENTE";"2912525895"
+166;308;"CRA 47·#17-09";"NO";"Rentada";"ESCULA SALUD PUBLICA";"";"";"";\N
+167;309;"CALLE 2·70-70";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";"113067868095"
+168;310;"CRA 41A#28-51";"NO";"Rentada";"CISAMAR";"CRA  39A #5D-67";"5145834";"CLIENTE";\N
+169;311;"CALLE55 #41D2-80";"P";"Familiar";"INDEPENDIENTE";"CALLE 55 #41D-280";"";"CLIENTE";\N
+170;312;"CRA 40A  # 29-05 CIUDAD MODELO";"P";"Familiar";"FULLIN";"CALLE 15A #25A-352 YUMNO";"";"CLIENTE";\N
+171;313;"CALLE 28 #43-56 VIILA SUR";"N";"Rentada";"CLINIVA VERSALLEZ";"AV 5 NTE #23-45";"6809990666";"CLIENTE";\N
+172;314;"KRA 4 # 63-35";"N";"Rentada";"CLINICA VERSALLES";"AV 5NTE # 23-45";"6809990";"CLIENTE";\N
+173;315;"CALLE 55#1-94 TRRES DE COMFANDI";"NO";"Rentada";"";"";"";"CLIENTE";\N
+174;316;"CALLE 54A #1A-67 APT 1-501 TO COMF";"S";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";\N
+175;317;"CALLE 14 #32-50  APT 402 TORRE D";"N";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+176;318;"CRA 9 #25-04";"S";"Propia";"BANCO DE BOGOTA";"";"";"CLIENTE";\N
+177;319;"CRA 12#7-25";"NO";"Rentada";"";"";"";"CLIENTE";\N
+178;320;"CALLE 7 OESTE #49B-03";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+179;321;"XXXXXXX";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+180;322;"XXXXXXX";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+181;323;"XXXXXXXXX";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+182;324;"CRRERA 17 #35";"NO";"Rentada";"";"";"";"CLIENTE";\N
+183;325;"CALLE 1";"NO";"Rentada";"";"";"";"CLIENTE";\N
+184;326;"CRA 28D1 #72-63";"";"Seleccionar...";"REGULADORA DE TRANSITO";"";"";"CLIENTE";\N
+185;333;"CRA 10 #72-89";"N";"Rentada";"IN DEPENDIENTE";"";"";"CLIENTE";\N
+186;334;"CALLE 8# 8-25";"N";"Rentada";"DISTRIBUIDORA";"CRA6 #16-60";"";"CLIENTE";\N
+187;335;"CRA 44 # 95-131";"S";"Propia";"INDEPENDIENTE";"CRA7A # 11-40";"";"CLIENTE";\N
+188;336;"CRA 11A #19-16";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+189;337;"CRA 36 # 86-36";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+190;338;"CRA 17 #35";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+191;339;"CRA 24B #24A-45 OESTE";"A";"Rentada";"";"";"";"CLIENTE";\N
+192;340;"guacary";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+193;360;"CARRERA 18#11-46";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+194;361;"CRA41A#28-27";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+195;362;"CRAB 80  # 48-54";"S";"Propia";"";"";"";"CLIENTE";\N
+196;363;"CALLE 4B # 89-36";"N";"Rentada";"";"";"";"CLIENTE";\N
+197;364;"CALLE 4b # 89-36";"N";"Rentada";"";"";"";"CLIENTE";\N
+198;365;"CALLE 17 #10A-31";"";"Rentada";"";"";"";"CLIENTE";\N
+199;366;"CALLE 4b #89*-36";"n";"Rentada";"";"";"";"CLIENTE";\N
+200;367;"XXXXXXXX";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+201;368;"CRA 26# 66-19";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+202;369;"CRA 28#77-21";"S";"Propia";"PANADERIA PAN PANA";"CALLE 5 CRA 44";"";"CLIENTE";\N
+203;370;"PUERTO TEJADA";"N";"Rentada";"LICEO FORJADORES";"PUERTO TEJADA";"";"CLIENTE";\N
+204;371;"CALLE 77#28B47";"NO";"Rentada";"";"";"";"CLIENTE";\N
+205;372;"CRA 75#75-3C";"NO";"Seleccionar...";"";"";"";"CLIENTE";\N
+206;373;"CRA 9#25-04";"SI";"Propia";"BANCO DE BOGOTA";"";"";"CLIENTE";\N
+207;374;"CRA 9#25-04";"SI";"Propia";"BANCO DE BOGOTA";"";"";"CLIENTE";\N
+208;375;"CALLE 8# 8-25";"N";"Rentada";"DISTRIBUIDORA";"CRA 6# 16-60";"";"CLIENTE";\N
+209;376;"CRA40A#29-05 CIUDAD MODELO";"S";"Propia";"full";"CALLE 15A·#254-352";"";"CLIENTE";\N
+210;377;"CRA 80 48-42";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+211;378;"CALLE 4B # 89-36";"N";"Seleccionar...";"";"";"";"CLIENTE";\N
+212;389;"KRA 40A # 40-33";"N";"Rentada";"HOSPITAL CARMONA";"CRA 43 # 39-00";"3280847";"CLIENTE";"1130652119"
+213;133;"CRA 40A # 40-33";"N";"Familiar";"HOSPITAL CARLOS CARMONA";"CALLE 39 CRA 43 ESQUINA";"3280847";"";\N
+214;390;"CALLE 4 #93-85";"NO";"Rentada";"";"";"";"CLIENTE";\N
+215;391;"XXXXXXXX";"S";"Propia";"INDEPENDIENTE";"";"";"CLIENTE";\N
+216;392;"222222222";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+217;393;"CRA 36 # 26-36";"S";"Propia";"";"";"";"CLIENTE";\N
+218;394;"CLL 79 # 28F-22  P2";"SI";"Propia";"";"";"";"CLIENTE";\N
+219;395;"CRA 44 # 13-99";"S";"Propia";"";"";"";"CLIENTE";\N
+220;396;"AV 2 GN# 45N-86";"S";"Seleccionar...";"CLL 55N #3BN-138";"";"";"CLIENTE";\N
+221;397;"CRA 11B #16-46";"";"Seleccionar...";"";"";"";"CLIENTE";\N
+222;398;"CLL 38A#47C-20";"S";"Propia";"";"";"";"CLIENTE";\N
+223;399;"CRA 10 #23-42";"N";"Rentada";"";"";"";"CLIENTE";\N
+224;400;"XXX";"";"\\N";"";"";"";"";\N
+225;424;"TR 28i # 72L-61";"N";"Rentada";"INDEPENDIENTE";"CALLE 72L1 28E3-23";"3994885";"CLIENTE";"38943737"
+226;425;"X";"";"Seleccionar...";"";"";"";"CLIENTE";"16463819"
+227;426;"CRA 7D2 #81-94";"S";"Familiar";"SUBWAY ROOSEVELT";"CALLE 9  CRA 44 LOCAL 16";"";"CLIENTE";"16285336"
+228;427;"CALLE 18A #56-20 APT323F CAÑ 4";"S";"Familiar";"LISTOS-FYTOLINE";"";"";"CLIENTE";"29125258"
+229;428;"CRA 73 #10A-66";"S";"Familiar";"INDEPENDIENTE";"CRA 73 # 10A-66";"";"CLIENTE";"1130632002"
+230;429;"CRA 28 # 77-22";"";"Familiar";"";"";"";"CLIENTE";\N
+231;430;"CRA 73 #10A-66";"S";"Familiar";"";"";"";"CLIENTE";\N
+232;431;"CRA";"NO";"Propia";"";"";"";"CLIENTE";\N
+233;433;"CRA 11B #16A-30";"NO";"Rentada";"INDEPENDIENTE";"";"";"CLIENTE";\N
+234;434;"CALLE";"";"Seleccionar...";"INDEPENDIENTE";"";"";"CLIENTE";\N
+235;442;"22";"222";"Propia";"22";"1212";"1212";\N;\N
+236;443;"12";"121";"Propia";"12";"121";"212";"CLIENTE";"12122"

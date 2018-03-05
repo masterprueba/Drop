@@ -367,7 +367,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem11.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/analytics2.png"))); // NOI18N
         jMenuItem11.setText("Prestamos Cliente");
         jMenuItem11.setPreferredSize(new java.awt.Dimension(241, 30));
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -378,7 +378,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.add(jMenuItem11);
 
         jMenuItem13.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/analytics.png"))); // NOI18N
         jMenuItem13.setText("General");
         jMenuItem13.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -389,7 +389,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.add(jMenuItem13);
 
         jMenuItem23.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/calendar.png"))); // NOI18N
         jMenuItem23.setText("Prestamos Fecha");
         jMenuItem23.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +400,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.add(jMenuItem23);
 
         jMenuItem24.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/calendar2.png"))); // NOI18N
         jMenuItem24.setText("Abonos Fecha");
         jMenuItem24.setPreferredSize(new java.awt.Dimension(141, 30));
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +411,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu7.add(jMenuItem24);
 
         jMenuItem10.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/calendar3.png"))); // NOI18N
         jMenuItem10.setText("Interes Extra Fecha");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,6 +420,8 @@ public class MainDesktop extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem10);
 
+        jMenuItem32.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/list2.png"))); // NOI18N
         jMenuItem32.setText("Lista Refinanciados");
         jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +437,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu8.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem28.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cash-register.png"))); // NOI18N
         jMenuItem28.setText("Registrar Banco / Tarjeta");
         jMenuItem28.setPreferredSize(new java.awt.Dimension(248, 30));
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
@@ -446,7 +448,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu8.add(jMenuItem28);
 
         jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/point-of-service.png"))); // NOI18N
         jMenuItem19.setText("Movimientos de Banco");
         jMenuItem19.setPreferredSize(new java.awt.Dimension(248, 30));
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -463,7 +465,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu9.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
 
         jMenuItem22.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/selec_row.png"))); // NOI18N
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/wallet.png"))); // NOI18N
         jMenuItem22.setText("Movimientos de Cuentas * Pagar");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
