@@ -135,7 +135,7 @@ public class gastos_Controller extends Controllers {
          for (int i = 0; i <  VistaGastos.modelo.getRowCount(); i++) {
              VistaGastos.modelo.setValueAt(i + 1, i, 4);
         }
-        VistaGastos.jTextField1.setText("" + totalDeUnaTabla(VistaGastos.modelo, 3));
+        VistaGastos.jTextField1.setText("" + Math.round(totalDeUnaTabla(VistaGastos.modelo, 3)));
 
     }
 
