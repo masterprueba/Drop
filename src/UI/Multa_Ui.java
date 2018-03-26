@@ -5,9 +5,9 @@
  */
 package UI;
 
+import Controller.Login_Controller;
 import Controller.Multa_Controller;
 import Controller.TableModel;
-import Entity.TPrestamo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +33,9 @@ public class Multa_Ui extends Views {
         CargarComponentes();
         GControl.desactivarFechas(1);
         GControl.desactivarBotones(0);
+        if (!Login_Controller.getUsuarioLogueado().getTDatosBasicosPersona().getTdbpCedula().equals("31922118")) {
+          jButton7.setVisible(false);
+        }
     }
 
     private void CargarComponentes() {
@@ -353,7 +356,7 @@ public class Multa_Ui extends Views {
         });
 
         jLabel6.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel6.setText("Filtrar gasto:");
+        jLabel6.setText("Filtrar interes:");
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -474,7 +477,7 @@ public class Multa_Ui extends Views {
                         .addGap(51, 51, 51)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
