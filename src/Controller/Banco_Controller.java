@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -124,7 +123,7 @@ public class Banco_Controller extends Controllers {
 
     public void initTableMovimiento(JTable jt) {
 
-        Set temp = ((TBanco) banUI.jtBanco.getValueAt(banUI.jtBanco.getSelectedRow(), 4)).getTMovimientoBancos();
+        Set temp = ((TBanco) banUI.jtBancoD.getValueAt(banUI.jtBancoD.getSelectedRow(), 4)).getTMovimientoBancos();
         List<TMovimientoBanco> tmb = new ArrayList<>();
 
         tmb.addAll(temp);
@@ -145,18 +144,23 @@ public class Banco_Controller extends Controllers {
             f[4] = tmb.get(i).getTmovConcepto();
             getDtm().addRow(f);
 
-            banUI.jtTotal.setText("" + (Integer.parseInt(banUI.jtTotal.getText()) + tmb.get(i).getTmovSaldo()));
+            banUI.jtTotalD.setText("" + (Integer.parseInt(banUI.jtTotalD.getText()) + tmb.get(i).getTmovSaldo()));
         }
+       
         numerarTabla(getDtm());
     }
 
     public void initTableMovimientoC(JTable jt) {
 
-        Set temp = ((TBanco) banUI.jtBanco1.getValueAt(banUI.jtBanco1.getSelectedRow(), 4)).getTMovimientoBancos();
+        Set temp = ((TBanco) banUI.jtBancoC.getValueAt(banUI.jtBancoC.getSelectedRow(), 4)).getTMovimientoBancos();
         List<TMovimientoBanco> tmb = new ArrayList<>();
 
         Double total = 0.0;
+        Double totalPagar = 0.0;
+        Double cupoUtilizado = 0.0;
+        Double saldoDisponible = Double.parseDouble(""+((TBanco) banUI.jtBancoC.getValueAt(banUI.jtBancoC.getSelectedRow(), 4)).getTbanSaldo());
 
+        
         tmb.addAll(temp);
 
         tmb.sort(Comparator.comparing(TMovimientoBanco::getTmovFecha));
@@ -169,17 +173,34 @@ public class Banco_Controller extends Controllers {
 
         Object[] f = new Object[7];
         for (int i = 0; i < tmb.size(); i++) {
+            
+            switch (tmb.get(i).getTmovTipo()) {
+                case "Pago Deuda" : 
+                    cupoUtilizado = cupoUtilizado - tmb.get(i).getTmovSaldo();
+                    saldoDisponible = saldoDisponible + tmb.get(i).getTmovSaldo();
+                    totalPagar = totalPagar - ((tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo());
+                    break;
+                default:
+                    cupoUtilizado = cupoUtilizado + tmb.get(i).getTmovSaldo();
+                    saldoDisponible = saldoDisponible - tmb.get(i).getTmovSaldo();
+                    totalPagar = totalPagar + ((tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo());
+                    break;
+            }
+            
             f[1] = tmb.get(i).getTmovFecha();
             f[2] = tmb.get(i).getTmovTipo();
             f[3] = tmb.get(i).getTmovSaldo();
             f[4] = (tmb.get(i).getTmovPorcentaje() > 0) ? tmb.get(i).getTmovPorcentaje() : "-";
-            f[5] = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo();
+            f[5] =  ((tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() : tmb.get(i).getTmovSaldo());;
             f[6] = tmb.get(i).getTmovConcepto();
             getDtm().addRow(f);
 
-            total = (tmb.get(i).getTmovPorcentaje() > 0) ? ((tmb.get(i).getTmovSaldo() * tmb.get(i).getTmovPorcentaje()) / 100) + tmb.get(i).getTmovSaldo() + total : tmb.get(i).getTmovSaldo() + total;
         }
-        banUI.jtTotal1.setText("" + total.intValue());
+    
+        banUI.jtCupoUtilizadoC.setText(""+cupoUtilizado.intValue());
+        banUI.jtSaldoDisponibleC.setText("" + saldoDisponible.intValue());
+        banUI.jtTotalC.setText(""+totalPagar.intValue());
+       
         numerarTabla(getDtm());
     }
 
@@ -214,29 +235,29 @@ public class Banco_Controller extends Controllers {
             TMovimientoBanco tm = new TMovimientoBanco();
 
             if (tipoBanco == 'C') {
-                tb.setTbanCuenta(getBanUI().jtfCuenta1.getText());
+                tb.setTbanCuenta(getBanUI().jtfCuentaC.getText());
                 tm.setTBanco(tb);
-                tm.setTmovTipo("" + getBanUI().jcbTipoMovimiento1.getSelectedItem());
-                tm.setTmovSaldo((getBanUI().jcbTipoMovimiento1.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo1.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo1.getText())));
-                tm.setTmovPorcentaje(Double.parseDouble(getBanUI().jtfPorcentaje.getText()));
-                tm.setTmovFecha(getBanUI().jtfFecha1.getDate());
-                tm.setTmovConcepto(getBanUI().jtaConcepto1.getText());
+                tm.setTmovTipo("" + getBanUI().jcbTipoMovimientoC.getSelectedItem());
+                tm.setTmovSaldo(Long.parseLong(getBanUI().jtfSaldoC.getText()));
+                tm.setTmovPorcentaje(Double.parseDouble(getBanUI().jtfPorcentajeC.getText()));
+                tm.setTmovFecha(getBanUI().jtfFechaC.getDate());
+                tm.setTmovConcepto(getBanUI().jtaConceptoC.getText());
 
             } else {
-                tb.setTbanCuenta(getBanUI().jtfCuenta.getText());
+                tb.setTbanCuenta(getBanUI().jtfCuentaD.getText());
                 tm.setTBanco(tb);
-                tm.setTmovTipo("" + getBanUI().jcbTipoMovimiento.getSelectedItem());
-                tm.setTmovSaldo((getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
-                tm.setTmovFecha(getBanUI().jtfFecha.getDate());
-                tm.setTmovConcepto(getBanUI().jtaConcepto.getText());
+                tm.setTmovTipo("" + getBanUI().jcbTipoMovimientoD.getSelectedItem());
+                tm.setTmovSaldo(Long.parseLong(getBanUI().jtfSaldoD.getText()));
+                tm.setTmovFecha(getBanUI().jtfFechaD.getDate());
+                tm.setTmovConcepto(getBanUI().jtaConceptoD.getText());
             }
 
             //JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
             int r = JOptionPane.NO_OPTION;
             if (tipoBanco == 'C') {
-                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimiento1.getSelectedItem() + "\n Saldo : " + (getBanUI().jcbTipoMovimiento1.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo1.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo1.getText())) + "\n Interés :" + getBanUI().jtfPorcentaje.getText() + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoC.getSelectedItem() + "\n Saldo : " + Long.parseLong(getBanUI().jtfSaldoC.getText()) + "\n Interés :" + getBanUI().jtfPorcentajeC.getText() + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
             } else {
-                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimiento.getSelectedItem() + "\n Saldo : " + (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoD.getSelectedItem() + "\n Saldo : " + Long.parseLong("-" + getBanUI().jtfSaldoD.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
             }
 
             if (r == JOptionPane.YES_OPTION) {
@@ -244,19 +265,19 @@ public class Banco_Controller extends Controllers {
                     
 
                     if (tipoBanco == 'C') {
-                        initTable(getBanUI().jtBanco1, tipoBanco);
-                        getBanUI().jtfSaldo1.setText("");
-                        getBanUI().jtaConcepto1.setText("");
-                        getBanUI().jtfPorcentaje.setText("0");
-                        getBanUI().btnGuardarMovimiento1.setText("");
-                        limpiaTabla(getBanUI().jtMovimientos1);
+                        initTable(getBanUI().jtBancoC, tipoBanco);
+                        getBanUI().jtfSaldoC.setText("");
+                        getBanUI().jtaConceptoC.setText("");
+                        getBanUI().jtfPorcentajeC.setText("0");
+                        getBanUI().btnGuardarMovimientoC.setText("");
+                        limpiaTabla(getBanUI().jtMovimientosC);
                     } else {
-                        initTable(getBanUI().jtBanco, tipoBanco);
-                        limpiaTabla(getBanUI().jtMovimientos);
+                        initTable(getBanUI().jtBancoD, tipoBanco);
+                        limpiaTabla(getBanUI().jtMovimientosD);
 
-                        getBanUI().jtfSaldo.setText("");
-                        getBanUI().jtaConcepto.setText("");
-                        getBanUI().btnGuardarMovimiento.setText("");
+                        getBanUI().jtfSaldoD.setText("");
+                        getBanUI().jtaConceptoD.setText("");
+                        getBanUI().btnGuardarMovimientoD.setText("");
 
                     }
 
@@ -316,29 +337,29 @@ public class Banco_Controller extends Controllers {
 
         if (tipoBanco == 'C') {
             getBanUI().jcbMovimientos1.setEnabled(true);
-            getBanUI().jtxSearchMovimientos1.setEnabled(true);
-            getBanUI().jtfBanco1.setText("" + getBanUI().jtBanco1.getValueAt(getBanUI().jtBanco1.getSelectedRow(), 2));
-            getBanUI().jtfCuenta1.setText("" + getBanUI().jtBanco1.getValueAt(getBanUI().jtBanco1.getSelectedRow(), 1));
-            getBanUI().jtSaldoBase1.setText("" + getBanUI().jtBanco1.getValueAt(getBanUI().jtBanco1.getSelectedRow(), 3));
+            getBanUI().jtxSearchMovimientosC.setEnabled(true);
+            getBanUI().jtfBanco1.setText("" + getBanUI().jtBancoC.getValueAt(getBanUI().jtBancoC.getSelectedRow(), 2));
+            getBanUI().jtfCuentaC.setText("" + getBanUI().jtBancoC.getValueAt(getBanUI().jtBancoC.getSelectedRow(), 1));
+            getBanUI().jtSaldoBaseC.setText("" + getBanUI().jtBancoC.getValueAt(getBanUI().jtBancoC.getSelectedRow(), 3));
 
-            getBanUI().jcbTipoMovimiento1.setEnabled(true);
-            getBanUI().jtfSaldo1.setEnabled(true);
-            getBanUI().jtfFecha1.setEnabled(true);
-            getBanUI().jtaConcepto1.setEnabled(true);
-            getBanUI().jtfPorcentaje.setEnabled(true);
-            getBanUI().btnGuardarMovimiento1.setEnabled(true);
+            getBanUI().jcbTipoMovimientoC.setEnabled(true);
+            getBanUI().jtfSaldoC.setEnabled(true);
+            getBanUI().jtfFechaC.setEnabled(true);
+            getBanUI().jtaConceptoC.setEnabled(true);
+            getBanUI().jtfPorcentajeC.setEnabled(true);
+            getBanUI().btnGuardarMovimientoC.setEnabled(true);
         } else {
-            getBanUI().jcbMovimientos.setEnabled(true);
-            getBanUI().jtxSearchMovimientos.setEnabled(true);
-            getBanUI().jtfBanco.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 2));
-            getBanUI().jtfCuenta.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 1));
-            getBanUI().jtSaldoBase.setText("" + getBanUI().jtBanco.getValueAt(getBanUI().jtBanco.getSelectedRow(), 3));
+            getBanUI().jcbMovimientosD.setEnabled(true);
+            getBanUI().jtxSearchMovimientosD.setEnabled(true);
+            getBanUI().jtfBancoD.setText("" + getBanUI().jtBancoD.getValueAt(getBanUI().jtBancoD.getSelectedRow(), 2));
+            getBanUI().jtfCuentaD.setText("" + getBanUI().jtBancoD.getValueAt(getBanUI().jtBancoD.getSelectedRow(), 1));
+            getBanUI().jtSaldoBaseD.setText("" + getBanUI().jtBancoD.getValueAt(getBanUI().jtBancoD.getSelectedRow(), 3));
 
-            getBanUI().jcbTipoMovimiento.setEnabled(true);
-            getBanUI().jtfSaldo.setEnabled(true);
-            getBanUI().jtfFecha.setEnabled(true);
-            getBanUI().jtaConcepto.setEnabled(true);
-            getBanUI().btnGuardarMovimiento.setEnabled(true);
+            getBanUI().jcbTipoMovimientoD.setEnabled(true);
+            getBanUI().jtfSaldoD.setEnabled(true);
+            getBanUI().jtfFechaD.setEnabled(true);
+            getBanUI().jtaConceptoD.setEnabled(true);
+            getBanUI().btnGuardarMovimientoD.setEnabled(true);
         }
 
     }
@@ -362,23 +383,23 @@ public class Banco_Controller extends Controllers {
         } else {
 
             if (tipoBanco == 'C') {
-                if (getBanUI().jtfPorcentaje.getText().trim().equals("")) {
+                if (getBanUI().jtfPorcentajeC.getText().trim().equals("")) {
                     mensaje += "[- Interés vacío -] \n";
                 }
 
-                if (getBanUI().jtfSaldo1.getText().trim().equals("")) {
+                if (getBanUI().jtfSaldoC.getText().trim().equals("")) {
                     mensaje += "[- Saldo vacío -] \n";
                 }
 
-                if (("" + getBanUI().jtfFecha1.getDate()).length() < 28) {
+                if (("" + getBanUI().jtfFechaC.getDate()).length() < 28) {
                     mensaje += "[- Fecha vacía -] \n";
                 }
             } else {
-                if (getBanUI().jtfSaldo.getText().trim().equals("")) {
+                if (getBanUI().jtfSaldoD.getText().trim().equals("")) {
                     mensaje += "[- Saldo vacío -] \n";
                 }
 
-                if (("" + getBanUI().jtfFecha.getDate()).length() < 28) {
+                if (("" + getBanUI().jtfFechaD.getDate()).length() < 28) {
                     mensaje += "[- Fecha vacía -] \n";
                 }
             }
