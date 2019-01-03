@@ -135,18 +135,31 @@ public class Banco_Controller extends Controllers {
         while (getDtm().getRowCount() > 0) {
             getDtm().removeRow(0); //Limpiar Tabla
         }
+        
+        Double total = 0.0;
 
         Object[] f = new Object[6];
         for (int i = 0; i < tmb.size(); i++) {
+            
+            switch (tmb.get(i).getTmovTipo()) {
+                case "Deposito" : 
+                    total = total + tmb.get(i).getTmovSaldo();
+                    break;
+                    
+                default:
+                    total = total - tmb.get(i).getTmovSaldo();
+                    break;
+            }            
+            
             f[1] = tmb.get(i).getTmovFecha();
             f[2] = tmb.get(i).getTmovTipo();
             f[3] = tmb.get(i).getTmovSaldo();
             f[4] = tmb.get(i).getTmovConcepto();
             getDtm().addRow(f);
-
-            banUI.jtTotalD.setText("" + (Integer.parseInt(banUI.jtTotalD.getText()) + tmb.get(i).getTmovSaldo()));
+            
         }
-       
+        
+        banUI.jtTotalD.setText(""+total);
         numerarTabla(getDtm());
     }
 
@@ -255,9 +268,11 @@ public class Banco_Controller extends Controllers {
             //JOptionPane.showMessageDialog(null, (getBanUI().jcbTipoMovimiento.getSelectedIndex() == 0 ? Long.parseLong(getBanUI().jtfSaldo.getText()) : Long.parseLong("-" + getBanUI().jtfSaldo.getText())));
             int r = JOptionPane.NO_OPTION;
             if (tipoBanco == 'C') {
-                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoC.getSelectedItem() + "\n Saldo : " + Long.parseLong(getBanUI().jtfSaldoC.getText()) + "\n Interés :" + getBanUI().jtfPorcentajeC.getText() + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+//                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoC.getSelectedItem() + "\n Saldo : " + Long.parseLong(getBanUI().jtfSaldoC.getText()) + "\n Interés :" + getBanUI().jtfPorcentajeC.getText() + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+                  r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoC.getSelectedItem() + "\n Saldo : " + ((getBanUI().jcbTipoMovimientoC.getSelectedIndex() == 1 || getBanUI().jcbTipoMovimientoC.getSelectedIndex() == 2) ? Long.parseLong("-" +getBanUI().jtfSaldoC.getText()) : Long.parseLong(getBanUI().jtfSaldoC.getText())) + "\n Interés :" + getBanUI().jtfPorcentajeC.getText() + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
             } else {
-                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoD.getSelectedItem() + "\n Saldo : " + Long.parseLong("-" + getBanUI().jtfSaldoD.getText()) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
+                System.out.println("Index"+getBanUI().jcbTipoMovimientoD.getSelectedIndex());
+                r = JOptionPane.showConfirmDialog(null, "Compruebe los siguientes datos…\n \n Tipo : " + getBanUI().jcbTipoMovimientoD.getSelectedItem() + "\n Saldo : " + ((getBanUI().jcbTipoMovimientoD.getSelectedIndex() == 1 || getBanUI().jcbTipoMovimientoD.getSelectedIndex() == 2) ? Long.parseLong("-" +getBanUI().jtfSaldoD.getText()) : Long.parseLong(getBanUI().jtfSaldoD.getText())) + "\n \n Presione “Si” en caso que sea correcto.", "Comprobar datos", JOptionPane.YES_NO_OPTION);
             }
 
             if (r == JOptionPane.YES_OPTION) {
