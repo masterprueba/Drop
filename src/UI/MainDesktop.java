@@ -103,6 +103,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -341,7 +342,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6.add(jMenuItem14);
 
         jMenuItem17.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118212_circle-clock-time-history-recent-outline-stroke.png"))); // NOI18N
         jMenuItem17.setText("Historial de cambios en Interes extra");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,7 +352,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu6.add(jMenuItem17);
 
         jMenuItem26.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118189_circle-clock-time-history-recent-2-outline-stroke.png"))); // NOI18N
+        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118202_circle-clock-time-history-recent-glyph.png"))); // NOI18N
         jMenuItem26.setText("Historial General de Cliente");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,6 +360,16 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem26);
+
+        jMenuItem31.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/1496118189_circle-clock-time-history-recent-2-outline-stroke.png"))); // NOI18N
+        jMenuItem31.setText("Historial de Prestamo por día");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem31);
 
         jMenuBar1.add(jMenu6);
 
@@ -721,6 +732,11 @@ public class MainDesktop extends javax.swing.JFrame {
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem32ActionPerformed
 
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        JInternalFrame in = new Bitacora_UI("PRESTAMO");
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
         DesktopPaneMain.add(InternalWindow);
@@ -810,6 +826,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
