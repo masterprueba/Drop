@@ -330,19 +330,17 @@ public class Cuota_Controller extends Prestamo_Controller {
             cuota.setTPago((TPago) model.getValueAt(i, 9));
             cuota.setTCobrador((TCobrador) model.getValueAt(i, 10));
             cuota.setTPrestamo((TPrestamo) model.getValueAt(i, 11));
-            if (Cierre_Controller.consutarCierre(cuota.getTcuoFecha())) {
-                if (pmodel.editar(cuota, "PRESTAMO")) {
-                    conteo++;
+            if (!compareCuota(cuota)){
+                if (Cierre_Controller.consutarCierre(cuota.getTcuoFecha())) {
+                    if (pmodel.editar(cuota, "PRESTAMO")) {
+                        conteo++;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre ID abono: "+cuota.getTcuoId());
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
-            }
+            }else{conteo++;}
         }
-        if (conteo == model.getRowCount()) {
-            return true;
-        } else {
-            return false;
-        }
+        return conteo == model.getRowCount();
     }
 
     public void eliminarAbono() {
@@ -371,5 +369,26 @@ public class Cuota_Controller extends Prestamo_Controller {
                 JOptionPane.showMessageDialog(null, "Error Cuota no existe");
             }
         }
+    }
+    
+    
+    private boolean compareCuota(TCuota cuota){
+        boolean cambio = true;
+        TCuota cuotaOriginal; 
+        cuotaOriginal = (TCuota) pmodel.consultar(TCuota.class,cuota.getTcuoId());
+        
+        if(cuotaOriginal.getTcuoFecha().compareTo(cuota.getTcuoFecha()) != 0){
+            cambio = false;
+        } 
+        if(cuotaOriginal.getTcuoAbono() != cuota.getTcuoAbono()){
+            cambio = false;
+        }   
+        if(cuotaOriginal.getTcuoNuevoSaldo()!= cuota.getTcuoNuevoSaldo()){
+            cambio = false;
+        }    
+        if(cuotaOriginal.getTcuoCuotasPagadas()!= cuota.getTcuoCuotasPagadas()){
+            cambio = false;
+        } 
+        return cambio;
     }
 }

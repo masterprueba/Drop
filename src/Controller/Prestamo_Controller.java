@@ -342,19 +342,18 @@ public class Prestamo_Controller extends Controllers {
             prestamo.setTpreValorTotal(Integer.parseInt(String.valueOf(model.getValueAt(i, 7))));
             prestamo.setTpreValorCuota(Integer.parseInt(String.valueOf(model.getValueAt(i, 8))));
             prestamo.setTPersona((TPersona) model.getValueAt(i, 10));
-            if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
-                if (pmodel.editar(prestamo, "PRESTAMO")) {
-                    conteo++;
+            
+            if (!comparePrestamo(prestamo)){
+                if (Cierre_Controller.consutarCierre(prestamo.getTpreFechaEntrega())) {
+                    if (pmodel.editar(prestamo, "PRESTAMO")) {
+                        conteo++;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizó cierre ID del prestamo: "+prestamo.getTpreId());
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se puede guardar o modificar datos en un mes al que se le realizo cierre");
-            }
+            }else {conteo++;}
         }
-        if (conteo == model.getRowCount()) {
-            return true;
-        } else {
-            return false;
-        }
+        return conteo == model.getRowCount();
     }
 
     public void initTableRefinancia(JTable table) {
@@ -460,5 +459,34 @@ public class Prestamo_Controller extends Controllers {
     
     public int cantCuotas(){
         return pmodel.cantCuotas(1);
+    }
+    
+    private boolean comparePrestamo(TPrestamo prestamo){
+        boolean cambio = true;
+        TPrestamo prestamoOriginal; 
+        prestamoOriginal = (TPrestamo) pmodel.consultar(TPrestamo.class,prestamo.getTpreId());
+        
+        if(prestamoOriginal.getTpreValorPrestamo() != prestamo.getTpreValorPrestamo()){
+            cambio = false;
+        }        
+        if(prestamoOriginal.getTpreNumCuotas()!= prestamo.getTpreNumCuotas()){
+            cambio = false;
+        }        
+        if(prestamoOriginal.getTpreIntereses()!= prestamo.getTpreIntereses()){
+            cambio = false;
+        }        
+        if(!prestamoOriginal.getTpreMetodPago().equals(prestamo.getTpreMetodPago())){
+            cambio = false;
+        }        
+        if(prestamoOriginal.getTpreFechaEntrega().compareTo(prestamo.getTpreFechaEntrega()) != 0){
+            cambio = false;
+        }        
+        if(prestamoOriginal.getTpreValorTotal() != prestamo.getTpreValorTotal()){
+            cambio = false;
+        }        
+        if(prestamoOriginal.getTpreValorCuota() != prestamo.getTpreValorCuota()){
+            cambio = false;
+        }
+        return cambio;
     }
 }

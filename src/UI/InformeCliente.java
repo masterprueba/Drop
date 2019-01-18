@@ -384,7 +384,7 @@ public class InformeCliente extends Views {
         if (pc.update(jtbHPrestamo)) {
             JOptionPane.showMessageDialog(rootPane, "Todos los Prestamos Actualizados Correctamente");
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de los prestamos");
+            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de los prestamos, por favor validar es posible que algunos fueran actualizados");
         }
         pc = null;
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -394,11 +394,11 @@ public class InformeCliente extends Views {
         if (cc.updateCuota(jtbDCuota)) {
             jtbHPrestamo.setModel(new DefaultTableModel());
             jtbDCuota.setModel(new DefaultTableModel());
-            JOptionPane.showMessageDialog(rootPane, "Todos las Cuotas Actualizados Correctamente");
+            JOptionPane.showMessageDialog(rootPane, "Todas las Cuotas Actualizadas Correctamente");
         } else {
             jtbHPrestamo.setModel(new DefaultTableModel());
             jtbDCuota.setModel(new DefaultTableModel());
-            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de las Cuotas");
+            JOptionPane.showMessageDialog(rootPane, "Ocurrio un error al tratar de actualizar alguno de las Cuotas, por favor validar es posible que algunas fueran actualizadas");
         }
         cc = null;
     }//GEN-LAST:event_jButton2ActionPerformed
