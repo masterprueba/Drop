@@ -82,7 +82,7 @@ public class Multa_Controller extends Controllers {
             llenarObjeto();
             if (Cierre_Controller.consutarCierre(Multa.getTmulFecha())) {
                 if (Mmulta.editar(Multa, "PRESTAMO")) {
-                    JOptionPane.showMessageDialog(null, "El interes fue editado correctamente!");
+                    JOptionPane.showMessageDialog(null, "El interes extra fue editado correctamente!");
                     traer(obtenerRadiobuttonSeleccionado());
                     vaciarCampos();
                     desactivarBotones(0);

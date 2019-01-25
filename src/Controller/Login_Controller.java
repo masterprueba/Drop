@@ -83,10 +83,10 @@ public class Login_Controller extends Thread {
         loginresult = Lmodel.ConsultarUsuarioContraseña(User);
         if (!loginresult.isEmpty()) {
             boolean Continua = false;
-            for (int i = 0; i < loginresult.size(); i++) {
-                if (loginresult.get(i).getTlogUserLogin().equals(User.getTlogUserLogin()) || loginresult.get(i).getTlogPassword().equals(User.getTlogPassword())) {
+            for (TLogin loginresult1 : loginresult) {
+                if (loginresult1.getTlogUserLogin().equals(User.getTlogUserLogin()) || loginresult1.getTlogPassword().equals(User.getTlogPassword())) {
                     Continua = true;
-                    USUARIO_LOGEADO = loginresult.get(i);
+                    USUARIO_LOGEADO = loginresult1;
                     Lmodel.bitacora(USUARIO_LOGEADO, "INICIO", "LOGIN");
                     new MainDesktop().setVisible(true);
                     login.dispose();

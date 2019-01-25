@@ -5,23 +5,24 @@
  */
 package UI;
 
-import Controller.Cuota_Controller;
+import Controller.Banco_Controller;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Usuario
+ * @author Usuario1
  */
-public class EliminarA_UI extends javax.swing.JInternalFrame {
+public class EliminarMovimientoBanco_UI extends Views {
+
+    private final Banco_Controller banco_controller;
 
     /**
-     * Creates new form EliminarP_UI
+     * Creates new form EliminarMovimientoBanco_UI
      */
-    Cuota_Controller cc;
-    
-    public EliminarA_UI() {
+    public EliminarMovimientoBanco_UI() {
         initComponents();
-        msj_eliminar.setVisible(false);
-        cc = new Cuota_Controller(true);
+        banco_controller = new Banco_Controller();
     }
 
     /**
@@ -40,15 +41,19 @@ public class EliminarA_UI extends javax.swing.JInternalFrame {
         msj_eliminar = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Eliminar Movimiento");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eliminar Cuota", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 1, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eliminar Movimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 1, 18))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jLabel2.setText("Digita el ID de la cuota");
+        jLabel2.setText("Digita el ID del movimiento");
 
         id_eliminar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 id_eliminarKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                id_eliminarKeyTyped(evt);
             }
         });
 
@@ -62,7 +67,7 @@ public class EliminarA_UI extends javax.swing.JInternalFrame {
 
         msj_eliminar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         msj_eliminar.setForeground(new java.awt.Color(0, 153, 0));
-        msj_eliminar.setText("Cuota Eliminada Correctamente.");
+        msj_eliminar.setText("Movimiento eliminado correctamente.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,6 +98,8 @@ public class EliminarA_UI extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        msj_eliminar.setVisible(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,15 +120,28 @@ public class EliminarA_UI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void id_eliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_eliminarKeyPressed
+        msj_eliminar.setVisible(false);
+    }//GEN-LAST:event_id_eliminarKeyPressed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cc.eliminarAbono();
+        try {
+            if (banco_controller.eliminarMovimiento(Integer.parseInt(id_eliminar.getText()))) {
+                JOptionPane.showMessageDialog(null, "Se elimino correctamente el movimiento", "Información", JOptionPane.INFORMATION_MESSAGE);
+                msj_eliminar.setVisible(true);
+                id_eliminar.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ocurrio un error al eliminar el movimiento es posible que el ID no exista", "Error!!", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros en este campo", "Error!!", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void id_eliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_eliminarKeyPressed
-        if (evt.getKeyCode() == 10) {
-            cc.eliminarAbono();
-        }
-    }//GEN-LAST:event_id_eliminarKeyPressed
+    private void id_eliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_eliminarKeyTyped
+        soloNumeros(evt);
+    }//GEN-LAST:event_id_eliminarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

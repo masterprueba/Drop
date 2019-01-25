@@ -38,6 +38,7 @@ public class MainDesktop extends javax.swing.JFrame {
             jMenuItem1.setVisible(false);
             jMenuItem21.setVisible(false);
             jMenu5.setVisible(false);
+            jMenuItem33.setVisible(false);
         }
         Cierre_Controller.consultarCierre();
         //Maximizar la ventana en inicio
@@ -48,6 +49,7 @@ public class MainDesktop extends javax.swing.JFrame {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
+                @Override
                 public void windowClosing(WindowEvent e) {
                     Confirmar();
                 }
@@ -114,6 +116,7 @@ public class MainDesktop extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenuItem28 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem33 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -460,7 +463,7 @@ public class MainDesktop extends javax.swing.JFrame {
 
         jMenuItem19.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/point-of-service.png"))); // NOI18N
-        jMenuItem19.setText("Movimientos de Banco");
+        jMenuItem19.setText("Administración Bancaria");
         jMenuItem19.setPreferredSize(new java.awt.Dimension(248, 30));
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,6 +471,16 @@ public class MainDesktop extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItem19);
+
+        jMenuItem33.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        jMenuItem33.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario1\\Documents\\NetBeansProjects\\Drop\\src\\Icons\\eliminar.png")); // NOI18N
+        jMenuItem33.setText("Eliminar Movimiento");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem33);
 
         jMenuBar1.add(jMenu8);
 
@@ -558,8 +571,8 @@ public class MainDesktop extends javax.swing.JFrame {
         if (Respuesta == JOptionPane.YES_OPTION) {
             Login in = new Login();
             in.setVisible(true);
-            in.jProgressBar1.setValue(100);
-            in.jPanel1.setVisible(true);
+            Login.jProgressBar1.setValue(100);
+            Login.jPanel1.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -688,19 +701,19 @@ public class MainDesktop extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-        
+
         JInternalFrame in = new RegistrarBanco_UI();
         checkInstance(in);
-        
+
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-      JInternalFrame in = new PrestamosyAbonos_x_fecha_UI("MULTA");
+        JInternalFrame in = new PrestamosyAbonos_x_fecha_UI("MULTA");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-     // TODO add your handling code here:
+        // TODO add your handling code here:
         JInternalFrame in = new Gastos_UI("VER");
         //DesktopPaneMain.add(in);
         checkInstance(in);
@@ -736,6 +749,11 @@ public class MainDesktop extends javax.swing.JFrame {
         JInternalFrame in = new Bitacora_UI("PRESTAMO");
         checkInstance(in);
     }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        JInternalFrame in = new EliminarMovimientoBanco_UI();
+        checkInstance(in);
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
 
     public static void checkInstance(Object ven) {
         JInternalFrame InternalWindow = (JInternalFrame) ven;
@@ -828,6 +846,7 @@ public class MainDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
